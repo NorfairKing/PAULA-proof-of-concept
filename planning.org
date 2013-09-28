@@ -12,5 +12,17 @@
 ** Voice
 ** recognise commands
 ** sleep
+*** alarm
+*** song
+*** agenda for the day/week
+*** inspirational quote
+*** weather for the day
 
 * Eventually
+** Install self
+** Learn command
+** going out script
+** training
+*** running
+*** roomtraining
+** check movies in cinema

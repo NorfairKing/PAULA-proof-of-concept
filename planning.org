@@ -1,0 +1,16 @@
+
+* Concept
+  PAULA will be a life assistent
+  She will be a daemon so that she can monitor everything that happens on the computer.
+  She will need root privileges.
+
+* Next
+** start on paula.py, the daemon class
+   - [ ] paula has to be able to say things into a log file while running
+
+* Planned soon
+** Voice
+** recognise commands
+** sleep
+
+* Eventually

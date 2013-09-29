@@ -19,21 +19,45 @@
      
 import sys, time
 from daemon import Daemon
- 
-class MyDaemon(Daemon):
+import logging
+import logging.config
+
+class Paula(Daemon):
+    pid_file = '/tmp/paula.pid'
+    out_file = '/tmp/paula_out'
+    err_file = '/tmp/paula_err'
+    log_file = '/tmp/paula_log'
+
+    def __init__(self):
+        super(Paula, self).__init__(Paula.pid_file, stdout=Paula.out_file, stderr=Paula.err_file)
+        
+        # Logging
+        self.log = logging.getLogger('PAULA')
+        self.log.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s',datefmt='%Y-%m-%d %H:%M:%S')
+        fileHandler = logging.handlers.RotatingFileHandler(Paula.log_file, mode='a', maxBytes=10000, backupCount=5)      
+        fileHandler.setFormatter(formatter)  
+        self.log.addHandler(fileHandler)
+
+    def check(self):
+        pass
+
     def run(self):
         while True:
-            time.sleep(1)
+            self.log.info('Check start')
+            self.check()
+            self.log.info('Check done \n')
+            time.sleep(60)
  
 if __name__ == "__main__":
-    daemon = MyDaemon('/tmp/daemon-example.pid')
+    paula = Paula()
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
-            daemon.start()
+            paula.start()
         elif 'stop' == sys.argv[1]:
-            daemon.stop()
+            paula.stop()
         elif 'restart' == sys.argv[1]:
-            daemon.restart()
+            paula.restart()
         else:
             print "Unknown command"
             sys.exit(2)

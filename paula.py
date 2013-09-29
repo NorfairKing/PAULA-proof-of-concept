@@ -21,21 +21,18 @@ import sys, time
 from daemon import Daemon
 import logging
 import logging.config
+import config as conf
 
 class Paula(Daemon):
-    pid_file = '/tmp/paula.pid'
-    out_file = '/tmp/paula_out'
-    err_file = '/tmp/paula_err'
-    log_file = '/tmp/paula_log'
-
+    
     def __init__(self):
-        super(Paula, self).__init__(Paula.pid_file, stdout=Paula.out_file, stderr=Paula.err_file)
+        super(Paula, self).__init__(conf.pid_file, stdout=conf.out_file, stderr=conf.err_file)
         
         # Logging
         self.log = logging.getLogger('PAULA')
         self.log.setLevel(logging.DEBUG)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s',datefmt='%Y-%m-%d %H:%M:%S')
-        fileHandler = logging.handlers.RotatingFileHandler(Paula.log_file, mode='a', maxBytes=10000, backupCount=5)      
+        formatter = logging.Formatter(conf.log_format,datefmt=conf.log_dateFormat)
+        fileHandler = logging.handlers.RotatingFileHandler(conf.log_file, mode='a', maxBytes=conf.log_maxBytes, backupCount=conf.log_backupCount)      
         fileHandler.setFormatter(formatter)  
         self.log.addHandler(fileHandler)
 
@@ -47,7 +44,7 @@ class Paula(Daemon):
             self.log.info('Check start')
             self.check()
             self.log.info('Check done \n')
-            time.sleep(60)
+            time.sleep(conf.check_timer)
  
 if __name__ == "__main__":
     paula = Paula()

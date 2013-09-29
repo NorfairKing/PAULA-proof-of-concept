@@ -1,0 +1,2 @@
+# Need to be installed:
+sudo apt-get install libttspico-utils

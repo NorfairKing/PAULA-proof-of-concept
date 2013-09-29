@@ -5,10 +5,9 @@
   She will need root privileges.
 
 * Next
-** config file
+** Voice
 
 * Planned soon
-** Voice
 ** recognise commands
 ** sleep
 *** alarm

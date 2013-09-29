@@ -22,6 +22,7 @@ from daemon import Daemon
 import logging
 import logging.config
 import config as conf
+import voice
 
 class Paula(Daemon):
     
@@ -35,7 +36,11 @@ class Paula(Daemon):
         fileHandler = logging.handlers.RotatingFileHandler(conf.log_file, mode='a', maxBytes=conf.log_maxBytes, backupCount=conf.log_backupCount)      
         fileHandler.setFormatter(formatter)  
         self.log.addHandler(fileHandler)
-
+    
+    def say(self, text):
+        print("PAULA:   " + text)
+        voice.say(text)    
+    
     def check(self):
         pass
 
@@ -50,7 +55,9 @@ if __name__ == "__main__":
     paula = Paula()
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
+            paula.say("Started")
             paula.start()
+            # Nothing can happen after this line.
         elif 'stop' == sys.argv[1]:
             paula.stop()
         elif 'restart' == sys.argv[1]:

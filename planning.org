@@ -5,8 +5,7 @@
   She will need root privileges.
 
 * Next
-** start on paula.py, the daemon class
-   - [ ] paula has to be able to say things into a log file while running
+** config file
 
 * Planned soon
 ** Voice
@@ -17,7 +16,6 @@
 *** agenda for the day/week
 *** inspirational quote
 *** weather for the day
-
 * Eventually
 ** Install self
 ** Learn command

@@ -5,10 +5,8 @@
   She will need root privileges.
 
 * Next
-** Voice
-
+** recognise commands   
 * Planned soon
-** recognise commands
 ** sleep
 *** alarm
 *** song
@@ -23,3 +21,15 @@
 *** running
 *** roomtraining
 ** check movies in cinema
+** GTD
+** Backup
+** random song
+** long run
+** class
+** presence file
+** visitors
+** sleep, get up in time.
+** Alma
+** Weather -> yahoo weather api
+** pomodoro
+** series

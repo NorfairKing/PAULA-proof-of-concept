@@ -23,6 +23,7 @@ import logging
 import logging.config
 import config as conf
 import voice
+import decide
 
 class Paula(Daemon):
     
@@ -40,7 +41,10 @@ class Paula(Daemon):
     def say(self, text):
         print("PAULA:   " + text)
         voice.say(text)    
-    
+
+    def decide_command(self, command):
+        decide.command(command)
+
     def check(self):
         pass
 
@@ -49,8 +53,8 @@ class Paula(Daemon):
             self.log.info('Check start')
             self.check()
             self.log.info('Check done \n')
-            time.sleep(conf.check_timer)
- 
+            time.sleep(conf.check_timer) 
+
 if __name__ == "__main__":
     paula = Paula()
     if len(sys.argv) == 2:

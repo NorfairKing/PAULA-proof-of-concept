@@ -1,3 +1,9 @@
+import os+
+
+# Dir settings
+paula_dir           = os.environ["$PAULA"]
+commands_dir        = paula_dir + '/commands'
+
 # Pid file
 pid_file            = '/tmp/paula.pid'
 

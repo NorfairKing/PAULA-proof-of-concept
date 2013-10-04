@@ -1,1 +1,3 @@
-speak_script            = "/home/syd/Dropbox/PAULA/paula_says.sh"
+from paula import config as conf
+
+speak_script            = conf.speak_dir + "/paula_says.sh"

@@ -23,7 +23,7 @@ import logging
 import logging.config
 import config as conf
 import speak.voice as voice
-import commands.decide as decide
+import command.decide as decide
 
 class Paula(Daemon):
     

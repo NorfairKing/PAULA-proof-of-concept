@@ -1,8 +1,9 @@
 import os
 
 # Dir settings
-paula_dir           = os.environ["PAULA"]
+paula_dir           = os.environ["PAULA"] + '/paula'
 decide_dir          = paula_dir + '/decide'
+speak_dir           = paula_dir + '/speak'
 
 # Pid file
 pid_file            = '/tmp/paula.pid'

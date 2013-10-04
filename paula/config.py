@@ -1,8 +1,8 @@
-import os+
+import os
 
 # Dir settings
-paula_dir           = os.environ["$PAULA"]
-commands_dir        = paula_dir + '/commands'
+paula_dir           = os.environ["PAULA"]
+decide_dir          = paula_dir + '/decide'
 
 # Pid file
 pid_file            = '/tmp/paula.pid'

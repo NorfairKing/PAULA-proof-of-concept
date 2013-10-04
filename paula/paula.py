@@ -22,8 +22,8 @@ from daemon import Daemon
 import logging
 import logging.config
 import config as conf
-import voice
-import decide
+import speak.voice as voice
+import commands.decide as decide
 
 class Paula(Daemon):
     
@@ -43,7 +43,7 @@ class Paula(Daemon):
         voice.say(text)    
 
     def decide_command(self, command):
-        decide.command(command)
+        return decide.decide_command(command)
 
     def check(self):
         pass
@@ -54,23 +54,3 @@ class Paula(Daemon):
             self.check()
             self.log.info('Check done \n')
             time.sleep(conf.check_timer) 
-
-if __name__ == "__main__":
-    paula = Paula()
-    if len(sys.argv) == 2:
-        if 'start' == sys.argv[1]:
-            paula.say("Started")
-            paula.start()
-            # Nothing can happen after this line.
-        elif 'stop' == sys.argv[1]:
-            paula.stop()
-        elif 'restart' == sys.argv[1]:
-            paula.restart()
-        else:
-            print "Unknown command"
-            sys.exit(2)
-        sys.exit(0)
-    else:
-        print "usage: %s start|stop|restart" % sys.argv[0]
-        sys.exit(2)
-

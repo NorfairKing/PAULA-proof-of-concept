@@ -33,3 +33,4 @@
 ** Weather -> yahoo weather api
 ** pomodoro
 ** series
+** Advice

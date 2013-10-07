@@ -45,8 +45,19 @@ class Paula(Daemon):
 
     def decide_command(self, command):
         script = decide.decide_command(command)        
-        process = subprocess.Popen(script, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print("running "+ script)    
+        execfile(script)
+        #subprocess.call(script, shell=True)
+        print("script done")
+
+    def go_to_sleep_mode(self, seconds):
+        if conf.debug:
+            cmd = "rtcwake --dry-run --mode mem --seconds " + str(seconds)
+        else:    
+            cmd = "rtcwake --mode mem --seconds " + str(seconds)
+        process = subprocess.Popen(cmd, shell=True)
         out, err = process.communicate()
+        print(out, err)
 
     def check(self):
         pass

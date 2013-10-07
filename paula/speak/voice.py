@@ -2,7 +2,8 @@ import subprocess
 import voice_config as conf
 
 def say(text):
-    bashCommand = conf.speak_script + " " + text
-    subprocess.call(conf.speak_script + " " + text, shell=True)
-    #process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-    #output = process.communicate()
+    bashCommand = conf.speak_script + ' "' + text  +'"'
+    if not conf.debug:
+        bashCommand += ">/dev/null 2>&1"
+    process = subprocess.Popen(bashCommand,shell=True)
+    out,err = process.communicate()

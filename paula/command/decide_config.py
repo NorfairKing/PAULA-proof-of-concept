@@ -4,4 +4,4 @@ commands_dir = conf.decide_dir + '/commands' # The dir with all the command text
 
 
 # SCRIPTS
-sleep_script = conf.scipts_dir + '/sleep.sh' # The sleep script
+sleep_script = conf.scripts_dir + '/sleep.py' # The sleep script

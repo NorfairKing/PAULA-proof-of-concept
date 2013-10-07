@@ -1,14 +1,15 @@
 import os
 
+debug               = False
+
 # Dir settings
-paula_dir           = str(os.getcwd) + '/paula'
+paula_dir           = os.path.abspath(os.path.dirname(__file__))
 decide_dir          = paula_dir + '/decide'
 speak_dir           = paula_dir + '/speak'
 scripts_dir         = paula_dir + '/scripts'
 
 # Pid file
 pid_file            = '/tmp/paula.pid'
-
 
 #Std streams
 out_file            = '/tmp/paula_out'

@@ -4,6 +4,7 @@ from paula.paula import Paula
 
 if __name__ == "__main__":
     p = Paula()
+    all_args = " ".join(sys.argv[1:])
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
             p.say("Started")
@@ -13,10 +14,6 @@ if __name__ == "__main__":
             p.stop()
         elif 'restart' == sys.argv[1]:
             p.restart()
-        else:
-            print "Unknown command"
-            sys.exit(2)
-        sys.exit(0)
-    else:
-        print p.decide_command("test")
-        sys.exit(2)
+
+    print ("deciding " + all_args)
+    p.decide_command(all_args)

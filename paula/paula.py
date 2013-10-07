@@ -43,7 +43,9 @@ class Paula(Daemon):
         voice.say(text)    
 
     def decide_command(self, command):
-        return decide.decide_command(command)
+        script = decide.decide_command(command)
+        subprocess.call(script, shell=True)
+        subprocess.communicate()
 
     def check(self):
         pass

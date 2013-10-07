@@ -13,5 +13,5 @@ def decide_command(command):
 def isCommandFor(command, class_of_commands):
     if command == "sleep" and class_of_commands == "sleep":
         return true
-    else
+    else:
         return false

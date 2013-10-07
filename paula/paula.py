@@ -18,6 +18,7 @@
     
      
 import sys, time
+import subprocess
 from daemon import Daemon
 import logging
 import logging.config
@@ -43,9 +44,9 @@ class Paula(Daemon):
         voice.say(text)    
 
     def decide_command(self, command):
-        script = decide.decide_command(command)
-        subprocess.call(script, shell=True)
-        subprocess.communicate()
+        script = decide.decide_command(command)        
+        process = subprocess.Popen(script, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = process.communicate()
 
     def check(self):
         pass

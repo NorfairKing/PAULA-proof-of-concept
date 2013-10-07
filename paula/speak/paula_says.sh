@@ -20,4 +20,4 @@ soundfile="/tmp/paula_speaks.wav"
 pico2wave -l=en-GB -w="$soundfile" "$1"
 aplay "$soundfile" > /dev/null 2>&1
 rm "$soundfile"
-exit 0
+exit $?

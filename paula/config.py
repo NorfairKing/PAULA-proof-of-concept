@@ -1,7 +1,7 @@
 import os
 
 # Dir settings
-paula_dir           = os.environ["PAULA"] + '/paula'
+paula_dir           = str(os.getcwd) + '/paula'
 decide_dir          = paula_dir + '/decide'
 speak_dir           = paula_dir + '/speak'
 scripts_dir         = paula_dir + '/scripts'

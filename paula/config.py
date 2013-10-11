@@ -1,12 +1,12 @@
 import os
 
-debug               = False
+debug               = True
 
 # Dir settings
 paula_dir           = os.path.abspath(os.path.dirname(__file__))
 decide_dir          = paula_dir + '/decide'
 speak_dir           = paula_dir + '/speak'
-scripts_dir         = paula_dir + '/scripts'
+sleep_dir           = paula_dir + '/sleep'
 
 # Pid file
 pid_file            = '/tmp/paula.pid'

@@ -3,8 +3,9 @@ import decide_config as conf
 # Returns the script for the command
 def decide_command(command):
     if command == "sleep":
-        print "decided  "+command + " to be " + conf.sleep_script
-        return conf.sleep_script
+        print "decided  "+command + " to be the command for the sleep script."
+        from paula.sleep import sleep_script
+        sleep_script.execute()
     return None
 
 # Returns whether the given command refers to a specific class of commands.

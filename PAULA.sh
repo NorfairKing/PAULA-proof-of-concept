@@ -16,4 +16,4 @@
 ##
 
 
-sudo python run_paula.py $@
+sudo python "/home/syd/Dropbox/PAULA/run_paula.py" $@

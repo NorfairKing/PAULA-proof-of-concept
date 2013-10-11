@@ -20,11 +20,12 @@
 import sys, time
 import subprocess
 from daemon import Daemon
+
 import logging
 import logging.config
 import config as conf
-import speak.voice as voice
-import command.decide as decide
+import core.speak.voice as voice
+import core.command.decide as decide
 
 class Paula(Daemon):
     
@@ -39,18 +40,20 @@ class Paula(Daemon):
         fileHandler.setFormatter(formatter)  
         self.log.addHandler(fileHandler)
     
+    def log_i(self,text):
+        self.log.info(text)
+    
     def say(self, text):
         print("PAULA:   " + text)
         voice.say(text)    
 
     def decide_command(self, command):
+        self.log_i("Deciding " + command)
         script = decide.decide_command(command)        
-        print("running "+ script)    
-        execfile(script)
-        #subprocess.call(script, shell=True)
-        print("script done")
+        self.log_i("Done with " + script)
 
     def go_to_sleep_mode(self, seconds):
+        self.log_i("Going to sleep mode for " + str(seconds) + " seconds.")
         if conf.debug:
             cmd = "rtcwake --dry-run --mode mem --seconds " + str(seconds)
         else:    
@@ -58,6 +61,7 @@ class Paula(Daemon):
         process = subprocess.Popen(cmd, shell=True)
         out, err = process.communicate()
         print(out, err)
+        self.log_i("Woke up")
 
     def check(self):
         pass

@@ -26,6 +26,7 @@ import logging.config
 import config as conf
 import core.speak.voice as voice
 import core.command.decide as decide
+import sleep.sleep as sleep
 
 class Paula(Daemon):
     
@@ -43,25 +44,34 @@ class Paula(Daemon):
     def log_i(self,text):
         self.log.info(text)
     
+    def debug(self, text, option=conf.debug):
+        if option:
+            self.log.debug(text)
+            print
+            print(text)
+            print
+    
     def say(self, text):
-        print("PAULA:   " + text)
+        self.log_i("PAULA:   " + text)
         voice.say(text)    
+    
+    def get_input_str(self):
+        answer = raw_input("YOU:     ")
+        print
+        return answer
+    
+    def get_input_int(self):
+        return int(self.get_input_str())
 
     def decide_command(self, command):
-        self.log_i("Deciding " + command)
+        self.debug("Deciding " + command)
         script = decide.decide_command(command)        
-        self.log_i("Done with " + script)
+        self.debug("Done with " + script)
 
     def go_to_sleep_mode(self, seconds):
-        self.log_i("Going to sleep mode for " + str(seconds) + " seconds.")
-        if conf.debug:
-            cmd = "rtcwake --dry-run --mode mem --seconds " + str(seconds)
-        else:    
-            cmd = "rtcwake --mode mem --seconds " + str(seconds)
-        process = subprocess.Popen(cmd, shell=True)
-        out, err = process.communicate()
-        print(out, err)
-        self.log_i("Woke up")
+        self.debug("Going to sleep mode for " + str(seconds) + " seconds.")
+        sleep.go_to_sleep_mode(seconds)
+        self.debug("Woke up")
 
     def check(self):
         pass

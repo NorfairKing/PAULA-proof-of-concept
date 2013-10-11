@@ -5,32 +5,34 @@
   She will need root privileges.
 
 * Next
-** recognise commands   
+** TODO sleep
+*** DONE alarm
+    CLOSED: [2013-10-11 Fre 23:32]
+*** TODO pick song
+*** TODO agenda for the day/week
+*** TODO inspirational quote
+*** TODO weather for the day
+
 * Planned soon
-** sleep
-*** alarm
-*** song
-*** agenda for the day/week
-*** inspirational quote
-*** weather for the day
 * Eventually
-** Install self
-** Learn command
-** going out script
-** training
-*** running
-*** roomtraining
-** check movies in cinema
-** GTD
-** Backup
-** random song
-** long run
-** class
-** presence file
-** visitors
-** sleep, get up in time.
-** Alma
-** Weather -> yahoo weather api
-** pomodoro
-** series
-** Advice
+** TODO make command recognision better
+** TODO Install self
+** TODO Learn command
+** TODO going out script
+** TODO training
+*** TODO running
+*** TODO roomtraining
+** TODO check movies in cinema
+** TODO GTD
+** TODO Backup
+** TODO random song
+** TODO long run
+** TODO class
+** TODO presence file
+** TODO visitors
+** TODO sleep, get up in time.
+** TODO Alma
+** TODO Weather -> yahoo weather api
+** TODO pomodoro
+** TODO series
+** TODO Advice

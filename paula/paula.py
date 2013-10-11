@@ -47,9 +47,7 @@ class Paula(Daemon):
     def debug(self, text, option=conf.debug):
         if option:
             self.log.debug(text)
-            print
             print(text)
-            print
     
     def say(self, text):
         self.log_i("PAULA:   " + text)

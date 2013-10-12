@@ -1,6 +1,6 @@
 from paula import config as conf
 
-debug               = True
+debug               = False
 
 duration_options    = {
       "short nap"   : 25  * 60

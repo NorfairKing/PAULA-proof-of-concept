@@ -10,4 +10,4 @@ def play():
         process = subprocess.Popen(bashCommand, shell=True, stdout=null)
         out,err = process.communicate()
     except:
-        pass
+        process.kill()

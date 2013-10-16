@@ -10,4 +10,4 @@ duration_options    = {
     , "long"        : 7.5 * 3600 + 5 * 60
     , "very long"   : 9   * 3600 + 5 * 60
     , "crash"       : 12  * 3600
-} 
+}

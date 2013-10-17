@@ -7,8 +7,7 @@ Personal Artificial Intelligent Life Assistant
   An setup script is provided:
   install.sh
   Running this will install PAULA and her components.
-  
-  Note: The install script is currently not implemented.
+
 
 * Use
   Run PAULA.sh with the following commands:

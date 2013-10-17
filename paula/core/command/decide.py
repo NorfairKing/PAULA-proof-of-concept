@@ -1,4 +1,4 @@
-import decide_config as conf
+import command_config as conf
 
 # Returns the script for the command
 def decide_command(command):
@@ -11,9 +11,9 @@ def decide_command(command):
     return "Nothing"
 
 # Returns whether the given command refers to a specific class of commands.
-# e.g.  isCommandFor("YES", "yes") == True
-#       isCommandFor("NO" , "yes") == False
-def isCommandFor(command, class_of_commands):
+# e.g.  is_command_for("YES", "yes") == True
+#       is_command_for("NO" , "yes") == False
+def is_command_for(command, class_of_commands):
     if command == "sleep" and class_of_commands == "sleep":
         return true
     else:

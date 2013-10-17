@@ -1,7 +1,9 @@
-from paula import config as conf
+import os
 
+# Default = False
 debug               = False
 
+# A dictionary that maps strings (options) to integers (amounts of seconds)
 duration_options    = {
       "short nap"   : 25  * 60
     , "long nap"    : 90  * 60

@@ -1,0 +1,8 @@
+The music module contains all PAULA's functionality conserning music.
+
+* Provided
+** song.py
+  - play()
+    Plays a song
+* Required
+  Nothing, everything required for this module is intern.

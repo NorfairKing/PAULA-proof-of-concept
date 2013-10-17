@@ -1,0 +1,9 @@
+The speak module provides all functionality to make PAULA speak.
+
+* Provided
+** voice.py
+   - say(text)
+     Has PAULA say "text".
+
+* Required
+  Nothing, everything required for this module is intern.

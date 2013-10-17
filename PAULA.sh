@@ -15,5 +15,6 @@
 #
 ##
 
+HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-sudo python "/home/syd/Dropbox/PAULA/run_paula.py" $@
+sudo python "$HERE/run_paula.py" $@

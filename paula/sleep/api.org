@@ -1,0 +1,18 @@
+The music module contains all PAULA's functionality conserning music.
+
+* Provided
+** sleep.py
+  - go_to_sleep_mode(seconds)
+    Has the computer go to sleep mode and wake up after the given amount of seconds
+
+** sleep_script
+  - execute()
+    Executes the sleep script:\\
+    - Asks user how long to sleep
+    - sleeps for the correct amound of time
+    - plays a song
+
+* Required
+** paula.music
+*** song.py
+    - play()

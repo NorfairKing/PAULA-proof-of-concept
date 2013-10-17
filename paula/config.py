@@ -3,10 +3,7 @@ import os
 debug               = False
 
 # Dir settings
-paula_dir           = os.path.abspath(os.path.dirname(__file__))
-decide_dir          = paula_dir + '/core/decide'
-speak_dir           = paula_dir + '/core/speak'
-sleep_dir           = paula_dir + '/sleep'
+paula_dir           = os.getcwd()
 
 # Pid file
 pid_file            = '/tmp/paula.pid'

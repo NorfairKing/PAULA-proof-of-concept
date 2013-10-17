@@ -1,0 +1,23 @@
+The core module is the core of PAULA, it provides all PAULA's core functionality.
+
+* Provided
+** do.py
+   - decide_command(cmd)
+     Decides which script to run. Returns the absolute path to this script.
+
+   - is_command_for(cmd, class_of_commands)
+     Decides whether the given command is part of the given class of commands.
+
+   - say(text)
+     Has PAULA say "text".
+
+* Required
+** command
+*** decide.py
+    - decide_command(command)
+    - is_command_for(command, class_of_commands)
+** speak
+*** voice.pyA
+    - say(text)
+
+

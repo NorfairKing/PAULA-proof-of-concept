@@ -24,8 +24,7 @@ from daemon import Daemon
 import logging
 import logging.config
 import config as conf
-import core.speak.voice as voice
-import core.command.decide as decide
+import core.do as do
 import sleep.sleep as sleep
 
 class Paula(Daemon):
@@ -51,7 +50,7 @@ class Paula(Daemon):
     
     def say(self, text):
         self.log_i("PAULA:   " + text)
-        voice.say(text)    
+        do.say(text)    
     
     def get_input_str(self):
         answer = raw_input("YOU:     ")
@@ -63,7 +62,7 @@ class Paula(Daemon):
 
     def decide_command(self, command):
         self.debug("Deciding " + command)
-        script = decide.decide_command(command)        
+        script = do.decide_command(command)        
         self.debug("Done with " + script)
 
     def go_to_sleep_mode(self, seconds):

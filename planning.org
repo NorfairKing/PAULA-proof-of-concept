@@ -8,6 +8,7 @@
 ** TODO sleep
 *** DONE alarm
     CLOSED: [2013-10-11 Fre 23:32]
+*** TODO Checks volume
 *** TODO pick song
 *** TODO agenda for the day/week
 *** TODO inspirational quote
@@ -15,6 +16,7 @@
 
 * Planned soon
 * Eventually
+** TODO Unit tests
 ** TODO make command recognision better
 ** TODO Install self
 ** TODO Learn command

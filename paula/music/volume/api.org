@@ -1,0 +1,14 @@
+The volume module contains all functionality to handle the system sound volume
+
+* Provided
+** volume.py
+  - get()
+    Returns the systems sound volume.
+  - set(percent)
+    Sets the systems sound volume to "percent".
+  - mute()
+    Mutes the systems sound volume
+
+* Required
+  Nothing, every required file is intern
+      

@@ -6,4 +6,4 @@ debug                   = False
 # Default = True
 sound_on                = True
 
-speak_script            = os.getcwd() + "/paula_says.sh"
+speak_script            = os.path.dirname(__file__) + "/paula_says.sh"

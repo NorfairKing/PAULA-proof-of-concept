@@ -4,5 +4,15 @@ The music module contains all PAULA's functionality conserning music.
 ** song.py
   - play()
     Plays a song
+
+** system_volume.py
+  - getVolume()
+  - setVolume(percent)
+  - mute()
+
 * Required
-  Nothing, everything required for this module is intern.
+** volume
+*** volume.py
+    - getVolume()
+    - setVolume(percent)
+    - mute()

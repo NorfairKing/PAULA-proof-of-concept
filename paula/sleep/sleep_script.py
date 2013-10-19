@@ -1,5 +1,6 @@
 from paula.paula import Paula
 from paula.music import song
+from paula.music import system_volume
 import sleep_conf as conf
 
 def execute():
@@ -14,7 +15,10 @@ def execute():
     p.debug("answer = " + answer, conf.debug)
     p.debug("selected option = " + str(chosen_option) + " seconds", conf.debug)
 
-    #Sleep
+    # Set volume to something pleasant
+    system_volume.set(conf.pleasant_wake_up_volume)
+
+    # Sleep
     p.go_to_sleep_mode(chosen_option)
     
     p.say("Good morning, Sir")

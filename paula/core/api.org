@@ -11,6 +11,7 @@ The core module is the core of PAULA, it provides all PAULA's core functionality
    - say(text)
      Has PAULA say "text".
 
+
 * Required
 ** command
 *** decide.py

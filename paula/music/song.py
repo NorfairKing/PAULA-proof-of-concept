@@ -14,7 +14,12 @@ class Song:
         self.title_pronouncable = self.make_pronouncable(title)
     
     def make_pronouncable(self, title):
-        return self.title
+        split = title.split(conf.title_artist_delimiter)
+        artist = split[0]
+        title = split[1]
+        partist = artist.replace(conf.song_path_space_synonym,' ')
+        ptitle = title.replace(conf.song_path_space_synonym,' ')
+        return ptitle + " by " + partist
 
     def __str__(self):
         return self.title + "  at: " + self.path + "  pronounced: " + self.title_pronouncable 

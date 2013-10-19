@@ -22,7 +22,8 @@ def execute():
     else:
         s = song.select_random()
         
-    p.say("You selected " + s.title_pronouncable)
+    p.say("You selected: ")
+    p.say(s.title_pronouncable)
 
     # Set volume to something pleasant
     system_volume.set(conf.pleasant_wake_up_volume)

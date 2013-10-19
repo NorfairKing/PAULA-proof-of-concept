@@ -1,6 +1,6 @@
 
 # Default = False
-debug               = True
+debug               = False
 
 # Default = [".mp3"]
 music_extensions    = [".mp3"]

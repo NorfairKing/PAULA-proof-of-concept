@@ -7,12 +7,24 @@ import time
 #from paula.paula import Paula
 import music_conf as conf
 
-def select_and_play():
-    song, path = select()
-    play(path)
+class Song:
+    def __init__(self, title, path):
+        self.title = title
+        self.path = path
+        self.title_pronouncable = self.make_pronouncable(title)
+    
+    def make_pronouncable(self, title):
+        return self.title
 
-def play(song_path):
-    cmd = "play  \""+ song_path + "\""
+    def __str__(self):
+        return self.title + "  at: " + self.path + "  pronounced: " + self.title_pronouncable 
+
+def select_and_play():
+    song = select()
+    play(song)
+
+def play(song):
+    cmd = "play  \""+ song.path + "\""
     if not conf.debug:
         cmd += " > /dev/null 2>&1"
     null = open(os.devnull, 'w')
@@ -24,16 +36,16 @@ def play(song_path):
         process.terminate()
 
 def play_random():
-    (song, path) = select_random()
+    song = select_random()
     if conf.debug:
-        print("randomly selected: " + song + " at " + path)
-    play(path)
+        print("randomly selected: " + song.title + " at " + song.path)
+    play(song)
 
 def select_random():
     possible_selections = get_songs_dict()
-    selected = random.choice(possible_selections.keys())
-    selected_path = possible_selections[selected]
-    return selected, selected_path
+    selected_title = random.choice(possible_selections.keys())
+    selected_song = possible_selections[selected_title]
+    return selected_song
 
 def select():
     #p = Paula()
@@ -59,11 +71,11 @@ def select():
             print "That is invalid selection, Sir."
             continue
             
-        selected = sorted_keys[val]
-        selected_path = possible_selections[selected]
+        selected_title = sorted_keys[val]
+        selected_song = possible_selections[selected_title]
         ask = False
 
-    return selected, selected_path
+    return selected_song
 
 
 def get_songs_dict():
@@ -76,5 +88,5 @@ def get_songs_dict():
                     if filename.endswith(ext):
                         file_clean = os.path.splitext(filename)[0]
                         entire_path = os.path.join(dirname, filename)
-                        possible_selections[file_clean] = entire_path
+                        possible_selections[file_clean] = Song(file_clean, entire_path)
     return possible_selections

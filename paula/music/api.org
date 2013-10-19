@@ -2,9 +2,26 @@ The music module contains all PAULA's functionality conserning music.
 
 * Provided
 ** song.py
-  - play()
-    Plays a song
+  - select_and_play()
+    Has the user select a song and plays it
 
+  - play(song_path)
+    Plays the song at the given path
+
+  - play_random()
+    Plays a random song
+  
+  - select_random()
+    Selects a random song and returns
+    song_name, song_path
+    
+  - select()
+    Has the user select a song and returns
+    song_name, song_path
+  
+  - get_songs_dict()
+    Returns a dictionary mapping available songs to their paths
+    
 ** system_volume.py
   - get()
   - set(percent)

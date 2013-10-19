@@ -23,4 +23,4 @@ def set(percent):
     out, err = process.communicate()
     
 def mute():
-    set_volume(0)
+    set(0)

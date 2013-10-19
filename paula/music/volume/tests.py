@@ -9,7 +9,6 @@ class volumeTests(unittest.TestCase):
         volume.get()
 
     def test_set_volume(self):
-        print(volume.get())
         for i in range(100):
             volume.set(i)
             current_vol = volume.get()

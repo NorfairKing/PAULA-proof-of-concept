@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import random
+import time
 
 #from paula.paula import Paula
 import music_conf as conf
@@ -15,8 +16,12 @@ def play(song_path):
     if not conf.debug:
         cmd += " > /dev/null 2>&1"
     null = open(os.devnull, 'w')
-    process = subprocess.Popen(cmd, shell=True, stdout=null)
-    out,err = process.communicate()
+    
+    try:
+        process = subprocess.Popen(cmd, shell=True, stdout=null)
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
 
 def play_random():
     (song, path) = select_random()

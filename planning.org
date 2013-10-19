@@ -8,7 +8,8 @@
 ** TODO sleep
 *** DONE alarm
     CLOSED: [2013-10-11 Fre 23:32]
-*** TODO Checks volume
+*** DONE Checks volume
+    CLOSED: [2013-10-19 Sam 17:23]
 *** TODO pick song
 *** TODO agenda for the day/week
 *** TODO inspirational quote

@@ -15,14 +15,14 @@ def execute():
     p.debug("answer = " + answer, conf.debug)
     p.debug("selected option = " + str(chosen_option) + " seconds", conf.debug)
 
-    p.say("Sir, which song do you want to wake you up")
+    p.say("Please select which song you want to wake you up.")
     answer = p.get_input_str()
     if answer == "select":
-        song_name, song_path = song.select()
+        s = song.select()
     else:
-        song_name, song_path = song.select_random()
+        s = song.select_random()
         
-    p.say("You selected " + song_name)
+    p.say("You selected " + s.title_pronouncable)
 
     # Set volume to something pleasant
     system_volume.set(conf.pleasant_wake_up_volume)
@@ -35,7 +35,7 @@ def execute():
     
     # Play random song
     print("C-c to stop playing ")
-    song.play(song_path)
+    song.play(s)
     
     p.say("Have a nice day, Sir")
 

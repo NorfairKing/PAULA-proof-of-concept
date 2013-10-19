@@ -23,7 +23,7 @@ def execute():
     
     p.say("Good morning, Sir")
     
-    song.play()
+    song.play_random()
 
 def printOptions(dic):
     for key in dic.keys():

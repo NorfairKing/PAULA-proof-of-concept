@@ -10,7 +10,8 @@
     CLOSED: [2013-10-11 Fre 23:32]
 *** DONE Checks volume
     CLOSED: [2013-10-19 Sam 17:23]
-*** TODO pick song
+*** DONE pick song
+    CLOSED: [2013-10-20 Son 02:33]
 *** TODO agenda for the day/week
 *** TODO inspirational quote
 *** TODO weather for the day

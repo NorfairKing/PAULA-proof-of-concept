@@ -21,30 +21,35 @@ class Song:
         ptitle = title.replace(conf.song_path_space_synonym,' ')
         return ptitle + " by " + partist
 
+    def play(self):
+        cmd = "play  \""+ self.path + "\""
+        if not conf.debug:
+            cmd += " > /dev/null 2>&1"
+        null = open(os.devnull, 'w')
+    
+        try:
+            process = subprocess.Popen(cmd, shell=True, stdout=null)
+            process.wait()
+        except KeyboardInterrupt:
+            process.terminate()
+
     def __str__(self):
         return self.title + "  at: " + self.path + "  pronounced: " + self.title_pronouncable 
 
+    
+def choose_and_play():
+    song = choose()
+    song.play()
+
 def select_and_play():
     song = select()
-    play(song)
-
-def play(song):
-    cmd = "play  \""+ song.path + "\""
-    if not conf.debug:
-        cmd += " > /dev/null 2>&1"
-    null = open(os.devnull, 'w')
-    
-    try:
-        process = subprocess.Popen(cmd, shell=True, stdout=null)
-        process.wait()
-    except KeyboardInterrupt:
-        process.terminate()
+    song.play()
 
 def play_random():
     song = select_random()
     if conf.debug:
-        print("randomly selected: " + song.title + " at " + song.path)
-    play(song)
+        print("randomly selected: " + str(song))
+    song.play()
 
 def select_random():
     possible_selections = get_songs_dict()
@@ -52,15 +57,49 @@ def select_random():
     selected_song = possible_selections[selected_title]
     return selected_song
 
+def choose():
+    possible_selections = get_songs_dict()
+                 
+    sorted_keys = sorted(possible_selections.keys())
+    
+    print("    " + str(-1) +  ((6-len(str(-1))) * " ") +" - " + "random song")
+    counter = 0
+    for entry in sorted_keys:
+        print("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry))
+        counter += 1
+    print
+
+    ask = True
+    while(ask):
+        userInput = raw_input("Take your pick: ")
+
+        try:
+            val = int(userInput)
+        except ValueError:
+            print "That's not a number, Sir."        
+            continue
+
+        if val < -1 or val >= len(sorted_keys):
+            print "That is invalid selection, Sir."
+            continue    
+        
+        if val == -1:
+            selected_song = select_random()
+        else:
+            selected_title = sorted_keys[val]
+            selected_song = possible_selections[selected_title]
+        ask = False
+
+    return selected_song
 def select():
-    #p = Paula()
     possible_selections = get_songs_dict()
                  
     sorted_keys = sorted(possible_selections.keys())
     counter = 0
     for entry in sorted_keys:
-        print str(counter) + ": " + entry    
+        print("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry))
         counter += 1
+    print
 
     ask = True
     while(ask):
@@ -95,3 +134,4 @@ def get_songs_dict():
                         entire_path = os.path.join(dirname, filename)
                         possible_selections[file_clean] = Song(file_clean, entire_path)
     return possible_selections
+

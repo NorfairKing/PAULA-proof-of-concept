@@ -2,25 +2,39 @@ The music module contains all PAULA's functionality conserning music.
 
 * Provided
 ** song.py
+  - Class: Song
+    - properties
+      - title
+        Title of the song
+      - path
+        Path to the song
+      - title_pronouncable
+        A string representing the pronouncable version of the song
+    - make_pronouncable()
+      returns the pronouncable version of a song title
+    - play()
+      plays itself
+
+  - choose_and_play()
+    Has the user choose a song or choose to have a random song selected and plays it.
+
   - select_and_play()
-    Has the user select a song and plays it
+    Has the user select a song and plays it.
 
-  - play(song_path)
-    Plays the song at the given path
-
+  - select_random()
+    Selects a random song and returns it
+  
   - play_random()
     Plays a random song
-  
-  - select_random()
-    Selects a random song and returns
-    song_name, song_path
     
+  - choose()
+    Has the user choose a song or choose to have a random song selected.
+
   - select()
-    Has the user select a song and returns
-    song_name, song_path
+    Has the user select a song and returns it
   
   - get_songs_dict()
-    Returns a dictionary mapping available songs to their paths
+    Returns a dictionary mapping available song titles to their songs
     
 ** system_volume.py
   - get()

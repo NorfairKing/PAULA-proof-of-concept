@@ -8,7 +8,7 @@ def go_to_sleep_mode(seconds):
     cmd += "--seconds " + str(seconds)
     
     null = open(os.devnull, 'w')
-    if conf.debug:
+    if not conf.debug:
         process = subprocess.Popen(cmd, shell=True, stdout = null, stderr = null)
         out, err = process.communicate()
     else:

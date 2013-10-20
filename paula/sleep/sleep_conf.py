@@ -14,4 +14,5 @@ duration_options    = {
     , "crash"       : 12  * 3600
 }
 
+# Default = 60
 pleasant_wake_up_volume     = 60 

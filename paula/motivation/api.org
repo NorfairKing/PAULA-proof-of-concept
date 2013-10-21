@@ -1,0 +1,19 @@
+The motivation package contains everything PAULA needs to motivate the user.xc
+
+* Provided
+** quote.py
+  - Class: Quote
+    - properties
+      - text
+        The actual quote
+      - author
+        The author of the quote
+    - from_string()
+      returns a quote object as a result of parsing a line.
+
+  - get_random()
+    returns a random quote object
+
+
+* Required
+  Nothing

@@ -1,6 +1,7 @@
 from paula.paula import Paula
 from paula.music import song
 from paula.music import system_volume
+from paula.motivation import quote
 import sleep_conf as conf
 
 def execute():
@@ -33,6 +34,8 @@ def execute():
     s.play()
     
     p.say("Have a nice day, Sir")
+    
+    print str(quote.get_random())
 
 def printOptions(dic):
     for key in dic.keys():

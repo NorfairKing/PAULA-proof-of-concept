@@ -9,19 +9,19 @@ def execute():
 
     p.say("How long would you like to sleep, Sir?")
 
-    printOptions(conf.duration_options)
+    printOptions(conf.DURATION_OPTIONS)
     answer = p.get_input_str().strip()
-    chosen_option = int(conf.duration_options[answer])
+    chosen_option = int(conf.DURATION_OPTIONS[answer])
     
-    p.debug("answer = " + answer, conf.debug)
-    p.debug("selected option = " + str(chosen_option) + " seconds", conf.debug)
+    p.debug("answer = " + answer, conf.DEBUG)
+    p.debug("selected option = " + str(chosen_option) + " seconds", conf.DEBUG)
     
     # select song
     p.say("Please select which song you want to wake you up.")
     s = song.choose()
 
     # Set volume to something pleasant
-    system_volume.set(conf.pleasant_wake_up_volume)
+    system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
     
     # Sleep
     p.go_to_sleep_mode(chosen_option)

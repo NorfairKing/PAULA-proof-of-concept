@@ -1,9 +1,9 @@
 import os
 
 # Default = False
-debug                   = False
+DEBUG                   = False
 
 # Default = True
-sound_on                = True
+SOUND_ON                = True
 
-speak_script            = os.path.dirname(__file__) + "/paula_says.sh"
+SPEAK_SCRIPT            = os.path.dirname(__file__) + "/paula_says.sh"

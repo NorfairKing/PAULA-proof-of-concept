@@ -5,10 +5,10 @@ import speak_config as conf
 def say(text):
     print("PAULA:   " + text + "\n")
 
-    if conf.sound_on:
-        bashCommand = conf.speak_script + ' "' + text  +'"'
+    if conf.SOUND_ON:
+        bashCommand = conf.SPEAK_SCRIPT + ' "' + text  +'"'
         null = open(os.devnull, 'w')
-        if (conf.debug):
+        if (conf.DEBUG):
             process = subprocess.Popen(bashCommand, shell=True)
             out,err = process.communicate()
         else:

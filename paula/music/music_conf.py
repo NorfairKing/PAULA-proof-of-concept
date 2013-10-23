@@ -1,15 +1,15 @@
 
 # Default = False
-debug               = False
+DEBUG               = False
 
 # Default = [".mp3"]
-music_extensions    = [".mp3"]
+MUSIC_EXTENSIONS    = [".mp3"]
 
 # Default = ["~/Music"]
-music_dirs          = ["/home/syd/Music/music"]
+MUSIC_DIRS          = ["/home/syd/Music/music"]
 
 # Default = "-"
-title_artist_delimiter = "-"
+TITLE_ARTIST_DELIMITER = "-"
 
 # Default = "_"
-song_path_space_synonym = "_"
+SONG_PATH_SPACE_SYNONYM= "_"

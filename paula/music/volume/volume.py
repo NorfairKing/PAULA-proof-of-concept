@@ -16,7 +16,7 @@ def set(percent):
     cmd = "amixer set Master " + str(percent) + "%"
 
     null = open(os.devnull, 'w')
-    if not conf.debug:
+    if not conf.DEBUG:
         process = subprocess.Popen(cmd, shell=True, stdout = null, stderr = null)
     else:
         process = subprocess.Popen(cmd, shell=True)

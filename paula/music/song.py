@@ -14,16 +14,16 @@ class Song:
         self.title_pronouncable = self.make_pronouncable(title)
     
     def make_pronouncable(self, title):
-        split = title.split(conf.title_artist_delimiter)
+        split = title.split(conf.TITLE_ARTIST_DELIMITER)
         artist = split[0]
         title = split[1]
-        partist = artist.replace(conf.song_path_space_synonym,' ')
-        ptitle = title.replace(conf.song_path_space_synonym,' ')
+        partist = artist.replace(conf.SONG_PATH_SPACE_SYNONYM,' ')
+        ptitle = title.replace(conf.SONG_PATH_SPACE_SYNONYM,' ')
         return ptitle + " by " + partist
 
     def play(self):
         cmd = "play  \""+ self.path + "\""
-        if not conf.debug:
+        if not conf.DEBUG:
             cmd += " > /dev/null 2>&1"
         null = open(os.devnull, 'w')
     
@@ -47,7 +47,7 @@ def select_and_play():
 
 def play_random():
     song = select_random()
-    if conf.debug:
+    if conf.DEBUG:
         print("randomly selected: " + str(song))
     song.play()
 
@@ -124,11 +124,11 @@ def select():
 
 def get_songs_dict():
     possible_selections = {}
-    for path in conf.music_dirs:    
+    for path in conf.MUSIC_DIRS:    
         for dirname, dirnames, filenames in os.walk(path):
             for filename in filenames:
                 # Only select mp3 files
-                for ext in conf.music_extensions:
+                for ext in conf.MUSIC_EXTENSIONS:
                     if filename.endswith(ext):
                         file_clean = os.path.splitext(filename)[0]
                         entire_path = os.path.join(dirname, filename)

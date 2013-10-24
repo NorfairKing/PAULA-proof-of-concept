@@ -1,6 +1,6 @@
 import os
 import subprocess
-import volume_conf as conf
+from . import volume_conf as conf
 
 def get():
     cmd = "amixer get Master | grep 'Mono:' | sed -e 's/^[^\[]*//' -e 's/^.//' -e 's/%.*$//'"

@@ -2,7 +2,7 @@ from paula.paula import Paula
 from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
-from . import sleep_conf as conf
+import sleep_conf as conf
 
 def execute():
     p = Paula()
@@ -35,12 +35,12 @@ def execute():
     
     p.say("Have a nice day, Sir")
     
-    print((str(quote.get_random())))
+    print(str(quote.get_random()))
 
 def printOptions(dic):
     SECONDS_IN_A_MINUTE = 60
-    for key in list(dic.keys()):
+    for key in dic.keys():
         spaces = (20-len(key)) * " "
-        print(("         " + key + spaces +" - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min")) 
-    print()
+        print("         " + key + spaces +" - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min") 
+    print
     

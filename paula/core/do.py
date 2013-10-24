@@ -1,5 +1,5 @@
-from speak import voice
-from command import decide
+from .speak import voice
+from .command import decide
 
 def decide_command(cmd):
     return decide.decide_command(cmd)

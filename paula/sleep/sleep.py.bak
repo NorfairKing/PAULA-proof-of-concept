@@ -1,6 +1,6 @@
 import os
 import subprocess
-from . import sleep_conf as conf
+import sleep_conf as conf
 def go_to_sleep_mode(seconds):
     cmd = "rtcwake --mode mem "
     if conf.DEBUG:

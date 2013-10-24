@@ -5,7 +5,7 @@ import random
 import time
 
 #from paula.paula import Paula
-import music_conf as conf
+from . import music_conf as conf
 
 class Song:
     def __init__(self, title, path):
@@ -48,12 +48,12 @@ def select_and_play():
 def play_random():
     song = select_random()
     if conf.DEBUG:
-        print("randomly selected: " + str(song))
+        print(("randomly selected: " + str(song)))
     song.play()
 
 def select_random():
     possible_selections = get_songs_dict()
-    selected_title = random.choice(possible_selections.keys())
+    selected_title = random.choice(list(possible_selections.keys()))
     selected_song = possible_selections[selected_title]
     return selected_song
 
@@ -62,25 +62,25 @@ def choose():
                  
     sorted_keys = sorted(possible_selections.keys())
     
-    print("    " + str(-1) +  ((6-len(str(-1))) * " ") +" - " + "random song")
+    print(("    " + str(-1) +  ((6-len(str(-1))) * " ") +" - " + "random song"))
     counter = 0
     for entry in sorted_keys:
-        print("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry))
+        print(("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry)))
         counter += 1
-    print
+    print()
 
     ask = True
     while(ask):
-        userInput = raw_input("Take your pick: ")
+        userInput = input("Take your pick: ")
 
         try:
             val = int(userInput)
         except ValueError:
-            print "That's not a number, Sir."        
+            print("That's not a number, Sir.")        
             continue
 
         if val < -1 or val >= len(sorted_keys):
-            print "That is invalid selection, Sir."
+            print("That is invalid selection, Sir.")
             continue    
         
         if val == -1:
@@ -97,22 +97,22 @@ def select():
     sorted_keys = sorted(possible_selections.keys())
     counter = 0
     for entry in sorted_keys:
-        print("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry))
+        print(("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry)))
         counter += 1
-    print
+    print()
 
     ask = True
     while(ask):
-        userInput = raw_input("Take your pick: ")
+        userInput = input("Take your pick: ")
 
         try:
             val = int(userInput)
         except ValueError:
-            print "That's not a number, Sir."        
+            print("That's not a number, Sir.")        
             continue
 
         if val < 0 or val >= len(sorted_keys):
-            print "That is invalid selection, Sir."
+            print("That is invalid selection, Sir.")
             continue
             
         selected_title = sorted_keys[val]

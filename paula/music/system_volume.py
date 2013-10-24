@@ -1,4 +1,4 @@
-from volume import volume
+from .volume import volume
 
 def get():
     return volume.get()

@@ -1,7 +1,7 @@
 import unittest
 import time
 
-import volume
+from . import volume
 
 class volumeTests(unittest.TestCase):
 

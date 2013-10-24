@@ -1,7 +1,7 @@
 import os
 
 # Default = False
-DEBUG                       = False
+DEBUG                       = True
 
 # A dictionary that maps strings (options) to integers (amounts of seconds)
 DURATION_OPTIONS    = {

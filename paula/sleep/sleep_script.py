@@ -38,8 +38,9 @@ def execute():
     print str(quote.get_random())
 
 def printOptions(dic):
+    local SECONDS_IN_A_MINUTE = 60
     for key in dic.keys():
         spaces = (20-len(key)) * " "
-        print("         " + key + spaces +" - " + str(dic[key]/60) + " min") 
+        print("         " + key + spaces +" - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min") 
     print
     

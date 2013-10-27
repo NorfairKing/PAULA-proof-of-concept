@@ -1,3 +1,3 @@
 
 # Default = False
-debug   = False
+DEBUG   = False

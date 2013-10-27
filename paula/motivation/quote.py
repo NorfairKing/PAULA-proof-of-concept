@@ -1,6 +1,6 @@
 import os
 import random
-import motivation_conf as conf
+from . import motivation_conf as conf
 
 class Quote:
     def __init__(self, text, author="Unknown"):

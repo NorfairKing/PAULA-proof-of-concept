@@ -1,10 +1,10 @@
 import os
 
 # Default = False
-debug                       = False
+DEBUG                       = True
 
 # A dictionary that maps strings (options) to integers (amounts of seconds)
-duration_options    = {
+DURATION_OPTIONS    = {
       "short nap"   : 25  * 60
     , "long nap"    : 90  * 60
     , "short"       : 4.5 * 3600 + 5 * 60
@@ -15,4 +15,4 @@ duration_options    = {
 }
 
 # Default = 60
-pleasant_wake_up_volume     = 60 
+PLEASANT_WAKE_UP_VOLUME     = 60 

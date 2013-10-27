@@ -1,6 +1,6 @@
 import os
 
 # Default = False
-debug           = False
+DEBUG           = False
 
-commands_dir    = os.path.dirname(__file__) + '/commands' # The dir with all the command text files
+COMMANDS_DIR    = os.path.dirname(__file__) + '/commands' # The dir with all the command text files

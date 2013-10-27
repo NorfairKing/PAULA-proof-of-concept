@@ -19,13 +19,13 @@
      
 import sys, time
 import subprocess
-from daemon import Daemon
+from .daemon import Daemon
 
 import logging
 import logging.config
-import config as conf
-import core.do as do
-import sleep.sleep as sleep
+import paula.config as conf
+import paula.core.do as do
+import paula.sleep.sleep as sleep
 
 class Paula(Daemon):
     
@@ -53,8 +53,8 @@ class Paula(Daemon):
         do.say(text)    
     
     def get_input_str(self):
-        answer = raw_input("YOU:     ")
-        print
+        answer = input("YOU:     ")
+        print()
         return answer
     
     def get_input_int(self):

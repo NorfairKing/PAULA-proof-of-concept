@@ -1,10 +1,10 @@
-import command_config as conf
+from . import command_config as conf
 
 # Returns the script for the command
 def decide_command(command):
     if command == "sleep":
-        if conf.debug:
-            print "decided  "+command + " to be the command for the sleep script."
+        if conf.DEBUG:
+            print("decided  "+command + " to be the command for the sleep script.")
         from paula.sleep import sleep_script
         sleep_script.execute()
         return "sleep"

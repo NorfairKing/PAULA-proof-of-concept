@@ -1,10 +1,25 @@
+#!/usr/bin/env python
+##
+#      ____   _   _   _ _        _    
+#     |  _ \ / \ | | | | |      / \   
+#     | |_) / _ \| | | | |     / _ \  
+#     |  __/ ___ \ |_| | |___ / ___ \ 
+#     |_| /_/   \_\___/|_____/_/   \_\
+#
+#
+# Personal
+# Artificial
+# Unintelligent
+# Life
+# Assistant
+#
+##
 import os
 import sys
 import subprocess
 import random
 import time
 
-#from paula.paula import Paula
 from . import music_conf as conf
 
 class Song:

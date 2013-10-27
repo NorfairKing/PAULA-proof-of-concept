@@ -1,3 +1,20 @@
+#!/usr/bin/env python
+##
+#      ____   _   _   _ _        _    
+#     |  _ \ / \ | | | | |      / \   
+#     | |_) / _ \| | | | |     / _ \  
+#     |  __/ ___ \ |_| | |___ / ___ \ 
+#     |_| /_/   \_\___/|_____/_/   \_\
+#
+#
+# Personal
+# Artificial
+# Unintelligent
+# Life
+# Assistant
+#
+##
+
 from paula.paula import Paula
 from paula.music import song
 from paula.music import system_volume

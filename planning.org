@@ -13,7 +13,8 @@
 *** DONE pick song
     CLOSED: [2013-10-20 Son 02:33]
 *** TODO agenda for the day/week
-*** TODO inspirational quote
+*** DONE inspirational quote
+    CLOSED: [2013-10-21 Mon 12:36]
 *** TODO weather for the day
 
 * Planned soon

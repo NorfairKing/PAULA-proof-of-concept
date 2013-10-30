@@ -35,10 +35,11 @@ class CalendarExample:
     on available attributes."""
 
     feed = self.cal_client.GetAllCalendarsFeed()
-    print('Printing allcalendars: %s' % feed.title.text)
-    for i, a_calendar in zip(range(len(feed.entry)), feed.entry):
-      print('\t%s. %s' % (i, a_calendar.title.text,)) 
-      print(a_calendar.getSummary())
+    print 'Printing allcalendars: %s' % feed.title.text
+    for i, a_calendar in zip(xrange(len(feed.entry)), feed.entry):
+      print '\t%s. %s' % (i, a_calendar.title.text,) 
+      print i.__class__.__name__
+      print a_calendar.__class__.__name__
 
   def Run(self):
     """Runs each of the example methods defined above.  Note how the result
@@ -59,24 +60,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-    date  = datetime.datetime.now()
-    tomorrow = date.today() + datetime.timedelta(days=2)
-    yesterday = date.today() - datetime.timedelta(days=1)
-    now = str
-    data = '{:%Y-%m-%d}'.format(date)
-    tdata = '{:%Y-%m-%d}'.format(tomorrow)
-    ydata = '{:%Y-%m-%d}'.format(yesterday)
-    def DateQuery(calendar_service, start_date=data,  end_date=tdata):
-        print('Date query for events on Primary Calendar: %s to %s' % (start_date, end_date,))
-        query = gdata.calendar.service.CalendarEventQuery('default', 'private', 'full')
-        query.start_min = start_date
-        query.start_max = end_date
-        feed = calendar_service.CalendarQuery(query)
-        for i, an_event in enumerate(feed.entry):
-            print('\'%s\'' % (an_event.title.text))
-            for a_when in an_event.when:
-                dstime = (a_when.start_time,)
-                detime = (a_when.end_time,)
-                print('\t\tEnd time:     %s' % (dstime))
-                print('\t\tEnd time:     %s' % (detime)) 

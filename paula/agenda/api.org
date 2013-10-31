@@ -14,3 +14,18 @@
 #
 ##
 
+The agenda module provides all interaction between PAULA and the user's agenda
+
+* Provided
+** agenda.py
+   - get_default()
+     Prints the default agenda.
+
+   - get_week()
+     Prints the agenda for the current week.
+
+   - get_month()
+     Prints the agenda for the current month.
+
+* Required
+  Nothing

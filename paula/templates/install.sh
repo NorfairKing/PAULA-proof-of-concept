@@ -17,7 +17,7 @@
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-sudo apt-get install gcalcli
+
 
 # Install sub modules
 for dir in $(find "$HERE/" -mindepth 1 -maxdepth 1 -type d)

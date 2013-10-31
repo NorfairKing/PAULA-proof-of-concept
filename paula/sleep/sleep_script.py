@@ -1,7 +1,25 @@
+#!/usr/bin/env python
+##
+#      ____   _   _   _ _        _    
+#     |  _ \ / \ | | | | |      / \   
+#     | |_) / _ \| | | | |     / _ \  
+#     |  __/ ___ \ |_| | |___ / ___ \ 
+#     |_| /_/   \_\___/|_____/_/   \_\
+#
+#
+# Personal
+# Artificial
+# Unintelligent
+# Life
+# Assistant
+#
+##
+
 from paula.paula import Paula
 from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
+from paula.agenda import agenda
 from . import sleep_conf as conf
 
 def execute():
@@ -36,6 +54,8 @@ def execute():
     p.say("Have a nice day, Sir")
     
     print((str(quote.get_random())))
+
+    agenda.get_default()
 
 def printOptions(dic):
     SECONDS_IN_A_MINUTE = 60

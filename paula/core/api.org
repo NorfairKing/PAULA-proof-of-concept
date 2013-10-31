@@ -1,3 +1,20 @@
+##
+#      ____   _   _   _ _        _    
+#     |  _ \ / \ | | | | |      / \   
+#     | |_) / _ \| | | | |     / _ \  
+#     |  __/ ___ \ |_| | |___ / ___ \ 
+#     |_| /_/   \_\___/|_____/_/   \_\
+#
+#
+# Personal
+# Artificial
+# Unintelligent
+# Life
+# Assistant
+#
+##
+
+
 The core module is the core of PAULA, it provides all PAULA's core functionality.
 
 * Provided

@@ -36,11 +36,17 @@ def execute():
  
     p.go_to_sleep_mode(seconds)
 
+    back = False
+    TIMEOUT = 5
+    signal.signal(signal.SIGALRM, get_response)
+    signal.alarm(TIMEOUT)
+    def get_response():
+        try:
+            response = input()
+            back = True
+            return response
+        except:
+            return None
 
-    try:
-        time.sleep(conf.WAITING_TIME)
-    except KeyboardInterrupt:
-        p.say("Welcome back, Sir")
-        back = True
-
-    p.go_to_sleep_mode()
+    if not back:
+        p.go_to_sleep_mode()

@@ -18,11 +18,14 @@
 import os
 import subprocess
 from . import sleep_conf as conf
-def go_to_sleep_mode(seconds = 0):
+def go_to_sleep_mode(seconds):
 
     if seconds == 0:   
-        process = subprocess.Popen("sudo pm-suspend", shell=True)
-        out, err = process.communicate()
+        if not conf.DEBUG:
+            process = subprocess.Popen("sudo pm-suspend", shell=True)
+            out, err = process.communicate()
+        else:   
+            print("going to sleep indefinitly")
     else:
         cmd = "rtcwake --mode mem "
         if conf.DEBUG:

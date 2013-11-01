@@ -20,6 +20,7 @@ The music module contains all PAULA's functionality conserning music.
 ** sleep.py
   - go_to_sleep_mode(seconds)
     Has the computer go to sleep mode and wake up after the given amount of seconds
+    0 seconds means indefinitly.
 
 ** sleep_script
   - execute()

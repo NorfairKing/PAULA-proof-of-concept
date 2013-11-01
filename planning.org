@@ -7,14 +7,15 @@
 * Next
 ** TODO going out script
 
-
+   
 * Planned soon
+** TODO make command recognision better
+
 
 * Eventually
 ** TODO Make the alarm become annoying if user doesn't wake up
 ** TODO weather for the day
 ** TODO Unit tests
-** TODO make command recognision better
 ** DONE Install self
    CLOSED: [2013-11-01 Fre 21:00]
 ** TODO Learn command

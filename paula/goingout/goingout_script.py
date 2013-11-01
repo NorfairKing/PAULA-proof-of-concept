@@ -15,7 +15,7 @@
 #
 ##
 
-from paula.paula import PAULA
+from paula.paula import Paula
 from . import goingout_config as conf
 
 def execute():

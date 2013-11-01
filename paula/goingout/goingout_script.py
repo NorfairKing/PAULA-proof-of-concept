@@ -37,7 +37,6 @@ def execute():
  
     p.go_to_sleep_mode(seconds)
 
-    
     # <unknown code>
     class TimeoutException(Exception): 
         pass 
@@ -69,5 +68,7 @@ def execute():
 
     back = get_response()
     
-    if not back:
+    if back:
+        p.say("Welcome back, Sir")
+    else:
         p.go_to_sleep_mode()

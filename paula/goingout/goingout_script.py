@@ -16,6 +16,7 @@
 ##
 
 import time
+import signal
 from paula.paula import Paula
 from . import goingout_config as conf
 
@@ -36,17 +37,37 @@ def execute():
  
     p.go_to_sleep_mode(seconds)
 
-    back = False
-    TIMEOUT = 5
-    signal.signal(signal.SIGALRM, get_response)
-    signal.alarm(TIMEOUT)
+    
+    # <unknown code>
+    class TimeoutException(Exception): 
+        pass 
+ 
+    def timeout(timeout_time, default):
+        def timeout_function(f):
+            def f2(*args):
+                def timeout_handler(signum, frame):
+                    raise TimeoutException()
+ 
+                old_handler = signal.signal(signal.SIGALRM, timeout_handler) 
+                signal.alarm(timeout_time) # triger alarm in timeout_time seconds
+                try: 
+                    retval = f()
+                except TimeoutException:
+                    return default
+                finally:
+                    signal.signal(signal.SIGALRM, old_handler) 
+                signal.alarm(0)
+                return retval
+            return f2
+        return timeout_function
+ 
+    @timeout(conf.WAITING_TIME, False)
     def get_response():
-        try:
-            response = input()
-            back = True
-            return response
-        except:
-            return None
+        ans = p.get_input_str()
+        return True 
+    # </unknown code>
 
+    back = get_response()
+    
     if not back:
         p.go_to_sleep_mode()

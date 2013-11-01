@@ -14,7 +14,7 @@
 #
 ##
 
-Description of package
+The package for PAULA's going out script.
 
 * Provided
 ** module1.py

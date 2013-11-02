@@ -17,12 +17,11 @@
 The package for PAULA's going out script
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
+** goingout_script.py
+   - execute()
+     Executes the going out script.
 
 * Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** paula
+*** paula.py
+    - Class: Paula

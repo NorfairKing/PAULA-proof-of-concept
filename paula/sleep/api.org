@@ -30,6 +30,17 @@ The music module contains all PAULA's functionality conserning music.
     - plays a song
 
 * Required
+** paula
+*** paula.py
+    - Class: Paula
 ** paula.music
 *** song.py
-    - play()
+    - choose()
+*** system_volume.py
+    - set(percent)
+** paula.motivation
+*** quote.py
+    - get_random()
+** paula.agenda
+*** agenda.py
+    - get_defaults()

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
@@ -14,14 +15,10 @@
 #
 ##
 
-The package for PAULA's going out script
+from paula.paula import PAULA
 
-* Provided
-** goingout_script.py
-   - execute()
-     Executes the going out script.
+def execute():
+    p = Paula()
+    
+    print("placeholder")
 
-* Required
-** paula
-*** paula.py
-    - Class: Paula

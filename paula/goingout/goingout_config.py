@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
@@ -14,14 +15,8 @@
 #
 ##
 
-The package for PAULA's going out script
+# Default = False
+DEBUG       = False
 
-* Provided
-** goingout_script.py
-   - execute()
-     Executes the going out script.
-
-* Required
-** paula
-*** paula.py
-    - Class: Paula
+# DEFAULT = 2 * 60 * 60
+WAITING_TIME = 2 * 60 * 60

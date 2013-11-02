@@ -65,7 +65,7 @@ class Paula(Daemon):
         script = do.decide_command(command)        
         self.debug("Done with " + script)
 
-    def go_to_sleep_mode(self, seconds):
+    def go_to_sleep_mode(self, seconds=0):
         self.debug("Going to sleep mode for " + str(seconds) + " seconds.")
         sleep.go_to_sleep_mode(seconds)
         self.debug("Woke up")

@@ -14,6 +14,20 @@
 #
 ##
 
+<<<<<<< HEAD
+The package for PAULA's going out script.
+
+* Provided
+** module1.py
+   - function1(arg)
+     explanation
+
+* Required
+** package1
+*** module2.py
+    - function1(arg)
+    - funtion2(arg)
+=======
 The package for PAULA's going out script
 
 * Provided
@@ -25,3 +39,4 @@ The package for PAULA's going out script
 ** paula
 *** paula.py
     - Class: Paula
+>>>>>>> goingout

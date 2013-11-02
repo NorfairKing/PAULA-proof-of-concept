@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
@@ -14,15 +15,10 @@
 #
 ##
 
-Description of package
+from paula.paula import PAULA
 
-* Provided
-** module1.py
-   - function1(arg)
-     explanation
+def execute():
+    p = Paula()
+    
+    print("placeholder")
 
-* Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)

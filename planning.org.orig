@@ -5,17 +5,30 @@
   She will need root privileges.
 
 * Next
+<<<<<<< HEAD
 ** refractoring
 
 * Planned soon
 ** TODO make command recognision better
+=======
+** TODO going out script
 
+   
+* Planned soon
+** TODO make command recognision better
+
+>>>>>>> development
 
 * Eventually
 ** TODO Make the alarm become annoying if user doesn't wake up
 ** TODO weather for the day
 ** TODO Unit tests
+<<<<<<< HEAD
 
+=======
+** DONE Install self
+   CLOSED: [2013-11-01 Fre 21:00]
+>>>>>>> development
 ** TODO Learn command
 ** TODO training
 *** TODO running

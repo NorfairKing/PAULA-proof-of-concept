@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
@@ -14,15 +15,8 @@
 #
 ##
 
-Description of package
+# Default = False
+DEBUG       = False
 
-* Provided
-** module1.py
-   - function1(arg)
-     explanation
-
-* Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+# DEFAULT = 2 * 60 * 60
+WAITING_TIME = 2 * 60 * 60

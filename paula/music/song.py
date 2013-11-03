@@ -42,11 +42,8 @@ class Song:
             cmd += " > /dev/null 2>&1"
         null = open(os.devnull, 'w')
     
-        try:
-            process = subprocess.Popen(cmd, shell=True, stdout=null)
-            process.wait()
-        except KeyboardInterrupt:
-            process.terminate()
+        process = subprocess.Popen(cmd, shell=True, stdout=null)
+        return process    
 
     def __str__(self):
         return self.title + "  at: " + self.path + "  pronounced: " + self.title_pronouncable 

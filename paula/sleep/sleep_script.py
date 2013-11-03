@@ -15,6 +15,7 @@
 #
 ##
 
+import signal
 from paula.paula import Paula
 from paula.music import song
 from paula.music import system_volume
@@ -45,7 +46,7 @@ def execute():
     p.go_to_sleep_mode(chosen_option)
     
     # Alarm go off
-    go_off(s)
+    go_off(p, s)
 
     p.say("Have a nice day, Sir")
     
@@ -55,8 +56,8 @@ def execute():
     # Get agenda for next few days
     agenda.get_default()
 
-def go_off(song):
-    subp = s. play()
+def go_off(p, s):
+    subp = s.play()
 
     # <unknown code>
     class TimeoutException(Exception):

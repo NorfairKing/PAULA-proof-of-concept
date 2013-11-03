@@ -18,7 +18,7 @@
 import os
 
 # Default = False
-DEBUG                       = False
+DEBUG                       = True
 
 # A dictionary that maps strings (options) to integers (amounts of seconds)
 DURATION_OPTIONS    = {
@@ -33,3 +33,6 @@ DURATION_OPTIONS    = {
 
 # Default = 60
 PLEASANT_WAKE_UP_VOLUME     = 60 
+
+# Default = 5 * 60
+WAKE_UP_TIME                = 5 * 60

@@ -44,18 +44,56 @@ def execute():
     # Sleep
     p.go_to_sleep_mode(chosen_option)
     
-    # Wake up
-    p.say("Good morning, Sir")
-    
-    # Play random song
-    print("(C-c to stop playing)")
-    s.play()
-    
+    # Alarm go off
+    go_off(s)
+
     p.say("Have a nice day, Sir")
     
+    # Show quote
     print((str(quote.get_random())))
 
+    # Get agenda for next few days
     agenda.get_default()
+
+def go_off(song):
+    subp = s. play()
+
+    # <unknown code>
+    class TimeoutException(Exception):
+        pass
+
+    def timeout(timeout_time, default):
+        def timeout_function(f):
+            def f2(*args):
+                def timeout_handler(signum, frame):
+                    raise TimeoutException()
+
+                old_handler = signal.signal(signal.SIGALRM, timeout_handler)
+                signal.alarm(timeout_time) # triger alarm in timeout_time seconds
+                try:
+                    retval = f()
+                except TimeoutException:
+                    return default
+                finally:
+                    signal.signal(signal.SIGALRM, old_handler)
+                signal.alarm(0)
+                return retval
+            return f2
+        return timeout_function
+
+    @timeout(conf.WAKE_UP_TIME, False)
+    def get_response():
+        ans = p.get_input_str()
+        return True
+    # </unknown code>
+
+    back = get_response()
+
+    if back:
+        subp.kill()   
+ 
+    # Wake up
+    p.say("Good morning, Sir")
 
 def printOptions(dic):
     SECONDS_IN_A_MINUTE = 60

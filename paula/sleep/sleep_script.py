@@ -91,8 +91,8 @@ def go_off(p, s):
     back = get_response()
 
     if back:
-        subp.kill()   
- 
+        subp.kill()
+
     # Wake up
     p.say("Good morning, Sir")
 

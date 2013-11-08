@@ -6,7 +6,8 @@
 
 * Next
 ** refractoring
-
+   - [ ] update API's
+   - [ ] Check configs
 * Planned soon
 ** TODO make command recognision better
 

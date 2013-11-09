@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
@@ -14,13 +15,5 @@
 #
 ##
 
-The music module contains all PAULA's functionality concerning sleep.
-
-* Provided
-** sleep.py
-  - go_to_sleep_mode(seconds)
-    Has the computer go to sleep mode and wake up after the given amount of seconds
-    0 seconds means indefinitly.
-
-* Required
-  Nothing
+# Default = False
+DEBUG       = False

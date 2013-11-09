@@ -14,29 +14,26 @@
 #
 ##
 
-<<<<<<< HEAD
-The package for PAULA's going out script.
+PAULA's sleep script package
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
-
-* Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
-=======
-The package for PAULA's going out script
-
-* Provided
-** goingout_script.py
+** sleep_script.py
    - execute()
-     Executes the going out script.
+     Executes the sleep script.
 
 * Required
 ** paula
 *** paula.py
     - Class: Paula
->>>>>>> goingout
+** paula.music
+*** song.py
+    - choose()
+*** system_volume.py
+    - set(percent)
+** paula.motivation
+*** quote.py
+    - get_random()
+** paula.agenda
+*** agenda.py
+    - get_defaults()
+      

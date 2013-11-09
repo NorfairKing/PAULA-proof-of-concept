@@ -18,11 +18,11 @@
 from .speak import voice
 from .command import decide
 
-def decide_command(cmd):
-    return decide.decide_command(cmd)
+def decide_meaning(string):
+    return decide.decide_meaning(string)
 
-def is_command_for(cmd, class_of_commands):
-    return decide.is_command_for(cmd, class_of_commands)
+def means(string, meaning):
+    return decide.means(string, meaning)
 
 def say(text):
     return voice.say(text)

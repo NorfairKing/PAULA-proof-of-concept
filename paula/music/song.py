@@ -37,16 +37,11 @@ class Song:
         return ptitle + " by " + partist
 
     def play(self):
-        cmd = "play  \""+ self.path + "\""
-        if not conf.DEBUG:
-            cmd += " > /dev/null 2>&1"
+        cmd = ['play',self.path]
         null = open(os.devnull, 'w')
     
-        try:
-            process = subprocess.Popen(cmd, shell=True, stdout=null)
-            process.wait()
-        except KeyboardInterrupt:
-            process.terminate()
+        process = subprocess.Popen(cmd,shell=False,stdout=null,stderr=null)
+        return process    
 
     def __str__(self):
         return self.title + "  at: " + self.path + "  pronounced: " + self.title_pronouncable 

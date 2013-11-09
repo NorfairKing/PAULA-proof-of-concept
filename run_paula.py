@@ -15,4 +15,4 @@ if __name__ == "__main__":
         elif 'restart' == sys.argv[1]:
             p.restart()
     p.say("Hello, Sir")
-    p.decide_command(all_args)
+    p.respond_to(all_args)

@@ -20,4 +20,8 @@ import os
 # Default = False
 DEBUG           = False
 
-COMMANDS_DIR    = os.path.dirname(__file__) + '/commands' # The dir with all the command text files
+# Default = True
+IGNORE_CASING   = True
+
+# Default = os.path.join(os.path.dirname(os.path.realpath(__file__)),'commands')
+MEANINGS_DIR    = os.path.join(os.path.dirname(os.path.realpath(__file__)),'meanings')

@@ -15,29 +15,43 @@
 #
 ##
 
+import os
+import re
 from . import command_config as conf
+from paula.scripts import script as script
 
-# Returns the script for the command
-def decide_command(command):
-    if command == "sleep":
-        if conf.DEBUG:
-            print("decided  "+command + " to be the command for the sleep script.")
-        from paula.sleep import sleep_script
-        sleep_script.execute()
-        return "sleep"
-    if command == "goingout":
-        if conf.DEBUG:
-            print("decided  "+command + " to be the command for the sleep script.")
-        from paula.goingout import goingout_script
-        goingout_script.execute()
-        return "goingout"
-    return "Nothing"
+# Returns command class for the command
+def decide_meaning(string):
+    meanings = get_meanings_list()
+    meaning_found = "UNKNOWN"
+    for meaning in meanings:
+        if means(string,meaning):
+            meaning_found = meaning
+            break
+    if conf.DEBUG:
+        print("decided  " + string + " to mean " + meaning_found + ".")
+    
+    return meaning_found
 
-# Returns whether the given command refers to a specific class of commands.
-# e.g.  is_command_for("YES", "yes") == True
-#       is_command_for("NO" , "yes") == False
-def is_command_for(command, class_of_commands):
-    if command == "sleep" and class_of_commands == "sleep":
-        return true
-    else:
-        return false
+def means(string, meaning):
+    meanings = get_meanings_list()
+    if not meaning in meanings:
+        return False
+    
+    regexes = get_meaning_regexes(meaning)
+    for reg_str in regexes:
+        if conf.IGNORE_CASING:
+            reg = re.compile("^" + reg_str + "$", re.IGNORECASE)
+        else:
+            reg = re.compile(reg_str)
+
+        if reg.match(string):
+            return True
+    return False
+
+
+def get_meanings_list():
+    return [ f for f in os.listdir(conf.MEANINGS_DIR) if os.path.isfile(os.path.join(conf.MEANINGS_DIR,f)) ]
+
+def get_meaning_regexes(meaning):
+    return [i.strip() for i in open(os.path.join(conf.MEANINGS_DIR,meaning)).readlines()]

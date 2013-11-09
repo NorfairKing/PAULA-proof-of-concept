@@ -30,6 +30,10 @@ def execute():
 
     printOptions(conf.DURATION_OPTIONS)
     answer = p.get_input_str().strip()
+    
+    if not answer in conf.DURATION_OPTIONS:
+        print("ERROR: Unknown option")
+        return
     chosen_option = int(conf.DURATION_OPTIONS[answer])
     
     p.debug("answer = " + answer, conf.DEBUG)

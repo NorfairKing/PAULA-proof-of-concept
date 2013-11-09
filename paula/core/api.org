@@ -22,11 +22,11 @@ The core module is the core of PAULA, it provides all PAULA's core functionality
    - decide_meaning(string)
      Decides what the given string meanse. Returns the meaning.
 
-   - is_command_for(string, meaning)
+   - means(string, meaning)
      Decides whether the given string means the given meaning.
 
    - say(text)
-     Has PAULA say "text".
+     Has PAULA say text.
 
      
 * Required

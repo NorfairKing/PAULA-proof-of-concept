@@ -1,4 +1,4 @@
-a##
+##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
 #     | |_) / _ \| | | | |     / _ \  
@@ -14,15 +14,15 @@ a##
 #
 ##
 
-The command module contains all the functionality to make PAULA recognise commands.
+The command module contains all the functionality to make PAULA recognise meanings.
 
 * Provided
 ** decide.py
-   - decide_command(command)
-     Decides which script corresponds to the given command and executes it.
+   - decide_meaning(string)
+     Decides which meaning corresponds to the given string and returns it.
 
-   - is_command_for(command, class_of_commands)
-     Returns whether the given command belongs to the given class of commands.
+   - means(string, meaning)
+     Returns whether the given string means the given meaning.
      
 * Required
   Nothing, everything required for this module is intern.

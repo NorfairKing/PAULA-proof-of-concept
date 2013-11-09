@@ -25,6 +25,7 @@ import logging
 import logging.config
 import paula.config as conf
 import paula.core.do as do
+import paula.scripts.script as script
 import paula.sleep.sleep as sleep
 
 class Paula(Daemon):
@@ -40,20 +41,25 @@ class Paula(Daemon):
         fileHandler.setFormatter(formatter)  
         self.log.addHandler(fileHandler)
     
-    def log_i(self,text):
+    def info(self,text):
         self.log.info(text)
     
+    def error(self, error_str):
+        self.log.error(error_str)
+
     def debug(self, text, option=conf.debug):
         if option:
             self.log.debug(text)
             print(text)
     
     def say(self, text):
-        self.log_i("PAULA:   " + text)
+        self.info("PAULA:   " + text)
         do.say(text)    
     
     def get_input_str(self):
-        answer = input("YOU:     ")
+        input_prompt = "YOU:     "
+        answer = input(input_prompt)
+        self.info(input_prompt + answer)
         print()
         return answer
     
@@ -62,7 +68,11 @@ class Paula(Daemon):
 
     def decide_command(self, command):
         self.debug("Deciding " + command)
-        script = do.decide_command(command)        
+        cmd_class = do.decide_command(command)
+        if cmd_class == "UNKNOWN":
+            self.error("Command not recognised")
+        else:
+            script.execute(cmd_class)        
         self.debug("Done with " + script)
 
     def go_to_sleep_mode(self, seconds=0):
@@ -75,7 +85,7 @@ class Paula(Daemon):
 
     def run(self):
         while True:
-            self.log.info('Check start')
+            self.info('Check start')
             self.check()
-            self.log.info('Check done \n')
+            self.info('Check done \n')
             time.sleep(conf.check_timer) 

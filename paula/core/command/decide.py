@@ -20,13 +20,18 @@ import re
 from . import command_config as conf
 from paula.scripts import script as script
 
-# Returns the script for the command
+# Returns command class for the command
 def decide_command(command):
-    This is to be changed heavily when command recognision is implemented
+    classes = get_classes_list()
+    class_of_command_found = "UNKNOWN"
+    for cmd_class in classes:
+        if is_command_for(command,cmd_class):
+            class_of_command_found = cmd_class
+            break
     if conf.DEBUG:
-        print("decided  "+command + " to be the command for the "+ command + " script.")
-    script.execute(command)
-    return command
+        print("decided  " + command + " to be a command for the " + class_of_command_found + " class.")
+    
+    return class_of_command_found
 
 # Returns whether the given command refers to a specific class of commands.
 # e.g.  is_command_for("YES", "yes") == True

@@ -3,7 +3,7 @@
   PAULA will be a life assistent
   She will be a daemon so that she can monitor everything that happens on the computer.
   She will need root privileges.
-
+  
 * Next
 ** TODO make command recognision better
 

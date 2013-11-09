@@ -14,7 +14,7 @@
 #
 ##
 
-The music module contains all PAULA's functionality conserning music.
+The music module contains all PAULA's functionality concerning sleep.
 
 * Provided
 ** sleep.py
@@ -22,25 +22,5 @@ The music module contains all PAULA's functionality conserning music.
     Has the computer go to sleep mode and wake up after the given amount of seconds
     0 seconds means indefinitly.
 
-** sleep_script
-  - execute()
-    Executes the sleep script:\\
-    - Asks user how long to sleep
-    - sleeps for the correct amound of time
-    - plays a song
-
 * Required
-** paula
-*** paula.py
-    - Class: Paula
-** paula.music
-*** song.py
-    - choose()
-*** system_volume.py
-    - set(percent)
-** paula.motivation
-*** quote.py
-    - get_random()
-** paula.agenda
-*** agenda.py
-    - get_defaults()
+  Nothing

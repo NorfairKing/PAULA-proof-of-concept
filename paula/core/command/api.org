@@ -1,4 +1,4 @@
-##
+a##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
 #     | |_) / _ \| | | | |     / _ \  
@@ -19,7 +19,7 @@ The command module contains all the functionality to make PAULA recognise comman
 * Provided
 ** decide.py
    - decide_command(command)
-     Decides which script corresponds to the given command and returns its absolute path.
+     Decides which script corresponds to the given command and executes it.
 
    - is_command_for(command, class_of_commands)
      Returns whether the given command belongs to the given class of commands.

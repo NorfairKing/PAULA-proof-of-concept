@@ -16,7 +16,7 @@
 ##
 
 # Default = False
-DEBUG       = True
+DEBUG       = False
 
 # DEFAULT = 2 * 60 * 60
 WAITING_TIME = 2 * 60 * 60

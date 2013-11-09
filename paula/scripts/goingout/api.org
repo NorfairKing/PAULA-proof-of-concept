@@ -14,15 +14,14 @@
 #
 ##
 
-Description of package
+PAULA's goingout script package.
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
+** goingout_script.py
+   - execute()
+     Executes the goingout script
 
 * Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** paula
+*** paula.py
+    - Class: Paula

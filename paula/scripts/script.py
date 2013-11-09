@@ -20,6 +20,9 @@ import importlib
 import paula.scripts
 
 def execute(class_name):
-    module_name = "paula.scripts." + class_name + "." + class_name + "_script"
-    module = importlib.import_module(module_name)
-    module.execute()
+    try:
+        module_name = "paula.scripts." + class_name + "." + class_name + "_script"
+        module = importlib.import_module(module_name)
+        module.execute()
+    except ImportError:
+        print ("ERROR: The " + class_name + " script is missing or does not exist")

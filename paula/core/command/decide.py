@@ -20,17 +20,11 @@ from paula.scripts import script as script
 
 # Returns the script for the command
 def decide_command(command):
-    if command == "sleep":
-        if conf.DEBUG:
-            print("decided  "+command + " to be the command for the sleep script.")
-        script.execute("sleep")
-        return "sleep"
-    if command == "goingout":
-        if conf.DEBUG:
-            print("decided  "+command + " to be the command for the sleep script.")
-        script.execute("goingout")
-        return "goingout"
-    return "Nothing"
+    # This is to be changed heavily when command recognision is implemented
+    if conf.DEBUG:
+        print("decided  "+command + " to be the command for the "+ command + " script.")
+    script.execute(command)
+    return command
 
 # Returns whether the given command refers to a specific class of commands.
 # e.g.  is_command_for("YES", "yes") == True

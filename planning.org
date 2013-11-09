@@ -12,6 +12,7 @@
 
    
 * Eventually
+** TODO Make install script prettier
 ** TODO Make the alarm become annoying if user doesn't wake up
 ** TODO Learn command
 ** TODO training

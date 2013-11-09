@@ -21,7 +21,7 @@ from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
 from paula.agenda import agenda
-from . import sleep_conf as conf
+from . import sleep_script_config as conf
 
 def execute():
     p = Paula()

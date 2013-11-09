@@ -15,8 +15,11 @@
 #
 ##
 
-# Default = False
-DEBUG       = True
 
-# DEFAULT = 2 * 60 * 60
-WAITING_TIME = 2 * 60 * 60
+import importlib
+import paula.scripts
+
+def execute(class_name):
+    module_name = "paula.scripts." + class_name + "." + class_name + "_script"
+    module = importlib.import_module(module_name)
+    module.execute()

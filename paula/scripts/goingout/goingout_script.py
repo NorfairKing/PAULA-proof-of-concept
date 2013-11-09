@@ -18,7 +18,7 @@
 import time
 import signal
 from paula.paula import Paula
-from . import goingout_config as conf
+from . import goingout_script_config as conf
 
 def execute():
     p = Paula()

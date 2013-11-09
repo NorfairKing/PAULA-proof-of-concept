@@ -16,20 +16,19 @@
 ##
 
 from . import command_config as conf
+from paula.scripts import script as script
 
 # Returns the script for the command
 def decide_command(command):
     if command == "sleep":
         if conf.DEBUG:
             print("decided  "+command + " to be the command for the sleep script.")
-        from paula.sleep import sleep_script
-        sleep_script.execute()
+        script.execute("sleep")
         return "sleep"
     if command == "goingout":
         if conf.DEBUG:
             print("decided  "+command + " to be the command for the sleep script.")
-        from paula.goingout import goingout_script
-        goingout_script.execute()
+        script.execute("goingout")
         return "goingout"
     return "Nothing"
 
@@ -39,5 +38,5 @@ def decide_command(command):
 def is_command_for(command, class_of_commands):
     if command == "sleep" and class_of_commands == "sleep":
         return true
-    else:
+    elif command == "goingout" and class_of_commands == "goingout":
         return false

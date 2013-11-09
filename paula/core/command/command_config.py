@@ -24,4 +24,4 @@ DEBUG           = False
 IGNORE_CASING   = True
 
 # Default = os.path.join(os.path.dirname(os.path.realpath(__file__)),'commands')
-COMMANDS_DIR    = os.path.join(os.path.dirname(os.path.realpath(__file__)),'commands')
+MEANINGS_DIR    = os.path.join(os.path.dirname(os.path.realpath(__file__)),'meanings')

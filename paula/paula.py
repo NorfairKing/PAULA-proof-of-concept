@@ -66,14 +66,14 @@ class Paula(Daemon):
     def get_input_int(self):
         return int(self.get_input_str())
 
-    def decide_command(self, command):
-        self.debug("Deciding " + command)
-        cmd_class = do.decide_command(command)
-        if cmd_class == "UNKNOWN":
-            self.error("Command not recognised")
+    def respond_to(self, string):
+        self.debug("Deciding " + string)
+        meaning = do.decide_meaning(string)
+        if meaning == "UNKNOWN":
+            self.error("Meaning not recognised")
         else:
-            script.execute(cmd_class)        
-        self.debug("Done with " + script)
+            script.execute(meaning)        
+        self.debug("Done with " + string)
 
     def go_to_sleep_mode(self, seconds=0):
         self.debug("Going to sleep mode for " + str(seconds) + " seconds.")

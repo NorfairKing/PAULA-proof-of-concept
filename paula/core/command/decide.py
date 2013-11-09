@@ -21,7 +21,7 @@ from . import command_config as conf
 from paula.scripts import script as script
 
 # Returns command class for the command
-def decide_command(string):
+def decide_meaning(string):
     meanings = get_meanings_list()
     meaning_found = "UNKNOWN"
     for meaning in meanings:
@@ -30,9 +30,6 @@ def decide_command(string):
             break
     if conf.DEBUG:
         print("decided  " + string + " to mean " + meaning_found + ".")
-    
-    print(meaning_found)
-    exit()
     
     return meaning_found
 

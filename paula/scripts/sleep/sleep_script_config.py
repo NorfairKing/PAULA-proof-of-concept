@@ -15,6 +15,8 @@
 #
 ##
 
+import os
+
 # Default = False
 DEBUG       = False
 
@@ -34,3 +36,6 @@ PLEASANT_WAKE_UP_VOLUME     = 60
 
 # Default = 5 * 60
 WAKE_UP_TIME                = 5 * 60
+
+# Default = os.path.join(os.path.dirname(os.path.realpath(__file__)),'resources')
+RESOURCES_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)),'resources')

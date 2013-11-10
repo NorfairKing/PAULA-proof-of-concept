@@ -75,3 +75,9 @@ def printOptions(dic):
         print(("         " + key + spaces +" - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min")) 
     print()
     
+def play_alarm(index=-1):
+    cmd = ['play',self.path]
+    null = open(os.devnull, 'w')
+         
+    process = subprocess.Popen(cmd,shell=False,stdout=null,stderr=null)
+    return process

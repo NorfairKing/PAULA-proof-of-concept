@@ -18,16 +18,25 @@
 The core module is the core of PAULA, it provides all PAULA's core functionality.
 
 * Provided
-** do.py
+** interaction.py
    - decide_meaning(string)
      Decides what the given string meanse. Returns the meaning.
-
    - means(string, meaning)
      Decides whether the given string means the given meaning.
-
    - say(text)
      Has PAULA say text.
-
+** inputs.py
+   - get_string()
+     Get's a string from the user.
+   - get_integer()
+     Get's an integer from the user.
+     Returns None if the input was not an integer.
+   - get_string_timeout(timeout)
+     Waits <timeout> seconds for input from the user.
+     Returns an empty string if the input times out
+   - get_integer_timeout(timeout)
+     Waits <timeout> seconds for input from the user.
+     Returns None if the input times out or the input was not an integer.
      
 * Required
 ** command
@@ -35,7 +44,13 @@ The core module is the core of PAULA, it provides all PAULA's core functionality
     - decide_meaning(string)
     - means(string, meaning)
 ** speak
-*** voice.pyA
+*** voice.py
     - say(text)
-
+** paula_input
+*** string.py
+    - prompt_for_input_string()
+    - prompt_with_timeout(timeout)
+*** integer.py
+    - prompt_for_input_int()
+    - prompt_with_timeout(timeout)
 

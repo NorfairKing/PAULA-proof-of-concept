@@ -16,7 +16,9 @@
 ##
 
 import signal
-from paula.paula import Paula
+from paula.sleep import sleep
+from paula.core import inputs
+from paula.core import interaction
 from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
@@ -24,35 +26,40 @@ from paula.agenda import agenda
 from . import sleep_script_config as conf
 
 def execute():
-    p = Paula()
-
-    p.say("How long would you like to sleep, Sir?")
+    interaction.say("How long would you like to sleep, Sir?")
 
     printOptions(conf.DURATION_OPTIONS)
-    answer = p.get_input_str().strip()
+    answer = inputs.get_string().strip()
     
     if not answer in conf.DURATION_OPTIONS:
         print("ERROR: Unknown option")
         return
     chosen_option = int(conf.DURATION_OPTIONS[answer])
     
-    p.debug("answer = " + answer, conf.DEBUG)
-    p.debug("selected option = " + str(chosen_option) + " seconds", conf.DEBUG)
+    if conf.DEBUG:
+        print("answer = " + answer)
+        print("selected option = " + str(chosen_option) + " seconds")
     
     # select song
-    p.say("Please select which song you want to wake you up.")
+    interaction.say("Please select which song you want to wake you up.")
     s = song.choose()
 
     # Set volume to something pleasant
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
     
     # Sleep
-    p.go_to_sleep_mode(chosen_option)
+    sleep.go_to_sleep_mode(chosen_option)
     
     # Alarm go off
-    go_off(p, s)
+    interaction.say("Good Morning, Sir")
+    
+    subp = s.play()
+    answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)
 
-    p.say("Have a nice day, Sir")
+    if answer != "":
+        subp.kill()
+    
+    interaction.say("Have a nice day, Sir")
     
     # Show quote
     print((str(quote.get_random())))
@@ -60,45 +67,6 @@ def execute():
     # Get agenda for next few days
     agenda.get_default()
 
-def go_off(p, s):
-    subp = s.play()
-
-    # <unknown code>
-    class TimeoutException(Exception):
-        pass
-
-    def timeout(timeout_time, default):
-        def timeout_function(f):
-            def f2(*args):
-                def timeout_handler(signum, frame):
-                    raise TimeoutException()
-
-                old_handler = signal.signal(signal.SIGALRM, timeout_handler)
-                signal.alarm(timeout_time) # triger alarm in timeout_time seconds
-                try:
-                    retval = f()
-                except TimeoutException:
-                    return default
-                finally:
-                    signal.signal(signal.SIGALRM, old_handler)
-                signal.alarm(0)
-                return retval
-            return f2
-        return timeout_function
-
-    @timeout(conf.WAKE_UP_TIME, False)
-    def get_response():
-        ans = p.get_input_str()
-        return True
-    # </unknown code>
-
-    back = get_response()
-
-    if back:
-        subp.kill()
-
-    # Wake up
-    p.say("Good morning, Sir")
 
 def printOptions(dic):
     SECONDS_IN_A_MINUTE = 60

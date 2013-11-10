@@ -13,6 +13,8 @@
 
    
 * Eventually
+** TODO Own errors
+** TODO change name of sleep to states
 ** TODO Make install script prettier
 ** TODO Learn command
 ** TODO training

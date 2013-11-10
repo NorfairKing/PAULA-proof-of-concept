@@ -16,13 +16,17 @@
 ##
 
 import signal
-import input_config as conf
+from . import input_config as conf
 
 
-def prompt_for_input_string():
+def prompt_for_input_int():
     answer = input(conf.INPUT_PROMPT)
+    try:
+        value = int(answer)
+    except ValueError:
+        value = None
     print()
-    return answer
+    return value
 
 def prompt_with_timeout(timeout):
     #This is an "Error" thrown when it times out
@@ -39,10 +43,10 @@ def prompt_with_timeout(timeout):
         signal.alarm(timeout)
 
         #Wait for input
-        line = prompt_for_input_string()
+        line = prompt_for_input_int()
 
         #If typed before timed out, disable alarm
         signal.alarm(0)
     except Timeout:
-        line = ""
+        line = None
     return line

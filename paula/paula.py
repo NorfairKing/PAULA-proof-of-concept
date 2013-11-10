@@ -24,9 +24,8 @@ from .daemon import Daemon
 import logging
 import logging.config
 import paula.config as conf
-import paula.core.do as do
+import paula.core.interaction as interaction
 import paula.scripts.script as script
-import paula.sleep.sleep as sleep
 
 class Paula(Daemon):
     
@@ -47,38 +46,17 @@ class Paula(Daemon):
     def error(self, error_str):
         self.log.error(error_str)
 
-    def debug(self, text, option=conf.debug):
-        if option:
-            self.log.debug(text)
-            print(text)
+    def debug(self, text):
+        self.log.debug(text)
     
-    def say(self, text):
-        self.info("PAULA:   " + text)
-        do.say(text)    
-    
-    def get_input_str(self):
-        input_prompt = "YOU:     "
-        answer = input(input_prompt)
-        self.info(input_prompt + answer)
-        print()
-        return answer
-    
-    def get_input_int(self):
-        return int(self.get_input_str())
-
     def respond_to(self, string):
         self.debug("Deciding " + string)
-        meaning = do.decide_meaning(string)
+        meaning = interaction.decide_meaning(string)
         if meaning == "UNKNOWN":
             self.error("Meaning not recognised")
         else:
             script.execute(meaning)        
         self.debug("Done with " + string)
-
-    def go_to_sleep_mode(self, seconds=0):
-        self.debug("Going to sleep mode for " + str(seconds) + " seconds.")
-        sleep.go_to_sleep_mode(seconds)
-        self.debug("Woke up")
 
     def check(self):
         pass

@@ -1,6 +1,7 @@
 import sys, os
 
 from paula.paula import Paula
+from paula.core import interaction
 
 if __name__ == "__main__":
     p = Paula()
@@ -14,5 +15,5 @@ if __name__ == "__main__":
             p.stop()
         elif 'restart' == sys.argv[1]:
             p.restart()
-    p.say("Hello, Sir")
+    interaction.say("Hello, Sir")
     p.respond_to(all_args)

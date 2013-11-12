@@ -27,7 +27,7 @@ def go_to_sleep_mode(seconds):
         else:   
             print("going to sleep indefinitly")
     else:
-        cmd = "rtcwake --mode mem "
+        cmd = "sudo rtcwake --mode mem "
         if conf.DEBUG:
             cmd += "--dry-run "
         cmd += "--seconds " + str(seconds)

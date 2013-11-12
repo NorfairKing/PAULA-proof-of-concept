@@ -10,7 +10,6 @@ if __name__ == "__main__":
         if 'start' == sys.argv[1]:
             p.say("Started")
             p.start()
-            # Nothing can happen after this line.                                                        
         elif 'stop' == sys.argv[1]:
             p.stop()
         elif 'restart' == sys.argv[1]:

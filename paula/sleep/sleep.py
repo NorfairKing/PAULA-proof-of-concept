@@ -19,7 +19,6 @@ import os
 import subprocess
 from . import sleep_conf as conf
 def go_to_sleep_mode(seconds):
-
     if seconds == 0:   
         if not conf.DEBUG:
             process = subprocess.Popen("sudo pm-suspend", shell=True)
@@ -37,6 +36,6 @@ def go_to_sleep_mode(seconds):
             process = subprocess.Popen(cmd, shell=True, stdout = null, stderr = null)
             out, err = process.communicate()
         else:
+            print("Executing " + cmd)
             process = subprocess.Popen(cmd, shell=True)
             out, err = process.communicate()
-    

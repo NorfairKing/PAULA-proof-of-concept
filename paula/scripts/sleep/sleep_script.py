@@ -15,6 +15,7 @@
 #
 ##
 
+import time
 import signal
 from paula.sleep import sleep
 from paula.core import inputs
@@ -67,6 +68,17 @@ def execute():
     # Get agenda for next few days
     agenda.get_default()
 
+    # Wait until the song has finished
+    subp.wait()
+
+    if conf.ANNOYING:
+        interaction.say("Sir, You should really get up now!")
+        time.sleep(1)
+        interaction.say("Don't think you can go back to sleep!")
+        time.sleep(1)
+        interaction.say("You want to get up")
+        interaction.say("You need to get up!")
+    
 
 def printOptions(dic):
     SECONDS_IN_A_MINUTE = 60
@@ -74,10 +86,3 @@ def printOptions(dic):
         spaces = (20-len(key)) * " "
         print(("         " + key + spaces +" - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min")) 
     print()
-    
-def play_alarm(index=-1):
-    cmd = ['play',self.path]
-    null = open(os.devnull, 'w')
-         
-    process = subprocess.Popen(cmd,shell=False,stdout=null,stderr=null)
-    return process

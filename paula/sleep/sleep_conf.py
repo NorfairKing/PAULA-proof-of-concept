@@ -16,4 +16,4 @@
 ##
 
 # Default = False
-DEBUG                       = True
+DEBUG = False

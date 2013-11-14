@@ -24,6 +24,7 @@ def prompt_for_input_string():
     print()
     return answer
 
+
 def prompt_with_timeout(timeout):
     #This is an "Error" thrown when it times out
     class Timeout(IOError):
@@ -44,5 +45,5 @@ def prompt_with_timeout(timeout):
         #If typed before timed out, disable alarm
         signal.alarm(0)
     except Timeout:
-        line = ""
+        line = None
     return line

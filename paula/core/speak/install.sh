@@ -18,7 +18,7 @@
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Install pico2wave
-sudo apt-get install -y libttspico-utils
+packer -S picospeaker
 
 # Install sub modules
 for dir in $(find "$HERE/" -mindepth 1 -maxdepth 1 -type d)

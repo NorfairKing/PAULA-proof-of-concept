@@ -16,16 +16,16 @@
 ##
 
 # Default = False
-DEBUG               = False
+DEBUG = False
 
 # Default = [".mp3"]
-MUSIC_EXTENSIONS    = [".mp3"]
+MUSIC_EXTENSIONS = [".mp3"]
 
 # Default = ["~/Music"]
-MUSIC_DIRS          = ["/home/syd/Music/music"]
+MUSIC_DIRS = ["/home/syd/music"]
 
 # Default = "-"
 TITLE_ARTIST_DELIMITER = "-"
 
 # Default = "_"
-SONG_PATH_SPACE_SYNONYM= "_"
+SONG_PATH_SPACE_SYNONYM = "_"

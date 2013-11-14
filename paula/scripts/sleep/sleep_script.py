@@ -60,20 +60,19 @@ def execute():
     if answer == None:
     # Wait until the song has finished
         subp.wait()
-    if conf.ANNOYING:
-        try:
-            def saynwait(text, delay):
-                interaction.say(text)
-                time.sleep(delay)
+        if conf.ANNOYING:
+            try:
+                def saynwait(text, delay):
+                    interaction.say(text)
+                    time.sleep(delay)
 
-            saynwait("Sir, You should really get up now!", 1)
-            saynwait("Don't think you can go back to sleep!", 1)
-            saynwait("You want to get up", 1)
-            saynwait("You need to get up!", 1)
-        except KeyboardInterrupt:
-            return
+                for sentence in [i.strip() for i in open(conf.ANNOYING_ALARM_TEXT).readlines()]:
+                    print(sentence)
+                    saynwait(sentence, 1)
 
-    if answer != None:
+            except KeyboardInterrupt:
+                print('interrupted')
+    else:
         back = True
         subp.kill()
 

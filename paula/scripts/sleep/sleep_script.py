@@ -66,9 +66,11 @@ def execute():
                     interaction.say(text)
                     time.sleep(delay)
 
-                for sentence in [i.strip() for i in open(conf.ANNOYING_ALARM_TEXT).readlines()]:
-                    print(sentence)
-                    saynwait(sentence, 1)
+                while True:
+                    for sentence in [i.strip() for i in open(conf.ANNOYING_ALARM_TEXT).readlines()]:
+                        print(sentence)
+                        saynwait(sentence, 1)
+                    system_volume.set(system_volume.get()+5)
 
             except KeyboardInterrupt:
                 print('interrupted')

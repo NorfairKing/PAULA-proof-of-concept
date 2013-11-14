@@ -7,6 +7,7 @@
 * Next
 ** random song, sexy vibe
 * Planned soon
+** script refractoring (make completely modular)
 * Bugs
 * Eventually
 ** TODO Own errors

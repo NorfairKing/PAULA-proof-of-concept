@@ -14,4 +14,12 @@
 # Assistant
 #
 ##
+import subprocess
+from paula.music import song
 
+def execute():
+    try:
+        subp =  song.play_random()
+        subp.wait()
+    except KeyboardInterrupt:
+        subp.kill()

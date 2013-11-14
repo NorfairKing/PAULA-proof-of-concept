@@ -73,7 +73,7 @@ def execute():
                     system_volume.set(system_volume.get()+5)
 
             except KeyboardInterrupt:
-
+                time.sleep(1)
 
     back = True
     subp.kill()

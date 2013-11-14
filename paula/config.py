@@ -19,9 +19,6 @@ import os
 
 debug = False
 
-# Dir settings
-paula_dir = os.getcwd()
-
 # Pid file
 pid_file = '/tmp/paula.pid'
 

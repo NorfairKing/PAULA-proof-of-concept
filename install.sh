@@ -16,14 +16,5 @@
 ##
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-paula_dir="$HERE/paula"
 
-for dir in $(find "$paula_dir/" -mindepth 1 -maxdepth 1 -type d)
-do 
-    install_script="$dir/install.sh"
-    if [ -f "$install_script" ]
-    then
-        echo "installing $(basename $dir)" 
-        $install_script
-    fi
-done
+python3 "$HERE/install_paula.py" $@

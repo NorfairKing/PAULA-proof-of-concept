@@ -73,18 +73,18 @@ def execute():
                     system_volume.set(system_volume.get()+5)
 
             except KeyboardInterrupt:
-                print('interrupted')
-    else:
-        back = True
-        subp.kill()
 
-        interaction.say("Have a nice day, Sir")
 
-        # Show quote
-        print((str(quote.get_random())))
+    back = True
+    subp.kill()
 
-        # Get agenda for next few days
-        agenda.get_default()
+    interaction.say("Have a nice day, Sir")
+
+    # Show quote
+    print((str(quote.get_random())))
+
+    # Get agenda for next few days
+    agenda.get_default()
 
 
 def printOptions(dic):

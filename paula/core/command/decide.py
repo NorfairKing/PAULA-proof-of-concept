@@ -21,6 +21,10 @@ from . import command_config as conf
 
 # Returns command class for the command
 def decide_meaning(string):
+    for path in get_meanings_dict():
+        print(path," -> ",  get_meaning_regexes(path))
+    exit(0)
+
     meanings = get_meanings_list()
     meaning_found = "UNKNOWN"
     for meaning in meanings:
@@ -34,7 +38,7 @@ def decide_meaning(string):
 
 
 def means(string, meaning):
-    meanings = get_meanings_list()
+    meanings = get_meanings_dict()
     if not meaning in meanings:
         return False
 
@@ -50,9 +54,34 @@ def means(string, meaning):
     return False
 
 
-def get_meanings_list():
-    return [f for f in os.listdir(conf.MEANINGS_DIR) if os.path.isfile(os.path.join(conf.MEANINGS_DIR, f))]
+def get_meanings_dict():
+    dict = {}
+
+    # Generic meanings
+    for f in os.listdir(conf.MEANINGS_DIR):
+        if os.path.isfile(os.path.join(conf.MEANINGS_DIR, f)):
+            path = os.path.join(conf.MEANINGS_DIR, f)
+            dict[path] = f
+
+    # Script commands
+    import paula.scripts
+    scripts_dir = os.path.dirname(os.path.abspath(paula.scripts.__file__))
+    scripts = []
+    for f in os.listdir(scripts_dir):
+        to_be_checked = os.path.join(scripts_dir,f)
+        if os.path.isdir(to_be_checked) and not to_be_checked.__contains__("pycache"):
+            scripts.append(f)
 
 
-def get_meaning_regexes(meaning):
-    return [i.strip() for i in open(os.path.join(conf.MEANINGS_DIR, meaning)).readlines()]
+    for script in scripts:
+        script_dir = os.path.join(scripts_dir,script)
+        commands = os.path.join(script_dir, "script_commands")
+        if os.path.isfile(commands):
+            dict[commands] = script
+
+    return dict
+
+
+def get_meaning_regexes(path):
+    return [i.strip() for i in open(path).readlines()]
+

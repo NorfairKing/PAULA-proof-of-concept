@@ -19,6 +19,8 @@ import os
 
 debug = False
 
+PAULA_DIR = os.path.dirname(os.path.realpath(__file__))
+
 # Pid file
 pid_file = '/tmp/paula.pid'
 

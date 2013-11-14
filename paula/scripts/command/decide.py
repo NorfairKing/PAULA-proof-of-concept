@@ -17,9 +17,11 @@
 
 import os
 import re
-from . import command_config as conf
 
 # Returns command class for the command
+from paula.scripts.command import command_config as conf
+
+
 def decide_meaning(string):
     meanings = get_meanings_list()
     meaning_found = "UNKNOWN"

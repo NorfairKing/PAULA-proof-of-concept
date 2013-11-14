@@ -16,7 +16,7 @@
 ##
 
 from .speak import voice
-from .command import decide
+from .paula.scripts.command import decide
 
 
 def decide_meaning(string):

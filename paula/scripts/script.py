@@ -18,6 +18,8 @@
 
 import importlib
 
+def decide_and_run(command):
+
 
 def execute(class_name):
     try:

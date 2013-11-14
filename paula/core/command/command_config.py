@@ -18,10 +18,10 @@
 import os
 
 # Default = False
-DEBUG           = False
+DEBUG = False
 
 # Default = True
-IGNORE_CASING   = True
+IGNORE_CASING = True
 
 # Default = os.path.join(os.path.dirname(os.path.realpath(__file__)),'commands')
-MEANINGS_DIR    = os.path.join(os.path.dirname(os.path.realpath(__file__)),'meanings')
+MEANINGS_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meanings')

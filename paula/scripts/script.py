@@ -17,7 +17,7 @@
 
 
 import importlib
-import paula.scripts
+
 
 def execute(class_name):
     try:
@@ -25,4 +25,4 @@ def execute(class_name):
         module = importlib.import_module(module_name)
         module.execute()
     except ImportError:
-        print ("ERROR: The " + class_name + " script is missing or does not exist")
+        print("ERROR: The " + class_name + " script is missing or does not exist")

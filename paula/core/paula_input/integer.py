@@ -28,6 +28,7 @@ def prompt_for_input_int():
     print()
     return value
 
+
 def prompt_with_timeout(timeout):
     #This is an "Error" thrown when it times out
     class Timeout(IOError):

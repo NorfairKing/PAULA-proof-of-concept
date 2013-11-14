@@ -1,4 +1,4 @@
-import sys, os
+import sys
 
 from paula.paula import Paula
 from paula.core import interaction

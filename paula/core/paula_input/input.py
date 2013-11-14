@@ -15,11 +15,13 @@
 #
 ##
 
-from .in import string
-from .in import integer
+from . in
+from . in import integer
+
 
 def get_string():
     return "test"
+
 
 def get_integer():
     return 42

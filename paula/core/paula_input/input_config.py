@@ -16,7 +16,6 @@
 ##
 
 # Default = False
-DEBUG       = True
-
+DEBUG = True
 
 INPUT_PROMPT = "YOU:     "

@@ -60,7 +60,7 @@ def play_random():
     song = select_random()
     if conf.DEBUG:
         print(("randomly selected: " + str(song)))
-    song.play()
+    return song.play()
 
 
 def select_random():

@@ -5,13 +5,9 @@
   She will need root privileges.
   
 * Next
-** TODO Make the alarm become annoying if user doesn't wake up
-   
+** random song, sexy vibe
 * Planned soon
-  
 * Bugs
-
-   
 * Eventually
 ** TODO Own errors
 ** TODO Make install script prettier
@@ -22,7 +18,6 @@
 ** TODO check movies in cinema
 ** TODO GTD
 ** TODO Backup
-** TODO random song
 ** TODO long run
 ** TODO class
 ** TODO presence file

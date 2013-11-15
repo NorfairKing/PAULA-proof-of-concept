@@ -15,7 +15,9 @@
 #
 ##
 
+import os
 import time
+import subprocess
 from paula.sleep import sleep
 from paula.core import inputs
 from paula.core import interaction
@@ -66,17 +68,25 @@ def execute():
                     interaction.say(text)
                     time.sleep(delay)
 
-                while True:
+                while system_volume.get() < 95:
                     for sentence in [i.strip() for i in open(conf.ANNOYING_ALARM_TEXT).readlines()]:
-                        print(sentence)
                         saynwait(sentence, 1)
                     system_volume.set(system_volume.get()+5)
+
+                for filename in [f for f in os.listdir(conf.RESOURCES_DIR) if os.path.isfile(os.path.join(conf.RESOURCES_DIR, f))]:
+                    if filename.endswith(".mp3"):
+                        path = os.path.join(conf.RESOURCES_DIR, filename)
+                        alarm_process = playalarm(path)
+                        alarm_process.wait()
 
             except KeyboardInterrupt:
                 time.sleep(1)
 
     back = True
-    subp.kill()
+    try:
+        subp.kill()
+    except ProcessLookupError:
+        pass
 
     interaction.say("Have a nice day, Sir")
 
@@ -85,6 +95,15 @@ def execute():
 
     # Get agenda for next few days
     agenda.get_default()
+
+
+def playalarm(path):
+    cmd = ['play', path]
+    null = open(os.devnull, 'w')
+
+    process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
+    return process
+    pass
 
 
 def printOptions(dic):

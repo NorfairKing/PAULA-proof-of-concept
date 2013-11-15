@@ -21,15 +21,11 @@ from . import command_config as conf
 
 # Returns command class for the command
 def decide_meaning(string):
-    for path in get_meanings_dict():
-        print(path," -> ",  get_meaning_regexes(path))
-    exit(0)
-
-    meanings = get_meanings_list()
+    meanings = get_meanings_dict()
     meaning_found = "UNKNOWN"
-    for meaning in meanings:
-        if means(string, meaning):
-            meaning_found = meaning
+    for path in meanings:
+        if means(string, path):
+            meaning_found = meanings[path]
             break
     if conf.DEBUG:
         print("decided  " + string + " to mean " + meaning_found + ".")
@@ -37,12 +33,12 @@ def decide_meaning(string):
     return meaning_found
 
 
-def means(string, meaning):
+def means(string, path):
     meanings = get_meanings_dict()
-    if not meaning in meanings:
+    if not path in meanings:
         return False
 
-    regexes = get_meaning_regexes(meaning)
+    regexes = get_meaning_regexes(path)
     for reg_str in regexes:
         if conf.IGNORE_CASING:
             reg = re.compile("^" + reg_str + "$", re.IGNORECASE)
@@ -69,7 +65,7 @@ def get_meanings_dict():
     scripts = []
     for f in os.listdir(scripts_dir):
         to_be_checked = os.path.join(scripts_dir,f)
-        if os.path.isdir(to_be_checked) and not to_be_checked.__contains__("pycache"):
+        if os.path.isdir(to_be_checked) and not to_be_checked.__contains__("__pycache__"):
             scripts.append(f)
 
 

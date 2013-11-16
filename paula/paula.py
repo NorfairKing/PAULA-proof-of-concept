@@ -22,9 +22,8 @@ import logging
 import logging.config
 
 from .daemon import Daemon
-import paula.config as conf
-import paula.core.interaction as interaction
-import paula.scripts.script as script
+from paula import config as conf
+from paula.scripts import script
 
 
 class Paula(Daemon):
@@ -51,11 +50,7 @@ class Paula(Daemon):
 
     def respond_to(self, string):
         self.debug("Deciding " + string)
-        meaning = interaction.decide_meaning(string)
-        if meaning == "UNKNOWN":
-            self.error("Meaning not recognised")
-        else:
-            script.execute(meaning)
+        script.decide_and_run(string)
         self.debug("Done with " + string)
 
     def check(self):

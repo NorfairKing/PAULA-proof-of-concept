@@ -19,7 +19,7 @@ import os
 import re
 
 # Returns command class for the command
-from paula.scripts.command import command_config as conf
+from paula.core.command import command_config as conf
 
 
 def decide_meaning(string):
@@ -60,22 +60,6 @@ def get_meanings_dict():
         if os.path.isfile(os.path.join(conf.MEANINGS_DIR, f)):
             path = os.path.join(conf.MEANINGS_DIR, f)
             dict[path] = f
-
-    # Script commands
-    import paula.scripts
-    scripts_dir = os.path.dirname(os.path.abspath(paula.scripts.__file__))
-    scripts = []
-    for f in os.listdir(scripts_dir):
-        to_be_checked = os.path.join(scripts_dir,f)
-        if os.path.isdir(to_be_checked) and not to_be_checked.__contains__("__pycache__"):
-            scripts.append(f)
-
-
-    for script in scripts:
-        script_dir = os.path.join(scripts_dir,script)
-        commands = os.path.join(script_dir, "script_commands")
-        if os.path.isfile(commands):
-            dict[commands] = script
 
     return dict
 

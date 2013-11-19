@@ -5,7 +5,6 @@
   She will need root privileges.
   
 * Next
-** random song, sexy vibe
 * Planned soon
 * Bugs
 * Eventually

@@ -21,7 +21,6 @@ import re
 # Returns command class for the command
 from paula.core.command import command_config as conf
 
-
 def decide_meaning(string):
     meanings = get_meanings_dict()
     meaning_found = "UNKNOWN"
@@ -31,7 +30,6 @@ def decide_meaning(string):
             break
     if conf.DEBUG:
         print("decided  " + string + " to mean " + meaning_found + ".")
-
     return meaning_found
 
 

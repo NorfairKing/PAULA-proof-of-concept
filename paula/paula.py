@@ -15,8 +15,6 @@
 #
 ##
 
-
-
 import time
 import logging
 import logging.config
@@ -24,7 +22,6 @@ import logging.config
 from .daemon import Daemon
 from paula import config as conf
 from paula.scripts import script
-
 
 class Paula(Daemon):
     def __init__(self):

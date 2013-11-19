@@ -16,11 +16,12 @@
 ##
 
 import os
+import re
 import importlib
-from paula.core import interaction
+from . import script_config as conf
 
 def decide_and_run(string):
-    meaning = interaction.decide_meaning(string)
+    meaning = decide_meaning(string)
     execute(meaning)
 
 def execute(meaning):
@@ -31,6 +32,32 @@ def execute(meaning):
     except ImportError:
         print("ERROR: The " + meaning + " script is missing or does not exist")
 
+def decide_meaning(string):
+    meanings = get_scripts_dict()
+    meaning_found = "UNKNOWN"
+    for path in meanings:
+        if means(string, path):
+            meaning_found = meanings[path]
+            break
+    if conf.DEBUG:
+        print("decided  " + string + " to mean " + meaning_found + ".")
+    return meaning_found
+
+def means(string, path):
+    meanings = get_scripts_dict()
+    if not path in meanings:
+        return False
+
+    regexes = get_meaning_regexes(path)
+    for reg_str in regexes:
+        if conf.IGNORE_CASING:
+            reg = re.compile("^" + reg_str + "$", re.IGNORECASE)
+        else:
+            reg = re.compile(reg_str)
+
+        if reg.match(string):
+            return True
+    return False
 
 def get_scripts_dict():
     dict = {}
@@ -45,3 +72,6 @@ def get_scripts_dict():
             if os.path.isfile(commands):
                 dict[commands] = script
     return dict
+
+def get_meaning_regexes(path):
+    return [i.strip() for i in open(path).readlines()]

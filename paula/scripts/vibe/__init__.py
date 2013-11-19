@@ -15,17 +15,3 @@
 #
 ##
 
-# Default = False
-DEBUG = False
-
-# Default = [".mp3"]
-MUSIC_EXTENSIONS = [".mp3"]
-
-# Default = ["/home/syd/music"]
-MUSIC_DIRS = ["/home/syd/music"]
-
-# Default = "-"
-TITLE_ARTIST_DELIMITER = "-"
-
-# Default = "_"
-SONG_PATH_SPACE_SYNONYM = "_"

@@ -15,8 +15,8 @@
 #
 ##
 
-from .speak import voice
 from .command import decide
+from .speak import voice
 
 
 def decide_meaning(string):

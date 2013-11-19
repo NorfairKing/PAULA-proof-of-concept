@@ -17,9 +17,9 @@
 Description of package
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
+** vibe_script.py
+   - execute()
+     executes the vibe script
 
 * Required
 ** package1

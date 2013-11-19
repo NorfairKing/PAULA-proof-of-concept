@@ -16,7 +16,7 @@
 ##
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 # Default = ["/home/syd/music/vibes"]
 VIBE_DIRS = ["/home/syd/music/vibes"]

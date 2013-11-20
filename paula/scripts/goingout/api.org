@@ -22,6 +22,12 @@ PAULA's goingout script package.
      Executes the goingout script
 
 * Required
-** paula
-*** paula.py
-    - Class: Paula
+** paula.sleep
+*** sleep.py
+    - go_to_sleep_mode(seconds)
+** paula.core
+*** inputs.py
+    - get_integer()
+    - get_string_timeout(timeout)
+*** interaction.py
+    - say(text)

@@ -22,9 +22,15 @@ PAULA's sleep script package
      Executes the sleep script.
 
 * Required
-** paula
-*** paula.py
-    - Class: Paula
+** paula.sleep
+*** sleep.py
+    - go_to_sleep_mode(seconds)
+** paula.core
+*** inputs.py
+    - get_string()
+    - get_string_timeout
+*** interaction.py
+    - say(text)
 ** paula.music
 *** song.py
     - choose()

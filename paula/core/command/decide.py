@@ -17,28 +17,28 @@
 
 import os
 import re
-from . import command_config as conf
-from paula.scripts import script as script
 
 # Returns command class for the command
+from paula.core.command import command_config as conf
+
 def decide_meaning(string):
-    meanings = get_meanings_list()
+    meanings = get_meanings_dict()
     meaning_found = "UNKNOWN"
-    for meaning in meanings:
-        if means(string,meaning):
-            meaning_found = meaning
+    for path in meanings:
+        if means(string, path):
+            meaning_found = meanings[path]
             break
     if conf.DEBUG:
         print("decided  " + string + " to mean " + meaning_found + ".")
-    
     return meaning_found
 
-def means(string, meaning):
-    meanings = get_meanings_list()
-    if not meaning in meanings:
+
+def means(string, path):
+    meanings = get_meanings_dict()
+    if not path in meanings:
         return False
-    
-    regexes = get_meaning_regexes(meaning)
+
+    regexes = get_meaning_regexes(path)
     for reg_str in regexes:
         if conf.IGNORE_CASING:
             reg = re.compile("^" + reg_str + "$", re.IGNORECASE)
@@ -50,8 +50,18 @@ def means(string, meaning):
     return False
 
 
-def get_meanings_list():
-    return [ f for f in os.listdir(conf.MEANINGS_DIR) if os.path.isfile(os.path.join(conf.MEANINGS_DIR,f)) ]
+def get_meanings_dict():
+    dict = {}
 
-def get_meaning_regexes(meaning):
-    return [i.strip() for i in open(os.path.join(conf.MEANINGS_DIR,meaning)).readlines()]
+    # Generic meanings
+    for f in os.listdir(conf.MEANINGS_DIR):
+        if os.path.isfile(os.path.join(conf.MEANINGS_DIR, f)):
+            path = os.path.join(conf.MEANINGS_DIR, f)
+            dict[path] = f
+
+    return dict
+
+
+def get_meaning_regexes(path):
+    return [i.strip() for i in open(path).readlines()]
+

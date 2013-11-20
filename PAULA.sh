@@ -18,4 +18,4 @@
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-sudo python3 "$HERE/run_paula.py" $@
+python3 "$HERE/run_paula.py" $@

@@ -16,4 +16,7 @@
 ##
 
 # Default = False
-DEBUG       = False
+DEBUG = False
+
+# Default = True
+IGNORE_CASING = True

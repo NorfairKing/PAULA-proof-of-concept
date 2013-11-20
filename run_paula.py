@@ -1,4 +1,4 @@
-import sys, os
+import sys
 
 from paula.paula import Paula
 
@@ -9,10 +9,8 @@ if __name__ == "__main__":
         if 'start' == sys.argv[1]:
             p.say("Started")
             p.start()
-            # Nothing can happen after this line.                                                        
         elif 'stop' == sys.argv[1]:
             p.stop()
         elif 'restart' == sys.argv[1]:
             p.restart()
-    p.say("Hello, Sir")
     p.respond_to(all_args)

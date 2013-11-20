@@ -15,10 +15,5 @@
 #
 ##
 
-from paula.paula import PAULA
-
 def execute():
-    p = Paula()
-    
     print("placeholder")
-

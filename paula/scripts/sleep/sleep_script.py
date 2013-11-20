@@ -15,95 +15,100 @@
 #
 ##
 
-import signal
-from paula.paula import Paula
+import os
+import time
+import subprocess
+from paula.sleep import sleep
+from paula.core import inputs
+from paula.core import interaction
 from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
 from paula.agenda import agenda
 from . import sleep_script_config as conf
 
-def execute():
-    p = Paula()
 
-    p.say("How long would you like to sleep, Sir?")
+def execute():
+    interaction.say("How long would you like to sleep, Sir?")
 
     printOptions(conf.DURATION_OPTIONS)
-    answer = p.get_input_str().strip()
-    
+    answer = inputs.get_string().strip()
+
     if not answer in conf.DURATION_OPTIONS:
         print("ERROR: Unknown option")
         return
     chosen_option = int(conf.DURATION_OPTIONS[answer])
-    
-    p.debug("answer = " + answer, conf.DEBUG)
-    p.debug("selected option = " + str(chosen_option) + " seconds", conf.DEBUG)
-    
+
+    if conf.DEBUG:
+        print("answer = " + answer)
+        print("selected option = " + str(chosen_option) + " seconds")
+
     # select song
-    p.say("Please select which song you want to wake you up.")
+    interaction.say("Please select which song you want to wake you up.")
     s = song.choose()
 
     # Set volume to something pleasant
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
-    
-    # Sleep
-    p.go_to_sleep_mode(chosen_option)
-    
-    # Alarm go off
-    go_off(p, s)
 
-    p.say("Have a nice day, Sir")
-    
+    # Sleep
+    sleep.go_to_sleep_mode(chosen_option)
+
+    # Alarm go off
+    interaction.say("Good Morning, Sir")
+
+    subp = s.play()
+    answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)
+
+    if answer == None:
+    # Wait until the song has finished
+        subp.wait()
+        if conf.ANNOYING:
+            try:
+                def saynwait(text, delay):
+                    interaction.say(text)
+                    time.sleep(delay)
+
+                while system_volume.get() < 95:
+                    for sentence in [i.strip() for i in open(conf.ANNOYING_ALARM_TEXT).readlines()]:
+                        saynwait(sentence, 1)
+                    system_volume.set(system_volume.get()+5)
+
+                for filename in [f for f in os.listdir(conf.RESOURCES_DIR) if os.path.isfile(os.path.join(conf.RESOURCES_DIR, f))]:
+                    if filename.endswith(".mp3"):
+                        path = os.path.join(conf.RESOURCES_DIR, filename)
+                        alarm_process = playalarm(path)
+                        alarm_process.wait()
+
+            except KeyboardInterrupt:
+                time.sleep(1)
+
+    back = True
+    try:
+        subp.kill()
+    except ProcessLookupError:
+        pass
+
+    interaction.say("Have a nice day, Sir")
+
     # Show quote
     print((str(quote.get_random())))
 
     # Get agenda for next few days
     agenda.get_default()
 
-def go_off(p, s):
-    subp = s.play()
 
-    # <unknown code>
-    class TimeoutException(Exception):
-        pass
+def playalarm(path):
+    cmd = ['play', path]
+    null = open(os.devnull, 'w')
 
-    def timeout(timeout_time, default):
-        def timeout_function(f):
-            def f2(*args):
-                def timeout_handler(signum, frame):
-                    raise TimeoutException()
+    process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
+    return process
+    pass
 
-                old_handler = signal.signal(signal.SIGALRM, timeout_handler)
-                signal.alarm(timeout_time) # triger alarm in timeout_time seconds
-                try:
-                    retval = f()
-                except TimeoutException:
-                    return default
-                finally:
-                    signal.signal(signal.SIGALRM, old_handler)
-                signal.alarm(0)
-                return retval
-            return f2
-        return timeout_function
-
-    @timeout(conf.WAKE_UP_TIME, False)
-    def get_response():
-        ans = p.get_input_str()
-        return True
-    # </unknown code>
-
-    back = get_response()
-
-    if back:
-        subp.kill()
-
-    # Wake up
-    p.say("Good morning, Sir")
 
 def printOptions(dic):
     SECONDS_IN_A_MINUTE = 60
     for key in list(dic.keys()):
-        spaces = (20-len(key)) * " "
-        print(("         " + key + spaces +" - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min")) 
+        spaces = (20 - len(key)) * " "
+        print(("         " + key + spaces + " - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min"))
     print()
-    

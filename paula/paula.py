@@ -15,70 +15,40 @@
 #
 ##
 
-    
-     
-import sys, time
-import subprocess
-from .daemon import Daemon
-
+import time
 import logging
 import logging.config
-import paula.config as conf
-import paula.core.do as do
-import paula.scripts.script as script
-import paula.sleep.sleep as sleep
+
+from .daemon import Daemon
+from paula import config as conf
+from paula.scripts import script
 
 class Paula(Daemon):
-    
     def __init__(self):
         super(Paula, self).__init__(conf.pid_file, stdout=conf.out_file, stderr=conf.err_file)
-        
+
         # Logging
         self.log = logging.getLogger('PAULA')
         self.log.setLevel(logging.DEBUG)
-        formatter = logging.Formatter(conf.log_format,datefmt=conf.log_dateFormat)
-        fileHandler = logging.handlers.RotatingFileHandler(conf.log_file, mode='a', maxBytes=conf.log_maxBytes, backupCount=conf.log_backupCount)      
-        fileHandler.setFormatter(formatter)  
+        formatter = logging.Formatter(conf.log_format, datefmt=conf.log_dateFormat)
+        fileHandler = logging.handlers.RotatingFileHandler(conf.log_file, mode='a', maxBytes=conf.log_maxBytes,
+                                                           backupCount=conf.log_backupCount)
+        fileHandler.setFormatter(formatter)
         self.log.addHandler(fileHandler)
-    
-    def info(self,text):
+
+    def info(self, text):
         self.log.info(text)
-    
+
     def error(self, error_str):
         self.log.error(error_str)
 
-    def debug(self, text, option=conf.debug):
-        if option:
-            self.log.debug(text)
-            print(text)
-    
-    def say(self, text):
-        self.info("PAULA:   " + text)
-        do.say(text)    
-    
-    def get_input_str(self):
-        input_prompt = "YOU:     "
-        answer = input(input_prompt)
-        self.info(input_prompt + answer)
-        print()
-        return answer
-    
-    def get_input_int(self):
-        return int(self.get_input_str())
+    def debug(self, text):
+        self.log.debug(text)
 
     def respond_to(self, string):
         self.debug("Deciding " + string)
-        meaning = do.decide_meaning(string)
-        if meaning == "UNKNOWN":
-            self.error("Meaning not recognised")
-        else:
-            script.execute(meaning)        
+        script.decide_and_run(string)
         self.debug("Done with " + string)
-
-    def go_to_sleep_mode(self, seconds=0):
-        self.debug("Going to sleep mode for " + str(seconds) + " seconds.")
-        sleep.go_to_sleep_mode(seconds)
-        self.debug("Woke up")
 
     def check(self):
         pass

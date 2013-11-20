@@ -15,51 +15,53 @@
 #
 ##
 import os
-import sys
 import subprocess
 import random
-import time
 
 from . import music_conf as conf
+
 
 class Song:
     def __init__(self, title, path):
         self.title = title
         self.path = path
         self.title_pronouncable = self.make_pronouncable(title)
-    
+
     def make_pronouncable(self, title):
         split = title.split(conf.TITLE_ARTIST_DELIMITER)
         artist = split[0]
         title = split[1]
-        partist = artist.replace(conf.SONG_PATH_SPACE_SYNONYM,' ')
-        ptitle = title.replace(conf.SONG_PATH_SPACE_SYNONYM,' ')
+        partist = artist.replace(conf.SONG_PATH_SPACE_SYNONYM, ' ')
+        ptitle = title.replace(conf.SONG_PATH_SPACE_SYNONYM, ' ')
         return ptitle + " by " + partist
 
     def play(self):
-        cmd = ['play',self.path]
+        cmd = ['play', self.path]
         null = open(os.devnull, 'w')
-    
-        process = subprocess.Popen(cmd,shell=False,stdout=null,stderr=null)
-        return process    
+
+        process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
+        return process
 
     def __str__(self):
-        return self.title + "  at: " + self.path + "  pronounced: " + self.title_pronouncable 
+        return self.title + "  at: " + self.path + "  pronounced: " + self.title_pronouncable
 
-    
+
 def choose_and_play():
     song = choose()
     song.play()
+
 
 def select_and_play():
     song = select()
     song.play()
 
+
 def play_random():
     song = select_random()
     if conf.DEBUG:
         print(("randomly selected: " + str(song)))
-    song.play()
+    return song.play()
+
 
 def select_random():
     possible_selections = get_songs_dict()
@@ -67,32 +69,33 @@ def select_random():
     selected_song = possible_selections[selected_title]
     return selected_song
 
+
 def choose():
     possible_selections = get_songs_dict()
-                 
+
     sorted_keys = sorted(possible_selections.keys())
-    
-    print(("    " + str(-1) +  ((6-len(str(-1))) * " ") +" - " + "random song"))
+
+    print(("    " + str(-1) + ((6 - len(str(-1))) * " ") + " - " + "random song"))
     counter = 0
     for entry in sorted_keys:
-        print(("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry)))
+        print(("     " + str(counter) + ((5 - len(str(counter))) * " ") + " - " + str(entry)))
         counter += 1
     print()
 
     ask = True
-    while(ask):
+    while (ask):
         userInput = input("Take your pick: ")
 
         try:
             val = int(userInput)
         except ValueError:
-            print("That's not a number, Sir.")        
+            print("That's not a number, Sir.")
             continue
 
         if val < -1 or val >= len(sorted_keys):
             print("That is invalid selection, Sir.")
-            continue    
-        
+            continue
+
         if val == -1:
             selected_song = select_random()
         else:
@@ -101,30 +104,32 @@ def choose():
         ask = False
 
     return selected_song
+
+
 def select():
     possible_selections = get_songs_dict()
-                 
+
     sorted_keys = sorted(possible_selections.keys())
     counter = 0
     for entry in sorted_keys:
-        print(("     " + str(counter) +  ((5-len(str(counter))) * " ") +" - " + str(entry)))
+        print(("     " + str(counter) + ((5 - len(str(counter))) * " ") + " - " + str(entry)))
         counter += 1
     print()
 
     ask = True
-    while(ask):
+    while (ask):
         userInput = input("Take your pick: ")
 
         try:
             val = int(userInput)
         except ValueError:
-            print("That's not a number, Sir.")        
+            print("That's not a number, Sir.")
             continue
 
         if val < 0 or val >= len(sorted_keys):
             print("That is invalid selection, Sir.")
             continue
-            
+
         selected_title = sorted_keys[val]
         selected_song = possible_selections[selected_title]
         ask = False
@@ -134,7 +139,7 @@ def select():
 
 def get_songs_dict():
     possible_selections = {}
-    for path in conf.MUSIC_DIRS:    
+    for path in conf.MUSIC_DIRS:
         for dirname, dirnames, filenames in os.walk(path):
             for filename in filenames:
                 # Only select mp3 files

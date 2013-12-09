@@ -27,14 +27,14 @@ from paula.scripts import script
 
 class Paula(Daemon):
     def __init__(self):
-        super(Paula, self).__init__(conf.pid_file, stdout=conf.out_file, stderr=conf.err_file, started_error="PAULA is already running.",stopped_error="PAULA is not running.")
+        super(Paula, self).__init__(conf.PAULA_PID_FILE, stdout=conf.PAULA_OUT_FILE, stderr=conf.PAULA_ERR_FILE, started_error="PAULA is already running.",stopped_error="PAULA is not running.")
 
         # Logging
         self.log = logging.getLogger('PAULA')
         self.log.setLevel(logging.DEBUG)
-        formatter = logging.Formatter(conf.log_format, datefmt=conf.log_dateFormat)
-        fileHandler = logging.handlers.RotatingFileHandler(conf.log_file, mode='a', maxBytes=conf.log_maxBytes,
-                                                           backupCount=conf.log_backupCount)
+        formatter = logging.Formatter(conf.LOG_FORMAT, datefmt=conf.LOG_DATEFORMAT)
+        fileHandler = logging.handlers.RotatingFileHandler(conf.PAULA_LOG_FILE, mode='a', maxBytes=conf.LOG_MAXBYTES,
+                                                           backupCount=conf.LOG_BACKUPCOUNT)
         fileHandler.setFormatter(formatter)
         self.log.addHandler(fileHandler)
 
@@ -63,4 +63,4 @@ class Paula(Daemon):
             self.info('Check start')
             self.check()
             self.info('Check done \n')
-            time.sleep(conf.check_timer)
+            time.sleep(conf.CHECK_TIMER)

@@ -3,6 +3,7 @@
 
 ** Notes
    PAULA is currently only supported on arch and ubuntu. It may work if you manage to install all the required packages manually.
+   Currently only urxvt is supported.
 
 
 ** Install

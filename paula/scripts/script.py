@@ -19,6 +19,7 @@ import os
 import re
 import time
 import importlib
+import subprocess
 from . import script_config as conf
 
 def decide_and_run(string):
@@ -92,6 +93,10 @@ def get_scripts_dict():
     return dict
 
 def print_PAULA():
+    cmd = "clear"
+    process = subprocess.Popen(cmd, shell=True)
+    out, err = process.communicate()
+    
     print("""
       ____   _   _   _ _        _
      |  _ \ / \ | | | | |      / \ \n\

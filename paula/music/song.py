@@ -19,6 +19,8 @@ import signal
 import subprocess
 import random
 import os.path
+from paula.utils import external
+from paula.core import interaction
 
 from . import music_conf as conf
 
@@ -30,18 +32,17 @@ class Song:
         self.artist = foldernames[-3]
         self.album = foldernames[-2]
         if conf.DEBUG:
-            print("Title: " + self.title)
-            print("Artist " + self.artist)
-            print("Album: " + self.album)
+            interaction.print_debug("Title: " + self.title)
+            interaction.print_debug("Artist " + self.artist)
+            interaction.print_debug("Album: " + self.album)
         self.path = path
-        self.playing = False
 
     def play(self):
         cmd = ['vlc', '-Idummy' , '--play-and-exit','-vvv', self.path]
-        null = open(os.devnull, 'w')
 
-        self.process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
-        self.playing = True
+        self.process = external.call_list_silently(cmd, sync=False)
+
+        #Write pid and song info to temporary file
         songfile = open('/tmp/paula_song.pid', 'w+');
         songfile.write(str(self.process.pid) + "\n")
         songfile.write(self.title + "\n")
@@ -66,7 +67,7 @@ def get_current_artist():
             lines = f.readlines()
             return lines[3]
     except IOError:
-        print ('ERROR: Could not open paula_song.pid')
+        interaction.print_error('Could not open paula_song.pid')
 
 def get_current_song():
     if not os.path.exists('/tmp/paula_song.pid'):
@@ -77,7 +78,7 @@ def get_current_song():
             lines = f.readlines()
             return lines[1]
     except IOError:
-        print ('ERROR: Could not open paula_song.pid')
+        interaction.print_error('Could not open paula_song.pid')
 
 def get_current_album():
     if not os.path.exists('/tmp/paula_song.pid'):
@@ -88,7 +89,7 @@ def get_current_album():
             lines = f.readlines()
             return lines[2]
     except IOError:
-        print ('ERROR: Could not open paula_song.pid')
+        interaction.print_error('Could not open paula_song.pid')
 
 
 def stop_song():
@@ -114,7 +115,7 @@ def choose():
     song_path = ask_selection(songs)
 
     song = Song(song_path)
-    song.play()
+    return song
 
 
 def ask_selection(possible_selections):
@@ -138,7 +139,7 @@ def ask_selection(possible_selections):
             continue
 
         if val < -1 or val >= len(sorted_keys):
-            print("That is invalid selection, Sir.")
+            print("That is an invalid selection, Sir.")
             continue
 
         if val == -1:

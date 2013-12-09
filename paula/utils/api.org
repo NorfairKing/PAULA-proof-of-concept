@@ -14,17 +14,19 @@
 #
 ##
 
-Description of package
+This package provides all sorts of small utility functions.
 
 VERSION 0.1
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
-
-* Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** external.py
+   - call(command_string, sync=True)
+     Calls command_string in a subprocess. If sync is True it will wait for the process to finish.
+     If sync is false, it will return the Process object.
+   - call_list(command_list, sync=True)
+     The same as above function, but the command is passed in a list instead.
+   - call_silently(command_string, sync=True)
+     The same as call, but without output.
+   - call_list_silently(command_string, sync=True)
+     The same as call_list, but without output.
+     

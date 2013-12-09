@@ -18,6 +18,7 @@ import os
 import signal
 import subprocess
 import random
+import os.path
 
 from . import music_conf as conf
 
@@ -40,10 +41,12 @@ class Song:
         null = open(os.devnull, 'w')
 
         self.process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
-        print(self.process.pid)
         self.playing = True
         songfile = open('/tmp/paula_song.pid', 'w+');
-        songfile.write(str(self.process.pid))
+        songfile.write(str(self.process.pid) + "\n")
+        songfile.write(self.title + "\n")
+        songfile.write(self.album + "\n")
+        songfile.write(self.artist)
         return self.process
 
     def __str__(self):
@@ -54,10 +57,45 @@ def choose_and_play():
     song = choose()
     song.play()
 
+def get_current_artist():
+    if not os.path.exists('/tmp/paula_song.pid'):
+        return None
+
+    try:
+        with open('/tmp/paula_song.pid', 'r') as f:
+            lines = f.readlines()
+            return lines[3]
+    except IOError:
+        print ('ERROR: Could not open paula_song.pid')
+
+def get_current_song():
+    if not os.path.exists('/tmp/paula_song.pid'):
+        return None
+
+    try:
+        with open('/tmp/paula_song.pid', 'r') as f:
+            lines = f.readlines()
+            return lines[1]
+    except IOError:
+        print ('ERROR: Could not open paula_song.pid')
+
+def get_current_album():
+    if not os.path.exists('/tmp/paula_song.pid'):
+        return None
+
+    try:
+        with open('/tmp/paula_song.pid', 'r') as f:
+            lines = f.readlines()
+            return lines[2]
+    except IOError:
+        print ('ERROR: Could not open paula_song.pid')
+
+
 def stop_song():
     songfile = open('/tmp/paula_song.pid', 'r');
-    pid = songfile.read()
-    os.kill(int(pid), signal.SIGTERM)
+    lines = songfile.readlines()
+    os.kill(int(lines[0]), signal.SIGTERM)
+    os.remove('/tmp/paula_song.pid')
 
 def play_random():
     artists = get_artists_dict()

@@ -32,6 +32,10 @@ def execute():
 
     song.play_random()
 
+    print(song.get_current_artist())
+    print(song.get_current_album())
+    print(song.get_current_song())
+
     inputs.get_string()
 
     song.stop_song()

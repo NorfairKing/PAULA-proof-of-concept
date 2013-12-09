@@ -34,11 +34,14 @@ The music module contains all PAULA's functionality conserning music.
   - choose_and_play()
     Has the user choose a song or choose to have a random song selected and plays it.
 
-  - select_and_play()
-    Has the user select a song and plays it.
+  - get_current_song()
+    Returns the playing song. Returns None if no song is playing.
 
-  - select_random()
-    Selects a random song and returns it
+  - get_current_album()
+    Returns the playing album. Returns None if no song is playing.
+
+  - get_current_artist()
+    Returns the playing artist. Returns None if no song is playing.
   
   - play_random()
     Plays a random song

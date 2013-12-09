@@ -16,6 +16,8 @@
 
 The scripts package provides an interface for dynamically executing scripts.
 
+VERSION 0.1
+
 * Provided
 ** script.py
    - decide_and_run(command)

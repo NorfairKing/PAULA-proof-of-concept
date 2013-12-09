@@ -16,6 +16,8 @@
 
 PAULA's input package
 
+VERSION 0.1
+
 * Provided
 ** string.py
    - prompt_for_input_string()

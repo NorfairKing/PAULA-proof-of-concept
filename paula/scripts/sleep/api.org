@@ -16,6 +16,8 @@
 
 PAULA's sleep script package
 
+VERSION 0.1
+
 * Provided
 ** sleep_script.py
    - execute()

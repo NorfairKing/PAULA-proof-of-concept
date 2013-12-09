@@ -15,13 +15,5 @@
 #
 ##
 
-import sys
-
-from . import paula_test_script_config as conf
-
-def execute():
-    if conf.DEBUG:
-        print("The arguments to execute this script were the following.")
-        print(sys.argv)
-
-    # Test stuff here
+# Default = False
+DEBUG = False

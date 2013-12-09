@@ -96,7 +96,7 @@ def print_PAULA():
     cmd = "clear"
     process = subprocess.Popen(cmd, shell=True)
     out, err = process.communicate()
-    
+
     print("""
       ____   _   _   _ _        _
      |  _ \ / \ | | | | |      / \ \n\

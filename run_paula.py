@@ -7,7 +7,6 @@ if __name__ == "__main__":
     all_args = " ".join(sys.argv[1:])
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
-            p.say("Started")
             p.start()
         elif 'stop' == sys.argv[1]:
             p.stop()

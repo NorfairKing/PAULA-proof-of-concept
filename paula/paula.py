@@ -51,6 +51,7 @@ class Paula(Daemon):
         self.debug("Done with " + string)
 
     def check(self):
+
         pass
 
     def run(self):

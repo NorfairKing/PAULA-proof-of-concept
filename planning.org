@@ -30,3 +30,4 @@
 ** TODO Memory Loss
 ** TODO Death note
    
+urxvt -e bash -c '/home/syd/PAULA/PAULA.sh give me a vibe'

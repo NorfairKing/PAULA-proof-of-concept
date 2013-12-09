@@ -14,15 +14,12 @@
 #
 ##
 
-The music module contains all PAULA's functionality concerning sleep.
-
-VERSION 0.1
+The internal test script for developers.
 
 * Provided
-** sleep.py
-  - go_to_sleep_mode(seconds)
-    Has the computer go to sleep mode and wake up after the given amount of seconds
-    0 seconds means indefinitly.
+** paula_working_script.py
+   - execute()
+     Executes the paula_test script.
 
 * Required
-  Nothing
+Nothing

@@ -29,6 +29,7 @@
 ** TODO Advice
 ** TODO Memory Loss
 ** TODO Death note
+** TODO VERSION NUMBERS PER PACKAGE
    
 urxvt -e bash -c '/home/syd/PAULA/PAULA.sh give me a vibe'
 ** TODO error messages

@@ -15,16 +15,6 @@
 #
 ##
 
-import os
-
 # Default = False
 DEBUG = False
 
-# Default = True
-IGNORE_CASING = True
-
-# Default = False
-MATCH_WHOLE_STRING = False
-
-# Default = os.path.join(os.path.dirname(os.path.realpath(__file__)),'commands')
-MEANINGS_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meanings')

@@ -53,11 +53,10 @@ class Paula(Daemon):
         self.debug("Done with " + string)
 
     def check(self):
-        #cmd = "urxvt -title PAULA -e bash -c '/home/syd/PAULA/PAULA.sh give me a vibe'"
-        #print("Executing " + cmd)
-        #process = subprocess.Popen(cmd, shell=True)
-        #process.wait()
-        pass
+        cmd = "urxvt -title PAULA -e bash -c '/home/syd/PAULA/PAULA.sh paula_working'"
+        print("Executing " + cmd)
+        process = subprocess.Popen(cmd, shell=True)
+        process.wait()
 
     def run(self):
         while True:

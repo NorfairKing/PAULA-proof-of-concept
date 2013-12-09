@@ -41,7 +41,7 @@ def decide_meaning(string):
     meaning_found = "None"
     for name in meanings:
         if means(string, name):
-            meaning_found = meanings[path]
+            meaning_found = meanings[name]
             break
     if conf.DEBUG:
         print("decided  " + string + " to mean " + meaning_found + ".")
@@ -83,9 +83,6 @@ def get_scripts_dict():
                 dict[script] = commands
 
     return dict
-
-def get_meaning_regexes(path):
-    return [i.strip() for i in open(path).readlines()]
 
 def print_PAULA():
     print("""

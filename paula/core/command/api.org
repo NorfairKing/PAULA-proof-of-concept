@@ -16,6 +16,8 @@
 
 The command module contains all the functionality to make PAULA recognise meanings.
 
+VERSION 0.1
+
 * Provided
 ** decide.py
    - decide_meaning(string)

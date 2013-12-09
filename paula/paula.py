@@ -27,7 +27,7 @@ from paula.scripts import script
 
 class Paula(Daemon):
     def __init__(self):
-        super(Paula, self).__init__(conf.pid_file, stdout=conf.out_file, stderr=conf.err_file)
+        super(Paula, self).__init__(conf.pid_file, stdout=conf.out_file, stderr=conf.err_file, started_error="PAULA is already running.",stopped_error="PAULA is not running.")
 
         # Logging
         self.log = logging.getLogger('PAULA')

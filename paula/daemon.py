@@ -29,11 +29,13 @@ class Daemon(object):
     Usage: subclass the Daemon class and override the run() method
     """
 
-    def __init__(self, pidfile, stdin='/dev/null', stdout='/dev/null', stderr='/dev/null'):
+    def __init__(self, pidfile, stdin='/dev/null', stdout='/dev/null', stderr='/dev/null', started_error="DAEMON ALREADY RUNNING", stopped_error="DAEMON NOT RUNNING" ):
         self.stdin = stdin
         self.stdout = stdout
         self.stderr = stderr
         self.pidfile = pidfile
+        self.started_error = started_error
+        self.stopped_error = stopped_error
 
     def daemonize(self):
         """
@@ -96,8 +98,7 @@ class Daemon(object):
             pid = None
 
         if pid:
-            message = "pidfile %s already exist. Daemon already running?\n"
-            sys.stderr.write(message % self.pidfile)
+            sys.stderr.write(self.started_error)
             sys.exit(1)
 
 
@@ -118,8 +119,7 @@ class Daemon(object):
             pid = None
 
         if not pid:
-            message = "pidfile %s does not exist. Daemon not running?\n"
-            sys.stderr.write(message % self.pidfile)
+            sys.stderr.write(self.stopped_error)
             return # not an error in a restart
 
         # Try killing the daemon process    

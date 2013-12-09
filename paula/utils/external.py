@@ -15,3 +15,9 @@
 #
 ##
 
+import subprocess
+
+def call(commandstring, sync=True):
+    process = subprocess.Popen(commandstring.split())
+    if sync:
+        process.wait()

@@ -21,6 +21,9 @@ import time
 import atexit
 from signal import SIGTERM
 
+PANIC_MESSAGE = "PAULA PANIC: "
+FORK_1_FAILED_ERROR = PANIC_MESSAGE + "FORK 1 FAILED"
+FORK_2_FAILED_ERROR = PANIC_MESSAGE + "FORK 2 FAILED"
 
 class Daemon(object):
     def __init__(self, pid_file, std_in='/dev/null', std_out='/dev/null', std_err='/dev/null',
@@ -40,7 +43,7 @@ class Daemon(object):
                 # exit first parent
                 sys.exit(0)
         except OSError as e:
-            sys.stderr.write("fork #1 failed: %d (%s)\n" % (e.errno, e.strerror))
+            sys.stderr.write(FORK_1_FAILED_ERROR)
             sys.exit(1)
 
         # decouple from parent environment
@@ -55,7 +58,7 @@ class Daemon(object):
                 # exit from second parent
                 sys.exit(0)
         except OSError as e:
-            sys.stderr.write("fork #2 failed: %d (%s)\n" % (e.errno, e.strerror))
+            sys.stderr.write(FORK_2_FAILED_ERROR)
             sys.exit(1)
 
             # redirect standard file descriptors

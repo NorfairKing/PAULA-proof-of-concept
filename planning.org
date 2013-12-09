@@ -7,8 +7,6 @@
 
 * Planned soon
 
-* Bugs
-
 * Eventually
 ** TODO Own errors
 ** TODO Make install script prettier
@@ -37,3 +35,4 @@
 ** TODO Misc
 *** TODO Roll me
 *** TODO HAHA
+** TODO Recovery modus

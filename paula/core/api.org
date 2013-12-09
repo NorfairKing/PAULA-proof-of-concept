@@ -26,6 +26,10 @@ VERSION 0.1
      Decides whether the given string means the given meaning.
    - say(text)
      Has PAULA say text.
+   - print_error(error_string)
+     Prints the error_string in an appropriate format for errors.
+   - print_debug(debug_string)
+     Prints the debug_string in an appropriate format for debug messages.
 ** inputs.py
    - get_string()
      Get's a string from the user.

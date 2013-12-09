@@ -18,6 +18,7 @@
 import sys
 from paula.music import song
 from paula.core import inputs
+from paula.core import interaction
 import signal
 
 from . import paula_test_script_config as conf
@@ -36,6 +37,9 @@ def execute():
     print(song.get_current_artist())
     print(song.get_current_album())
     print(song.get_current_song())
+
+    interaction.print_error("Just a test")
+    interaction.print_debug("Just a test")
 
     inputs.get_string()
 

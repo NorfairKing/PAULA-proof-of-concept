@@ -31,3 +31,4 @@
 ** TODO Death note
    
 urxvt -e bash -c '/home/syd/PAULA/PAULA.sh give me a vibe'
+** TODO error messages

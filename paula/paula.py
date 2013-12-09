@@ -53,14 +53,15 @@ class Paula(Daemon):
         self.debug("Done with " + string)
 
     def check(self):
-        cmd = "urxvt -e bash -c '/home/syd/PAULA/PAULA.sh give me a vibe'"
-        print("Executing " + cmd)
-        process = subprocess.Popen(cmd, shell=True)
-        process.wait()
+        #cmd = "urxvt -title PAULA -e bash -c '/home/syd/PAULA/PAULA.sh give me a vibe'"
+        #print("Executing " + cmd)
+        #process = subprocess.Popen(cmd, shell=True)
+        #process.wait()
+        pass
 
     def run(self):
         while True:
             self.info('Check start')
             self.check()
             self.info('Check done \n')
-            time.sleep(conf.check_timer) 
+            time.sleep(conf.check_timer)

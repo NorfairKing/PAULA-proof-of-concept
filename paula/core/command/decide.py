@@ -20,6 +20,7 @@ import re
 
 # Returns command class for the command
 from paula.core.command import command_config as conf
+from paula.core import interaction
 
 
 def decide_meaning(string):
@@ -31,9 +32,9 @@ def decide_meaning(string):
             break
     if conf.DEBUG:
         if meaning_found:
-            print("decided  " + string + " to mean " + meaning_found + ".")
+            interaction.print_debug("decided  " + string + " to mean " + meaning_found + ".")
         else:
-            print("No meaning found.")
+            interaction.print_debug("No meaning found.")
     return meaning_found
 
 

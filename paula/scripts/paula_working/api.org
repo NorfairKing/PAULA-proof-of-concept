@@ -14,32 +14,12 @@
 #
 ##
 
-TODO
+The internal script to show that PAULA is working.
 
 * Provided
-** sleep_script.py
+** paula_working_script.py
    - execute()
-     Executes the sleep script.
+     Executes the paula_working script.
 
 * Required
-** paula.sleep
-*** sleep.py
-    - go_to_sleep_mode(seconds)
-** paula.core
-*** inputs.py
-    - get_string()
-    - get_string_timeout
-*** interaction.py
-    - say(text)
-** paula.music
-*** song.py
-    - choose()
-*** system_volume.py
-    - set(percent)
-** paula.motivation
-*** quote.py
-    - get_random()
-** paula.agenda
-*** agenda.py
-    - get_defaults()
-      
+Nothing

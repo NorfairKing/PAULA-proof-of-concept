@@ -22,11 +22,13 @@ import importlib
 import subprocess
 from . import script_config as conf
 
+
 def decide_and_run(string):
     print_PAULA()
     meaning = decide_meaning(string)
     execute(meaning)
     time.sleep(conf.WAITING_TIME)
+
 
 def execute(meaning):
     if not meaning:
@@ -40,6 +42,7 @@ def execute(meaning):
         module.execute()
     except ImportError:
         print("ERROR: The " + meaning + " script is missing or does not exist")
+
 
 def decide_meaning(string):
     global meanings
@@ -56,8 +59,10 @@ def decide_meaning(string):
             print("No meaning found.")
     return meaning_found
 
+
 def get_meaning_regexes(meaning):
     return [i.strip() for i in open(meanings[meaning]).readlines()]
+
 
 def means(string, meaning):
     if not meaning in meanings:
@@ -77,20 +82,23 @@ def means(string, meaning):
             return True
     return False
 
+
 def get_scripts_dict():
     dict = {}
 
     import paula.scripts
+
     scripts_dir = os.path.dirname(os.path.abspath(paula.scripts.__file__))
     for script in os.listdir(scripts_dir):
-        to_be_checked = os.path.join(scripts_dir,script)
+        to_be_checked = os.path.join(scripts_dir, script)
         if os.path.isdir(to_be_checked) and not to_be_checked.__contains__("__pycache__"):
-            script_dir = os.path.join(scripts_dir,script)
+            script_dir = os.path.join(scripts_dir, script)
             commands = os.path.join(script_dir, "script_commands")
             if os.path.isfile(commands):
                 dict[script] = commands
 
     return dict
+
 
 def print_PAULA():
     cmd = "clear"

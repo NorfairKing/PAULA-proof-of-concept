@@ -34,3 +34,6 @@
 ** TODO Google
 ** TODO Mail check
 ** TODO LISTEN
+** TODO Misc
+*** TODO Roll me
+*** TODO HAHA

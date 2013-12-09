@@ -22,23 +22,26 @@ The music module contains all PAULA's functionality conserning music.
     - properties
       - title
         Title of the song
+      - artist
+        Artist of the song
+      - album
+        Album of the song
       - path
         Path to the song
-      - title_pronouncable
-        A string representing the pronouncable version of the song
-    - make_pronouncable()
-      returns the pronouncable version of a song title
     - play()
       plays itself
 
   - choose_and_play()
     Has the user choose a song or choose to have a random song selected and plays it.
 
-  - select_and_play()
-    Has the user select a song and plays it.
+  - get_current_song()
+    Returns the playing song. Returns None if no song is playing.
 
-  - select_random()
-    Selects a random song and returns it
+  - get_current_album()
+    Returns the playing album. Returns None if no song is playing.
+
+  - get_current_artist()
+    Returns the playing artist. Returns None if no song is playing.
   
   - play_random()
     Plays a random song
@@ -48,9 +51,6 @@ The music module contains all PAULA's functionality conserning music.
 
   - select()
     Has the user select a song and returns it
-  
-  - get_songs_dict()
-    Returns a dictionary mapping available song titles to their songs
     
 ** system_volume.py
   - get()

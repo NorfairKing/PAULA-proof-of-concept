@@ -2,11 +2,13 @@
   Personal Artificial Intelligent Life Assistant
 
 ** Notes
-   PAULA is currently only supported on arch. It may work if you manage to install all the required packages manually.
+   PAULA is currently only supported on arch and ubuntu. It may work if you manage to install all the required packages manually.
+
 
 ** Install
-  A setup script is provided:
-  install_paula.py
+  Two setup scripts are provided:
+  install_paula_arch.py
+  install_paula_ubuntu.py
   Running this with python3 will install PAULA and her components.
 
 ** Use

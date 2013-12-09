@@ -27,7 +27,7 @@ def get_required_packages():
 
     required_packages = []
     for file in required_package_files:
-        for line in [i.strip() for i in open(file).readlines()]:
+        for line in [i.strxvrip() for i in open(file).readlines()]:
             required_packages.append(line)
 
     return required_packages

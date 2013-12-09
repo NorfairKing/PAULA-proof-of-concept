@@ -36,23 +36,30 @@ def execute(meaning):
         print("ERROR: The " + meaning + " script is missing or does not exist")
 
 def decide_meaning(string):
+    global meanings
     meanings = get_scripts_dict()
-    meaning_found = "UNKNOWN"
-    for path in meanings:
-        if means(string, path):
+    meaning_found = "None"
+    for name in meanings:
+        if means(string, name):
             meaning_found = meanings[path]
             break
     if conf.DEBUG:
         print("decided  " + string + " to mean " + meaning_found + ".")
     return meaning_found
 
-def means(string, path):
-    meanings = get_scripts_dict()
-    if not path in meanings:
+def get_meaning_regexes(meaning):
+    return [i.strip() for i in open(meanings[meaning]).readlines()]
+
+def means(string, meaning):
+    if not meaning in meanings:
         return False
 
-    regexes = get_meaning_regexes(path)
+    regexes = get_meaning_regexes(meaning)
+
+    print(regexes)
+
     for reg_str in regexes:
+
         if conf.IGNORE_CASING:
             reg = re.compile("^" + reg_str + "$", re.IGNORECASE)
         else:
@@ -73,7 +80,8 @@ def get_scripts_dict():
             script_dir = os.path.join(scripts_dir,script)
             commands = os.path.join(script_dir, "script_commands")
             if os.path.isfile(commands):
-                dict[commands] = script
+                dict[script] = commands
+
     return dict
 
 def get_meaning_regexes(path):

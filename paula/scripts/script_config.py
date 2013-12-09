@@ -23,3 +23,6 @@ WAITING_TIME = 2
 
 # Default = True
 IGNORE_CASING = True
+
+#Default = False
+MATCH_WHOLE_STRING = False

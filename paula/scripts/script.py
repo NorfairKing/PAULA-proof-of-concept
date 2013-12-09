@@ -92,6 +92,7 @@ def get_scripts_dict():
     return dict
 
 def print_PAULA():
+
     print("""
       ____   _   _   _ _        _
      |  _ \ / \ | | | | |      / \ \n\

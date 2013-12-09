@@ -29,7 +29,10 @@ def decide_meaning(string):
             meaning_found = meaning
             break
     if conf.DEBUG:
-        print("decided  " + string + " to mean " + meaning_found + ".")
+        if meaning_found:
+            print("decided  " + string + " to mean " + meaning_found + ".")
+        else:
+            print("No meaning found.")
     return meaning_found
 
 def means(string, meaning):

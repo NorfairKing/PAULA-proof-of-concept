@@ -15,6 +15,8 @@
 #
 ##
 
+from paula.core import interaction
+
 from . import paula_test_script_config as conf
 
 

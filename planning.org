@@ -4,11 +4,9 @@
   She will be a daemon so that she can monitor everything that happens on the computer.
   
 * Next
-
+  
 * Planned soon
-
-* Bugs
-
+  
 * Eventually
 ** TODO Own errors
 ** TODO Make install script prettier
@@ -34,3 +32,11 @@
 ** TODO Google
 ** TODO Mail check
 ** TODO LISTEN
+** TODO Misc
+*** TODO Roll me
+*** TODO HAHA
+** TODO Recovery modus
+** DONE Utilities
+   CLOSED: [2013-12-09 Mon 20:17]
+*** DONE Subprocess
+    CLOSED: [2013-12-09 Mon 20:17]

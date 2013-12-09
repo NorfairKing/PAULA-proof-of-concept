@@ -16,6 +16,8 @@
 
 The music module contains all PAULA's functionality conserning music.
 
+VERSION 0.1
+
 * Provided
 ** song.py
   - Class: Song

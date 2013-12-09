@@ -16,6 +16,8 @@
 
 The motivation package contains everything PAULA needs to motivate the user.xc
 
+VERSION 0.1
+
 * Provided
 ** quote.py
   - Class: Quote

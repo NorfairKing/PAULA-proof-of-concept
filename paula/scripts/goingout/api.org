@@ -16,6 +16,8 @@
 
 PAULA's goingout script package.
 
+VERSION 0.1
+
 * Provided
 ** goingout_script.py
    - execute()

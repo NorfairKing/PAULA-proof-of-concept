@@ -26,5 +26,8 @@ The volume module contains all functionality to handle the system sound volume
     Mutes the systems sound volume
 
 * Required
-  Nothing, every required file is intern
+** utils
+*** external
+    - call(cmd)
+    - call_silently(cmd)
       

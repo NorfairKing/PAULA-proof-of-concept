@@ -20,6 +20,7 @@ import random
 from paula.music.song import Song
 from . import vibe_script_config as conf
 
+
 def execute():
     possible_selections = get_vibe_songs_dict()
     if conf.DEBUG:
@@ -29,10 +30,11 @@ def execute():
     if conf.DEBUG:
         print("Selected = " + str(selected_song))
     try:
-        subp =  selected_song.play()
+        subp = selected_song.play()
         subp.wait()
     except KeyboardInterrupt:
         subp.kill()
+
 
 def get_vibe_songs_dict():
     possible_selections = {}

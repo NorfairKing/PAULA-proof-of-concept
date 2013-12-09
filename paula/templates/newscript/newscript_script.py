@@ -15,8 +15,5 @@
 #
 ##
 
-from paula.core import interaction
-
-
 def execute():
-    interaction.say("I'm working, Sir.")
+    print("placeholder")

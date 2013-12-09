@@ -15,16 +15,16 @@
 #
 ##
 
-import os
-import subprocess
+from paula.utils import external
+
 from . import sleep_conf as conf
 
 
 def go_to_sleep_mode(seconds):
     if seconds == 0:
         if not conf.DEBUG:
-            process = subprocess.Popen("sudo pm-suspend", shell=True)
-            out, err = process.communicate()
+            cmd = "sudo pm-suspend"
+            external.call_silently(cmd)
         else:
             print("going to sleep indefinitly")
     else:
@@ -33,11 +33,7 @@ def go_to_sleep_mode(seconds):
             cmd += "--dry-run "
         cmd += "--seconds " + str(seconds)
 
-        null = open(os.devnull, 'w')
         if not conf.DEBUG:
-            process = subprocess.Popen(cmd, shell=True, stdout=null, stderr=null)
-            out, err = process.communicate()
+            external.call_silently(cmd)
         else:
-            print("Executing " + cmd)
-            process = subprocess.Popen(cmd, shell=True)
-            out, err = process.communicate()
+            external.call(cmd)

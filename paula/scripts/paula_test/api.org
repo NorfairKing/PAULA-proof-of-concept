@@ -16,6 +16,8 @@
 
 The internal test script for developers.
 
+VERSION 0.1
+
 * Provided
 ** paula_working_script.py
    - execute()

@@ -14,8 +14,9 @@
 #
 ##
 
-
 The core module is the core of PAULA, it provides all PAULA's core functionality.
+
+VERSION 0.1
 
 * Provided
 ** interaction.py

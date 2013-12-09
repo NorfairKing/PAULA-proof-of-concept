@@ -21,6 +21,7 @@ import re
 # Returns command class for the command
 from paula.core.command import command_config as conf
 
+
 def decide_meaning(string):
     meanings = get_meanings_dict()
     meaning_found = None
@@ -34,6 +35,7 @@ def decide_meaning(string):
         else:
             print("No meaning found.")
     return meaning_found
+
 
 def means(string, meaning):
     meanings = get_meanings_dict()
@@ -54,6 +56,7 @@ def means(string, meaning):
             return True
     return False
 
+
 def get_meanings_dict():
     global meanings_dict
     meanings_dict = {}
@@ -64,6 +67,7 @@ def get_meanings_dict():
             meanings_dict[f] = path
 
     return meanings_dict
+
 
 def get_meaning_regexes(meaning):
     return [i.strip() for i in open(meanings_dict[meaning]).readlines()]

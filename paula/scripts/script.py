@@ -17,12 +17,18 @@
 
 import os
 import re
+import time
 import importlib
 from . import script_config as conf
 
 def decide_and_run(string):
     meaning = decide_meaning(string)
+    print_PAULA()
     execute(meaning)
+    time.sleep(2) # TODO more general
+
+def print_PAULA():
+    print("test")
 
 def execute(meaning):
     try:

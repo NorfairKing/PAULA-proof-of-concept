@@ -25,24 +25,7 @@ def decide_and_run(string):
     meaning = decide_meaning(string)
     print_PAULA()
     execute(meaning)
-    time.sleep(conf.WAITING_TIME) # TODO more general
-
-def print_PAULA():
-    print("""
-      ____   _   _   _ _        _    
-     |  _ \ / \ | | | | |      / \   
-     | |_) / _ \| | | | |     / _ \  
-     |  __/ ___ \ |_| | |___ / ___ \ 
-     |_| /_/   \_\___/|_____/_/   \_\\
-
-
- Personal
- Artificial
- Unintelligent
- Life
- Assistant
-
-""")
+    time.sleep(conf.WAITING_TIME)
 
 def execute(meaning):
     try:
@@ -95,3 +78,20 @@ def get_scripts_dict():
 
 def get_meaning_regexes(path):
     return [i.strip() for i in open(path).readlines()]
+
+def print_PAULA():
+    print("""
+      ____   _   _   _ _        _
+     |  _ \ / \ | | | | |      / \
+     | |_) / _ \| | | | |     / _ \
+     |  __/ ___ \ |_| | |___ / ___ \
+     |_| /_/   \_\___/|_____/_/   \_\\
+
+
+ Personal
+ Artificial
+ Unintelligent
+ Life
+ Assistant
+
+""")

@@ -28,21 +28,21 @@ def decide_and_run(string):
     time.sleep(conf.WAITING_TIME) # TODO more general
 
 def print_PAULA():
-    print("""##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
-#     |_| /_/   \_\___/|_____/_/   \_\
-#
-#
-# Personal
-# Artificial
-# Unintelligent
-# Life
-# Assistant
-#
-##""")
+    print("""
+      ____   _   _   _ _        _    
+     |  _ \ / \ | | | | |      / \   
+     | |_) / _ \| | | | |     / _ \  
+     |  __/ ___ \ |_| | |___ / ___ \ 
+     |_| /_/   \_\___/|_____/_/   \_\\
+
+
+ Personal
+ Artificial
+ Unintelligent
+ Life
+ Assistant
+
+""")
 
 def execute(meaning):
     try:

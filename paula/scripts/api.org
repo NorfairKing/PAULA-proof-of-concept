@@ -19,7 +19,7 @@ The scripts package provides an interface for dynamically executing scripts.
 * Provided
 ** script.py
    - execute(class_name)
-     Executes the script that corresponds to the given class name.
+     Executes the script that corresponds to the given class name. Returns none if no script is found.
      
 * Required
 ** Dynamic packages: "class_name"

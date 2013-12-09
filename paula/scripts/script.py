@@ -22,14 +22,19 @@ import importlib
 from . import script_config as conf
 
 def decide_and_run(string):
-    meaning = decide_meaning(string)
     print_PAULA()
+    meaning = decide_meaning(string)
     execute(meaning)
     time.sleep(conf.WAITING_TIME)
 
 def execute(meaning):
+    if not meaning:
+        return
+
     try:
         module_name = "paula.scripts." + meaning + "." + meaning + "_script"
+        if conf.DEBUG:
+            print("Importing module: " + module_name)
         module = importlib.import_module(module_name)
         module.execute()
     except ImportError:
@@ -38,13 +43,16 @@ def execute(meaning):
 def decide_meaning(string):
     global meanings
     meanings = get_scripts_dict()
-    meaning_found = "None"
+    meaning_found = None
     for name in meanings:
         if means(string, name):
-            meaning_found = meanings[name]
+            meaning_found = name
             break
     if conf.DEBUG:
-        print("decided  " + string + " to mean " + meaning_found + ".")
+        if meaning_found:
+            print("decided  " + string + " to mean " + meaning_found + ".")
+        else:
+            print("No meaning found.")
     return meaning_found
 
 def get_meaning_regexes(meaning):
@@ -55,16 +63,15 @@ def means(string, meaning):
         return False
 
     regexes = get_meaning_regexes(meaning)
-
-    print(regexes)
-
     for reg_str in regexes:
-
+        if not conf.MATCH_WHOLE_STRING:
+            reg_str += ".*"
+        else:
+            reg_str = "^" + reg_str + "$"
         if conf.IGNORE_CASING:
-            reg = re.compile("^" + reg_str + "$", re.IGNORECASE)
+            reg = re.compile(reg_str, re.IGNORECASE)
         else:
             reg = re.compile(reg_str)
-
         if reg.match(string):
             return True
     return False

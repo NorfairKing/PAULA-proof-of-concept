@@ -36,5 +36,7 @@
 *** TODO Roll me
 *** TODO HAHA
 ** TODO Recovery modus
-** TODO Utilities
-*** TODO Subprocess
+** DONE Utilities
+   CLOSED: [2013-12-09 Mon 20:17]
+*** DONE Subprocess
+    CLOSED: [2013-12-09 Mon 20:17]

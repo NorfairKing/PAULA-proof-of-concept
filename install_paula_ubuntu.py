@@ -16,15 +16,17 @@
 ##
 import os
 import subprocess
+
 PAULA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'paula')
 FILENAME = "required_packages_ubuntu"
+
 
 def get_required_packages():
     required_package_files = []
     for dirname, dirnames, filenames in os.walk(PAULA_DIR):
         for filename in filenames:
             if filename == FILENAME:
-                required_package_files.append(os.path.join(dirname,filename))
+                required_package_files.append(os.path.join(dirname, filename))
 
     required_packages = []
     for file in required_package_files:
@@ -32,6 +34,7 @@ def get_required_packages():
             required_packages.append(line)
 
     return required_packages
+
 
 if __name__ == "__main__":
     for package in get_required_packages():

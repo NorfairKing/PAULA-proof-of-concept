@@ -25,6 +25,7 @@ PANIC_MESSAGE = "PAULA PANIC: "
 FORK_1_FAILED_ERROR = PANIC_MESSAGE + "FORK 1 FAILED"
 FORK_2_FAILED_ERROR = PANIC_MESSAGE + "FORK 2 FAILED"
 
+
 class Daemon(object):
     def __init__(self, pid_file, std_in='/dev/null', std_out='/dev/null', std_err='/dev/null',
                  started_error="DAEMON ALREADY RUNNING", stopped_error="DAEMON NOT RUNNING"):

@@ -15,9 +15,6 @@
 #
 ##
 
-import os
-import subprocess
-
 from paula.utils import external
 
 from . import volume_conf as conf
@@ -36,6 +33,7 @@ def set(percent):
         external.call_silently(cmd)
     else:
         external.call(cmd)
+
 
 def mute():
     set(0)

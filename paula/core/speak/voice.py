@@ -15,9 +15,6 @@
 #
 ##
 
-import os
-import subprocess
-
 from paula.utils import external
 
 from . import speak_config as conf

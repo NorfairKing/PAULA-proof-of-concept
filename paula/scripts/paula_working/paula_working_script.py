@@ -15,10 +15,7 @@
 #
 ##
 
-import time
 from paula.core import interaction
-
-from . import paula_working_script_config as conf
 
 
 def execute():

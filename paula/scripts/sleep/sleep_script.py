@@ -71,9 +71,10 @@ def execute():
                 while system_volume.get() < 95:
                     for sentence in [i.strip() for i in open(conf.ANNOYING_ALARM_TEXT).readlines()]:
                         saynwait(sentence, 1)
-                    system_volume.set(system_volume.get()+5)
+                    system_volume.set(system_volume.get() + 5)
 
-                for filename in [f for f in os.listdir(conf.RESOURCES_DIR) if os.path.isfile(os.path.join(conf.RESOURCES_DIR, f))]:
+                for filename in [f for f in os.listdir(conf.RESOURCES_DIR) if
+                                 os.path.isfile(os.path.join(conf.RESOURCES_DIR, f))]:
                     if filename.endswith(".mp3"):
                         path = os.path.join(conf.RESOURCES_DIR, filename)
                         alarm_process = playalarm(path)

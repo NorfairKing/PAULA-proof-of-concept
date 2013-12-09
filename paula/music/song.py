@@ -60,10 +60,13 @@ def stop_song():
     os.kill(int(pid), signal.SIGTERM)
 
 def play_random():
+    artists = get_artists_dict()
+    artist_path = artists[random.choice(list(artists.keys()))]
+    songs = get_songs_dict(artist_path)
+    song_path = songs[random.choice(list(songs.keys()))]
 
-
-def select_random():
-
+    song = Song(song_path)
+    song.play()
 
 def choose():
     artists = get_artists_dict()

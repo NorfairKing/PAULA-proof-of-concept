@@ -30,7 +30,7 @@ def execute():
 
     #Write test code here
 
-    song.choose()
+    song.play_random()
 
     inputs.get_string()
 

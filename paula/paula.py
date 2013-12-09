@@ -15,7 +15,6 @@
 #
 ##
 
-import os
 import time
 import subprocess
 import logging
@@ -25,9 +24,11 @@ from .daemon import Daemon
 from paula import config as conf
 from paula.scripts import script
 
+
 class Paula(Daemon):
     def __init__(self):
-        super(Paula, self).__init__(conf.PAULA_PID_FILE, stdout=conf.PAULA_OUT_FILE, stderr=conf.PAULA_ERR_FILE, started_error="PAULA is already running.",stopped_error="PAULA is not running.")
+        super(Paula, self).__init__(conf.PAULA_PID_FILE, std_out=conf.PAULA_OUT_FILE, std_err=conf.PAULA_ERR_FILE,
+                                    started_error="PAULA is already running.", stopped_error="PAULA is not running.")
 
         # Logging
         self.log = logging.getLogger('PAULA')

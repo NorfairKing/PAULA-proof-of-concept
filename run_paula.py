@@ -1,10 +1,10 @@
 import sys
 
 from paula.paula import Paula
-START_COMMAND   = 'start'
-STOP_COMMAND    = 'stop'
-RESTART_COMMAND = 'restart'
 
+START_COMMAND = 'start'
+STOP_COMMAND = 'stop'
+RESTART_COMMAND = 'restart'
 
 if __name__ == "__main__":
     paula = Paula()

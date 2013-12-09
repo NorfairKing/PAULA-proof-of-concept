@@ -26,5 +26,5 @@ VERSION 0.1
 * Required
 ** utils
 *** external.py
-    - call()
-    - call_silently()
+    - call(cmd)
+    - call_silently(cmd)

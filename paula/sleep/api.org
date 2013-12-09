@@ -25,4 +25,7 @@ VERSION 0.1
     0 seconds means indefinitly.
 
 * Required
-  Nothing
+** utils
+*** external.py
+    - call(cmd)
+    - call_silently(cmd)

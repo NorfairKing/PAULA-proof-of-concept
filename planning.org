@@ -40,3 +40,9 @@
    CLOSED: [2013-12-09 Mon 20:17]
 *** DONE Subprocess
     CLOSED: [2013-12-09 Mon 20:17]
+*** TODO Clear screen
+*** TODO color text
+** TODO Look for music dirs
+   - [mM]usic
+   - [mM]usic/[mM]usic
+   workaround for the config problem

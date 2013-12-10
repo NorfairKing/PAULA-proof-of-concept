@@ -40,15 +40,15 @@ class Song:
     def play(self):
         cmd = ['vlc', '-Idummy' , '--play-and-exit','-vvv', self.path]
 
-        self.process = external.call_list_silently(cmd, sync=False)
+        process = external.call_list_silently(cmd, sync=False)
 
         #Write pid and song info to temporary file
         songfile = open('/tmp/paula_song.pid', 'w+');
-        songfile.write(str(self.process.pid) + "\n")
+        songfile.write(str(process.pid) + "\n")
         songfile.write(self.title + "\n")
         songfile.write(self.album + "\n")
         songfile.write(self.artist)
-        return self.process
+        return process
 
     def __str__(self):
         return "Artist: " + self.artist + ", Song: "+self.title
@@ -105,7 +105,8 @@ def play_random():
     song_path = songs[random.choice(list(songs.keys()))]
 
     song = Song(song_path)
-    song.play()
+    process = song.play()
+    return process
 
 def choose():
     artists = get_artists_dict()

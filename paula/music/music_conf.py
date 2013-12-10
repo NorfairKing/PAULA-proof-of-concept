@@ -22,7 +22,7 @@ DEBUG = False
 MUSIC_EXTENSIONS = [".mp3"]
 
 # Default = ["/home/syd/music"]
-MUSIC_DIRS = ["/home/xander/Music/Music"]
+MUSIC_DIRS = ["/home/syd/music"]
 
 # Default = "-"
 TITLE_ARTIST_DELIMITER = "-"

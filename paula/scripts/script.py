@@ -21,6 +21,7 @@ import time
 import importlib
 import subprocess
 from . import script_config as conf
+import paula.core.interaction
 
 
 def decide_and_run(string):

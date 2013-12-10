@@ -19,8 +19,7 @@ import os
 import re
 
 # Returns command class for the command
-from paula.core.command import command_config as conf
-from paula.core import interaction
+from . import command_config as conf
 
 
 def decide_meaning(string):

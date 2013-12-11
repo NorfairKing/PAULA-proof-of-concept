@@ -24,3 +24,6 @@ def print_error(error_string):
 
 def print_debug(debug_string):
     string.print_debug(debug_string)
+
+def print_color(print_string, color_string):
+    string.print_color(print_string, color_string)

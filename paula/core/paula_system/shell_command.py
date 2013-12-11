@@ -20,6 +20,7 @@ import subprocess
 from . import paula_system_config as conf
 from paula.core import outputs
 
+
 def call(command_string, sync=True):
     if conf.DEBUG:
         outputs.print_debug("Executing: " + command_string)
@@ -29,6 +30,7 @@ def call(command_string, sync=True):
         process.wait()
     else:
         return process
+
 
 def call_list(command_list, sync=True):
     if conf.DEBUG:
@@ -52,6 +54,7 @@ def call_silently(command_string, sync=True):
     else:
         return process
 
+
 def call_list_silently(command_list, sync=True):
     if conf.DEBUG:
         outputs.print_debug("Executing silently: " + str(command_list))
@@ -62,7 +65,6 @@ def call_list_silently(command_list, sync=True):
         process.wait()
     else:
         return process
-
 
 
 def get_output_of(command_string):

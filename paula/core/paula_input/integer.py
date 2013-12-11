@@ -16,7 +16,7 @@
 ##
 
 import signal
-from . import input_config as conf
+from . import paula_input_config as conf
 
 
 def prompt_for_input_int():

@@ -99,12 +99,13 @@ def stop_song():
     os.remove('/tmp/paula_song.pid')
 
 def play_random():
-    artists = get_artists_dict()
-    artist_path = artists[random.choice(list(artists.keys()))]
-    songs = get_songs_dict(artist_path)
-    song_path = songs[random.choice(list(songs.keys()))]
-
-    song = Song(song_path)
+    files = [os.path.join(path, filename)
+        for musicFolder in conf.MUSIC_DIRS
+        for path, dirs, files in os.walk(musicFolder)
+        for filename in files
+        if not filename.endswith(".jpg") and not filename.endswith(".png")]
+        
+    song = Song(random.choice(files))
     song.play()
 
 def choose():

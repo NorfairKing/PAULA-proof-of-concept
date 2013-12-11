@@ -28,4 +28,4 @@ def execute():
 
     result = youtube.search(" ".join(sys.argv[2:]))
 
-    youtube.play_song(result)
+    youtube.play_video(result)

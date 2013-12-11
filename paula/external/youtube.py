@@ -18,6 +18,7 @@
 import urllib.request
 import urllib.error
 from paula.core import system
+from . import external_config as conf
 
 def search(arg_string):
     url = "https://gdata.youtube.com/feeds/api/videos?q="
@@ -30,11 +31,13 @@ def search(arg_string):
     return vidid
 
 def play_video(vidid):
-    process = system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
-    return process
+    if conf.CONTROLS:
+        return system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+    else:
+        return system.call_list_silently(["vlc", '-Idummy', "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
 
 def play_song(vidid):
-    process = system.call_list_silently(["vlc", '-Idummy' , "--play-and-exit", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+    process = system.call_list_silently(["vlc", '-Idummy' , '-Vdummy' , "--play-and-exit", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
 
     songfile = open('/tmp/paula_song.pid', 'w+');
     songfile.write(str(process.pid))

@@ -19,6 +19,7 @@ import sys
 from paula.music import song
 from paula.core import inputs
 from paula.core import interaction
+from paula.core import shell_command
 import signal
 
 from . import paula_test_script_config as conf

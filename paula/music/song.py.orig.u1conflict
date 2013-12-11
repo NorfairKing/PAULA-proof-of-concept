@@ -19,7 +19,7 @@ import signal
 import subprocess
 import random
 import os.path
-from paula.utils import external
+from paula.core import shell_command
 from paula.core import interaction
 
 from . import music_conf as conf
@@ -40,7 +40,7 @@ class Song:
     def play(self):
         cmd = ['vlc', '-Idummy' , '--play-and-exit','-vvv', self.path]
 
-        process = external.call_list_silently(cmd, sync=False)
+        process = shell_command.call_list_silently(cmd, sync=False)
 
         #Write pid and song info to temporary file
         songfile = open('/tmp/paula_song.pid', 'w+');

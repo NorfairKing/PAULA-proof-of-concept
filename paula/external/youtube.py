@@ -31,12 +31,24 @@ def search(arg_string):
     return vidid
 
 def play_video(vidid):
+    if os.path.isfile('/tmp/paula_song.pid'):
+        songfile = open('/tmp/paula_song.pid', 'r');
+        lines = songfile.readlines()
+        os.kill(int(lines[0]), signal.SIGTERM)
+        os.remove('/tmp/paula_song.pid')
+
     if conf.CONTROLS:
         return system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
     else:
         return system.call_list_silently(["vlc", '-Idummy', "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
 
 def play_song(vidid):
+    if os.path.isfile('/tmp/paula_song.pid'):
+        songfile = open('/tmp/paula_song.pid', 'r');
+        lines = songfile.readlines()
+        os.kill(int(lines[0]), signal.SIGTERM)
+        os.remove('/tmp/paula_song.pid')
+    
     process = system.call_list_silently(["vlc", '-Idummy' , '-Vdummy' , "--play-and-exit", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
 
     songfile = open('/tmp/paula_song.pid', 'w+');

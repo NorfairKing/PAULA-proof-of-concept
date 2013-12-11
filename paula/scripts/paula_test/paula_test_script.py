@@ -17,6 +17,8 @@
 
 import sys
 from paula.core import outputs
+from paula.music import song
+from paula.core import interaction
 
 from . import paula_test_script_config as conf
 

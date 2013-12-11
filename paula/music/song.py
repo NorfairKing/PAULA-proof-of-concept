@@ -42,6 +42,8 @@ class Song:
 
         process = system.call_list_silently(cmd, sync=False)
 
+        stop_song()
+
         #Write pid and song info to temporary file
         songfile = open('/tmp/paula_song.pid', 'w+');
         songfile.write(str(process.pid) + "\n")

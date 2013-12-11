@@ -15,15 +15,7 @@
 #
 ##
 
-import sys
-from paula.external import youtube
-from paula.core import inputs
-from paula.core import interaction
+from paula.music import song
 
 def execute():
-    interaction.say("Which song would you like to play?")
-    arg = inputs.get_string()
-
-    result = youtube.search(arg)
-
-    youtube.play_song(result)
+    song.stop_song()

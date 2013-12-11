@@ -45,7 +45,3 @@ def execute():
     outputs.print_color("YAY","green")
 
     interaction.say("It fucking works.")
-
-    inputs.get_string()
-
-    song.stop_song()

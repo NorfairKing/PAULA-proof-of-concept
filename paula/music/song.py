@@ -93,10 +93,11 @@ def get_current_album():
 
 
 def stop_song():
-    songfile = open('/tmp/paula_song.pid', 'r');
-    lines = songfile.readlines()
-    os.kill(int(lines[0]), signal.SIGTERM)
-    os.remove('/tmp/paula_song.pid')
+    if os.path.isfile('/tmp/paula_song.pid'):
+        songfile = open('/tmp/paula_song.pid', 'r');
+        lines = songfile.readlines()
+        os.kill(int(lines[0]), signal.SIGTERM)
+        os.remove('/tmp/paula_song.pid')
 
 def play_random():
     files = [os.path.join(path, filename)

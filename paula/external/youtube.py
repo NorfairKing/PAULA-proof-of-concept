@@ -30,7 +30,13 @@ def search(arg_string):
     return vidid
 
 def play_video(vidid):
-    system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+    process = system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+    return process
 
 def play_song(vidid):
-    system.call_list_silently(["vlc", "--play-and-extt", "Idummy", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+    process = system.call_list_silently(["vlc", '-Idummy' , "--play-and-exit", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+
+    songfile = open('/tmp/paula_song.pid', 'w+');
+    songfile.write(str(process.pid))
+
+    return process

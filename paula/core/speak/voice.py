@@ -15,17 +15,15 @@
 #
 ##
 
-from paula.utils import external
+from paula.core import system
 
 from . import speak_config as conf
 
 
 def say(text):
-    print(("PAULA:   " + text + "\n"))
-
     if conf.SOUND_ON:
         bash_command = conf.SPEAK_SCRIPT + ' "' + text + '"'
         if conf.DEBUG:
-            external.call(bash_command)
+            system.call(bash_command)
         else:
-            external.call_silently(bash_command)
+            system.call_silently(bash_command)

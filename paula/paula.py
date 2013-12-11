@@ -23,6 +23,7 @@ import logging.config
 from .daemon import Daemon
 from paula import config as conf
 from paula.scripts import script
+from paula.core import outputs
 
 
 class Paula(Daemon):

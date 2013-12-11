@@ -15,14 +15,14 @@
 #
 ##
 
-from paula.utils import external
+from paula.core import system
 
 from . import volume_conf as conf
 
 
 def get():
     cmd = "amixer get Master | grep 'Mono:' | sed -e 's/^[^\[]*//' -e 's/^.//' -e 's/%.*$//'"
-    out = external.get_output_of(cmd)
+    out = system.get_output_of(cmd)
     vol = int(out)
     return vol
 
@@ -30,9 +30,9 @@ def get():
 def set(percent):
     cmd = "amixer set Master " + str(percent) + "%"
     if not conf.DEBUG:
-        external.call_silently(cmd)
+        system.call_silently(cmd)
     else:
-        external.call(cmd)
+        system.call(cmd)
 
 
 def mute():

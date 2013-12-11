@@ -26,17 +26,18 @@ from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
 from paula.agenda import agenda
+
 from . import sleep_script_config as conf
 
 
 def execute():
-    outputs.say("How long would you like to sleep, Sir?")
+    interaction.say("How long would you like to sleep, Sir?")
 
     printOptions(conf.DURATION_OPTIONS)
     answer = inputs.get_string().strip()
 
     if not answer in conf.DURATION_OPTIONS:
-        outputs.print_error("ERROR: Unknown option")
+        outputs.print_error("Unknown option")
         return
     chosen_option = int(conf.DURATION_OPTIONS[answer])
 
@@ -45,7 +46,7 @@ def execute():
         outputs.print_debug("selected option = " + str(chosen_option) + " seconds")
 
     # select song
-    outputs.say("Please select which song you want to wake you up.")
+    interaction.say("Please select which song you want to wake you up.")
     s = song.choose()
 
     # Set volume to something pleasant
@@ -55,7 +56,7 @@ def execute():
     sleep.go_to_sleep_mode(chosen_option)
 
     # Alarm go off
-    outputs.say("Good Morning, Sir")
+    interaction.say("Good Morning, Sir")
 
     subp = s.play()
     answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)
@@ -90,7 +91,7 @@ def execute():
     except ProcessLookupError:
         pass
 
-    outputs.say("Have a nice day, Sir")
+    interaction.say("Have a nice day, Sir")
 
     # Show quote
     print((str(quote.get_random())))

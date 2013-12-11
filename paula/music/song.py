@@ -158,8 +158,9 @@ def ask_selection(possible_selections):
 def get_artists_dict():
     possible_selections = {}
     for path in conf.MUSIC_DIRS:
-        for dirname in os.listdir(path):
-            possible_selections[dirname] = os.path.join(path, dirname)
+        if os.path.isdir(path):
+            for dirname in os.listdir(path):
+                possible_selections[dirname] = os.path.join(path, dirname)
     return possible_selections
 
 def get_songs_dict(dir):

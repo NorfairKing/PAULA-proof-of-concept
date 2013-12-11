@@ -15,7 +15,8 @@
 #
 ##
 
-from paula.core import shell_command
+from paula.core import system
+from paula.core import outputs
 
 from . import sleep_conf as conf
 
@@ -24,9 +25,9 @@ def go_to_sleep_mode(seconds):
     if seconds == 0:
         if not conf.DEBUG:
             cmd = "sudo pm-suspend"
-            shell_command.call_silently(cmd)
+            system.call_silently(cmd)
         else:
-            print("going to sleep indefinitly")
+            outputs.print_debug("going to sleep indefinitly")
     else:
         cmd = "sudo rtcwake --mode mem "
         if conf.DEBUG:
@@ -34,6 +35,6 @@ def go_to_sleep_mode(seconds):
         cmd += "--seconds " + str(seconds)
 
         if not conf.DEBUG:
-            shell_command.call_silently(cmd)
+            system.call_silently(cmd)
         else:
-            shell_command.call(cmd)
+            system.call(cmd)

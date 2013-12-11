@@ -16,12 +16,7 @@
 ##
 
 import sys
-from paula.music import song
-from paula.core import inputs
 from paula.core import outputs
-from paula.core import system
-from paula.core import interaction
-import signal
 
 from . import paula_test_script_config as conf
 
@@ -34,18 +29,18 @@ def execute():
 
     #Write test code here
 
-    song.play_random()
+    COLORS = [
+        "black",
+        "red",
+        "green",
+        "yellow",
+        "blue",
+        "magenta",
+        "cyan",
+        "white",
+    ]
 
-    print(song.get_current_artist())
-    print(song.get_current_album())
-    print(song.get_current_song())
-
-    outputs.print_error("this is an error message")
-    outputs.print_debug("this is a debug message")
-    outputs.print_color("YAY","green")
-
-    interaction.say("It fucking works.")
-
-    inputs.get_string()
-
-    song.stop_song()
+    for color1 in COLORS:
+        for color2 in COLORS:
+            outputs.print_color("test", color1, newline=False)
+            outputs.print_color("test", color1, background=color2, bold=True, newline=False)

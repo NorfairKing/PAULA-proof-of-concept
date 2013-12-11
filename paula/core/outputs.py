@@ -17,16 +17,14 @@
 
 from .paula_output import string
 
-from . import  core_config
 
 def print_error(error_string):
     string.print_error(error_string)
 
+
 def print_debug(debug_string):
     string.print_debug(debug_string)
 
-def print_color(print_string, color_string):
-    string.print_color(print_string, color_string)
 
-def paula_says(print_string):
-    print_color("PAULA: " + print_string, "magenta")
+def print_color(text, foreground, background="default", bold=False, newline=True):
+    string.print_color(text, foreground, background=background, bold=bold, newline=newline)

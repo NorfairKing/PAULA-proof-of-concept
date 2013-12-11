@@ -17,3 +17,7 @@
 
 # Default = False
 DEBUG = False
+
+DEBUG_COLOR = "green"
+ERROR_COLOR = "red"
+PAULA_COLOR = "magenta"

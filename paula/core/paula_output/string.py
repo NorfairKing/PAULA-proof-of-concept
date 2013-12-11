@@ -17,13 +17,18 @@
 
 import sys
 
+from . import paula_output_config as conf
+
 def print_error(error_string):
-    print("\033[1;31m" + "ERROR: " + error_string + " \033[0m")
+   print_color(error_string,conf.ERROR_COLOR)
 
 
 def print_debug(debug_string):
-    print("\033[1;36m" + "DEBUG: " + debug_string + " \033[0m")
+    print_color(debug_string,conf.DEBUG_COLOR)
 
+
+def print_paula(text):
+    print_color(text,conf.DEBUG_COLOR)
 
 COLOR_DICT = {
     "black": 0,

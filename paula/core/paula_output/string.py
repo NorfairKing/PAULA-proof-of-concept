@@ -19,16 +19,18 @@ import sys
 
 from . import paula_output_config as conf
 
+
 def print_error(error_string):
-   print_color(error_string,conf.ERROR_COLOR)
+    print_color(error_string, conf.ERROR_COLOR)
 
 
 def print_debug(debug_string):
-    print_color(debug_string,conf.DEBUG_COLOR)
+    print_color(debug_string, conf.DEBUG_COLOR)
 
 
 def print_paula(text):
-    print_color(text,conf.DEBUG_COLOR)
+    print_color(text, conf.DEBUG_COLOR)
+
 
 COLOR_DICT = {
     "black": 0,
@@ -39,8 +41,9 @@ COLOR_DICT = {
     "magenta": 5,
     "cyan": 6,
     "white": 7,
-    "default":9
+    "default": 9
 }
+
 
 def print_color(text, foreground, background="default", bold=False, newline=True):
     if not foreground in COLOR_DICT or not background in COLOR_DICT:

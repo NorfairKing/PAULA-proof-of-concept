@@ -19,8 +19,8 @@ import signal
 import subprocess
 import random
 import os.path
-from paula.core import interaction
-from paula.core import shell_command
+from paula.core import outputs
+from paula.core import system
 
 from . import music_conf as conf
 
@@ -32,15 +32,15 @@ class Song:
         self.artist = foldernames[-3]
         self.album = foldernames[-2]
         if conf.DEBUG:
-            interaction.print_debug("Title: " + self.title)
-            interaction.print_debug("Artist " + self.artist)
-            interaction.print_debug("Album: " + self.album)
+            outputs.print_debug("Title: " + self.title)
+            outputs.print_debug("Artist " + self.artist)
+            outputs.print_debug("Album: " + self.album)
         self.path = path
 
     def play(self):
         cmd = ['vlc', '-Idummy' , '--play-and-exit','-vvv', self.path]
 
-        process = shell_command.call_list_silently(cmd, sync=False)
+        process = system.call_list_silently(cmd, sync=False)
 
         #Write pid and song info to temporary file
         songfile = open('/tmp/paula_song.pid', 'w+');
@@ -67,7 +67,7 @@ def get_current_artist():
             lines = f.readlines()
             return lines[3]
     except IOError:
-        interaction.print_error('Could not open paula_song.pid')
+        outputs.print_error('Could not open paula_song.pid')
 
 def get_current_song():
     if not os.path.exists('/tmp/paula_song.pid'):
@@ -78,7 +78,7 @@ def get_current_song():
             lines = f.readlines()
             return lines[1]
     except IOError:
-        interaction.print_error('Could not open paula_song.pid')
+        outputs.print_error('Could not open paula_song.pid')
 
 def get_current_album():
     if not os.path.exists('/tmp/paula_song.pid'):
@@ -89,7 +89,7 @@ def get_current_album():
             lines = f.readlines()
             return lines[2]
     except IOError:
-        interaction.print_error('Could not open paula_song.pid')
+        outputs.print_error('Could not open paula_song.pid')
 
 
 def stop_song():

@@ -16,7 +16,6 @@
 ##
 
 from .paula_output import string
-from .speak import voice
 
 from . import  core_config
 
@@ -29,5 +28,5 @@ def print_debug(debug_string):
 def print_color(print_string, color_string):
     string.print_color(print_string, color_string)
 
-def say(text):
-    return voice.say(text)
+def paula_says(print_string):
+    print_color("PAULA: " + print_string, "magenta")

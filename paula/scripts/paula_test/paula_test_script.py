@@ -28,7 +28,7 @@ from . import paula_test_script_config as conf
 def execute():
     if conf.DEBUG:
         outputs.print_debug("The arguments to execute this script were the following.")
-        outputs.print_debug(sys.argv)
+        outputs.print_debug(str(sys.argv))
 
 
     #Write test code here

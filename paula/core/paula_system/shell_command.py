@@ -18,6 +18,7 @@
 import os
 import subprocess
 from . import paula_system_config as conf
+from paula.core import outputs
 
 def call(command_string, sync=True):
     if conf.DEBUG:

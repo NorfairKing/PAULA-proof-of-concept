@@ -18,12 +18,14 @@
 import sys
 from paula.external import youtube
 from paula.core import inputs
+from paula.core import outputs
 from paula.core import interaction
+from . import youtube_script_config as conf
 
 def execute():
-    interaction.say("Which song would you like to play?")
-    arg = inputs.get_string()
+    if conf.DEBUG:
+        outputs.print_debug(" ".join(sys.argv[2:]))
 
-    result = youtube.search(arg)
+    result = youtube.search(" ".join(sys.argv[2:]))
 
     youtube.play_song(result)

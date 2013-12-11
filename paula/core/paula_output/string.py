@@ -15,6 +15,7 @@
 #
 ##
 
+import sys
 
 def print_error(error_string):
     print("\033[1;31m" + "ERROR: " + error_string + " \033[0m")
@@ -33,21 +34,29 @@ COLOR_DICT = {
     "magenta": 5,
     "cyan": 6,
     "white": 7,
-    "bright_black": 0,
-    "bright_red": 1,
-    "bright_green": 2,
-    "bright_yellow": 3,
-    "bright_blue": 4,
-    "bright_magenta": 5,
-    "bright_cyan": 6,
-    "bright_white": 7,
+    "default":9
 }
 
-
-def print_color(string, color_str):
-    if color_str in COLOR_DICT:
-        ANSI_color_value = str(COLOR_DICT[color_str])
-
-        print("\033[1;" + ANSI_color_value + "m" + string + "\033[0m")
+def print_color(text, foreground, background="default", bold=False, newline=True):
+    if not foreground in COLOR_DICT or not background in COLOR_DICT:
+        result = text
+        if newline: result += "\n"
     else:
-        print(string)
+        result = "\033["
+        boldstr = "1" if bold else "0"
+        result += boldstr
+        result += ";"
+        foreground_string = "3" + str(COLOR_DICT[foreground]) + "m"
+        result += foreground_string
+
+        result += "\033["
+        background_string = "4" + str(COLOR_DICT[background]) + "m"
+        result += background_string
+
+        result += text
+
+        result += "\033[0m"
+
+        newlinestr = "\n" if newline else ""
+        result += newlinestr
+    sys.stdout.write(result)

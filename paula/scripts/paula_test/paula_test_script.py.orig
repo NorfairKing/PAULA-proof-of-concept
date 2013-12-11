@@ -29,6 +29,7 @@ def execute():
 
     #Write test code here
 
+<<<<<<< HEAD
     COLORS = [
         "black",
         "red",
@@ -39,6 +40,12 @@ def execute():
         "cyan",
         "white",
     ]
+
+    for color1 in COLORS:
+        for color2 in COLORS:
+            outputs.print_color("test", color1, newline=False)
+            outputs.print_color("test", color1, background=color2, bold=True, newline=False)
+=======
     song.play_random()
 
     print(song.get_current_artist())
@@ -50,7 +57,4 @@ def execute():
     outputs.print_color("YAY","green")
 
     interaction.say("It fucking works.")
-    for color1 in COLORS:
-        for color2 in COLORS:
-            outputs.print_color("test", color1, newline=False)
-            outputs.print_color("test", color1, background=color2, bold=True, newline=False)
+>>>>>>> youtube

@@ -15,8 +15,8 @@
 #
 ##
 
-from paula.core import outputs
+from paula.core import interaction
 
 
 def execute():
-    outputs.say("I'm working, Sir.")
+    interaction.say("I'm working, Sir.")

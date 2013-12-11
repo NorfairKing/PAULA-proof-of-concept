@@ -23,7 +23,7 @@ from . import goingout_script_config as conf
 
 
 def execute():
-    outputs.say("How long do you think you will be gone, Sir?")
+    interaction.say("How long do you think you will be gone, Sir?")
 
     SECONDS_IN_A_MINUTE = 60
     MINUTES_IN_AN_HOUR = 60
@@ -43,6 +43,6 @@ def execute():
     answer = inputs.get_string_timeout(seconds)
 
     if answer != "":
-        outputs.say("Welcome back, Sir")
+        interaction.say("Welcome back, Sir")
     else:
         sleep.go_to_sleep_mode()

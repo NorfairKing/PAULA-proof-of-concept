@@ -19,7 +19,7 @@ import sys
 from paula.music import song
 from paula.core import inputs
 from paula.core import outputs
-from paula.core import shell_command
+from paula.core import system
 import signal
 
 from . import paula_test_script_config as conf
@@ -39,8 +39,8 @@ def execute():
     print(song.get_current_album())
     print(song.get_current_song())
 
-    outputs.print_error("Just a test")
-    outputs.print_debug("Just a test")
+    outputs.print_error("this is an error message")
+    outputs.print_debug("this is a debug message")
     outputs.print_color("YAY","green")
 
     inputs.get_string()

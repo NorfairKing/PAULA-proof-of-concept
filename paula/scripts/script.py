@@ -21,7 +21,7 @@ import time
 import importlib
 import subprocess
 from . import script_config as conf
-import paula.core.interaction
+from paula.core import outputs
 
 
 def decide_and_run(string):
@@ -38,11 +38,11 @@ def execute(meaning):
     try:
         module_name = "paula.scripts." + meaning + "." + meaning + "_script"
         if conf.DEBUG:
-            print("Importing module: " + module_name)
+            outputs.print_debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
         module.execute()
     except ImportError:
-        print("ERROR: The " + meaning + " script is missing or does not exist")
+        outputs.print_error("The " + meaning + " script is missing or does not exist")
 
 
 def decide_meaning(string):
@@ -55,9 +55,9 @@ def decide_meaning(string):
             break
     if conf.DEBUG:
         if meaning_found:
-            print("decided  " + string + " to mean " + meaning_found + ".")
+            outputs.print_debug("decided  " + string + " to mean " + meaning_found + ".")
         else:
-            print("No meaning found.")
+            outputs.print_debug("No meaning found.")
     return meaning_found
 
 

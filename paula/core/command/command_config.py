@@ -18,7 +18,7 @@
 import os
 
 # Default = False
-DEBUG = False
+DEBUG = True
 
 # Default = True
 IGNORE_CASING = True

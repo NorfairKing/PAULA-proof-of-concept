@@ -45,8 +45,10 @@ class Song:
         stop_song()
 
         #Write pid and song info to temporary file
-        songfile = open('/tmp/paula_song.pid', 'w+');
-        songfile.write(str(process.pid) + "\n")
+        pidfile = open('/tmp/paula_song.pid', 'w+');
+        pidfile.write(str(process.pid))
+
+        songfile = open('/tmp/paula_song.info', 'w+');
         songfile.write(self.title + "\n")
         songfile.write(self.album + "\n")
         songfile.write(self.artist)
@@ -61,45 +63,41 @@ def choose_and_play():
     song.play()
 
 def get_current_artist():
-    if not os.path.exists('/tmp/paula_song.pid'):
+    if not os.path.exists('/tmp/paula_song.info'):
         return None
 
     try:
-        with open('/tmp/paula_song.pid', 'r') as f:
-            lines = f.readlines()
-            return lines[3]
-    except IOError:
-        outputs.print_error('Could not open paula_song.pid')
-
-def get_current_song():
-    if not os.path.exists('/tmp/paula_song.pid'):
-        return None
-
-    try:
-        with open('/tmp/paula_song.pid', 'r') as f:
-            lines = f.readlines()
-            return lines[1]
-    except IOError:
-        outputs.print_error('Could not open paula_song.pid')
-
-def get_current_album():
-    if not os.path.exists('/tmp/paula_song.pid'):
-        return None
-
-    try:
-        with open('/tmp/paula_song.pid', 'r') as f:
+        with open('/tmp/paula_song.info', 'r') as f:
             lines = f.readlines()
             return lines[2]
     except IOError:
-        outputs.print_error('Could not open paula_song.pid')
+        outputs.print_error('Could not open paula_song.info')
+
+def get_current_song():
+    if not os.path.exists('/tmp/paula_song.info'):
+        return None
+
+    try:
+        with open('/tmp/paula_song.info', 'r') as f:
+            lines = f.readlines()
+            return lines[0]
+    except IOError:
+        outputs.print_error('Could not open paula_song.info')
+
+def get_current_album():
+    if not os.path.exists('/tmp/paula_song.info'):
+        return None
+
+    try:
+        with open('/tmp/paula_song.info', 'r') as f:
+            lines = f.readlines()
+            return lines[1]
+    except IOError:
+        outputs.print_error('Could not open paula_song.info')
 
 
 def stop_song():
-    if os.path.isfile('/tmp/paula_song.pid'):
-        songfile = open('/tmp/paula_song.pid', 'r');
-        lines = songfile.readlines()
-        os.kill(int(lines[0]), signal.SIGTERM)
-        os.remove('/tmp/paula_song.pid')
+    system.kill_vlc()
 
 def play_random():
     files = [os.path.join(path, filename)

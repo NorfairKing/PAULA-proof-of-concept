@@ -17,6 +17,8 @@
 
 import urllib.request
 import urllib.error
+import os
+import signal
 from paula.core import system
 from . import external_config as conf
 
@@ -31,24 +33,23 @@ def search(arg_string):
     return vidid
 
 def play_video(vidid):
-    if os.path.isfile('/tmp/paula_song.pid'):
-        songfile = open('/tmp/paula_song.pid', 'r');
-        lines = songfile.readlines()
-        os.kill(int(lines[0]), signal.SIGTERM)
-        os.remove('/tmp/paula_song.pid')
+    system.kill_vlc()
 
     if conf.CONTROLS:
-        return system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+        process = system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+        songfile = open('/tmp/paula_song.pid', 'w+');
+        songfile.write(str(process.pid))
+        return process
     else:
-        return system.call_list_silently(["vlc", '-Idummy', "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+        process = system.call_list_silently(["vlc", '-Idummy', "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
+        songfile = open('/tmp/paula_song.pid', 'w+');
+        songfile.write(str(process.pid))
+        return process
+
 
 def play_song(vidid):
-    if os.path.isfile('/tmp/paula_song.pid'):
-        songfile = open('/tmp/paula_song.pid', 'r');
-        lines = songfile.readlines()
-        os.kill(int(lines[0]), signal.SIGTERM)
-        os.remove('/tmp/paula_song.pid')
-    
+    system.kill_vlc()
+
     process = system.call_list_silently(["vlc", '-Idummy' , '-Vdummy' , "--play-and-exit", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
 
     songfile = open('/tmp/paula_song.pid', 'w+');

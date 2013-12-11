@@ -15,7 +15,7 @@
 #
 ##
 
-from paula.music import song
+from paula.core import system
 
 def execute():
-    song.stop_song()
+    system.kill_vlc()

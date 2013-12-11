@@ -17,11 +17,11 @@
 
 import os
 import subprocess
-from . import utils_config as conf
+from . import paula_system_config as conf
 
 def call(command_string, sync=True):
     if conf.DEBUG:
-        print("Executing: " + command_string)
+        outputs.print_debug("Executing: " + command_string)
 
     process = subprocess.Popen(command_string, shell=True)
     if sync:
@@ -31,7 +31,7 @@ def call(command_string, sync=True):
 
 def call_list(command_list, sync=True):
     if conf.DEBUG:
-        print("Executing: " + str(command_list))
+        outputs.print_debug("Executing: " + str(command_list))
 
     process = subprocess.Popen(command_list, shell=False)
     if sync:
@@ -42,7 +42,7 @@ def call_list(command_list, sync=True):
 
 def call_silently(command_string, sync=True):
     if conf.DEBUG:
-        print("Executing silently: " + command_string)
+        outputs.print_debug("Executing silently: " + command_string)
 
     null = open(os.devnull, 'w')
     process = subprocess.Popen(command_string, shell=True, stdout=null, stderr=null)
@@ -53,7 +53,7 @@ def call_silently(command_string, sync=True):
 
 def call_list_silently(command_list, sync=True):
     if conf.DEBUG:
-        print("Executing silently: " + str(command_list))
+        outputs.print_debug("Executing silently: " + str(command_list))
 
     null = open(os.devnull, 'w')
     process = subprocess.Popen(command_list, shell=False, stdout=null, stderr=null)
@@ -66,7 +66,7 @@ def call_list_silently(command_list, sync=True):
 
 def get_output_of(command_string):
     if conf.DEBUG:
-        print("Getting output of: " + command_string)
+        outputs.print_debug("Getting output of: " + command_string)
     process = subprocess.Popen(command_string, shell=True, stdout=subprocess.PIPE)
     out, err = process.communicate()
     return out

@@ -17,7 +17,7 @@
 
 import os
 import subprocess
-from .system import shell_command
+from .paula_system import shell_command
 
 def call(command_string, sync=True):
     return shell_command.call(command_string, sync)

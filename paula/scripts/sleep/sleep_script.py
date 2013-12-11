@@ -20,6 +20,7 @@ import time
 import subprocess
 from paula.sleep import sleep
 from paula.core import inputs
+from paula.core import outputs
 from paula.core import interaction
 from paula.music import song
 from paula.music import system_volume
@@ -29,22 +30,22 @@ from . import sleep_script_config as conf
 
 
 def execute():
-    interaction.say("How long would you like to sleep, Sir?")
+    outputs.say("How long would you like to sleep, Sir?")
 
     printOptions(conf.DURATION_OPTIONS)
     answer = inputs.get_string().strip()
 
     if not answer in conf.DURATION_OPTIONS:
-        print("ERROR: Unknown option")
+        outputs.print_error("ERROR: Unknown option")
         return
     chosen_option = int(conf.DURATION_OPTIONS[answer])
 
     if conf.DEBUG:
-        print("answer = " + answer)
-        print("selected option = " + str(chosen_option) + " seconds")
+        outputs.print_debug("answer = " + answer)
+        outputs.print_debug("selected option = " + str(chosen_option) + " seconds")
 
     # select song
-    interaction.say("Please select which song you want to wake you up.")
+    outputs.say("Please select which song you want to wake you up.")
     s = song.choose()
 
     # Set volume to something pleasant
@@ -54,7 +55,7 @@ def execute():
     sleep.go_to_sleep_mode(chosen_option)
 
     # Alarm go off
-    interaction.say("Good Morning, Sir")
+    outputs.say("Good Morning, Sir")
 
     subp = s.play()
     answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)
@@ -65,7 +66,7 @@ def execute():
         if conf.ANNOYING:
             try:
                 def saynwait(text, delay):
-                    interaction.say(text)
+                    outputs.say(text)
                     time.sleep(delay)
 
                 while system_volume.get() < 95:
@@ -89,7 +90,7 @@ def execute():
     except ProcessLookupError:
         pass
 
-    interaction.say("Have a nice day, Sir")
+    outputs.say("Have a nice day, Sir")
 
     # Show quote
     print((str(quote.get_random())))

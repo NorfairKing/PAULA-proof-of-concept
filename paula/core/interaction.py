@@ -16,13 +16,9 @@
 ##
 
 from .command import decide
-from .speak import voice
 
 def decide_meaning(string):
     return decide.decide_meaning(string)
 
 def means(string, meaning):
     return decide.means(string, meaning)
-
-def say(text):
-    return voice.say(text)

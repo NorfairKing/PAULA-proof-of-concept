@@ -18,8 +18,12 @@
 import sys
 from paula.music import song
 from paula.core import inputs
+<<<<<<< HEAD
 from paula.core import outputs
+=======
+from paula.core import interaction
 from paula.core import shell_command
+>>>>>>> 2f6bd9c479ac235abc238787cb686bb43cff8109
 import signal
 
 from . import paula_test_script_config as conf

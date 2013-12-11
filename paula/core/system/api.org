@@ -14,17 +14,17 @@
 #
 ##
 
-The speak module provides all functionality to make PAULA speak.
+Description of package
 
 VERSION 0.1
 
 * Provided
-** voice.py
-   - say(text)
-     Has PAULA say text.
+** module1.py
+   - function1(arg)
+     explanation
 
 * Required
-** utils
-*** shell_command.py
-    - call(cmd)
-    - call_silently(cmd)
+** package1
+*** module2.py
+    - function1(arg)
+    - funtion2(arg)

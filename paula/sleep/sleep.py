@@ -15,7 +15,7 @@
 #
 ##
 
-from paula.utils import external
+from paula.core import shell_command
 
 from . import sleep_conf as conf
 
@@ -24,7 +24,7 @@ def go_to_sleep_mode(seconds):
     if seconds == 0:
         if not conf.DEBUG:
             cmd = "sudo pm-suspend"
-            external.call_silently(cmd)
+            shell_command.call_silently(cmd)
         else:
             print("going to sleep indefinitly")
     else:
@@ -34,6 +34,6 @@ def go_to_sleep_mode(seconds):
         cmd += "--seconds " + str(seconds)
 
         if not conf.DEBUG:
-            external.call_silently(cmd)
+            shell_command.call_silently(cmd)
         else:
-            external.call(cmd)
+            shell_command.call(cmd)

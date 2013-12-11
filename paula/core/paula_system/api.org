@@ -14,17 +14,25 @@
 #
 ##
 
-Description of package
+The package that handles PAULA's interaction with the system.
 
 VERSION 0.1
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
+** shell_command.py
+   - call(command_string, sync=True)
+     Call the command <command_string> as a shell command.
+     <sync> specifies wether PAULA waits for the command to finish.
+   - call_list(command_list, sync=True)
+     Same as above, but the command is entered as a list instead of a string.
+   - call_silently(command_string, sync=True)
+     Same as call, but don't give any output to the terminal of the command.
+   - call_list_silently(command_list, sync=True)
+     Same as above, but the command is entered as a list instead of a string.
+   - get_output_of(command_string)
+     Gets the output that the command generated.
 
 * Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** paula.core
+*** outputs.py
+    - print_debug(debug_string):

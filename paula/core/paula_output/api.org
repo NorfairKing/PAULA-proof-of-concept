@@ -14,7 +14,7 @@
 #
 ##
 
-Description of package
+The package for all paula's output in terminal.
 
 VERSION 0.1
 

@@ -21,15 +21,15 @@ from . import paula_output_config as conf
 
 
 def print_error(error_string):
-    print_color(error_string, conf.ERROR_COLOR)
+    print_color("ERROR: "  + error_string, conf.ERROR_COLOR)
 
 
 def print_debug(debug_string):
-    print_color(debug_string, conf.DEBUG_COLOR)
+    print_color("DEBUG: " + debug_string, conf.DEBUG_COLOR)
 
 
 def print_paula(text):
-    print_color(text, conf.DEBUG_COLOR)
+    print_color("PAULA: " + text, conf.PAULA_COLOR)
 
 
 COLOR_DICT = {

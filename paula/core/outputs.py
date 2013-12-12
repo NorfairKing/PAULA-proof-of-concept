@@ -19,11 +19,11 @@ from .paula_output import string
 
 
 def print_error(error_string):
-    string.print_error("ERROR: " + error_string)
+    string.print_error(error_string)
 
 
 def print_debug(debug_string):
-    string.print_debug("DEBUG: " + debug_string)
+    string.print_debug(debug_string)
 
 
 def print_color(text, foreground, background="default", bold=False, newline=True):

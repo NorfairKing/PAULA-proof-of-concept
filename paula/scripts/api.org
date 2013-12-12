@@ -16,14 +16,17 @@
 
 The scripts package provides an interface for dynamically executing scripts.
 
+VERSION 0.1
+
 * Provided
 ** script.py
-   - execute(class_name)
-     Executes the script that corresponds to the given class name.
+   - decide_and_run(command)
+     Executes the script that corresponds to the given command.
+
      
 * Required
 ** Dynamic packages: "class_name"
 *** class_name_script.py
     - execute()
-      
+** paula.core
       

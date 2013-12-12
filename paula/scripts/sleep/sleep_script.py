@@ -20,11 +20,13 @@ import time
 import subprocess
 from paula.sleep import sleep
 from paula.core import inputs
+from paula.core import outputs
 from paula.core import interaction
 from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
 from paula.agenda import agenda
+
 from . import sleep_script_config as conf
 
 
@@ -35,13 +37,13 @@ def execute():
     answer = inputs.get_string().strip()
 
     if not answer in conf.DURATION_OPTIONS:
-        print("ERROR: Unknown option")
+        outputs.print_error("Unknown option")
         return
     chosen_option = int(conf.DURATION_OPTIONS[answer])
 
     if conf.DEBUG:
-        print("answer = " + answer)
-        print("selected option = " + str(chosen_option) + " seconds")
+        outputs.print_debug("answer = " + answer)
+        outputs.print_debug("selected option = " + str(chosen_option) + " seconds")
 
     # select song
     interaction.say("Please select which song you want to wake you up.")
@@ -65,15 +67,16 @@ def execute():
         if conf.ANNOYING:
             try:
                 def saynwait(text, delay):
-                    interaction.say(text)
+                    outputs.say(text)
                     time.sleep(delay)
 
                 while system_volume.get() < 95:
                     for sentence in [i.strip() for i in open(conf.ANNOYING_ALARM_TEXT).readlines()]:
                         saynwait(sentence, 1)
-                    system_volume.set(system_volume.get()+5)
+                    system_volume.set(system_volume.get() + 5)
 
-                for filename in [f for f in os.listdir(conf.RESOURCES_DIR) if os.path.isfile(os.path.join(conf.RESOURCES_DIR, f))]:
+                for filename in [f for f in os.listdir(conf.RESOURCES_DIR) if
+                                 os.path.isfile(os.path.join(conf.RESOURCES_DIR, f))]:
                     if filename.endswith(".mp3"):
                         path = os.path.join(conf.RESOURCES_DIR, filename)
                         alarm_process = playalarm(path)

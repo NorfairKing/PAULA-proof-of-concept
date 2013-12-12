@@ -1,12 +1,12 @@
 
 * Concept
-  PAULA will be a life assistent
+  PAULA will be a life assistant.
   She will be a daemon so that she can monitor everything that happens on the computer.
-  She will need root privileges.
   
 * Next
+  
 * Planned soon
-* Bugs
+  
 * Eventually
 ** TODO Own errors
 ** TODO Make install script prettier
@@ -14,19 +14,34 @@
 ** TODO training
 *** TODO running
 *** TODO roomtraining
+*** TODO long run
 ** TODO check movies in cinema
 ** TODO GTD
 ** TODO Backup
-** TODO long run
 ** TODO class
-** TODO presence file
-** TODO visitors
 ** TODO sleep, get up in time.
 ** TODO Alma
 ** TODO Weather -> yahoo weather api
-** TODO pomodoro
 ** TODO series
 ** TODO Advice
 ** TODO Memory Loss
 ** TODO Death note
-   
+** TODO VERSION NUMBERS PER PACKAGE
+** TODO Wikipedia
+** TODO Youtube
+** TODO Google
+** TODO Mail check
+** TODO LISTEN
+** TODO Misc
+*** TODO Roll me
+*** TODO HAHA
+** TODO Recovery modus
+*** TODO Clear screen
+** TODO Look for music dirs
+   Standards:
+   - [mM]usic
+   - [mM]usic/[mM]usic
+   and/or have paula find them via a regex.
+   workaround for the config problem
+** TODO Motivation
+** TODO brush teeth

@@ -16,23 +16,27 @@
 ##
 
 import time
+import subprocess
 import logging
 import logging.config
 
 from .daemon import Daemon
 from paula import config as conf
 from paula.scripts import script
+from paula.core import outputs
+
 
 class Paula(Daemon):
     def __init__(self):
-        super(Paula, self).__init__(conf.pid_file, stdout=conf.out_file, stderr=conf.err_file)
+        super(Paula, self).__init__(conf.PAULA_PID_FILE, std_out=conf.PAULA_OUT_FILE, std_err=conf.PAULA_ERR_FILE,
+                                    started_error="PAULA is already running.", stopped_error="PAULA is not running.")
 
         # Logging
         self.log = logging.getLogger('PAULA')
         self.log.setLevel(logging.DEBUG)
-        formatter = logging.Formatter(conf.log_format, datefmt=conf.log_dateFormat)
-        fileHandler = logging.handlers.RotatingFileHandler(conf.log_file, mode='a', maxBytes=conf.log_maxBytes,
-                                                           backupCount=conf.log_backupCount)
+        formatter = logging.Formatter(conf.LOG_FORMAT, datefmt=conf.LOG_DATEFORMAT)
+        fileHandler = logging.handlers.RotatingFileHandler(conf.PAULA_LOG_FILE, mode='a', maxBytes=conf.LOG_MAXBYTES,
+                                                           backupCount=conf.LOG_BACKUPCOUNT)
         fileHandler.setFormatter(formatter)
         self.log.addHandler(fileHandler)
 
@@ -51,11 +55,14 @@ class Paula(Daemon):
         self.debug("Done with " + string)
 
     def check(self):
-        pass
+        cmd = "urxvt -title PAULA -e bash -c '/home/syd/PAULA/PAULA.sh paula_working'"
+        print("Executing " + cmd)
+        process = subprocess.Popen(cmd, shell=True)
+        process.wait()
 
     def run(self):
         while True:
             self.info('Check start')
             self.check()
             self.info('Check done \n')
-            time.sleep(conf.check_timer) 
+            time.sleep(conf.CHECK_TIMER)

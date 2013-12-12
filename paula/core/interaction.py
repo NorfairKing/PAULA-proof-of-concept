@@ -14,9 +14,9 @@
 # Assistant
 #
 ##
-
 from .command import decide
 from .speak import voice
+from .outputs import string
 
 
 def decide_meaning(string):
@@ -28,4 +28,6 @@ def means(string, meaning):
 
 
 def say(text):
+    string.print_paula(text)
     return voice.say(text)
+

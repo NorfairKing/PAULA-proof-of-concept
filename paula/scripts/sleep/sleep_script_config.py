@@ -41,7 +41,7 @@ WAKE_UP_TIME = 5 * 60
 RESOURCES_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'resources')
 
 # Default = os.path.join(RESOURCES_DIR,'annoying')
-ANNOYING_ALARM_TEXT = os.path.join(RESOURCES_DIR,'annoying')
+ANNOYING_ALARM_TEXT = os.path.join(RESOURCES_DIR, 'annoying')
 
 # Default = True
 ANNOYING = True

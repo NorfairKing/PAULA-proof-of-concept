@@ -16,6 +16,8 @@
 
 PAULA's random song script package.
 
+VERSION 0.1
+
 * Provided
 ** random_song_script.py
    - execute()

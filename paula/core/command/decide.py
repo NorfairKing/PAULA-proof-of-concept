@@ -19,49 +19,56 @@ import os
 import re
 
 # Returns command class for the command
-from paula.core.command import command_config as conf
+from . import command_config as conf
+from paula.core import outputs
+
 
 def decide_meaning(string):
     meanings = get_meanings_dict()
-    meaning_found = "UNKNOWN"
-    for path in meanings:
-        if means(string, path):
-            meaning_found = meanings[path]
+    meaning_found = None
+    for meaning in meanings:
+        if means(string, meaning):
+            meaning_found = meaning
             break
     if conf.DEBUG:
-        print("decided  " + string + " to mean " + meaning_found + ".")
+        if meaning_found:
+            outputs.print_debug("decided  " + string + " to mean " + meaning_found + ".")
+        else:
+            outputs.print_debug("No meaning found.")
     return meaning_found
 
 
-def means(string, path):
+def means(string, meaning):
     meanings = get_meanings_dict()
-    if not path in meanings:
+    if not meaning in meanings.keys():
         return False
 
-    regexes = get_meaning_regexes(path)
+    regexes = get_meaning_regexes(meaning)
     for reg_str in regexes:
+        if not conf.MATCH_WHOLE_STRING:
+            reg_str += ".*"
+        else:
+            reg_str = "^" + reg_str + "$"
         if conf.IGNORE_CASING:
-            reg = re.compile("^" + reg_str + "$", re.IGNORECASE)
+            reg = re.compile(reg_str, re.IGNORECASE)
         else:
             reg = re.compile(reg_str)
-
         if reg.match(string):
             return True
     return False
 
 
 def get_meanings_dict():
-    dict = {}
+    global meanings_dict
+    meanings_dict = {}
 
-    # Generic meanings
     for f in os.listdir(conf.MEANINGS_DIR):
         if os.path.isfile(os.path.join(conf.MEANINGS_DIR, f)):
             path = os.path.join(conf.MEANINGS_DIR, f)
-            dict[path] = f
+            meanings_dict[f] = path
 
-    return dict
+    return meanings_dict
 
 
-def get_meaning_regexes(path):
-    return [i.strip() for i in open(path).readlines()]
-
+def get_meaning_regexes(meaning):
+    return [i.strip() for i in open(meanings_dict[meaning]).readlines()]

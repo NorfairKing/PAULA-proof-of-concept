@@ -14,15 +14,14 @@
 #
 ##
 
-Description of package
+PAULA's sexy vibe script.
+
+VERSION 0.1
 
 * Provided
 ** vibe_script.py
    - execute()
-     executes the vibe script
+     Executes the vibe script.
 
 * Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** paula.music.song

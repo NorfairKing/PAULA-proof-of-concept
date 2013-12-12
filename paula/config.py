@@ -22,18 +22,18 @@ debug = False
 PAULA_DIR = os.path.dirname(os.path.realpath(__file__))
 
 # Pid file
-pid_file = '/tmp/paula.pid'
+PAULA_PID_FILE = '/tmp/paula.pid'
 
 #Std streams
-out_file = '/tmp/paula_out'
-err_file = '/tmp/paula_err'
+PAULA_OUT_FILE = '/tmp/paula_out'
+PAULA_ERR_FILE = '/tmp/paula_err'
 
 # Logging config
-log_file = '/tmp/paula_log'
-log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-log_dateFormat = '%Y-%m-%d %H:%M:%S'
-log_maxBytes = 10000
-log_backupCount = 5
+PAULA_LOG_FILE = '/tmp/paula_log'
+LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+LOG_DATEFORMAT = '%Y-%m-%d %H:%M:%S'
+LOG_MAXBYTES = 10000
+LOG_BACKUPCOUNT = 5
 
 # Seconds between check
-check_timer = 60
+CHECK_TIMER = 60

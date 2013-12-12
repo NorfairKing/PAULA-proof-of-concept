@@ -14,43 +14,49 @@
 #
 ##
 
-
 The core module is the core of PAULA, it provides all PAULA's core functionality.
 
+VERSION 0.1
+
 * Provided
-** interaction.py
-   - decide_meaning(string)
-     Decides what the given string meanse. Returns the meaning.
-   - means(string, meaning)
-     Decides whether the given string means the given meaning.
-   - say(text)
-     Has PAULA say text.
 ** inputs.py
    - get_string()
-     Get's a string from the user.
+   Asks the user for a string input.
    - get_integer()
-     Get's an integer from the user.
-     Returns None if the input was not an integer.
+   Asks the user for an integer input.
    - get_string_timeout(timeout)
-     Waits <timeout> seconds for input from the user.
-     Returns an empty string if the input times out
    - get_integer_timeout(timeout)
-     Waits <timeout> seconds for input from the user.
-     Returns None if the input times out or the input was not an integer.
-     
+** interaction.py
+   - decide_meaning(string)
+   Decides what the given string means, returns the meaning.
+   - means(string, meaning)
+   Decides whether the given string corresponds to the given meaning.
+   - say(text)
+   Has PAULA say <text>.
+** outputs.py
+   - print_error(error_string)
+   Prints the given error.
+   - print_debug(debug_string)
+   Prints the given debug info.
+   - print_color(text, foreground, background="default", bold=False, newline=True)
+   prints the given text in color.
+** system.py
+   - call(command_string, sync=True)
+   calls the given command
+   - call_list(command_list, sync=True)
+   calls the given command in list format
+   - call_silently(command_string, sync=True)
+   calss the given command silently
+   - call_list_silently(command_list, sync=True)
+   calls the given command in list format silently
+   - get_output_of(command_string)
+   Returns the output of running the given command.
+
 * Required
 ** command
-*** decide.py
-    - decide_meaning(string)
-    - means(string, meaning)
-** speak
-*** voice.py
-    - say(text)
 ** paula_input
-*** string.py
-    - prompt_for_input_string()
-    - prompt_with_timeout(timeout)
-*** integer.py
-    - prompt_for_input_int()
-    - prompt_with_timeout(timeout)
+** paula_output
+** paula_system
+** speak
+** system
 

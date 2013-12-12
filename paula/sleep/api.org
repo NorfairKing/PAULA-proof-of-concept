@@ -25,7 +25,5 @@ VERSION 0.1
     0 seconds means indefinitly.
 
 * Required
-** utils
-*** shell_command.py
-    - call(cmd)
-    - call_silently(cmd)
+** paula.core
+** paula.core

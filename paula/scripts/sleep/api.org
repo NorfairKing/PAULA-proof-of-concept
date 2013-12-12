@@ -24,24 +24,9 @@ VERSION 0.1
      Executes the sleep script.
 
 * Required
-** paula.sleep
-*** sleep.py
-    - go_to_sleep_mode(seconds)
-** paula.core
-*** inputs.py
-    - get_string()
-    - get_string_timeout
-*** interaction.py
-    - say(text)
-** paula.music
-*** song.py
-    - choose()
-*** system_volume.py
-    - set(percent)
-** paula.motivation
-*** quote.py
-    - get_random()
-** paula.agenda
-*** agenda.py
-    - get_defaults()
+** from paula.sleep
+** from paula.core
+** from paula.music
+** from paula.motivation
+** from paula.agenda
       

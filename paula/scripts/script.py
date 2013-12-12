@@ -20,8 +20,8 @@ import re
 import time
 import importlib
 import subprocess
-from . import script_config as conf
 from paula.core import outputs
+from . import script_config as conf
 
 
 def decide_and_run(string):

@@ -14,17 +14,18 @@
 #
 ##
 
-Description of package
+The Package that makes it possible for paula to interact with external sources.
 
 VERSION 0.1
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
+** youtube.py
+   - search(arg_string)
+     Returns the youtube ID of the first search result.
+   - play_video(vidid)
+     Plays the youtube video specified by the ID
+   - play_song(vidid)
+     Plays the youtube video specified by the ID, but silently (only audio, no video)
 
 * Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** paula.core

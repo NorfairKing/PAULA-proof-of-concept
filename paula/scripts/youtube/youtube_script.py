@@ -17,10 +17,9 @@
 
 import sys
 from paula.external import youtube
-from paula.core import inputs
 from paula.core import outputs
-from paula.core import interaction
 from . import youtube_script_config as conf
+
 
 def execute():
     if conf.DEBUG:

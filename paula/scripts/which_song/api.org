@@ -14,17 +14,14 @@
 #
 ##
 
-Description of package
+PAULA's which song script
 
 VERSION 0.1
 
 * Provided
-** module1.py
-   - function1(arg)
-     explanation
+** which_song_script.py
+   - execute()
+     executes the which_song script
 
 * Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** paula.music

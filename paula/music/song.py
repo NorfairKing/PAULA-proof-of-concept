@@ -105,7 +105,7 @@ def find_song(search_string):
     #Check for search string
     for fil in files:
         allMatched = True
-        for substr in search_string.split():
+        for substr.lower() in search_string.split():
             if fil.lower().find(substr) == -1:
                 allMatched = False
         if allMatched:

@@ -1,0 +1,8 @@
+agenda
+calendar
+show (agenda|calendar)
+give (agenda|calendar)
+show my (agenda|calendar)
+show me my (agenda|calendar)
+give my (agenda|calendar)
+give me my (agenda|calendar)

@@ -97,7 +97,7 @@ def execute():
     print((str(quote.get_random())))
 
     # Get agenda for next few days
-    agenda.get_default()
+    agenda.print_default()
 
 
 def playalarm(path):

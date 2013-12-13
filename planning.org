@@ -45,3 +45,4 @@
    workaround for the config problem
 ** TODO Motivation
 ** TODO brush teeth
+** TODO Make PAULA suggest to download a song into your offline library after the "play" command can't find it locally, but does find it on YouTube

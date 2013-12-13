@@ -37,7 +37,9 @@ def search(arg_string):
 
 def download_song(vidid, title, artist, album):
     #heel lelijk, moet veranderd worden
-    musicdir = song.ask_selection(dict(zip(music_conf.MUSIC_DIRS, music_conf.MUSIC_DIRS)))
+    musicdir = music_conf.MUSIC_DIRS[0]
+    if len(music_conf.MUSIC_DIRS) > 1:
+        musicdir = song.ask_selection(dict(zip(music_conf.MUSIC_DIRS, music_conf.MUSIC_DIRS)))
 
     if not os.path.isdir(musicdir + "/" + artist):
         os.mkdir(musicdir + "/" + artist)

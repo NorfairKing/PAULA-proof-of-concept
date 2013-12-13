@@ -105,8 +105,8 @@ def find_song(search_string):
     #Check for search string
     for fil in files:
         allMatched = True
-        for substr.lower() in search_string.split():
-            if fil.lower().find(substr) == -1:
+        for substr in search_string.split():
+            if fil.lower().find(substr.lower()) == -1:
                 allMatched = False
         if allMatched:
             return Song(fil)
@@ -142,7 +142,6 @@ def choose():
 def ask_selection(possible_selections):
     sorted_keys = sorted(possible_selections.keys())
 
-    print(("    " + str(-1) + ((6 - len(str(-1))) * " ") + " - " + "random song"))
     counter = 0
     for entry in sorted_keys:
         print(("     " + str(counter) + ((5 - len(str(counter))) * " ") + " - " + str(entry)))
@@ -163,11 +162,8 @@ def ask_selection(possible_selections):
             print("That is an invalid selection, Sir.")
             continue
 
-        if val == -1:
-            selected_song = select_random()
-        else:
-            selected_title = sorted_keys[val]
-            selected_song = possible_selections[selected_title]
+        selected_title = sorted_keys[val]
+        selected_song = possible_selections[selected_title]
         ask = False
 
     return selected_song

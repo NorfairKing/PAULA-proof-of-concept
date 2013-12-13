@@ -20,6 +20,7 @@ import urllib.error
 import os
 import signal
 from paula.core import system
+from paula.music import song
 from paula.music import music_conf
 from mutagenx.easyid3 import EasyID3
 from . import external_config as conf
@@ -35,24 +36,23 @@ def search(arg_string):
     return vidid
 
 def download_song(vidid, title, artist, album):
-    
-    if not os.path.isdir(music_conf.MUSIC_DIRS[0] + "/" + artist):
-        os.mkdir(music_conf.MUSIC_DIRS[0] + "/" + artist)
-    if not os.path.isdir(music_conf.MUSIC_DIRS[0] + "/" + artist + "/" + album):
-        os.mkdir(music_conf.MUSIC_DIRS[0] + "/" + artist + "/" + album)
+    #heel lelijk, moet veranderd worden
+    musicdir = song.ask_selection(dict(zip(music_conf.MUSIC_DIRS, music_conf.MUSIC_DIRS)))
 
+    if not os.path.isdir(musicdir + "/" + artist):
+        os.mkdir(musicdir + "/" + artist)
+    if not os.path.isdir(musicdir + "/" + artist + "/" + album):
+        os.mkdir(musicdir + "/" + artist + "/" + album)
     
     system.call("youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid,  sync=True)
-    system.call("mv " + vidid + ".mp3 \"" + music_conf.MUSIC_DIRS[0] + "/" + artist + "/" + album + "/" + title + ".mp3\"")
-    file_path = music_conf.MUSIC_DIRS[0] + "/" + artist + "/" + album + "/" + title + ".mp3"
+    system.call("mv " + vidid + ".mp3 \"" + musicdir + "/" + artist + "/" + album + "/" + title + ".mp3\"")
+    file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
 
     audio = EasyID3(file_path)
     audio["title"] = title
     audio["artist"] = artist
     audio["album"] = album
     audio.save()
-
-    
 
 def play_video(vidid):
     system.kill_vlc()

@@ -95,6 +95,24 @@ def get_current_album():
     except IOError:
         outputs.print_error('Could not open paula_song.info')
 
+def find_song(search_string):
+    #get all files
+    files = [os.path.join(path, filename)
+        for musicFolder in conf.MUSIC_DIRS
+        for path, dirs, files in os.walk(musicFolder)
+        for filename in files]
+
+    #Check for search string
+    for fil in files:
+        allMatched = True
+        for substr in search_string.split():
+            if fil.lower().find(substr) == -1:
+                allMatched = False
+        if allMatched:
+            return Song(fil)
+
+    return None
+        
 
 def stop_song():
     system.kill_vlc()

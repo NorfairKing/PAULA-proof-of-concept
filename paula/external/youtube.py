@@ -20,6 +20,7 @@ import urllib.error
 import os
 import signal
 from paula.core import system
+from paula.music import music_conf
 from . import external_config as conf
 
 def search(arg_string):
@@ -31,6 +32,17 @@ def search(arg_string):
     vidid = response[response.find("<entry><id>http://gdata.youtube.com/feeds/api/videos/") + len("<entry><id>http://gdata.youtube.com/feeds/api/videos/"): response.find("</id><published>")]
 
     return vidid
+
+def download_song(vidid, title, artist, album):
+    
+    if not os.path.isdir(music_conf.MUSIC_DIRS[0] + "/" + artist):
+        os.mkdir(music_conf.MUSIC_DIRS[0] + "/" + artist)
+    if not os.path.isdir(music_conf.MUSIC_DIRS[0] + "/" + artist + "/" + album):
+        os.mkdir(music_conf.MUSIC_DIRS[0] + "/" + artist + "/" + album)
+
+
+    system.call("youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid,  sync=True)
+    system.call("mv " + vidid + ".mp3 \"" + music_conf.MUSIC_DIRS[0] + "/" + artist + "/" + album + "\"")
 
 def play_video(vidid):
     system.kill_vlc()

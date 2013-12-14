@@ -20,6 +20,7 @@ import urllib.error
 import os
 import signal
 from paula.core import system
+from paula.core import inputs
 from paula.music import song
 from paula.music import music_conf
 from mutagenx.easyid3 import EasyID3
@@ -39,7 +40,7 @@ def download_song(vidid, title, artist, album):
     #heel lelijk, moet veranderd worden
     musicdir = music_conf.MUSIC_DIRS[0]
     if len(music_conf.MUSIC_DIRS) > 1:
-        musicdir = song.ask_selection(dict(zip(music_conf.MUSIC_DIRS, music_conf.MUSIC_DIRS)))
+        musicdir = inputs.get_item_from_list(music_conf.MUSIC_DIRS)
 
     if not os.path.isdir(musicdir + "/" + artist):
         os.mkdir(musicdir + "/" + artist)

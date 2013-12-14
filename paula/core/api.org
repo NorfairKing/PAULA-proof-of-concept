@@ -26,6 +26,10 @@ VERSION 0.1
    Asks the user for an integer input.
    - get_string_timeout(timeout)
    - get_integer_timeout(timeout)
+   - get_item_from_list(possible_selections, sortAlphabetically=True)
+     Returns the value chosen by the user
+   - get_item_from_dict(possible_selections, sortAlphabetically=True)
+     Returns the key chosen by the user
 ** interaction.py
    - decide_meaning(string)
    Decides what the given string means, returns the meaning.

@@ -32,5 +32,4 @@ def execute():
     # <Test here>
     songtest = song.choose()
     songtest.play()
-    inputs.get_item_from_dict(song.get_artists_dict())
     # </Test here>

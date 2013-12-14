@@ -17,6 +17,7 @@
 
 import sys
 from paula.core import outputs
+from paula.core import inputs
 from paula.music import song
 from paula.core import interaction
 
@@ -29,5 +30,6 @@ def execute():
         outputs.print_debug(str(sys.argv))
 
     # <Test here>
-
+    songtest = song.choose()
+    songtest.play()
     # </Test here>

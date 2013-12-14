@@ -17,9 +17,12 @@
 import os
 import subprocess
 
-PAULA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'paula')
-FILENAME = "required_packages_arch"
+from paula.core import system
 
+PAULA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'paula')
+LIBS_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'libs')
+FILENAME = "required_packages_arch"
+SETUPFILE = "setup.py"
 
 def get_required_packages():
     required_package_files = []
@@ -37,6 +40,12 @@ def get_required_packages():
 
 
 if __name__ == "__main__":
+    for dirname, dirnames, filenames in os.walk(LIBS_DIR):
+        for filename in filenames:
+            if filename == SETUPFILE:
+                system.call("cd " + dirname + " && python3 " + os.path.join(dirname, filename) + " build")
+                system.call("cd " + dirname + " && sudo python3 " + os.path.join(dirname, filename) + " install")
+
     for package in get_required_packages():
         cmd = "packer -S " + package
         process = subprocess.Popen(cmd, shell=True)

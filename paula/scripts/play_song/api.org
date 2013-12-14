@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 ##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
@@ -15,11 +14,17 @@
 #
 ##
 
-# Default = False
-DEBUG = False
+Description of package
 
-# Default = [".mp3"]
-MUSIC_EXTENSIONS = [".mp3"]
+VERSION 0.1
 
-# Default = ["/home/syd/music"]
-MUSIC_DIRS = ["/home/syd/music","/home/xander/Music/Music"]
+* Provided
+** module1.py
+   - function1(arg)
+     explanation
+
+* Required
+** package1
+*** module2.py
+    - function1(arg)
+    - funtion2(arg)

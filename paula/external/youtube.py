@@ -20,6 +20,10 @@ import urllib.error
 import os
 import signal
 from paula.core import system
+from paula.core import inputs
+from paula.music import song
+from paula.music import music_conf
+from mutagenx.easyid3 import EasyID3
 from . import external_config as conf
 
 def search(arg_string):
@@ -31,6 +35,27 @@ def search(arg_string):
     vidid = response[response.find("<entry><id>http://gdata.youtube.com/feeds/api/videos/") + len("<entry><id>http://gdata.youtube.com/feeds/api/videos/"): response.find("</id><published>")]
 
     return vidid
+
+def download_song(vidid, title, artist, album):
+    #heel lelijk, moet veranderd worden
+    musicdir = music_conf.MUSIC_DIRS[0]
+    if len(music_conf.MUSIC_DIRS) > 1:
+        musicdir = inputs.get_item_from_list(music_conf.MUSIC_DIRS)
+
+    if not os.path.isdir(musicdir + "/" + artist):
+        os.mkdir(musicdir + "/" + artist)
+    if not os.path.isdir(musicdir + "/" + artist + "/" + album):
+        os.mkdir(musicdir + "/" + artist + "/" + album)
+    
+    system.call("youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid,  sync=True)
+    system.call("mv " + vidid + ".mp3 \"" + musicdir + "/" + artist + "/" + album + "/" + title + ".mp3\"")
+    file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
+
+    audio = EasyID3(file_path)
+    audio["title"] = title
+    audio["artist"] = artist
+    audio["album"] = album
+    audio.save()
 
 def play_video(vidid):
     system.kill_vlc()

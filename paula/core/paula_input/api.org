@@ -32,5 +32,12 @@ VERSION 0.1
    - prompt_with_timeout(timeout)
      Waits <timeout> seconds for input from the user.
      Returns None if the input times out or the input was not an integer.
+** list.py
+   - promt_for_list(possible_selections, sortAlphabetically=True)
+     Lets the user choose from a list of items which are automatically indexed.
+     Returns the chosen item.
+   - prompt_for_dict(possible_selections, sortAlphabetically=True)
+     Lets the user choose from a dictionary of items. The keys will be used as indexes.
+     Returns the chosen entry.
 * Required
 Nothing

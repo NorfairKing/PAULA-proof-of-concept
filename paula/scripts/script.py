@@ -42,7 +42,7 @@ def execute(meaning):
         module = importlib.import_module(module_name)
         module.execute()
     except ImportError:
-        outputs.print_error("The " + meaning + " script is missing or does not exist")
+        outputs.print_error("The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
 
 
 def decide_meaning(string):

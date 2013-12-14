@@ -51,7 +51,9 @@ VERSION 0.1
    calls the given command in list format silently
    - get_output_of(command_string)
    Returns the output of running the given command.
-
+** util.py
+   - get_operand(command, seperator_character=',')
+   Returns the operand in the given command.
 * Required
 ** command
 ** paula_input

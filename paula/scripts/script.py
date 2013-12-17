@@ -24,7 +24,7 @@ from paula.core import outputs
 from . import script_config as conf
 
 def decide_and_run(string):
-    print_PAULA()
+    outputs.print_PAULA()
     meaning, operand = decide_meaning(string)
     execute(meaning, operand)
     time.sleep(conf.WAITING_TIME)
@@ -116,23 +116,3 @@ def get_scripts_dict():
     return dict
 
 
-def print_PAULA():
-    cmd = "clear"
-    process = subprocess.Popen(cmd, shell=True)
-    out, err = process.communicate()
-
-    print("""
-      ____   _   _   _ _        _
-     |  _ \ / \ | | | | |      / \ \n\
-     | |_) / _ \| | | | |     / _ \ \n\
-     |  __/ ___ \ |_| | |___ / ___ \ \n\
-     |_| /_/   \_\___/|_____/_/   \_\ \n\
-
-
- Personal
- Artificial
- Unintelligent
- Life
- Assistant
-
-""")

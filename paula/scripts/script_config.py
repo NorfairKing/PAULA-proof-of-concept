@@ -16,13 +16,8 @@
 ##
 
 # Default = False
-DEBUG = False
+DEBUG = True
 
 # Default = 1
 WAITING_TIME = 1
 
-# Default = True
-IGNORE_CASING = True
-
-#Default = False
-MATCH_WHOLE_STRING = False

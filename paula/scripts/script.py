@@ -23,7 +23,6 @@ import subprocess
 from paula.core import outputs
 from . import script_config as conf
 
-
 def decide_and_run(string):
     print_PAULA()
     meaning, operand = decide_meaning(string)
@@ -51,8 +50,8 @@ def decide_meaning(string):
     meanings = get_scripts_dict()
     meaning_found = None
     for name in meanings:
-        operand = means(string, name)
-        if operand:
+        matched, operand = means(string, name)
+        if matched:
             meaning_found = name
             break
     if conf.DEBUG:
@@ -69,26 +68,32 @@ def get_meaning_regexes(meaning):
 
 def means(string, meaning):
     if not meaning in meanings:
-        return None
+        return False, None
 
     regexes = get_meaning_regexes(meaning)
+
+    matches = ()
+
     for reg_str in regexes:
-        if not conf.MATCH_WHOLE_STRING:
-            reg_str += ".*"
-        else:
-            reg_str = "^" + reg_str + "$"
-        if conf.IGNORE_CASING:
-            reg = re.compile(reg_str, re.IGNORECASE)
-        else:
-            reg = re.compile(reg_str)
+
+        reg = re.compile(reg_str, re.IGNORECASE)
+
         if reg.match(string):
-            #Got a match, now find the operand
-            for i in range(len(string)):
-                string_part = string[0:i]
-                reg2 = re.compile(reg_str, re.IGNORECASE)
+            if conf.DEBUG:
+                outputs.print_debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
+            #Got a match, now find the operand, remove the match_whole_string
+            for i in reversed(range(len(string))):
+                outputs.print_debug("i=" + str(i))
+                string_part = string[:i]
+                if conf.DEBUG:
+                    outputs.print_debug("string part=\""+string_part+"\"")
+                reg2 = re.compile("^"+reg_str+"$", re.IGNORECASE)
                 if reg2.match(string_part):
-                    return string_part
-    return None
+                    if conf.DEBUG:
+                        outputs.print_debug("Matched \"" + string_part + "\" with \"" + reg_str + "\"")
+                        outputs.print_debug("string[i:]=\"" + string[i:] + "\"")
+                    matches.append(string[i:])
+    return False, None
 
 
 def get_scripts_dict():

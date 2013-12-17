@@ -33,7 +33,7 @@ def call_list_silently(command_list, sync=True):
     return shell_command.call_list_silently(command_list, sync)
 
 def get_output_of(command_string):
-    return shell_command.get_output_of(command_string, sync)
+    return shell_command.get_output_of(command_string)
 
 def kill_vlc():
     if os.path.isfile('/tmp/paula_song.pid'):

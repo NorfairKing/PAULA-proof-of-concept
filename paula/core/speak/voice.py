@@ -20,10 +20,10 @@ from paula.core import system
 from . import speak_config as conf
 
 
-def say(text):
+def say(text,sync=False):
     if conf.SOUND_ON:
         bash_command = conf.SPEAK_SCRIPT + ' "' + text + '"'
         if conf.DEBUG:
-            system.call(bash_command)
+            system.call(bash_command,sync=sync)
         else:
-            system.call_silently(bash_command)
+            system.call_silently(bash_command,sync=sync)

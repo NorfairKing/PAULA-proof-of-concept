@@ -16,20 +16,20 @@
 
 PAULA's input package
 
-VERSION 0.1
+VERSION 0.2.1
 
 * Provided
 ** string.py
-   - prompt_for_input_string()
+   - prompt_for_input_string(prompt=conf.INPUT_PROMPT)
      Get's a string from the user.
-   - prompt_with_timeout(timeout)
+   - prompt_with_timeout(timeout, prompt=conf.INPUT_PROMPT)
      Waits <timeout> seconds for input from the user.
      Returns an empty string if the input times out.
 ** integer.py
-   - prompt_for_input_int()
+   - prompt_for_input_int(prompt=conf.INPUT_PROMPT)
      Get's an integer from the user.
      Returns None if the input was not an integer.
-   - prompt_with_timeout(timeout)
+   - prompt_with_timeout(timeout, prompt=conf.INPUT_PROMPT)
      Waits <timeout> seconds for input from the user.
      Returns None if the input times out or the input was not an integer.
 ** list.py

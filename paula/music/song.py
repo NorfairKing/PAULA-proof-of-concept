@@ -100,8 +100,10 @@ def find_song(search_string):
     #get all files
     files = [os.path.join(path, filename)
         for musicFolder in conf.MUSIC_DIRS
-        for path, dirs, files in os.walk(musicFolder)
+        for path, dirs, files in os.walk(musicFolder, followlinks=True)
         for filename in files]
+
+    matches = []
 
     #Check for search string
     for fil in files:
@@ -110,9 +112,12 @@ def find_song(search_string):
             if fil.lower().find(substr.lower()) == -1:
                 allMatched = False
         if allMatched:
-            return Song(fil)
+            matches.append(Song(fil))
 
-    return None
+    if not matches:
+        return None
+
+    return random.choice(matches)
 
 def stop_song():
     system.kill_vlc()

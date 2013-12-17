@@ -28,7 +28,8 @@ from . import music_conf as conf
 
 class Song:
     def __init__(self, path):
-        foldernames = path.split('/')
+        foldernames = path.sp
+        lit('/')
         self.title = foldernames[-1]
         self.artist = foldernames[-3]
         self.album = foldernames[-2]
@@ -119,7 +120,7 @@ def stop_song():
 
 def select_random():
     files = [os.path.join(path, filename)
-        for musicFolder in conf.MUSIC_DIRS
+        for musicFolder in conf.MUSIC_DIRS if os.path.isdir(musicFolder)
         for path, dirs, files in os.walk(musicFolder)
         for filename in files
         if not filename.endswith(".jpg") and not filename.endswith(".png")]

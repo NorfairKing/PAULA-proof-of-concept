@@ -17,3 +17,6 @@
 
 # Default = False
 DEBUG = False
+
+# Default = True
+ASK_DOWNLOAD = True

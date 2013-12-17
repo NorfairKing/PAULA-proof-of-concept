@@ -14,17 +14,18 @@
 # Assistant
 #
 ##
-import os
-import subprocess
 
+import os
+import platform
+import subprocess
 from paula.core import system
 
 PAULA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'paula')
 LIBS_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'libs')
-FILENAME = "required_packages_ubuntu"
-SETUPFILE = "setup.py"
 
-def get_required_packages():
+
+def get_required_packages(distribution):
+    FILENAME = "required_package_" + distribution
     required_package_files = []
     for dirname, dirnames, filenames in os.walk(PAULA_DIR):
         for filename in filenames:
@@ -39,14 +40,26 @@ def get_required_packages():
     return required_packages
 
 
-if __name__ == "__main__":
+def install_libraries():
+    SETUP_FILE = "setup.py"
     for dirname, dirnames, filenames in os.walk(LIBS_DIR):
         for filename in filenames:
-            if filename == SETUPFILE:
+            if filename == SETUP_FILE:
                 system.call("cd " + dirname + " && python3 " + os.path.join(dirname, filename) + " build")
                 system.call("cd " + dirname + " && sudo python3 " + os.path.join(dirname, filename) + " install")
 
-    for package in get_required_packages():
-        cmd = "sudo apt-get install " + package
-        process = subprocess.Popen(cmd, shell=True)
-        out, err = process.communicate()
+
+if __name__ == "__main__":
+    (dist1, dist2, dist3) = platform.linux_distribution()
+
+    if dist1 == "arch":
+        cmd = "packer -S " + " ".join(get_required_packages("arch"))
+        system.call(cmd)
+
+    elif dist1 == "LinuxMint" or dist1 == "Ubuntu":
+        cmd = "sudo apt-get install -y " + " ".join(get_required_packages("ubuntu"))
+        system.call(cmd)
+
+    else:
+        print("ERROR: Your platform is not supported")
+

@@ -16,7 +16,7 @@
 
 The scripts package provides an interface for dynamically executing scripts.
 
-VERSION 0.1
+VERSION 0.2
 
 * Provided
 ** script.py

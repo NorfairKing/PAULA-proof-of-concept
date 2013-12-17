@@ -20,7 +20,7 @@ VERSION 0.1
 
 * Provided
 ** module1.py
-   - execute()
+   - execute(operand)
      Prints the introduction of the wikipedia article corresponding to the argument(s)
 
 * Required

@@ -15,6 +15,8 @@
 #
 ##
 
+from os.path import expanduser
+
 # Default = False
 DEBUG = False
 
@@ -22,4 +24,13 @@ DEBUG = False
 MUSIC_EXTENSIONS = [".mp3"]
 
 # Default = ["/home/syd/music"]
-MUSIC_DIRS = ["/home/syd/music","/home/xander/Music/Music"]
+EXTRA_MUSIC_DIRS = []
+
+STANDARD_MUSIC_DIR = [
+    expanduser("~/music"),
+    expanduser("~/Music"),
+    expanduser("~/music/music"),
+    expanduser("~/music/Music"),
+    expanduser("~/Music/music"),
+    expanduser("~/Music/Music")
+]

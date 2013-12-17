@@ -25,11 +25,11 @@ LIBS_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'libs')
 
 
 def get_required_packages(distribution):
-    FILENAME = "required_package_" + distribution
+    FILE_NAME = "required_packages_" + distribution
     required_package_files = []
     for dirname, dirnames, filenames in os.walk(PAULA_DIR):
         for filename in filenames:
-            if filename == FILENAME:
+            if filename == FILE_NAME:
                 required_package_files.append(os.path.join(dirname, filename))
 
     required_packages = []

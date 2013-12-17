@@ -18,10 +18,10 @@
 import sys
 from paula.core import outputs
 from paula.core import inputs
-from paula.music import song
-from paula.core import interaction
+
 
 from . import paula_test_script_config as conf
+from paula.core import inputs
 
 
 def execute():
@@ -30,6 +30,7 @@ def execute():
         outputs.print_debug(str(sys.argv))
 
     # <Test here>
-    songtest = song.choose()
-    songtest.play()
+    dict = [val for val in range(100)]
+    item = inputs.get_item_from_list(dict)
+    print(item)
     # </Test here>

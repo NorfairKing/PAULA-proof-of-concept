@@ -36,7 +36,7 @@ def get_integer_timeout(timeout):
     return integer.prompt_with_timeout(timeout)
 
 def get_item_from_list(possible_selections, sortAlphabetically=True):
-    return lists.prompt_for_list(possible_selections, sortAlphabetically)
+    return lists.prompt_for_list(possible_selections)
 
 def get_item_from_dict(possible_selections, sortAlphabetically=True):
-    return lists.prompt_for_dict(possible_selections, sortAlphabetically)
+    return lists.prompt_for_dict(possible_selections)

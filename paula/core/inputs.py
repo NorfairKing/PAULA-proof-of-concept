@@ -19,19 +19,21 @@ from .paula_input import string
 from .paula_input import integer
 from .paula_input import lists
 
+from . import core_config as conf
 
-def get_string(prompt=""):
+
+def get_string(prompt=conf.DEFAULT_INPUT_PROMPT):
     return string.prompt_for_input_string(prompt)
 
-def get_integer(prompt=""):
+def get_integer(prompt=conf.DEFAULT_INPUT_PROMPT):
     return integer.prompt_for_input_int(prompt)
 
 
-def get_string_timeout(timeout,prompt=""):
+def get_string_timeout(timeout,prompt=conf.DEFAULT_INPUT_PROMPT):
     return string.prompt_with_timeout(timeout,prompt)
 
 
-def get_integer_timeout(timeout,prompt=""):
+def get_integer_timeout(timeout,prompt=conf.DEFAULT_INPUT_PROMPT):
     return integer.prompt_with_timeout(timeout,prompt)
 
 

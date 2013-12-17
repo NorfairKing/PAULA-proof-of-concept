@@ -17,5 +17,3 @@
 
 # Default = False
 DEBUG = False
-
-INPUT_PROMPT = "YOU:     "

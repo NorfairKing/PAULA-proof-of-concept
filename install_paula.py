@@ -18,6 +18,7 @@
 import os
 import platform
 import subprocess
+from paula.core import outputs
 from paula.core import system
 
 PAULA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'paula')
@@ -50,6 +51,9 @@ def install_libraries():
 
 
 if __name__ == "__main__":
+    outputs.print_PAULA()
+    outputs.print_color("INSTALLING PAULA","red")
+
     (dist1, dist2, dist3) = platform.linux_distribution()
 
     if dist1 == "arch":
@@ -62,4 +66,7 @@ if __name__ == "__main__":
 
     else:
         print("ERROR: Your platform is not supported")
+        exit(1)
+
+    outputs.print_color("INSTALLING PAULA DONE","red")
 

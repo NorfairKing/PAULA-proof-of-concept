@@ -16,7 +16,7 @@
 ##
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 # Default = 1
 WAITING_TIME = 1

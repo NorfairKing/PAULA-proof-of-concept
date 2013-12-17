@@ -39,7 +39,6 @@ def execute(meaning, operand):
         if conf.DEBUG:
             outputs.print_debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
-        print(operand)
         module.execute(operand)
     except ImportError:
         outputs.print_error("The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
@@ -72,7 +71,7 @@ def means(string, meaning):
 
     regexes = get_meaning_regexes(meaning)
 
-    matches = ()
+    matches = []
 
     for reg_str in regexes:
 
@@ -82,8 +81,7 @@ def means(string, meaning):
             if conf.DEBUG:
                 outputs.print_debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
             #Got a match, now find the operand, remove the match_whole_string
-            for i in reversed(range(len(string))):
-                outputs.print_debug("i=" + str(i))
+            for i in reversed(range(len(string)+1)):
                 string_part = string[:i]
                 if conf.DEBUG:
                     outputs.print_debug("string part=\""+string_part+"\"")
@@ -92,8 +90,13 @@ def means(string, meaning):
                     if conf.DEBUG:
                         outputs.print_debug("Matched \"" + string_part + "\" with \"" + reg_str + "\"")
                         outputs.print_debug("string[i:]=\"" + string[i:] + "\"")
-                    matches.append(string[i:])
-    return False, None
+                    matches.append(string[i:].strip())
+
+    if not matches:
+        return False, None
+
+    matches.sort(key=lambda t: len(t))
+    return True, matches[0]
 
 
 def get_scripts_dict():

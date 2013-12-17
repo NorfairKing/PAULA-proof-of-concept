@@ -29,8 +29,8 @@ def execute(operand):
     MINUTES_IN_AN_HOUR = 60
 
     answer = inputs.get_integer()
-    if answer == None:
-        outputs.print_error("ERROR: Not an Integer")
+    if not answer:
+        outputs.print_error("Not an Integer")
         return
     seconds = answer * SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR
 

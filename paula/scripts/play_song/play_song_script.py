@@ -26,7 +26,7 @@ from paula.external import youtube
 from . import play_song_script_config as conf
 
 def execute(operand):
-    search_string = " ".join(sys.argv[2:])
+    search_string = operand
     if conf.DEBUG:
         outputs.print_debug("The search string: " + search_string)
     local_song = song.find_song(search_string)
@@ -38,17 +38,14 @@ def execute(operand):
         return
 
     #We didn't find it locally; check youtube!
-    vidid = youtube.search(search_string)
-    youtube.play_song(vidid)
+    vid_id = youtube.search(search_string)
+    youtube.play_song(vid_id)
 
     interaction.say("Do you want to download this song?")
     answer = inputs.get_string()
     if interaction.means(answer, "yes"):
         print("Please fill in some info: ")
-        print("Artist: ")
-        artist = inputs.get_string()
-        print("Album: ")
-        album = inputs.get_string()
-        print("Title: ")
-        title = inputs.get_string()
-        youtube.download_song(vidid, title, artist, album)
+        artist = inputs.get_string(prompt="Artist: ")
+        album = inputs.get_string(prompt="Album: ")
+        title = inputs.get_string(prompt="Title: ")
+        youtube.download_song(vid_id, title, artist, album)

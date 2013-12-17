@@ -45,7 +45,7 @@ def download_song(vidid, title, artist, album):
     if not os.path.isdir(musicdir + "/" + artist + "/" + album):
         os.mkdir(musicdir + "/" + artist + "/" + album)
     
-    system.call("youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid,  sync=True)
+    system.call_list_silently("youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid,  sync=True)
     system.call("mv " + vidid + ".mp3 \"" + musicdir + "/" + artist + "/" + album + "/" + title + ".mp3\"")
     file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
 
@@ -60,12 +60,12 @@ def play_video(vidid):
 
     if conf.CONTROLS:
         process = system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
-        songfile = open('/tmp/paula_song.pid', 'w+');
+        songfile = open('/tmp/paula_song.pid', 'w+')
         songfile.write(str(process.pid))
         return process
     else:
         process = system.call_list_silently(["vlc", '-Idummy', "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
-        songfile = open('/tmp/paula_song.pid', 'w+');
+        songfile = open('/tmp/paula_song.pid', 'w+')
         songfile.write(str(process.pid))
         return process
 
@@ -75,7 +75,7 @@ def play_song(vidid):
 
     process = system.call_list_silently(["vlc", '-Idummy' , '-Vdummy' , "--play-and-exit", "-vvv", "http://youtube.com/watch?v="+vidid], sync=False)
 
-    songfile = open('/tmp/paula_song.pid', 'w+');
+    songfile = open('/tmp/paula_song.pid', 'w+')
     songfile.write(str(process.pid))
 
     return process

@@ -46,10 +46,10 @@ class Song:
         stop_song()
 
         #Write pid and song info to temporary file
-        pidfile = open('/tmp/paula_song.pid', 'w+');
+        pidfile = open('/tmp/paula_song.pid', 'w+')
         pidfile.write(str(process.pid))
 
-        songfile = open('/tmp/paula_song.info', 'w+');
+        songfile = open('/tmp/paula_song.info', 'w+')
         songfile.write(self.title + "\n")
         songfile.write(self.album + "\n")
         songfile.write(self.artist)
@@ -99,7 +99,7 @@ def get_current_album():
 def find_song(search_string):
     #get all files
     files = [os.path.join(path, filename)
-        for musicFolder in conf.MUSIC_DIRS
+        for musicFolder in get_music_dirs()
         for path, dirs, files in os.walk(musicFolder, followlinks=True)
         for filename in files]
 
@@ -119,6 +119,9 @@ def find_song(search_string):
 
     return random.choice(matches)
 
+def get_music_dirs():
+    musicdirs = [musicFolder for musicFolder in conf.STANDARD_MUSIC_DIR if os.path.isdir(musicFolder)] + [musicFolder for musicFolder in conf.EXTRA_MUSIC_DIRS if os.path.isdir(musicFolder)]
+    return musicdirs
 def stop_song():
     system.kill_vlc()
 
@@ -151,7 +154,7 @@ def choose():
 
 def get_artists_dict():
     possible_selections = {}
-    for path in conf.MUSIC_DIRS:
+    for path in get_music_dirs():
         if os.path.isdir(path):
             for dirname in os.listdir(path):
                 possible_selections[dirname] = os.path.join(path, dirname)

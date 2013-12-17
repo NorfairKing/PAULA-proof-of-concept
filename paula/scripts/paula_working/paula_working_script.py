@@ -18,5 +18,5 @@
 from paula.core import interaction
 
 
-def execute():
+def execute(operand):
     interaction.say("I'm working, Sir.")

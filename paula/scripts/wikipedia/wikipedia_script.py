@@ -21,7 +21,7 @@ from paula.core import outputs
 
 from . import wikipedia_script_config as conf
 
-def execute():
+def execute(operand):
     args = sys.argv[2:]
     if conf.DEBUG:
         outputs.print_debug(str(args))

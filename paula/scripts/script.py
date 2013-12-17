@@ -41,7 +41,7 @@ def execute(meaning, operand):
             outputs.print_debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
         print(operand)
-        module.execute()
+        module.execute(operand)
     except ImportError:
         outputs.print_error("The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
 

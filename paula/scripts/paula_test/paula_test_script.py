@@ -24,7 +24,7 @@ from paula.core import interaction
 from . import paula_test_script_config as conf
 
 
-def execute():
+def execute(operand):
     if conf.DEBUG:
         outputs.print_debug("The arguments to execute this script were the following.")
         outputs.print_debug(str(sys.argv))

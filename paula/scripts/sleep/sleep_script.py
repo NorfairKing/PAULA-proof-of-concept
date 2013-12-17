@@ -30,7 +30,7 @@ from paula.agenda import agenda
 from . import sleep_script_config as conf
 
 
-def execute():
+def execute(operand):
     interaction.say("How long would you like to sleep, Sir?")
 
     printOptions(conf.DURATION_OPTIONS)

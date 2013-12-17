@@ -17,5 +17,5 @@
 
 from paula.agenda import agenda
 
-def execute():
+def execute(operand):
     agenda.print_default()

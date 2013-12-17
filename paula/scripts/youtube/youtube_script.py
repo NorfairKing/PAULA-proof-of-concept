@@ -21,7 +21,7 @@ from paula.core import outputs
 from . import youtube_script_config as conf
 
 
-def execute():
+def execute(operand):
     if conf.DEBUG:
         outputs.print_debug(" ".join(sys.argv[2:]))
 

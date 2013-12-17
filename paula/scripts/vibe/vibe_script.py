@@ -21,7 +21,7 @@ from paula.music.song import Song
 from . import vibe_script_config as conf
 
 
-def execute():
+def execute(operand):
     possible_selections = get_vibe_songs_dict()
     if conf.DEBUG:
         print("Possible selections = " + str(possible_selections))

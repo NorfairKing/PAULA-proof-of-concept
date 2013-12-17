@@ -17,7 +17,7 @@
 
 from paula.music import song
 
-def execute():
+def execute(operand):
     print("Song: " + song.get_current_song())
     print("Artist: " + song.get_current_artist())
     print("Album: " + song.get_current_album())

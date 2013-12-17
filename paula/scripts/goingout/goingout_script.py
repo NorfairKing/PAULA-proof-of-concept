@@ -22,7 +22,7 @@ from paula.core import interaction
 from . import goingout_script_config as conf
 
 
-def execute():
+def execute(operand):
     interaction.say("How long do you think you will be gone, Sir?")
 
     SECONDS_IN_A_MINUTE = 60

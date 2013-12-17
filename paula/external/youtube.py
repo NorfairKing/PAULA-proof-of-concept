@@ -45,7 +45,7 @@ def download_song(vidid, title, artist, album):
     if not os.path.isdir(musicdir + "/" + artist + "/" + album):
         os.mkdir(musicdir + "/" + artist + "/" + album)
     
-    system.call_list_silently("youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid,  sync=True)
+    system.call_silently("youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid,  sync=True)
     system.call("mv " + vidid + ".mp3 \"" + musicdir + "/" + artist + "/" + album + "/" + title + ".mp3\"")
     file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
 

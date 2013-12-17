@@ -26,12 +26,12 @@ from . import script_config as conf
 
 def decide_and_run(string):
     print_PAULA()
-    meaning = decide_meaning(string)
-    execute(meaning)
+    meaning, operand = decide_meaning(string)
+    execute(meaning, operand)
     time.sleep(conf.WAITING_TIME)
 
 
-def execute(meaning):
+def execute(meaning, operand):
     if not meaning:
         return
 
@@ -40,6 +40,7 @@ def execute(meaning):
         if conf.DEBUG:
             outputs.print_debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
+        print(operand)
         module.execute()
     except ImportError:
         outputs.print_error("The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
@@ -50,7 +51,8 @@ def decide_meaning(string):
     meanings = get_scripts_dict()
     meaning_found = None
     for name in meanings:
-        if means(string, name):
+        operand = means(string, name)
+        if operand:
             meaning_found = name
             break
     if conf.DEBUG:
@@ -58,7 +60,7 @@ def decide_meaning(string):
             outputs.print_debug("decided  " + string + " to mean " + meaning_found + ".")
         else:
             outputs.print_debug("No meaning found.")
-    return meaning_found
+    return meaning_found, operand
 
 
 def get_meaning_regexes(meaning):
@@ -67,7 +69,7 @@ def get_meaning_regexes(meaning):
 
 def means(string, meaning):
     if not meaning in meanings:
-        return False
+        return None
 
     regexes = get_meaning_regexes(meaning)
     for reg_str in regexes:
@@ -80,8 +82,13 @@ def means(string, meaning):
         else:
             reg = re.compile(reg_str)
         if reg.match(string):
-            return True
-    return False
+            #Got a match, now find the operand
+            for i in range(len(string)):
+                string_part = string[0:i]
+                reg2 = re.compile(reg_str, re.IGNORECASE)
+                if reg2.match(string_part):
+                    return string_part
+    return None
 
 
 def get_scripts_dict():

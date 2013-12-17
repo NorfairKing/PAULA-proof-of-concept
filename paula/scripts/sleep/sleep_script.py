@@ -33,17 +33,9 @@ from . import sleep_script_config as conf
 def execute(operand):
     interaction.say("How long would you like to sleep, Sir?")
 
-    printOptions(conf.DURATION_OPTIONS)
-    answer = inputs.get_string().strip()
-
-    if not answer in conf.DURATION_OPTIONS:
-        outputs.print_error("Unknown option")
-        return
-    chosen_option = int(conf.DURATION_OPTIONS[answer])
-
-    if conf.DEBUG:
-        outputs.print_debug("answer = " + answer)
-        outputs.print_debug("selected option = " + str(chosen_option) + " seconds")
+    option = inputs.get_item_from_dict(conf.DURATION_OPTIONS)
+    print(option)
+    print(type(option))
 
     # select song
     interaction.say("Please select which song you want to wake you up.")

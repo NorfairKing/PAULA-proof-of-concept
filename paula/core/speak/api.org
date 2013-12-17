@@ -16,7 +16,7 @@
 
 The speak module provides all functionality to make PAULA speak.
 
-VERSION 0.1
+VERSION 0.2
 
 * Provided
 ** voice.py

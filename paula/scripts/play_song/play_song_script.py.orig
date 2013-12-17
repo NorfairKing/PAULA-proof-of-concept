@@ -41,12 +41,26 @@ def execute(operand):
     vid_id = youtube.search(search_string)
     youtube.play_song(vid_id)
 
+<<<<<<< HEAD
+    interaction.say("Do you want to download this song?")
+    answer = inputs.get_string()
+    if interaction.means(answer, "yes"):
+        print("Please fill in some info: ")
+        artist = inputs.get_string(prompt="Artist: ")
+        album = inputs.get_string(prompt="Album: ")
+        title = inputs.get_string(prompt="Title: ")
+        youtube.download_song(vid_id, title, artist, album)
+=======
     if conf.ASK_DOWNLOAD:
         interaction.say("Do you want to download this song?")
         answer = inputs.get_string()
         if interaction.means(answer, "yes"):
             print("Please fill in some info: ")
-        artist = inputs.get_string(prompt="Artist: ")
-        album = inputs.get_string(prompt="Album: ")
-        title = inputs.get_string(prompt="Title: ")
-        youtube.download_song(vid_id, title, artist, album)
+            print("Artist: ")
+            artist = inputs.get_string()
+            print("Album: ")
+            album = inputs.get_string()
+            print("Title: ")
+            title = inputs.get_string()
+            youtube.download_song(vidid, title, artist, album)
+>>>>>>> 5a7375a0d0f24503560b09cd2983869cd081caf8

@@ -45,8 +45,4 @@ def execute(operand):
         interaction.say("Do you want to download this song?")
         answer = inputs.get_string()
         if interaction.means(answer, "yes"):
-            print("Please fill in some info: ")
-            artist = inputs.get_string(prompt="Artist: ")
-            album = inputs.get_string(prompt="Album: ")
-            title = inputs.get_string(prompt="Title: ")
-            youtube.download_song(vid_id, title, artist, album)
+            youtube.download_song(vid_id)

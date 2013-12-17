@@ -16,11 +16,11 @@
 
 The internal test script for developers.
 
-VERSION 0.1
+VERSION 0.1.1
 
 * Provided
 ** paula_working_script.py
-   - execute()
+   - execute(operand)
      Executes the paula_test script.
 
 * Required

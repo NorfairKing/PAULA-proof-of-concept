@@ -20,7 +20,7 @@ VERSION 0.1.1
 
 * Provided
 ** goingout_script.py
-   - execute()
+   - execute(operand)
      Executes the goingout script
 
 * Required

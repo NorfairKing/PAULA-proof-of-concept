@@ -22,4 +22,4 @@ from . import external_config as conf
 def open(url):
     if conf.DEBUG:
         outputs.print_debug("Opening URL in browser: " + url)
-    system.call("xdg-open \"" + url + "\"", sync=False)
+    system.call_silently("xdg-open \"" + url + "\"", sync=False)

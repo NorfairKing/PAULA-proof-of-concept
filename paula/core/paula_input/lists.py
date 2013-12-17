@@ -15,42 +15,47 @@
 #
 ##
 
-import operator
+from . import string
+from . import integer
 
-def prompt_for_list(possible_selections, sortAlphabetically=True):
-    if sortAlphabetically:
-        sorted_dict = dict(zip(range(len(possible_selections)), sorted(possible_selections)))
-        return prompt_for_dict(sorted_dict)
-    else:
-        return prompt_for_dict(dict(zip(range(len(possible_selections)), possible_selections)), sortAlphabetically=False)
 
-def prompt_for_dict(possible_selections, sortAlphabetically=True):
+def prompt_for_list(possible_selections):
+    tuples = [(index,value) for index, value in enumerate(possible_selections)]
+    dict = { index:value for index,value in tuples}
 
-    #sorted_dict = list(possible_selections.items(), key=operator.itemgetter(1))
-    sorted_dict = list()
-    if sortAlphabetically:
-        sorted_dict = sorted(possible_selections.items(), key=operator.itemgetter(1))
+    for (index,value) in tuples:
+        key_str = "     "
+        key_str += str(index)
+        key_str += (5 - len(str(index))) * " "
+        key_str += " - "
+        key_str += str(value)
+        print(key_str)
 
-    for key, value in sorted_dict:
-        print(("     " + str(key) + ((5 - len(str(key))) * " ") + " - " + str(value)))
-    print()
+    while True:
+        user_input = integer.prompt_for_input_int()
+        if user_input in dict:
+            return dict[user_input]
+        else:
+            print("That is an invalid selection, Sir.")
 
-    while (True):
-        userInput = input("Take your pick: ")
+def prompt_for_dict(possible_selections, sort_alphabetically=True):
+    str_tuples = [(str(key),possible_selections[key]) for key in possible_selections]
+    str_dict = {str(key):possible_selections[key] for key in possible_selections}
 
-        try:
-            key = str(userInput)
-        except:
-            print("That's not a valid input, Sir.")
-            continue
+    if sort_alphabetically:
+        str_tuples = sorted(str_tuples)
 
-        try:
-            if int(key) in possible_selections.keys():
-                return possible_selections[int(key)]
-        except:
-            pass
-        
-        if str(key) in possible_selections.keys():
-            return possible_selections[str(key)]
+    for (key, value) in str_tuples:
+        key_str = "     "
+        key_str += key
+        key_str += (5 - len(key)) * " "
+        key_str += " - "
+        key_str += str(value)
+        print(key_str)
+
+    while True:
+        user_input = string.prompt_for_input_string()
+        if user_input in str_dict:
+            return str_dict[user_input]
         else:
             print("That is an invalid selection, Sir.")

@@ -142,11 +142,11 @@ def play_random():
 
 def choose():
     artists = get_artists_dict()
-    artistkey = inputs.get_item_from_list(artists.keys())
+    artistkey = inputs.get_item_from_list(sorted(artists.keys()))
     artist_path = artists[artistkey]
 
     songs = get_songs_dict(artist_path)
-    songkey = inputs.get_item_from_list(songs.keys())
+    songkey = inputs.get_item_from_list(sorted(songs.keys()))
     song_path = songs[songkey]
 
     song = Song(song_path)

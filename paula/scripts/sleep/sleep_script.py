@@ -34,8 +34,6 @@ def execute(operand):
     interaction.say("How long would you like to sleep, Sir?")
 
     option = inputs.get_item_from_dict(conf.DURATION_OPTIONS)
-    print(option)
-    print(type(option))
 
     # select song
     interaction.say("Please select which song you want to wake you up.")
@@ -45,7 +43,7 @@ def execute(operand):
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
 
     # Sleep
-    sleep.go_to_sleep_mode(chosen_option)
+    sleep.go_to_sleep_mode(int(option))
 
     # Alarm go off
     interaction.say("Good Morning, Sir")

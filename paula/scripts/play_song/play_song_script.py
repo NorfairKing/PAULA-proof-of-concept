@@ -41,7 +41,7 @@ def execute():
     vidid = youtube.search(search_string)
     youtube.play_song(vidid)
 
-    interaction.say("I did not find this song locally. Do you want me to download it for you?")
+    interaction.say("Do you want to download this song?")
     answer = inputs.get_string()
     if interaction.means(answer, "yes"):
         print("Please fill in some info: ")

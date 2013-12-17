@@ -18,10 +18,8 @@
 import urllib.request
 import urllib.error
 import os
-import signal
 from paula.core import system
 from paula.core import inputs
-from paula.music import song
 from paula.music import music_conf
 from mutagenx.easyid3 import EasyID3
 from . import external_config as conf

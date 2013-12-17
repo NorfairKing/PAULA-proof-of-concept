@@ -19,4 +19,4 @@ from paula.core import interaction
 
 
 def execute(operand):
-    interaction.say("I'm working, Sir.")
+    interaction.say("I'm working, Sir.", sync=True)

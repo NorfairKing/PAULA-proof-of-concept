@@ -20,11 +20,10 @@ VERSION 0.1
 
 * Provided
 ** module1.py
-   - function1(arg)
-     explanation
+   - execute()
+     Prints the introduction of the wikipedia article corresponding to the argument(s)
 
 * Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+** external
+*** wikipedia.py
+    - getDescription(arg)

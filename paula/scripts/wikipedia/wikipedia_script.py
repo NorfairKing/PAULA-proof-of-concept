@@ -15,5 +15,16 @@
 #
 ##
 
+import sys
+from paula.external import wikipedia
+from paula.core import outputs
+
+from . import wikipedia_script_config as conf
+
 def execute():
-    print("placeholder")
+    args = sys.argv[2:]
+    if conf.DEBUG:
+        outputs.print_debug(str(args))
+
+    arg_string = " ".join(args)
+    wikipedia.get_description(arg_string)

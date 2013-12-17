@@ -17,6 +17,3 @@
 
 # Default = False
 DEBUG = True
-
-# Default = True
-CONTROLS = True

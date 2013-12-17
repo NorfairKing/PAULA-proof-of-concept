@@ -22,9 +22,7 @@ from paula.core import outputs
 from . import wikipedia_script_config as conf
 
 def execute(operand):
-    args = sys.argv[2:]
     if conf.DEBUG:
-        outputs.print_debug(str(args))
+        outputs.print_debug(operand)
 
-    arg_string = " ".join(args)
-    wikipedia.get_description(arg_string)
+    wikipedia.get_description(operand)

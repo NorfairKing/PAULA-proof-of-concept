@@ -27,10 +27,21 @@ from paula.core import inputs
 def execute(operand):
     if conf.DEBUG:
         outputs.print_debug("The arguments to execute this script were the following.")
-        outputs.print_debug(str(sys.argv))
+        outputs.print_debug(operand)
 
     # <Test here>
-    dict = [val for val in range(100)]
-    item = inputs.get_item_from_list(dict)
-    print(item)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # </Test here>

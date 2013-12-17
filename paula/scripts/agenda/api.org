@@ -20,7 +20,8 @@ VERSION 0.1
 
 * Provided
 ** agenda_script
-   Prints the agenda for the next 5 days
+   - execute(operand)
+     Prints the agenda for the next 5 days
 
 * Required
 ** paula.agenda

@@ -120,14 +120,14 @@ def find_song(search_string):
     return random.choice(matches)
 
 def get_music_dirs():
-    musicdirs = [musicFolder for musicFolder in conf.STANDARD_MUSIC_DIR if os.path.isdir(musicFolder)] + [musicFolder for musicFolder in conf.EXTRA_MUSIC_DIRS if os.path.isdir(musicFolder)]
+    musicdirs = [musicFolder for musicFolder in conf.STANDARD_MUSIC_DIRS if os.path.isdir(musicFolder)] + [musicFolder for musicFolder in conf.EXTRA_MUSIC_DIRS if os.path.isdir(musicFolder)]
     return musicdirs
 def stop_song():
     system.kill_vlc()
 
 def select_random():
     files = [os.path.join(path, filename)
-        for musicFolder in conf.MUSIC_DIRS if os.path.isdir(musicFolder)
+        for musicFolder in (conf.STANDARD_MUSIC_DIRS + conf.EXTRA_MUSIC_DIRS) if os.path.isdir(musicFolder)
         for path, dirs, files in os.walk(musicFolder)
         for filename in files
         if not filename.endswith(".jpg") and not filename.endswith(".png")]

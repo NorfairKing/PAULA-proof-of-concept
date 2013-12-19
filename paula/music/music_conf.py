@@ -26,7 +26,7 @@ MUSIC_EXTENSIONS = [".mp3"]
 # Default = ["/home/syd/music"]
 EXTRA_MUSIC_DIRS = []
 
-STANDARD_MUSIC_DIR = [
+STANDARD_MUSIC_DIRS = [
     expanduser("~/music"),
     expanduser("~/Music"),
     expanduser("~/music/music"),

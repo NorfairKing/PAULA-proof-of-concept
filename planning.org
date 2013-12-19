@@ -20,15 +20,12 @@
 ** TODO class
 ** TODO sleep, get up in time.
 ** TODO Alma
-** TODO Weather -> yahoo weather api
+** TODO Weather -> yahoo weather api.
 ** TODO series
 ** TODO Advice
 ** TODO Memory Loss
 ** TODO Death note
 ** TODO VERSION NUMBERS PER PACKAGE
-** TODO Wikipedia
-** TODO Youtube
-** TODO Google
 ** TODO Mail check
 ** TODO LISTEN
 ** TODO Misc
@@ -36,7 +33,7 @@
 *** TODO HAHA
 ** TODO Recovery modus
 *** TODO Clear screen
-
 ** TODO Motivation
 ** TODO brush teeth
-** TODO Make PAULA suggest to download a song into your offline library after the "play" command can't find it locally, but does find it on YouTube
+** TODO contact people
+** TODO remember

@@ -15,17 +15,26 @@
 #
 ##
 
+from os.path import expanduser
+
 # Default = False
 DEBUG = False
+
+# Song pid file
+SONG_PID = '/tmp/paula_song.pid';
+SONG_INFO = '/tmp/paula_song.info';
 
 # Default = [".mp3"]
 MUSIC_EXTENSIONS = [".mp3"]
 
-# Default = ["/home/syd/music"]
-MUSIC_DIRS = ["/home/syd/music", "/home/xander/Music/Music"]
+# Default = []
+EXTRA_MUSIC_DIRS = []
 
-# Default = "-"
-TITLE_ARTIST_DELIMITER = "-"
-
-# Default = "_"
-SONG_PATH_SPACE_SYNONYM = "_"
+STANDARD_MUSIC_DIRS = [
+    expanduser("~/music"),
+    expanduser("~/Music"),
+    expanduser("~/music/music"),
+    expanduser("~/music/Music"),
+    expanduser("~/Music/music"),
+    expanduser("~/Music/Music")
+]

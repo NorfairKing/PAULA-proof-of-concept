@@ -15,27 +15,25 @@
 #
 ##
 
-import subprocess
+from paula.core import system
 
 
-def get_default():
-    get_agenda_for_next_five_days()
+def print_default():
+    print_agenda_for_next_five_days()
 
 
-def get_agenda_for_next_five_days():
+def print_agenda_for_next_five_days():
     call_agenda("agenda")
 
 
-def get_week():
+def print_week():
     call_agenda("calw", options_str="--width 23")
 
 
-def get_month():
+def print_month():
     call_agenda("calm", options_str="--width 23")
 
 
 def call_agenda(command, options_str=""):
-    cmd = "gcalcli" + " " + options_str + " " + command
-    process = subprocess.Popen(cmd, shell=True)
-    out, err = process.communicate()
+    process = system.call("gcalcli" + " " + options_str + " " + command, sync=True)
 

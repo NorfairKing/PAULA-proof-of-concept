@@ -21,7 +21,7 @@ from . import paula_output_config as conf
 
 
 def print_error(error_string):
-    print_color("ERROR: "  + error_string, conf.ERROR_COLOR)
+    print_color("ERROR: " + error_string, conf.ERROR_COLOR)
 
 
 def print_debug(debug_string):

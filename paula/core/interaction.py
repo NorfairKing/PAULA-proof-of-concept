@@ -27,7 +27,7 @@ def means(string, meaning):
     return decide.means(string, meaning)
 
 
-def say(text):
+def say(text, sync=False):
     string.print_paula(text)
-    return voice.say(text)
+    return voice.say(text, sync=sync)
 

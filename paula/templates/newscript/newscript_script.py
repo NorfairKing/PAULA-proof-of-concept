@@ -15,5 +15,5 @@
 #
 ##
 
-def execute():
+def execute(operand):
     print("placeholder")

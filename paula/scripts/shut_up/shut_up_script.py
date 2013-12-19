@@ -15,7 +15,8 @@
 #
 ##
 
+import os
 from paula.core import system
 
-def execute():
+def execute(operand):
     system.kill_vlc()

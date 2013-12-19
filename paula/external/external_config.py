@@ -18,5 +18,5 @@
 # Default = False
 DEBUG = False
 
-# Default = True
-CONTROLS = True
+# Default = False
+CONTROLS = False

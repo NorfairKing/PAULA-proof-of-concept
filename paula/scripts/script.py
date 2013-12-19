@@ -32,6 +32,7 @@ def decide_and_run(string):
         outputs.clear()
         if conf.DEBUG:
             outputs.print_debug("Exiting.")
+        return
     time.sleep(conf.WAITING_TIME)
 
 

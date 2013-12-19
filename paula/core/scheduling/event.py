@@ -45,8 +45,8 @@ class Event:
         if conf.DEBUG:
             outputs.print_debug("Scheduled " + self.command + " at " + str(self.date))
 
-    def has_passed(self):
-        return self.date > datetime.datetime.now()
+    def is_overdue(self):
+        return self.date < datetime.datetime.now()
 
     def __str__(self):
         return "EVENT: " + str(self.date) + "  COMMAND = " + self.command + "  OPERAND = " + self.operand

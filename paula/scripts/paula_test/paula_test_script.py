@@ -38,6 +38,10 @@ def execute(operand):
     seconds=45
 
     dt = datetime.datetime(year, month, day, hours, minutes, seconds)
+    print(str(dt))
+    ev = event.get_event_from_string(str(dt))
+    print(str(ev))
+
     e = event.Event(dt, "paula_working", "Nothing")
     e.schedule()
 

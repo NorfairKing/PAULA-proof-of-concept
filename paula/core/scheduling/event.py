@@ -54,4 +54,4 @@ class Event:
 
 
 def get_event_from_string(string):
-    pass
+    return datetime.datetime.strptime(string, '%b %d %Y %I:%M%p')

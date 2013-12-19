@@ -69,7 +69,7 @@ if __name__ == "__main__":
         print("ERROR: Your platform is not supported")
         exit(1)
 
-    os.mkdir(expanduser("~/.PAULA/events"))
+    os.mkdir(expanduser("~/.PAULA"))
 
     outputs.print_color("INSTALLING PAULA DONE", "red")
 

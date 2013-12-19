@@ -22,7 +22,6 @@ from paula.core import schedule
 from . import remind_script_config as conf
 
 def execute(operand):
-    # Parsing
     if conf.DEBUG:
         outputs.print_debug("OPERAND = " + operand)
 

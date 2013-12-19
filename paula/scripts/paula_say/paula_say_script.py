@@ -25,4 +25,3 @@ def execute(operand):
         outputs.print_debug("Saying " + operand)
     interaction.say(operand,sync=True)
     import time
-    time.sleep(5)

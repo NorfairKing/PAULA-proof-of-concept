@@ -19,14 +19,18 @@ import os
 import re
 import time
 import importlib
-import subprocess
 from paula.core import outputs
 from . import script_config as conf
+
 
 def decide_and_run(string):
     outputs.print_PAULA()
     meaning, operand = decide_meaning(string)
-    execute(meaning, operand)
+    try:
+        execute(meaning, operand)
+    except KeyboardInterrupt:
+        if conf.DEBUG:
+            outputs.print_debug("Exiting.")
     time.sleep(conf.WAITING_TIME)
 
 
@@ -41,7 +45,8 @@ def execute(meaning, operand):
         module = importlib.import_module(module_name)
         module.execute(operand)
     except ImportError:
-        outputs.print_error("The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
+        outputs.print_error(
+            "The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
 
 
 def decide_meaning(string):
@@ -80,12 +85,12 @@ def means(string, meaning):
         if reg.match(string):
             if conf.DEBUG:
                 outputs.print_debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
-            #Got a match, now find the operand, remove the match_whole_string
-            for i in reversed(range(len(string)+1)):
+                #Got a match, now find the operand, remove the match_whole_string
+            for i in reversed(range(len(string) + 1)):
                 string_part = string[:i]
                 if conf.DEBUG:
-                    outputs.print_debug("string part=\""+string_part+"\"")
-                reg2 = re.compile("^"+reg_str+"$", re.IGNORECASE)
+                    outputs.print_debug("string part=\"" + string_part + "\"")
+                reg2 = re.compile("^" + reg_str + "$", re.IGNORECASE)
                 if reg2.match(string_part):
                     if conf.DEBUG:
                         outputs.print_debug("Matched \"" + string_part + "\" with \"" + reg_str + "\"")

@@ -53,5 +53,5 @@ class Event:
 
 
 
-def get_event_from_string(string):
+def get_event_from_file(path):
     pass

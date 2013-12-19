@@ -50,3 +50,8 @@ class Event:
 
     def __str__(self):
         return "EVENT: " + str(self.date) + "  COMMAND = " + self.command + "  OPERAND = " + self.operand
+
+
+
+def get_event_from_string(string):
+    pass

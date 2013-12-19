@@ -54,4 +54,10 @@ class Event:
 
 
 def get_event_from_file(path):
-    return datetime.datetime.strptime(string, '%b %d %Y %I:%M%p')
+    date = datetime.datetime.strptime(path, '%Y-%m-%d %I:%M:%S')
+    event_file = open(os.path.join(conf.SCHEDULING_DIR,path))
+    lines = event_file.readlines()
+    cmd = lines[0]
+    operand = lines[1]
+
+    return Event(date, cmd, operand)

@@ -71,4 +71,5 @@ def get_event_from_file(path):
     e = Event(date, cmd, operand)
     if conf.DEBUG:
         outputs.print_debug("Got event from file " + path + " : " + str(e))
+
     return e

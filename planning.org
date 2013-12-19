@@ -33,3 +33,5 @@
 ** TODO brush teeth
 ** TODO contact people
 ** TODO remember
+** TODO install
+*** TODO CALCLIRC

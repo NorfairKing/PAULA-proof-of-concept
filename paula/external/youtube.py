@@ -25,7 +25,7 @@ from mutagenx.easyid3 import EasyID3
 from . import external_config as conf
 
 
-def search(arg_string):
+def search_first_hit(arg_string):
     url = "https://gdata.youtube.com/feeds/api/videos?q="
     for a in arg_string.split():
         url += (str(a) + "+")
@@ -33,8 +33,9 @@ def search(arg_string):
     response = str(urllib.request.urlopen(url).read())
     vidid = response[response.find("<entry><id>http://gdata.youtube.com/feeds/api/videos/") + len(
         "<entry><id>http://gdata.youtube.com/feeds/api/videos/"): response.find("</id><published>")]
-
-    return vidid
+    name = response[response.find("<media:title type=\\\'plain\\\'>") + len(
+        "<media:title type=\\\'plain\\\'>"): response.find("</media:title>")]
+    return vidid, name
 
 
 def download_song(vidid):
@@ -85,7 +86,7 @@ def play_video(vidid):
         return process
 
 
-def play_song(vidid):
+def play_song(vidid, name):
     system.kill_vlc()
 
     process = system.call_list_silently(
@@ -93,5 +94,11 @@ def play_song(vidid):
 
     songfile = open(music_conf.SONG_PID, 'w+')
     songfile.write(str(process.pid))
+
+    songfile = open(music_conf.SONG_INFO, 'w+')
+    songfile.write(name + "\n")
+    songfile.write("Unkown\n")
+    songfile.write("YouTube")
+
 
     return process

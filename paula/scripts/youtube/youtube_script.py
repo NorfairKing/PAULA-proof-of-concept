@@ -19,5 +19,5 @@ from paula.external import youtube
 
 
 def execute(operand):
-    result = youtube.search(operand)
-    youtube.play_video(result)
+    vidid, name = youtube.search_first_hit(operand)
+    youtube.play_video(vidid, name)

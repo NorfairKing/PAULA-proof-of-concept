@@ -17,17 +17,25 @@
 
 import sys
 from paula.core import outputs
-from paula.music import song
-from paula.core import interaction
+from paula.core import inputs
+
 
 from . import paula_test_script_config as conf
+from paula.core import inputs
 
 
-def execute():
+def execute(operand):
     if conf.DEBUG:
         outputs.print_debug("The arguments to execute this script were the following.")
-        outputs.print_debug(str(sys.argv))
+        outputs.print_debug(operand)
 
     # <Test here>
+
+
+
+
+
+
+
 
     # </Test here>

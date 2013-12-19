@@ -18,4 +18,4 @@
 # Default = False
 DEBUG = False
 
-
+DEFAULT_INPUT_PROMPT = "YOU:     "

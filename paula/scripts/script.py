@@ -19,19 +19,24 @@ import os
 import re
 import time
 import importlib
-import subprocess
 from paula.core import outputs
 from . import script_config as conf
 
 
 def decide_and_run(string):
-    print_PAULA()
-    meaning = decide_meaning(string)
-    execute(meaning)
+    outputs.print_PAULA()
+    meaning, operand = decide_meaning(string)
+    try:
+        execute(meaning, operand)
+    except KeyboardInterrupt:
+        outputs.clear()
+        if conf.DEBUG:
+            outputs.print_debug("Exiting.")
+        return
     time.sleep(conf.WAITING_TIME)
 
 
-def execute(meaning):
+def execute(meaning, operand):
     if not meaning:
         return
 
@@ -40,9 +45,11 @@ def execute(meaning):
         if conf.DEBUG:
             outputs.print_debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
-        module.execute()
     except ImportError:
-        outputs.print_error("The " + meaning + " script is missing or does not exist")
+        outputs.print_error(
+            "The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
+        return
+    module.execute(operand)
 
 
 def decide_meaning(string):
@@ -50,7 +57,8 @@ def decide_meaning(string):
     meanings = get_scripts_dict()
     meaning_found = None
     for name in meanings:
-        if means(string, name):
+        matched, operand = means(string, name)
+        if matched:
             meaning_found = name
             break
     if conf.DEBUG:
@@ -58,7 +66,7 @@ def decide_meaning(string):
             outputs.print_debug("decided  " + string + " to mean " + meaning_found + ".")
         else:
             outputs.print_debug("No meaning found.")
-    return meaning_found
+    return meaning_found, operand
 
 
 def get_meaning_regexes(meaning):
@@ -67,21 +75,36 @@ def get_meaning_regexes(meaning):
 
 def means(string, meaning):
     if not meaning in meanings:
-        return False
+        return False, None
 
     regexes = get_meaning_regexes(meaning)
+
+    matches = []
+
     for reg_str in regexes:
-        if not conf.MATCH_WHOLE_STRING:
-            reg_str += ".*"
-        else:
-            reg_str = "^" + reg_str + "$"
-        if conf.IGNORE_CASING:
-            reg = re.compile(reg_str, re.IGNORECASE)
-        else:
-            reg = re.compile(reg_str)
+
+        reg = re.compile(reg_str, re.IGNORECASE)
+
         if reg.match(string):
-            return True
-    return False
+            if conf.DEBUG:
+                outputs.print_debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
+                #Got a match, now find the operand, remove the match_whole_string
+            for i in reversed(range(len(string) + 1)):
+                string_part = string[:i]
+                if conf.DEBUG:
+                    outputs.print_debug("string part=\"" + string_part + "\"")
+                reg2 = re.compile("^" + reg_str + "$", re.IGNORECASE)
+                if reg2.match(string_part):
+                    if conf.DEBUG:
+                        outputs.print_debug("Matched \"" + string_part + "\" with \"" + reg_str + "\"")
+                        outputs.print_debug("string[i:]=\"" + string[i:] + "\"")
+                    matches.append(string[i:].strip())
+
+    if not matches:
+        return False, None
+
+    matches.sort(key=lambda t: len(t))
+    return True, matches[0]
 
 
 def get_scripts_dict():
@@ -101,23 +124,3 @@ def get_scripts_dict():
     return dict
 
 
-def print_PAULA():
-    cmd = "clear"
-    process = subprocess.Popen(cmd, shell=True)
-    out, err = process.communicate()
-
-    print("""
-      ____   _   _   _ _        _
-     |  _ \ / \ | | | | |      / \ \n\
-     | |_) / _ \| | | | |     / _ \ \n\
-     |  __/ ___ \ |_| | |___ / ___ \ \n\
-     |_| /_/   \_\___/|_____/_/   \_\ \n\
-
-
- Personal
- Artificial
- Unintelligent
- Life
- Assistant
-
-""")

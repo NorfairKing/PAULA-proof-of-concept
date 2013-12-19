@@ -16,16 +16,15 @@
 ##
 
 import signal
-from . import paula_input_config as conf
 
 
-def prompt_for_input_string():
-    answer = input(conf.INPUT_PROMPT)
+def prompt_for_input_string(prompt=""):
+    answer = input(prompt)
     print()
     return answer
 
 
-def prompt_with_timeout(timeout):
+def prompt_with_timeout(timeout, prompt=""):
     #This is an "Error" thrown when it times out
     class Timeout(IOError):
         pass
@@ -40,7 +39,7 @@ def prompt_with_timeout(timeout):
         signal.alarm(timeout)
 
         #Wait for input
-        line = prompt_for_input_string()
+        line = prompt_for_input_string(prompt=prompt)
 
         #If typed before timed out, disable alarm
         signal.alarm(0)

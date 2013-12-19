@@ -30,20 +30,10 @@ from paula.agenda import agenda
 from . import sleep_script_config as conf
 
 
-def execute():
+def execute(operand):
     interaction.say("How long would you like to sleep, Sir?")
 
-    printOptions(conf.DURATION_OPTIONS)
-    answer = inputs.get_string().strip()
-
-    if not answer in conf.DURATION_OPTIONS:
-        outputs.print_error("Unknown option")
-        return
-    chosen_option = int(conf.DURATION_OPTIONS[answer])
-
-    if conf.DEBUG:
-        outputs.print_debug("answer = " + answer)
-        outputs.print_debug("selected option = " + str(chosen_option) + " seconds")
+    option = inputs.get_item_from_dict(conf.DURATION_OPTIONS)
 
     # select song
     interaction.say("Please select which song you want to wake you up.")
@@ -53,7 +43,7 @@ def execute():
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
 
     # Sleep
-    sleep.go_to_sleep_mode(chosen_option)
+    sleep.go_to_sleep_mode(int(option))
 
     # Alarm go off
     interaction.say("Good Morning, Sir")
@@ -97,7 +87,7 @@ def execute():
     print((str(quote.get_random())))
 
     # Get agenda for next few days
-    agenda.get_default()
+    agenda.print_default()
 
 
 def playalarm(path):

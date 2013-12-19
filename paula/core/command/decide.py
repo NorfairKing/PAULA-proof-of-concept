@@ -41,14 +41,11 @@ def decide_meaning(string):
 def means(string, meaning):
     meanings = get_meanings_dict()
     if not meaning in meanings.keys():
-        return False
+        return None
 
     regexes = get_meaning_regexes(meaning)
     for reg_str in regexes:
-        if not conf.MATCH_WHOLE_STRING:
-            reg_str += ".*"
-        else:
-            reg_str = "^" + reg_str + "$"
+        make_regex_string(reg_str)
         if conf.IGNORE_CASING:
             reg = re.compile(reg_str, re.IGNORECASE)
         else:
@@ -57,6 +54,11 @@ def means(string, meaning):
             return True
     return False
 
+def make_regex_string(reg_str):
+    if not conf.MATCH_WHOLE_STRING:
+        reg_str += ".*"
+    else:
+        reg_str = "^" + reg_str + "$"
 
 def get_meanings_dict():
     global meanings_dict

@@ -21,17 +21,13 @@ from paula.core import outputs
 from paula.core import interaction
 from . import goingout_script_config as conf
 
+SECONDS_IN_A_MINUTE = 60
+MINUTES_IN_AN_HOUR = 60
 
-def execute():
+def execute(operand):
     interaction.say("How long do you think you will be gone, Sir?")
 
-    SECONDS_IN_A_MINUTE = 60
-    MINUTES_IN_AN_HOUR = 60
-
     answer = inputs.get_integer()
-    if answer == None:
-        outputs.print_error("ERROR: Not an Integer")
-        return
     seconds = answer * SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR
 
     if conf.DEBUG:

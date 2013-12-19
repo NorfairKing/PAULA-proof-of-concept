@@ -18,8 +18,8 @@
 # Default = False
 DEBUG = False
 
-# Default = ["/home/syd/music/vibes"]
-VIBE_DIRS = ["/home/syd/music/vibes"]
+# Default = ["/home/syd/music/Vibe"]
+VIBE_DIRS = ["/home/syd/music/Vibe"]
 
 # Default = [".mp3"]
 MUSIC_EXTENSIONS = [".mp3"]

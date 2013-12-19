@@ -21,7 +21,7 @@ from paula.music.song import Song
 from . import vibe_script_config as conf
 
 
-def execute():
+def execute(operand):
     possible_selections = get_vibe_songs_dict()
     if conf.DEBUG:
         print("Possible selections = " + str(possible_selections))
@@ -29,11 +29,8 @@ def execute():
     selected_song = possible_selections[selected_title]
     if conf.DEBUG:
         print("Selected = " + str(selected_song))
-    try:
-        subp = selected_song.play()
-        subp.wait()
-    except KeyboardInterrupt:
-        subp.kill()
+
+    selected_song.play()
 
 
 def get_vibe_songs_dict():
@@ -46,5 +43,5 @@ def get_vibe_songs_dict():
                     if filename.endswith(ext):
                         file_clean = os.path.splitext(filename)[0]
                         entire_path = os.path.join(dirname, filename)
-                        possible_selections[file_clean] = Song(file_clean, entire_path)
+                        possible_selections[file_clean] = Song(entire_path)
     return possible_selections

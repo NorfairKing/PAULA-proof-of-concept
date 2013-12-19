@@ -17,5 +17,5 @@
 from paula.music import song
 
 
-def execute():
+def execute(operand):
     song.play_random()

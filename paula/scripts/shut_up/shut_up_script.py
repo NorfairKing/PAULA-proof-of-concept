@@ -15,7 +15,12 @@
 #
 ##
 
+import os
 from paula.core import system
 
 def execute(operand):
     system.kill_vlc()
+    try:
+        os.remove('/tmp/paula_song.pid')
+    except OSError:
+        pass

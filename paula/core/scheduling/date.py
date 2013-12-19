@@ -15,6 +15,6 @@
 #
 ##
 
-class Event:
+class Date:
     def __init__(self):
         pass

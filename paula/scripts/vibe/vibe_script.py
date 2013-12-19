@@ -33,7 +33,6 @@ def execute(operand):
     selected_song.play()
 
 
-
 def get_vibe_songs_dict():
     possible_selections = {}
     for path in conf.VIBE_DIRS:

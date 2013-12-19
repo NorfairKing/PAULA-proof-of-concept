@@ -16,15 +16,18 @@
 ##
 
 import signal
+from paula.core import outputs
 
 
 def prompt_for_input_int(prompt=""):
-    answer = input(prompt)
-    try:
-        value = int(answer)
-    except ValueError:
-        value = None
-    print()
+    value = None
+    while not value:
+        answer = input(prompt)
+        try:
+            value = int(answer)
+        except ValueError:
+            outputs.print_error("Not an Integer")
+            value = None
     return value
 
 

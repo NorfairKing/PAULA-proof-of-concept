@@ -27,33 +27,4 @@ def execute(operand):
 
     # <Test here>
 
-    import datetime
-    from paula.core.scheduling import event
-
-    now = datetime.datetime.now()
-
-    year = now.year
-    print(year)
-    month = now.month
-    print(month)
-    day = now.day
-    print(day)
-    hours = now.hour
-    print(hours)
-    minutes = now.minute
-    print(minutes)
-    seconds = now.second
-    print(seconds)
-
-    dt = datetime.datetime(year, month, day, hours, minutes, seconds)
-    print(str(dt))
-    e = event.Event(dt, "paula_working", "Nothing")
-    e.schedule()
-
-    from paula.core.scheduling import scheduler
-
-    scheduler.get_all_events()
-
-
-
     # </Test here>

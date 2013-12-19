@@ -39,4 +39,4 @@ LOG_MAXBYTES = 10000
 LOG_BACKUPCOUNT = 5
 
 # Seconds between check
-CHECK_TIMER = 60
+CHECK_TIMER = 5

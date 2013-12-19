@@ -60,7 +60,7 @@ class Paula(Daemon):
             if conf.DEBUG:
                 outputs.print_debug("Found event to be overdue " + str(e))
 
-            cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " " + e.command + " " + e.operand + "'"
+            cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " " + e.command + " \"" + e.operand + "\"'"
             if conf.DEBUG:
                 outputs.print_debug("Event " + str(self) + " happening.")
             system.call(cmd, sync=True)

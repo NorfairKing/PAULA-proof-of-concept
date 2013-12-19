@@ -24,6 +24,7 @@ from .daemon import Daemon
 from paula import config as conf
 from paula.scripts import script
 from paula.core import outputs
+from paula.core import schedule
 from paula.core import system
 
 
@@ -56,10 +57,14 @@ class Paula(Daemon):
         self.debug("Done with " + string)
 
     def check(self):
-        cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " paula_working'"
-        if conf.DEBUG:
-            outputs.print_debug("Executing " + cmd)
-        system.call(cmd, sync=True)
+        for e in schedule.get_overdue_events():
+            if conf.DEBUG:
+                outputs.print_debug("Found event to be overdue " + str(e))
+            cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " " + e.command + " " + e.operand + "'"
+            if conf.DEBUG:
+                outputs.print_debug("Executing " + cmd)
+            system.call(cmd, sync=True)
+
 
     def run(self):
         while True:

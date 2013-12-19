@@ -17,7 +17,7 @@
 
 import os
 
-DEBUG = False
+DEBUG = True
 
 PAULA_SCRIPT = "PAULA.sh"
 PAULA_DIR = os.path.dirname(os.path.realpath(__file__))

@@ -29,3 +29,6 @@ def schedule_event(datetime, command, operand):
 
 def get_all_events():
     return scheduler.get_all_events()
+
+def get_overdue_events():
+    return scheduler.get_overdue_events()

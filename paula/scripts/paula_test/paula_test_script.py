@@ -31,22 +31,17 @@ def execute(operand):
     from paula.core.scheduling import event
 
     year=2013
-    month=8
-    day=4
-    hours=12
-    minutes=30
-    seconds=45
+    month=12
+    day=19
+    hours=17
+    minutes=52
+    seconds=0
 
     dt = datetime.datetime(year, month, day, hours, minutes, seconds)
     print(str(dt))
-
     e = event.Event(dt, "paula_working", "Nothing")
     e.schedule()
-    dt = datetime.datetime(year+1, month, day, hours, minutes, seconds)
-    e = event.Event(dt, "paula_working", "NOthing2")
-    e.schedule()
 
-    print(e.has_passed())
 
     from paula.core.scheduling import scheduler
     scheduler.get_all_events()

@@ -15,8 +15,6 @@
 #
 ##
 
-import sys
-
 from paula.core import inputs
 from paula.core import outputs
 from paula.core import interaction
@@ -24,6 +22,7 @@ from paula.music import song
 from paula.external import youtube
 
 from . import play_song_script_config as conf
+
 
 def execute(operand):
     search_string = operand

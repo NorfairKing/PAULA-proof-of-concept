@@ -16,7 +16,6 @@
 ##
 
 import time
-import subprocess
 import logging
 import logging.config
 
@@ -60,10 +59,13 @@ class Paula(Daemon):
         for e in schedule.get_overdue_events():
             if conf.DEBUG:
                 outputs.print_debug("Found event to be overdue " + str(e))
+
             cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " " + e.command + " " + e.operand + "'"
             if conf.DEBUG:
-                outputs.print_debug("Executing " + cmd)
+                outputs.print_debug("Event " + str(self) + " happening.")
             system.call(cmd, sync=True)
+
+            e.delete()
 
 
     def run(self):

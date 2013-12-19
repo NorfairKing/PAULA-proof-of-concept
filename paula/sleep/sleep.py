@@ -27,7 +27,7 @@ def go_to_sleep_mode(seconds):
             cmd = "sudo pm-suspend"
             system.call_silently(cmd)
         else:
-            outputs.print_debug("going to sleep indefinitly")
+            outputs.print_debug("going to sleep indefinitely")
     else:
         cmd = "sudo rtcwake --mode mem "
         if conf.DEBUG:

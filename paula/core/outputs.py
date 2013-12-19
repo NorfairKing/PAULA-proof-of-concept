@@ -31,10 +31,7 @@ def print_color(text, foreground, background="default", bold=False, newline=True
     string.print_color(text, foreground, background=background, bold=bold, newline=newline)
 
 def print_PAULA():
-    cmd = "clear"
-    process = subprocess.Popen(cmd, shell=True)
-    out, err = process.communicate()
-
+    clear()
     print("""
       ____   _   _   _ _        _
      |  _ \ / \ | | | | |      / \ \n\
@@ -50,3 +47,8 @@ def print_PAULA():
  Assistant
 
 """)
+
+def clear():
+    cmd = "clear"
+    process = subprocess.Popen(cmd, shell=True)
+    out, err = process.communicate()

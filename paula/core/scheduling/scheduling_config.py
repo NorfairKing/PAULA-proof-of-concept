@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##
 #      ____   _   _   _ _        _    
 #     |  _ \ / \ | | | | |      / \   
@@ -14,17 +15,9 @@
 #
 ##
 
-Description of package
+from os.path import expanduser
 
-VERSION 0.1
+# Default = False
+DEBUG = True
 
-* Provided
-** module1.py
-   - function1(arg)
-     explanation
-
-* Required
-** package1
-*** module2.py
-    - function1(arg)
-    - funtion2(arg)
+SCHEDULING_DIR = expanduser("~/.PAULA/events")

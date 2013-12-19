@@ -46,10 +46,10 @@ class Song:
         stop_song()
 
         #Write pid and song info to temporary file
-        pidfile = open('/tmp/paula_song.pid', 'w+')
+        pidfile = open(conf.SONG_PID, 'w+')
         pidfile.write(str(process.pid))
 
-        songfile = open('/tmp/paula_song.info', 'w+')
+        songfile = open(conf.SONG_INFO, 'w+')
         songfile.write(self.title + "\n")
         songfile.write(self.album + "\n")
         songfile.write(self.artist)
@@ -64,7 +64,7 @@ def choose_and_play():
     song.play()
 
 def get_current_artist():
-    if not os.path.exists('/tmp/paula_song.info'):
+    if not os.path.exists(conf.SONG_INFO):
         return None
 
     try:
@@ -75,22 +75,22 @@ def get_current_artist():
         outputs.print_error('Could not open paula_song.info')
 
 def get_current_song():
-    if not os.path.exists('/tmp/paula_song.info'):
+    if not os.path.exists(conf.SONG_INFO):
         return None
 
     try:
-        with open('/tmp/paula_song.info', 'r') as f:
+        with open(conf.SONG_INFO, 'r') as f:
             lines = f.readlines()
             return lines[0]
     except IOError:
         outputs.print_error('Could not open paula_song.info')
 
 def get_current_album():
-    if not os.path.exists('/tmp/paula_song.info'):
+    if not os.path.exists(conf.SONG_INFO):
         return None
 
     try:
-        with open('/tmp/paula_song.info', 'r') as f:
+        with open(conf.SONG_INFO, 'r') as f:
             lines = f.readlines()
             return lines[1]
     except IOError:

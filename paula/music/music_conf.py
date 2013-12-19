@@ -20,6 +20,10 @@ from os.path import expanduser
 # Default = False
 DEBUG = False
 
+# Song pid file
+SONG_PID = '/tmp/paula_song.pid';
+SONG_INFO = '/tmp/paula_song.info';
+
 # Default = [".mp3"]
 MUSIC_EXTENSIONS = [".mp3"]
 

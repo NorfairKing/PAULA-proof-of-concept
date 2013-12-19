@@ -16,8 +16,13 @@
 ##
 
 from paula.music import song
+from paula.music import music_conf
+import os
 
 def execute(operand):
-    print("Song: " + song.get_current_song())
-    print("Artist: " + song.get_current_artist())
-    print("Album: " + song.get_current_album())
+    if os.path.exists(music_conf.SONG_PID):
+        print("Song: " + song.get_current_song())
+        print("Artist: " + song.get_current_artist())
+        print("Album: " + song.get_current_album())
+    else:
+        print("There is no song playing.")

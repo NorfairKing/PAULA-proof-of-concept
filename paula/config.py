@@ -17,9 +17,12 @@
 
 import os
 
-debug = False
+DEBUG = False
 
+PAULA_SCRIPT = "PAULA.sh"
 PAULA_DIR = os.path.dirname(os.path.realpath(__file__))
+PAULA_EXECUTABLE_DIR = os.path.dirname(PAULA_DIR)
+PAULA_EXECUTABLE = os.path.join(PAULA_EXECUTABLE_DIR,PAULA_SCRIPT)
 
 # Pid file
 PAULA_PID_FILE = '/tmp/paula.pid'

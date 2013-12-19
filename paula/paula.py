@@ -24,6 +24,7 @@ from .daemon import Daemon
 from paula import config as conf
 from paula.scripts import script
 from paula.core import outputs
+from paula.core import system
 
 
 class Paula(Daemon):
@@ -55,10 +56,10 @@ class Paula(Daemon):
         self.debug("Done with " + string)
 
     def check(self):
-        cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_DIR + "/../PAULA.sh paula_working'"
-        print("Executing " + cmd)
-        process = subprocess.Popen(cmd, shell=True)
-        process.wait()
+        cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " paula_working'"
+        if conf.DEBUG:
+            outputs.print_debug("Executing " + cmd)
+        system.call(cmd, sync=True)
 
     def run(self):
         while True:

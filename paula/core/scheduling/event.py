@@ -16,7 +16,6 @@
 ##
 
 import os
-import inspect
 import datetime
 
 from paula.core import outputs
@@ -39,14 +38,15 @@ class Event:
             if conf.DEBUG:
                 outputs.print_debug("Created event directory.")
 
-        # TODO check if date has passed already.
-
         event_file = open(os.path.join(conf.SCHEDULING_DIR,str(self.date)), 'w')
         event_file.write(self.command + "\n")
         event_file.write(self.operand)
         event_file.close()
         if conf.DEBUG:
             outputs.print_debug("Scheduled " + self.command + " at " + str(self.date))
+
+    def has_passed(self):
+        return self.date > datetime.datetime.now()
 
     def __str__(self):
         return "EVENT: " + str(self.date) + "  COMMAND = " + self.command + "  OPERAND = " + self.operand

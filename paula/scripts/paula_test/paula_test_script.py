@@ -44,6 +44,8 @@ def execute(operand):
     e = event.Event(dt, "paula_working", "NOthing2")
     e.schedule()
 
+    print(e.has_passed())
+
     from paula.core.scheduling import scheduler
     scheduler.get_all_events()
 

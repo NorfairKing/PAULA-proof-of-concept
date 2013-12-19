@@ -68,7 +68,7 @@ def get_current_artist():
         return None
 
     try:
-        with open('/tmp/paula_song.info', 'r') as f:
+        with open(conf.SING_INFO, 'r') as f:
             lines = f.readlines()
             return lines[2]
     except IOError:

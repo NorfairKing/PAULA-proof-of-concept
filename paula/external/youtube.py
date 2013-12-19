@@ -74,13 +74,13 @@ def play_video(vidid):
 
     if conf.CONTROLS:
         process = system.call_list_silently(["vlc", "-vvv", "http://youtube.com/watch?v=" + vidid], sync=False)
-        songfile = open('/tmp/paula_song.pid', 'w+')
+        songfile = open(music_conf.SONG_PID, 'w+')
         songfile.write(str(process.pid))
         return process
     else:
         process = system.call_list_silently(["vlc", '-Idummy', "-vvv", "http://youtube.com/watch?v=" + vidid],
                                             sync=False)
-        songfile = open('/tmp/paula_song.pid', 'w+')
+        songfile = open(music_conf.SONG_PID, 'w+')
         songfile.write(str(process.pid))
         return process
 
@@ -91,7 +91,7 @@ def play_song(vidid):
     process = system.call_list_silently(
         ["vlc", '-Idummy', '-Vdummy', "--play-and-exit", "-vvv", "http://youtube.com/watch?v=" + vidid], sync=False)
 
-    songfile = open('/tmp/paula_song.pid', 'w+')
+    songfile = open(music_conf.SONG_PID, 'w+')
     songfile.write(str(process.pid))
 
     return process

@@ -58,6 +58,13 @@ class Song:
     def __str__(self):
         return "Artist: " + self.artist + ", Song: "+self.title
 
+def is_song_playing():
+    if os.path.exists(conf.SONG_PID):
+        songfile = open(conf.SONG_PID, 'r');
+        pid = songfile.read()
+        if(os.path.exists("/proc/" + pid)):
+            return True
+    return False
 
 def choose_and_play():
     song = choose()

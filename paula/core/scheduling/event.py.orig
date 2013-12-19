@@ -53,5 +53,10 @@ class Event:
 
 
 
-def get_event_from_file(path):
+<<<<<<< HEAD
+def get_event_from_string(string):
     return datetime.datetime.strptime(string, '%b %d %Y %I:%M%p')
+=======
+def get_event_from_file(path):
+    pass
+>>>>>>> b989788e2efcb3c5b5679acf989e1ef20c50a29c

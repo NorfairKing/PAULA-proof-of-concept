@@ -44,9 +44,12 @@ def execute(operand):
 
     e = event.Event(dt, "paula_working", "Nothing")
     e.schedule()
+    dt = datetime.datetime(year+1, month, day, hours, minutes, seconds)
+    e = event.Event(dt, "paula_working", "NOthing2")
+    e.schedule()
 
-
-
+    from paula.core.scheduling import scheduler
+    scheduler.get_all_events()
 
 
 

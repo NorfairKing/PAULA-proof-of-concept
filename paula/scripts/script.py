@@ -29,6 +29,7 @@ def decide_and_run(string):
     try:
         execute(meaning, operand)
     except KeyboardInterrupt:
+        outputs.clear()
         if conf.DEBUG:
             outputs.print_debug("Exiting.")
     time.sleep(conf.WAITING_TIME)

@@ -62,7 +62,7 @@ class Paula(Daemon):
 
             cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " " + e.command + " \"" + e.operand + "\"'"
             if conf.DEBUG:
-                outputs.print_debug("Event " + str(self) + " happening.")
+                outputs.print_debug("executing" + cmd)
             system.call(cmd, sync=True)
 
             e.delete()

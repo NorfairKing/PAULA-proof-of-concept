@@ -65,7 +65,10 @@ def get_event_from_file(path):
     date = datetime.datetime.strptime(os.path.basename(path), '%Y-%m-%d %H:%M:%S')
     event_file = open(os.path.join(conf.SCHEDULING_DIR, path))
     lines = event_file.readlines()
-    cmd = lines[0]
-    operand = lines[1]
+    cmd = lines[0].strip()
+    operand = lines[1].strip()
 
-    return Event(date, cmd, operand)
+    e = Event(date, cmd, operand)
+    if conf.DEBUG:
+        outputs.print_debug("Got event from file " + path + " : " + str(e))
+    return e

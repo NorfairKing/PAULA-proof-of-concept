@@ -27,7 +27,7 @@ SONG_INFO = '/tmp/paula_song.info';
 # Default = [".mp3"]
 MUSIC_EXTENSIONS = [".mp3"]
 
-# Default = ["/home/syd/music"]
+# Default = []
 EXTRA_MUSIC_DIRS = []
 
 STANDARD_MUSIC_DIRS = [

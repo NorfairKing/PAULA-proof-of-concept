@@ -1,4 +1,3 @@
-
 * Concept
   PAULA will be a life assistant.
   She will be a daemon so that she can monitor everything that happens on the computer.
@@ -25,14 +24,11 @@
 ** TODO Advice
 ** TODO Memory Loss
 ** TODO Death note
-** TODO VERSION NUMBERS PER PACKAGE
 ** TODO Mail check
 ** TODO LISTEN
 ** TODO Misc
 *** TODO Roll me
 *** TODO HAHA
-** TODO Recovery modus
-*** TODO Clear screen
 ** TODO Motivation
 ** TODO brush teeth
 ** TODO contact people

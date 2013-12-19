@@ -32,6 +32,7 @@ def decide_and_run(string):
         outputs.clear()
         if conf.DEBUG:
             outputs.print_debug("Exiting.")
+        return
     time.sleep(conf.WAITING_TIME)
 
 
@@ -44,10 +45,11 @@ def execute(meaning, operand):
         if conf.DEBUG:
             outputs.print_debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
-        module.execute(operand)
     except ImportError:
         outputs.print_error(
             "The " + meaning + " script is missing or does not exist. Either that or some import fails inside the script.")
+        return
+    module.execute(operand)
 
 
 def decide_meaning(string):

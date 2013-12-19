@@ -15,3 +15,5 @@
 #
 ##
 
+def schedule_event():
+    pass

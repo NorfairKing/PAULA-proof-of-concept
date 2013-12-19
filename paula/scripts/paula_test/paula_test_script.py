@@ -15,13 +15,9 @@
 #
 ##
 
-import sys
 from paula.core import outputs
-from paula.core import inputs
-
 
 from . import paula_test_script_config as conf
-from paula.core import inputs
 
 
 def execute(operand):
@@ -31,7 +27,19 @@ def execute(operand):
 
     # <Test here>
 
+    import datetime
+    from paula.core.scheduling import event
 
+    year=2013
+    month=8
+    day=4
+    hours=12
+    minutes=30
+    seconds=45
+
+    dt = datetime.datetime(year, month, day, hours, minutes, seconds)
+    e = event.Event(dt, "paula_working", "Nothing")
+    e.schedule()
 
 
 

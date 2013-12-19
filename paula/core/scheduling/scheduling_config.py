@@ -20,4 +20,4 @@ from os.path import expanduser
 # Default = False
 DEBUG = True
 
-SCHEDULING_DIR = expanduser("~/.PAULA")
+SCHEDULING_DIR = expanduser("~/.PAULA/events")

@@ -1,17 +1,21 @@
 * PAULA
-  Personal Artificial Intelligent Life Assistant
+  Personal Artificial Unintelligent Life Assistant
 
 ** Notes
-   PAULA is currently only supported on arch and ubuntu. It may work if you manage to install all the required packages manually.
-   Currently only urxvt is supported.
+*** Supported Distributions
+    - Arch
+    - Ubuntu
+    - Mint
 
+*** Supported Terminals
+    - RXVT-Unicode
 
 ** Install
   Two setup scripts are provided:
   install_paula_arch.py
   install_paula_ubuntu.py
   Running this with python3 will install PAULA and her components.
-
+  
 ** Use
   Run PAULA.sh with the following commands:
   - start   - starts PAULA

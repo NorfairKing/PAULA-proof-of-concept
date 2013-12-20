@@ -40,7 +40,7 @@ def search_first_hit(arg_string):
 
 
 def download_song(vidid):
-    process = system.call_silently(
+    download = system.call_silently(
         "youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid, sync=False)
 
     print("Please fill in some info: ")
@@ -58,10 +58,10 @@ def download_song(vidid):
     if not os.path.isdir(musicdir + "/" + artist + "/" + album):
         os.mkdir(musicdir + "/" + artist + "/" + album)
 
-    process.wait()
-    os.rename(vidid + ".mp3", musicdir + "/" + artist + "/" + album + "/" + title + ".mp3")
-    #system.call("mv " + vidid + ".mp3 \"" + musicdir + "/" + artist + "/" + album + "/" + title + ".mp3\"", sync=True)
+    download.wait()
+
     file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
+    os.rename(vidid + ".mp3", file_path)
 
     audio = EasyID3(file_path)
     audio["title"] = title

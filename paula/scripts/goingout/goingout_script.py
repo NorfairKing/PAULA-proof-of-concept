@@ -34,11 +34,13 @@ def execute(operand):
         outputs.print_debug("answer = " + str(answer))
         outputs.print_debug("seconds = " + str(seconds))
 
+    interaction.say_from_file(conf.GREETINGS_FILE)
+
     sleep.go_to_sleep_mode(seconds)
 
     answer = inputs.get_string_timeout(seconds)
 
-    if answer != "":
+    if not answer:
         interaction.say("Welcome back, Sir")
     else:
         sleep.go_to_sleep_mode()

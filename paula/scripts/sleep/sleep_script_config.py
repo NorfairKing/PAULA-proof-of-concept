@@ -20,6 +20,9 @@ import os
 # Default = False
 DEBUG = False
 
+SLEEP_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+MORNING_FILE = os.path.join(SLEEP_SCRIPT_DIR,"greetings")
+
 # A dictionary that maps strings (options) to integers (amounts of seconds)
 DURATION_OPTIONS = {
     "short nap": 25 * 60
@@ -37,8 +40,8 @@ PLEASANT_WAKE_UP_VOLUME = 60
 # Default = 5 * 60
 WAKE_UP_TIME = 5 * 60
 
-# Default = os.path.join(os.path.dirname(os.path.realpath(__file__)),'resources')
-RESOURCES_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'resources')
+# Default = os.path.join(SLEEP_SCRIPT_DIR,'resources')
+RESOURCES_DIR = os.path.join(SLEEP_SCRIPT_DIR, 'resources')
 
 # Default = os.path.join(RESOURCES_DIR,'annoying')
 ANNOYING_ALARM_TEXT = os.path.join(RESOURCES_DIR, 'annoying')

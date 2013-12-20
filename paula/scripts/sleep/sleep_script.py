@@ -46,7 +46,7 @@ def execute(operand):
     sleep.go_to_sleep_mode(int(option))
 
     # Alarm go off
-    interaction.say("Good Morning, Sir")
+    interaction.say_from_file(conf.MORNING_FILE)
 
     subp = s.play()
     answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)

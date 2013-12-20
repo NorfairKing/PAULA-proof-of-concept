@@ -15,18 +15,12 @@
 #
 ##
 
-import os
 from paula.core import outputs
 from paula.core import interaction
 
-from . import paula_test_script_config as conf
-
+from . import paula_say_script_config as conf
 
 def execute(operand):
     if conf.DEBUG:
-        outputs.print_debug("The arguments to execute this script were the following.")
-        outputs.print_debug(operand)
-
-    # <Test here>
-    interaction.say_from_file(os.path.join(conf.HERE, 'lines.txt'))
-    # </Test here>
+        outputs.print_debug("Saying " + operand)
+    interaction.say(operand,sync=True)

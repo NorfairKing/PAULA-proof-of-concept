@@ -18,6 +18,6 @@
 from os.path import expanduser
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 SCHEDULING_DIR = expanduser("~/.PAULA/events")

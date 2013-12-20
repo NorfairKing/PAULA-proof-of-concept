@@ -15,7 +15,9 @@
 #
 ##
 
+import os
 from paula.core import outputs
+from paula.core import interaction
 
 from . import paula_test_script_config as conf
 
@@ -26,5 +28,5 @@ def execute(operand):
         outputs.print_debug(operand)
 
     # <Test here>
-
+    interaction.say_from_file(os.path.join(conf.HERE, 'lines.txt'))
     # </Test here>

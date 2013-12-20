@@ -24,4 +24,3 @@ def execute(operand):
     if conf.DEBUG:
         outputs.print_debug("Saying " + operand)
     interaction.say(operand,sync=True)
-    import time

@@ -68,4 +68,4 @@ def execute(operand):
     delta = datetime.timedelta(days=delta_days, seconds=delta_seconds, minutes=delta_minutes, hours=delta_hours,
                                weeks=delta_weeks)
     event_moment = now_rounded + delta
-    schedule.schedule_event(event_moment, "paula_say", content)
+    schedule.schedule_event(event_moment, "paula_remind", content)

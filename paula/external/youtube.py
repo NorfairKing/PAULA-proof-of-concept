@@ -21,6 +21,7 @@ import os
 from paula.core import system
 from paula.core import inputs
 from paula.music import music_conf
+from paula.music import song
 from mutagenx.easyid3 import EasyID3
 from . import external_config as conf
 
@@ -48,8 +49,8 @@ def download_song(vidid):
     title = inputs.get_string(prompt="Title: ")
 
     #heel lelijk, moet veranderd worden
-    musicdir = music_conf.MUSIC_DIRS[0]
-    if len(music_conf.MUSIC_DIRS) > 1:
+    musicdir = song.get_music_dirs()[0]
+    if len(song.get_music_dirs()) > 1:
         musicdir = inputs.get_item_from_list(music_conf.MUSIC_DIRS)
 
     if not os.path.isdir(musicdir + "/" + artist):
@@ -62,7 +63,6 @@ def download_song(vidid):
     #system.call("mv " + vidid + ".mp3 \"" + musicdir + "/" + artist + "/" + album + "/" + title + ".mp3\"", sync=True)
     file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
 
-    print(file_path)
     audio = EasyID3(file_path)
     audio["title"] = title
     audio["artist"] = artist

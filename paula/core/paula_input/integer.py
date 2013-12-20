@@ -25,10 +25,10 @@ def prompt_for_input_int(prompt=""):
         answer = input(prompt)
         try:
             value = int(answer)
+            return value
         except ValueError:
             outputs.print_error("Not an Integer")
             value = None
-    return value
 
 
 def prompt_with_timeout(timeout, prompt=""):

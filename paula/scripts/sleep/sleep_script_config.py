@@ -21,7 +21,7 @@ import os
 DEBUG = False
 
 SLEEP_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-MORNING_FILE = os.path.join(SLEEP_SCRIPT_DIR,"greetings")
+MORNING_FILE = os.path.join(SLEEP_SCRIPT_DIR, "morning.paula_says")
 
 # A dictionary that maps strings (options) to integers (amounts of seconds)
 DURATION_OPTIONS = {

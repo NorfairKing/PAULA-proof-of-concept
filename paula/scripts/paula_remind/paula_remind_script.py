@@ -29,7 +29,7 @@ def execute(operand):
     if conf.DEBUG:
         outputs.print_debug("Reminding " + operand)
 
-    interaction.say(operand)
+    interaction.say(operand, sync=True)
 
     response = inputs.get_string_timeout()
     if interaction.means(response, "okay"):

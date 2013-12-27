@@ -19,6 +19,7 @@ import os
 import re
 import time
 import importlib
+
 from paula.core import outputs
 from . import script_config as conf
 
@@ -31,8 +32,7 @@ def decide_and_run(string):
     except KeyboardInterrupt:
         outputs.clear()
         outputs.print_PAULA()
-        if conf.DEBUG:
-            outputs.print_debug("Exiting.")
+        debug("Exiting.")
         return
     time.sleep(conf.WAITING_TIME)
 
@@ -43,8 +43,7 @@ def execute(meaning, operand):
 
     try:
         module_name = "paula.scripts." + meaning + "." + meaning + "_script"
-        if conf.DEBUG:
-            outputs.print_debug("Importing module: " + module_name)
+        debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
     except ImportError:
         outputs.print_error(
@@ -87,18 +86,15 @@ def means(string, meaning):
         reg = re.compile(reg_str, re.IGNORECASE)
 
         if reg.match(string):
-            if conf.DEBUG:
-                outputs.print_debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
+            debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
                 #Got a match, now find the operand, remove the match_whole_string
             for i in reversed(range(len(string) + 1)):
                 string_part = string[:i]
-                if conf.DEBUG:
-                    outputs.print_debug("string part=\"" + string_part + "\"")
+                debug("string part=\"" + string_part + "\"")
                 reg2 = re.compile("^" + reg_str + "$", re.IGNORECASE)
                 if reg2.match(string_part):
-                    if conf.DEBUG:
-                        outputs.print_debug("Matched \"" + string_part + "\" with \"" + reg_str + "\"")
-                        outputs.print_debug("string[i:]=\"" + string[i:] + "\"")
+                    debug("Matched \"" + string_part + "\" with \"" + reg_str + "\"")
+                    debug("string[i:]=\"" + string[i:] + "\"")
                     matches.append(string[i:].strip())
 
     if not matches:
@@ -110,9 +106,7 @@ def means(string, meaning):
 
 def get_scripts_dict():
     dict = {}
-
     import paula.scripts
-
     scripts_dir = os.path.dirname(os.path.abspath(paula.scripts.__file__))
     for script in os.listdir(scripts_dir):
         to_be_checked = os.path.join(scripts_dir, script)
@@ -125,3 +119,6 @@ def get_scripts_dict():
     return dict
 
 
+def debug(string):
+    if conf.DEBUG:
+        outputs.print_debug(string)

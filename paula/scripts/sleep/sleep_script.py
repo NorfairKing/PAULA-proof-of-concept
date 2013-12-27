@@ -114,6 +114,7 @@ def playalarm(path):
     process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
     return process
 
+
 def debug(string):
     if conf.DEBUG:
         outputs.print_debug(string)

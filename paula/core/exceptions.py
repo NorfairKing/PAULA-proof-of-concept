@@ -16,5 +16,11 @@
 ##
 
 class PAULA_Exception(Exception):
-    def __init__(self, message="PAULA_Exception"):
+    def __init__(self, message=""):
         Exception.__init__(self, message)
+
+class PAULA_Parse_Exception(PAULA_Exception):
+    pass
+
+class PAULA_Not_An_Integer_Exception(PAULA_Parse_Exception):
+    pass

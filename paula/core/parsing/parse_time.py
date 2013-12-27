@@ -16,12 +16,66 @@
 ##
 
 from datetime import timedelta
-from datetime import datetime
 
-def parse_delta(string):
+from paula.core import outputs
+from paula.core import exceptions
+from paula.core import interaction
+from . import parsing_config as conf
 
-
-    pass
 
 def parse_datetime(string):
     pass
+
+
+def parse_delta(string):
+    string = string.strip()
+    if not " " in string:
+        debug("No space in string")
+        return only_numeral(string)
+    else:
+        return numeral_and_quantifier(string)
+
+
+def only_numeral(string):
+    numeral = get_numeral_int(string)
+    return timedelta(seconds=numeral)
+
+
+def numeral_and_quantifier(string):
+    numeral, quantifier = string.split()
+    num = get_numeral_int(numeral)
+    delta_seconds = 0
+    delta_minutes = 0
+    delta_hours = 0
+    delta_days = 0
+    delta_weeks = 0
+
+    if interaction.means(quantifier, "seconds"):
+        delta_seconds = num
+    elif interaction.means(quantifier, "minutes"):
+        delta_minutes = num
+    elif interaction.means(quantifier, "hours"):
+        delta_hours = num
+    elif interaction.means(quantifier, "days"):
+        delta_days = num
+
+    delta = timedelta(days=delta_days, seconds=delta_seconds, minutes=delta_minutes, hours=delta_hours,
+                      weeks=delta_weeks)
+    return delta
+
+
+def get_numeral_int(string):
+    lowered = string.strip().lower()
+    if lowered in conf.DIGITS:
+        return conf.DIGITS[lowered]
+
+    try:
+        numeral_int = int(string)
+    except ValueError:
+        raise exceptions.PAULA_Not_An_Integer_Exception
+    return numeral_int
+
+
+def debug(string):
+    if conf.DEBUG:
+        outputs.print_debug(string)

@@ -39,13 +39,10 @@ def execute(operand):
             outputs.print_debug("No space in moment, Exiting.")
         return
 
-    now_rounded = get_rounded_now()
     delta = parse_delta(moment)
-    event_moment = now_rounded + delta
-
     treated_content = treat_content(content)
+    schedule.schedule_event_with_delta(delta, "paula_remind", treated_content)
 
-    schedule.schedule_event(event_moment, "paula_remind", treated_content)
 
 def parse_delta(moment):
     numeral, quantifier = moment.split()
@@ -69,17 +66,6 @@ def parse_delta(moment):
                                weeks=delta_weeks)
     return delta
 
-def get_rounded_now():
-    now = datetime.datetime.now()
-    moment_year = now.year
-    moment_month = now.month
-    moment_day = now.day
-    moment_hour = now.hour
-    moment_minute = now.minute
-    moment_second = now.second
-    now_rounded = datetime.datetime(year=moment_year, month=moment_month, day=moment_day, hour=moment_hour,
-                                    minute=moment_minute, second=moment_second)
-    return now_rounded
 
 def treat_content(content):
     content = ' ' + content + ' '

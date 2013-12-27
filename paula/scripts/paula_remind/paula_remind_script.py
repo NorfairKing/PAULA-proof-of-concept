@@ -31,6 +31,7 @@ def execute(operand):
 
     interaction.say(operand, sync=True)
 
+
     response = inputs.get_string_timeout()
     if interaction.means(response, "okay"):
         return

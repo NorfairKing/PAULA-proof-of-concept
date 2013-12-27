@@ -29,6 +29,10 @@ def parse_datetime(string):
 
 def parse_delta(string):
     string = string.strip()
+
+    while string.endswith("."):
+        string = string.rstrip(".")
+
     if not " " in string:
         debug("No space in string")
         return only_numeral(string)

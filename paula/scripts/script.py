@@ -82,9 +82,7 @@ def means(string, meaning):
     matches = []
 
     for reg_str in regexes:
-
         reg = re.compile(reg_str, re.IGNORECASE)
-
         if reg.match(string):
             debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
                 #Got a match, now find the operand, remove the match_whole_string

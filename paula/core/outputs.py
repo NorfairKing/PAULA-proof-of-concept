@@ -19,8 +19,8 @@ import subprocess
 from .paula_output import string
 
 
-def print_error(error_string):
-    string.print_error(error_string)
+def print_error(error_string, error_type="ERROR"):
+    string.print_error(error_string, error_type=error_type)
 
 
 def print_debug(debug_string):
@@ -29,6 +29,7 @@ def print_debug(debug_string):
 
 def print_color(text, foreground, background="default", bold=False, newline=True):
     string.print_color(text, foreground, background=background, bold=bold, newline=newline)
+
 
 def print_PAULA():
     clear()
@@ -47,6 +48,7 @@ def print_PAULA():
  Assistant
 
 """)
+
 
 def clear():
     cmd = "clear"

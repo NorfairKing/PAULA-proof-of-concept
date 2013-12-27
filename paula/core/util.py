@@ -15,8 +15,3 @@
 #
 ##
 
-def get_operand(command, seperator_character=','):
-    if seperator_character in command:
-        return command.split(seperator_character)[1]
-    else:
-        return None

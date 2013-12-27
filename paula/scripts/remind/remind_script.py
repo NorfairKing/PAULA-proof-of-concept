@@ -45,8 +45,8 @@ def execute(operand):
     try:
         delta = parse.time_delta(moment)
     except exceptions.PAULA_Parse_Exception as e:
-        outputs.print_error(str(e.__class__))
-
+        outputs.print_error("An error occured while parsing the time delta.",error_type=str(e.__class__.__name__))
+        return
     treated_content = treat_content(content)
     schedule.schedule_event_with_delta(delta, "paula_remind", treated_content)
 

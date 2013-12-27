@@ -19,4 +19,5 @@ from paula.core import system
 
 def get_description(arg_string):
     description = system.get_output_of("dig +short txt " + arg_string + ".wp.dg.cx" )
-    print(description)
+    #TODO clean this info up first
+    return description

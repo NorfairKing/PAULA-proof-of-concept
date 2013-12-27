@@ -27,8 +27,8 @@
     - Shut Up
     - Sleep
     - Sexy Vibe
-    - Wikipedia
     - Youtube
+    - Remind
 
 ** Developers:
 *** Tests

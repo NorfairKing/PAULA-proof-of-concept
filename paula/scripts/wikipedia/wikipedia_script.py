@@ -22,4 +22,4 @@ from paula.core import outputs
 from . import wikipedia_script_config as conf
 
 def execute(operand):
-    wikipedia.get_description(operand)
+    print(wikipedia.get_description(operand))

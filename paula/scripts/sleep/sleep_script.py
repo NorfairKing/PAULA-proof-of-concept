@@ -40,7 +40,7 @@ def execute(operand):
     interaction.say("Please select which song you want to wake you up.")
     s = song.choose()
 
-    interaction.say_from_file(conf.NIGHT_FILE,sync=True)
+    interaction.say_from_file(conf.NIGHT_FILE, sync=True)
 
     # Set volume to something pleasant
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
@@ -54,7 +54,7 @@ def execute(operand):
     hour_min = 'It is %H:%M'
     if now.hour < 9:
         hour_min += "in the morning."
-    interaction.say( now.strftime(hour_min), sync=True)
+    interaction.say(now.strftime(hour_min), sync=True)
 
     month_day = "We are the %d"
     day = now.day
@@ -63,7 +63,7 @@ def execute(operand):
     else:
         month_day += "th"
     month_day += ' %b %Y'
-    interaction.say( now.strftime(month_day) , sync=True)
+    interaction.say(now.strftime(month_day), sync=True)
 
     subp = s.play()
     answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)

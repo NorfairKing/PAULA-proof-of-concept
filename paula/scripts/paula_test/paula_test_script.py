@@ -28,5 +28,6 @@ def execute(operand):
 
 
     # <Test here>
-
+    from paula.agenda import agenda
+    agenda.print_week()
     # </Test here>

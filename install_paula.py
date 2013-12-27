@@ -54,7 +54,6 @@ if __name__ == "__main__":
     outputs.print_PAULA()
     outputs.print_color("INSTALLING PAULA", "red")
 
-
     (dist1, dist2, dist3) = platform.linux_distribution()
 
     if dist1 == "arch":
@@ -69,7 +68,9 @@ if __name__ == "__main__":
         print("ERROR: Your platform is not supported")
         exit(1)
 
-    os.mkdir(expanduser("~/.PAULA"))
+    DOT_PAULA_DIR = expanduser("~/.PAULA")
+    if not os.path.isdir(DOT_PAULA_DIR):
+        os.mkdir(DOT_PAULA_DIR)
 
     outputs.print_color("INSTALLING PAULA DONE", "red")
 

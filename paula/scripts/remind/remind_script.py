@@ -15,11 +15,8 @@
 #
 ##
 
-import datetime
-
 from paula.core import outputs
 from paula.core import schedule
-from paula.core import interaction
 from paula.core import parse
 from paula.core import exceptions
 from . import remind_script_config as conf
@@ -45,7 +42,7 @@ def execute(operand):
     try:
         delta = parse.time_delta(moment)
     except exceptions.PAULA_Parse_Exception as e:
-        outputs.print_error("An error occured while parsing the time delta.",error_type=str(e.__class__.__name__))
+        outputs.print_error("An error occured while parsing the time delta.", error_type=str(e.__class__.__name__))
         return
     treated_content = treat_content(content)
     schedule.schedule_event_with_delta(delta, "paula_remind", treated_content)
@@ -56,13 +53,14 @@ def treat_content(content):
     treated = content
 
     for replace_str in conf.REPLACEMENTS:
-        treated = treated.replace(" " + replace_str  +" ", " "+conf.REPLACEMENTS[replace_str]+ " ")
+        treated = treated.replace(" " + replace_str + " ", " " + conf.REPLACEMENTS[replace_str] + " ")
 
-    treated = treated.replace("\"","\\\"")
-    treated = treated.replace("\'","\\\'")
+    treated = treated.replace("\"", "\\\"")
+    treated = treated.replace("\'", "\\\'")
 
     debug("Replaced \"" + content + "\" with \"" + treated + "\".")
     return treated.strip()
+
 
 def debug(string):
     if conf.DEBUG:

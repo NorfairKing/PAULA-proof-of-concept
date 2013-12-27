@@ -48,3 +48,15 @@ ANNOYING_ALARM_TEXT = os.path.join(RESOURCES_DIR, 'annoying')
 
 # Default = True
 ANNOYING = True
+
+DAY_SUFFIXES = {
+    1:"st",
+    2:"nd",
+    3:"rd",
+    21:"st",
+    22:"nd",
+    23:"rd",
+    31:"st",
+    32:"nd",
+    33:"rd",
+}

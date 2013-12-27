@@ -17,6 +17,7 @@
 
 import os
 import time
+import datetime
 import subprocess
 from paula.sleep import sleep
 from paula.core import inputs
@@ -46,7 +47,21 @@ def execute(operand):
     sleep.go_to_sleep_mode(int(option))
 
     # Alarm go off
-    interaction.say_from_file(conf.MORNING_FILE)
+    interaction.say_from_file(conf.MORNING_FILE, sync=True)
+    now = datetime.datetime.now()
+    hour_min = 'It is %H:%M'
+    if now.hour < 9:
+        hour_min += "in the morning."
+    interaction.say( now.strftime(hour_min), sync=True)
+
+    month_day = "We are the %d"
+    day = now.day
+    if day in conf.DAY_SUFFIXES.keys():
+        month_day += conf.DAY_SUFFIXES[day]
+    else:
+        month_day += "th"
+    month_day += ' %b %Y'
+    interaction.say( now.strftime(month_day) , sync=True)
 
     subp = s.play()
     answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)

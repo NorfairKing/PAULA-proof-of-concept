@@ -15,11 +15,13 @@
 #
 ##
 
-import os
+from paula.core import system
 
-# Default = False
-DEBUG = True
+from paula.music import song
 
-MOCK_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-RESOURCES_DIR = os.path.join(MOCK_SCRIPT_DIR, 'resources')
-HAHA_FILE = os.path.join(RESOURCES_DIR,"haha.mp3")
+from . import rick_roll_script_config as conf
+
+
+def execute(operand):
+    rr = song.Song(conf.RICK_ROLL_FILE)
+    rr.play()

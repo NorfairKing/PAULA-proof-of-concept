@@ -114,11 +114,3 @@ def playalarm(path):
     process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
     return process
     pass
-
-
-def printOptions(dic):
-    SECONDS_IN_A_MINUTE = 60
-    for key in list(dic.keys()):
-        spaces = (20 - len(key)) * " "
-        print(("         " + key + spaces + " - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min"))
-    print()

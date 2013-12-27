@@ -61,8 +61,7 @@ def treat_content(content):
     treated = treated.replace("\"","\\\"")
     treated = treated.replace("\'","\\\'")
 
-    if conf.DEBUG:
-        outputs.print_debug("Replaced \"" + content + "\" with \"" + treated + "\".")
+    debug("Replaced \"" + content + "\" with \"" + treated + "\".")
     return treated.strip()
 
 def debug(string):

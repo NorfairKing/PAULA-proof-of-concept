@@ -16,7 +16,7 @@
 ##
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 REPLACEMENTS = {
     " my " : " your ",

@@ -28,5 +28,7 @@ def execute(operand):
         outputs.print_debug(operand)
 
     # <Test here>
-    interaction.say_from_file(os.path.join(conf.HERE, 'lines.txt'))
+    from paula.core import exceptions
+
+    raise exceptions.PAULA_Exception(" THIS IS A TEST EXCEPTION. ")
     # </Test here>

@@ -15,7 +15,6 @@
 #
 ##
 
-import os
 from paula.core import outputs
 from paula.core import interaction
 
@@ -27,6 +26,7 @@ def execute(operand):
         outputs.print_debug("The arguments to execute this script were the following.")
         outputs.print_debug(operand)
 
+
     # <Test here>
-    interaction.say_from_file(os.path.join(conf.HERE, 'lines.txt'))
+
     # </Test here>

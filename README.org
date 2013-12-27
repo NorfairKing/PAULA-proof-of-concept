@@ -29,3 +29,10 @@
     - Sexy Vibe
     - Wikipedia
     - Youtube
+
+** Developers:
+*** Tests
+    Paula uses nose to run the internal tests. Run the following commands to run all tests.
+    #+BEGIN_SRC shell
+       nosetests3
+    #+END_SRC

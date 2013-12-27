@@ -21,4 +21,5 @@ DEBUG = False
 REPLACEMENTS = {
     " my " : " your ",
     " I " : " you ",
+    " I'm ": " you're "
 }

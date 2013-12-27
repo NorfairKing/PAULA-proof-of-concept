@@ -15,10 +15,10 @@
 #
 ##
 
-# Default = False
-DEBUG = False
+from .parsing import parse_time
 
-# Default = 60
-TIME_OUT = 60
+def time_delta(string):
+    return parse_time.parse_delta(string)
 
-AUTO_RESCHEDULE = "5 minutes"
+def datetime(string):
+    return parse_time.parse_datetime(string)

@@ -22,8 +22,7 @@ from paula.core import outputs
 
 
 def call(command_string, sync=True):
-    if conf.DEBUG:
-        outputs.print_debug("Executing: " + command_string)
+    debug("Executing: " + command_string)
 
     process = subprocess.Popen(command_string, shell=True)
     if sync:
@@ -33,8 +32,7 @@ def call(command_string, sync=True):
 
 
 def call_list(command_list, sync=True):
-    if conf.DEBUG:
-        outputs.print_debug("Executing: " + str(command_list))
+    debug("Executing: " + str(command_list))
 
     process = subprocess.Popen(command_list, shell=False)
     if sync:
@@ -44,8 +42,7 @@ def call_list(command_list, sync=True):
 
 
 def call_silently(command_string, sync=True):
-    if conf.DEBUG:
-        outputs.print_debug("Executing silently: " + command_string)
+    debug("Executing silently: " + command_string)
 
     null = open(os.devnull, 'w')
     process = subprocess.Popen(command_string, shell=True, stdout=null, stderr=null)
@@ -56,8 +53,7 @@ def call_silently(command_string, sync=True):
 
 
 def call_list_silently(command_list, sync=True):
-    if conf.DEBUG:
-        outputs.print_debug("Executing silently: " + str(command_list))
+    debug("Executing silently: " + str(command_list))
 
     null = open(os.devnull, 'w')
     process = subprocess.Popen(command_list, shell=False, stdout=null, stderr=null)
@@ -68,8 +64,11 @@ def call_list_silently(command_list, sync=True):
 
 
 def get_output_of(command_string):
-    if conf.DEBUG:
-        outputs.print_debug("Getting output of: " + command_string)
+    debug("Getting output of: " + command_string)
     process = subprocess.Popen(command_string, shell=True, stdout=subprocess.PIPE)
     out, err = process.communicate()
     return out
+
+def debug(string):
+    if conf.DEBUG:
+        outputs.print_debug(string)

@@ -15,10 +15,13 @@
 #
 ##
 
-# Default = False
-DEBUG = False
+import unittest
 
-# Default = 60
-TIME_OUT = 60
+def boolean_test_method(args):
+    return False
 
-AUTO_RESCHEDULE = "5 minutes"
+# Here's our "unit tests".
+class testCase(unittest.TestCase):
+
+    def testOne(self):
+        self.failUnless(boolean_test_method(1))

@@ -39,6 +39,15 @@ def execute(operand):
             outputs.print_debug("No space in moment, Exiting.")
         return
 
+    now_rounded = get_rounded_now()
+    delta = parse_delta(moment)
+    event_moment = now_rounded + delta
+
+    treated_content = treat_content(content)
+
+    schedule.schedule_event(event_moment, "paula_remind", treated_content)
+
+def parse_delta(moment):
     numeral, quantifier = moment.split()
     num = int(numeral)
     delta_seconds = 0
@@ -47,15 +56,20 @@ def execute(operand):
     delta_days = 0
     delta_weeks = 0
 
-    if interaction.means(quantifier,"seconds"):
+    if interaction.means(quantifier, "seconds"):
         delta_seconds = num
-    elif interaction.means(quantifier,"minutes"):
+    elif interaction.means(quantifier, "minutes"):
         delta_minutes = num
-    elif interaction.means(quantifier,"hours"):
+    elif interaction.means(quantifier, "hours"):
         delta_hours = num
-    elif interaction.means(quantifier,"days"):
+    elif interaction.means(quantifier, "days"):
         delta_days = num
 
+    delta = datetime.timedelta(days=delta_days, seconds=delta_seconds, minutes=delta_minutes, hours=delta_hours,
+                               weeks=delta_weeks)
+    return delta
+
+def get_rounded_now():
     now = datetime.datetime.now()
     moment_year = now.year
     moment_month = now.month
@@ -65,7 +79,15 @@ def execute(operand):
     moment_second = now.second
     now_rounded = datetime.datetime(year=moment_year, month=moment_month, day=moment_day, hour=moment_hour,
                                     minute=moment_minute, second=moment_second)
-    delta = datetime.timedelta(days=delta_days, seconds=delta_seconds, minutes=delta_minutes, hours=delta_hours,
-                               weeks=delta_weeks)
-    event_moment = now_rounded + delta
-    schedule.schedule_event(event_moment, "paula_remind", content)
+    return now_rounded
+
+def treat_content(content):
+    content = ' ' + content + ' '
+    treated = content
+
+    for replace_str in conf.REPLACEMENTS:
+        treated = treated.replace(replace_str, conf.REPLACEMENTS[replace_str])
+
+    if conf.DEBUG:
+        outputs.print_debug("Replaced \"" + content + "\" with \"" + treated + "\".")
+    return treated

@@ -17,3 +17,8 @@
 
 # Default = False
 DEBUG = False
+
+REPLACEMENTS = {
+    " my " : " your ",
+    " I " : " you ",
+}

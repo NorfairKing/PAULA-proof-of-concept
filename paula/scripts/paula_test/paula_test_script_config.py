@@ -21,7 +21,3 @@ import os
 DEBUG = False
 
 HERE = os.path.dirname(os.path.realpath(__file__))
-
-UNIT_TESTS = True
-TEST_CORE = True
-TEST_PARSING = True

@@ -15,8 +15,8 @@
 #
 ##
 
-import datetime.timedelta as timedelta
-import datetime.datetime as datetime
+from datetime import timedelta
+from datetime import datetime
 
 def parse_delta(string):
 

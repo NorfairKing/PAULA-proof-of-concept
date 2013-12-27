@@ -15,7 +15,6 @@
 #
 ##
 
-import os
 from paula.core import outputs
 from paula.core import interaction
 
@@ -27,17 +26,7 @@ def execute(operand):
         outputs.print_debug("The arguments to execute this script were the following.")
         outputs.print_debug(operand)
 
-    if conf.UNIT_TESTS:
-        unit_tests()
-
 
     # <Test here>
 
     # </Test here>
-
-
-def unit_tests():
-    if conf.TEST_CORE:
-        if conf.TEST_PARSING:
-            from paula.core.parsing import parsing_tests
-            parsing_tests.test()

@@ -25,9 +25,3 @@ class testCase(unittest.TestCase):
 
     def testOne(self):
         self.failUnless(boolean_test_method(1))
-
-    def testTwo(self):
-        self.failIf(boolean_test_method(2))
-
-def test():
-    unittest.main()

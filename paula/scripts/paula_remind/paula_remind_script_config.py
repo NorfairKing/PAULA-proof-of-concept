@@ -16,7 +16,7 @@
 ##
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 # Default = 60
 TIME_OUT = 60

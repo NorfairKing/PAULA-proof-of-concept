@@ -66,7 +66,7 @@ def execute(operand):
     subp = s.play()
     answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)
 
-    if answer == None:
+    if not answer:
     # Wait until the song has finished
         subp.wait()
         if conf.ANNOYING:

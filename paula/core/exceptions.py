@@ -24,3 +24,6 @@ class PAULA_Parse_Exception(PAULA_Exception):
 
 class PAULA_Not_An_Integer_Exception(PAULA_Parse_Exception):
     pass
+
+class PAULA_Unknown_Quantifier_Exception(PAULA_Parse_Exception):
+    pass

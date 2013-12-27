@@ -42,6 +42,8 @@ def only_numeral(string):
 
 
 def numeral_and_quantifier(string):
+    if len(string.split()) != 2: #TODO is this too hard coded?
+        raise exceptions.PAULA_Parse_Exception("Too many spaces to parse:  \"" + string + "\"")
     numeral, quantifier = string.split()
     num = get_numeral_int(numeral)
     delta_seconds = 0
@@ -58,6 +60,10 @@ def numeral_and_quantifier(string):
         delta_hours = num
     elif interaction.means(quantifier, "days"):
         delta_days = num
+    elif interaction.means(quantifier, "weeks"):
+        delta_weeks = num
+    else:
+        raise exceptions.PAULA_Unknown_Quantifier_Exception
 
     delta = timedelta(days=delta_days, seconds=delta_seconds, minutes=delta_minutes, hours=delta_hours,
                       weeks=delta_weeks)

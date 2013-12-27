@@ -24,7 +24,7 @@ DEBUG = False
 IGNORE_CASING = True
 
 # Default = False
-MATCH_WHOLE_STRING = False
+MATCH_WHOLE_STRING = True
 
 # Default = os.path.join(os.path.dirname(os.path.realpath(__file__)),'commands')
 MEANINGS_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meanings')

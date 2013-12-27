@@ -45,7 +45,7 @@ def means(string, meaning):
 
     regexes = get_meaning_regexes(meaning)
     for reg_str in regexes:
-        make_regex_string(reg_str)
+        reg_str = make_regex_string(reg_str)
         if conf.IGNORE_CASING:
             reg = re.compile(reg_str, re.IGNORECASE)
         else:
@@ -59,6 +59,7 @@ def make_regex_string(reg_str):
         reg_str += ".*"
     else:
         reg_str = "^" + reg_str + "$"
+    return reg_str
 
 def get_meanings_dict():
     global meanings_dict

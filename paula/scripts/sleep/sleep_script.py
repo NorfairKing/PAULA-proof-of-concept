@@ -40,7 +40,7 @@ def execute(operand):
     interaction.say("Please select which song you want to wake you up.")
     s = song.choose()
 
-    interaction.say_from_file(conf.NIGHT_FILE)
+    interaction.say_from_file(conf.NIGHT_FILE,sync=True)
 
     # Set volume to something pleasant
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)

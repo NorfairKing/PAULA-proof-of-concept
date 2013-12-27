@@ -16,5 +16,5 @@
 ##
 
 class PAULA_Exception(Exception):
-     def __init__(self, message="PAULA_Exception"):
+    def __init__(self, message="PAULA_Exception"):
         Exception.__init__(self, message)

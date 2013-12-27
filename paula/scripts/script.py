@@ -30,6 +30,7 @@ def decide_and_run(string):
         execute(meaning, operand)
     except KeyboardInterrupt:
         outputs.clear()
+        outputs.print_PAULA()
         if conf.DEBUG:
             outputs.print_debug("Exiting.")
         return

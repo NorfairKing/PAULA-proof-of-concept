@@ -56,7 +56,7 @@ def treat_content(content):
     treated = content
 
     for replace_str in conf.REPLACEMENTS:
-        treated = treated.replace(replace_str, conf.REPLACEMENTS[replace_str])
+        treated = treated.replace(" " + replace_str  +" ", " "+conf.REPLACEMENTS[replace_str]+ " ")
 
     treated = treated.replace("\"","\\\"")
     treated = treated.replace("\'","\\\'")

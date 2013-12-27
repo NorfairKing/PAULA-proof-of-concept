@@ -47,7 +47,6 @@ def execute(operand):
         operand = operand.replace("\"", "\\\"")
         operand = operand.replace("\'", "\\\'")
         schedule.schedule_event_with_delta(delta, "paula_remind", operand)
-        print(operand)
     else:
         reschedule(operand)
 

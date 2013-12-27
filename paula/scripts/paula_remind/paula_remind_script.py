@@ -45,7 +45,12 @@ def execute(operand):
             delta = parse.time_delta(reschedule_str)
         except exceptions.PAULA_Parse_Exception as e:
             outputs.print_error(str(e.__class__))
+
+        # fix bash issues again
+        operand = operand.replace("\"","\\\"")
+        operand = operand.replace("\'","\\\'")
         schedule.schedule_event_with_delta(delta, "paula_remind", operand)
+        print(operand)
     else:
         reschedule(operand)
 

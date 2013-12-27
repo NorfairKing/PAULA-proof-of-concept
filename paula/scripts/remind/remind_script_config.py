@@ -16,9 +16,10 @@
 ##
 
 # Default = False
-DEBUG = False
+DEBUG = True
 
 REPLACEMENTS = {
     " my " : " your ",
     " I " : " you ",
+    " I'm ": " you're "
 }

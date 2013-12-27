@@ -57,16 +57,12 @@ class Paula(Daemon):
 
     def check(self):
         for e in schedule.get_overdue_events():
-            if conf.DEBUG:
-                outputs.print_debug("Found event to be overdue " + str(e))
-
-            cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_EXECUTABLE + " " + e.command + " \"" + e.operand + "\"'"
-            if conf.DEBUG:
-                outputs.print_debug("executing" + cmd)
+            debug("Found event to be overdue " + str(e))
+            cmd = "urxvt -title PAULA -e bash -c \"" + conf.PAULA_EXECUTABLE + " " + e.command + " " + e.operand + "\""
+            debug("executing " + cmd)
             system.call(cmd, sync=True)
 
             e.delete()
-
 
     def run(self):
         while True:
@@ -74,3 +70,7 @@ class Paula(Daemon):
             self.check()
             self.info('Check done \n')
             time.sleep(conf.CHECK_TIMER)
+
+def debug(string):
+    if conf.DEBUG:
+                outputs.print_debug(string)

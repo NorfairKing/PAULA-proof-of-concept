@@ -40,6 +40,8 @@ def execute(operand):
     interaction.say("Please select which song you want to wake you up.")
     s = song.choose()
 
+    interaction.say_from_file(conf.NIGHT_FILE)
+
     # Set volume to something pleasant
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
 
@@ -96,7 +98,7 @@ def execute(operand):
     except ProcessLookupError:
         pass
 
-    interaction.say("Have a nice day, Sir")
+    interaction.say_from_file(conf.UP_FILE)
 
     # Show quote
     print((str(quote.get_random())))

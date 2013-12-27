@@ -24,7 +24,7 @@ from . import parsing_config as conf
 
 
 def parse_datetime(string):
-    pass
+    raise exceptions.PAULA_Unimplemented_Feature_Exception
 
 
 def parse_delta(string):

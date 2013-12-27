@@ -19,6 +19,9 @@ class PAULA_Exception(Exception):
     def __init__(self, message=""):
         Exception.__init__(self, message)
 
+class PAULA_Unimplemented_Feature_Exception(PAULA_Exception):
+    pass
+
 class PAULA_Parse_Exception(PAULA_Exception):
     pass
 

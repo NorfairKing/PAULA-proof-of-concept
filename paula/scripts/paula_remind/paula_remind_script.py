@@ -15,8 +15,6 @@
 #
 ##
 
-import datetime
-
 from paula.core import outputs
 from paula.core import interaction
 from paula.core import inputs
@@ -30,8 +28,7 @@ from . import paula_remind_script_config as conf
 def execute(operand):
     debug("Reminding " + operand)
 
-    interaction.say("Sir, " + operand, sync=True)
-
+    interaction.say("Sir, " + operand, sync=False)
     response = inputs.get_string_timeout(conf.TIME_OUT)
     if not response:
         reschedule(operand)
@@ -47,18 +44,20 @@ def execute(operand):
             outputs.print_error(str(e.__class__))
 
         # fix bash issues again
-        operand = operand.replace("\"","\\\"")
-        operand = operand.replace("\'","\\\'")
+        operand = operand.replace("\"", "\\\"")
+        operand = operand.replace("\'", "\\\'")
         schedule.schedule_event_with_delta(delta, "paula_remind", operand)
         print(operand)
     else:
         reschedule(operand)
 
+
 def debug(string):
     if conf.DEBUG:
         outputs.print_debug(string)
 
+
 def reschedule(reminder):
     delta = parse.time_delta(conf.AUTO_RESCHEDULE)
-    schedule.schedule_event_with_delta(delta,"paula_remind",reminder)
+    schedule.schedule_event_with_delta(delta, "paula_remind", reminder)
     return

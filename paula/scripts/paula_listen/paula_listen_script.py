@@ -21,6 +21,10 @@ import wave
 import urllib
 import pyaudio
 
+import wave
+import urllib.request
+import urllib.error
+
 def execute(operand):
     CHUNK = 1024
     FORMAT = pyaudio.paInt16

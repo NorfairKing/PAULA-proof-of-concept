@@ -15,5 +15,65 @@
 #
 ##
 
+import sys
+import os
+import wave
+import urllib
+import pyaudio
+
 def execute(operand):
-    print("placeholder")
+    CHUNK = 1024
+    FORMAT = pyaudio.paInt16
+    CHANNELS = 2
+    RATE = 16000
+    RECORD_SECONDS = 4
+    WAVE_OUTPUT_FILENAME = "./output.wav"
+
+    p = pyaudio.PyAudio()
+
+    stream = p.open(format=FORMAT,
+                    channels=CHANNELS,
+                    rate=RATE,
+                    input=True,
+                    frames_per_buffer=CHUNK)
+
+    print("* recording")
+
+    frames = []
+
+    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+        data = stream.read(CHUNK)
+        frames.append(data)
+
+    print("* done recording")
+
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+    wf.setnchannels(CHANNELS)
+    wf.setsampwidth(p.get_sample_size(FORMAT))
+    wf.setframerate(RATE)
+    wf.writeframes(b''.join(frames))
+    wf.close()
+
+    with open("./output.wav") as f:
+            os.system("flac -f output.wav")
+            f = open('./output.flac','rb')
+            flac_cont = f.read()
+            speech_to_text(flac_cont)
+            f.close()
+
+
+def speech_to_text(audio):
+    req = urllib.request.Request('https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US', data=audio, headers={'Content-type': 'audio/x-flac; rate=16000'})
+
+    try:
+        ret = urllib.request.urlopen(req)
+    except urllib.error.URLError:
+        print("Error Transcribing Voicemail")
+        sys.exit(1)
+    answer = str(ret.read())
+    arg = answer[answer.find('utterance":"') + 12 : answer.find('","con')]
+    print(arg)

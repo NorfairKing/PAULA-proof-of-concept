@@ -19,6 +19,3 @@ import os
 
 # Default = False
 DEBUG = True
-
-NEW_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-RESOURCES_DIR = os.path.join(NEW_SCRIPT_DIR, 'resources')

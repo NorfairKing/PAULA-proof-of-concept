@@ -18,7 +18,7 @@
 import os
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 RICK_ROLL_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(RICK_ROLL_SCRIPT_DIR, 'resources')

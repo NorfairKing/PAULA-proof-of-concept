@@ -24,13 +24,16 @@ from . import training_script_config as conf
 
 def execute(operand):
     answer = inputs.get_item_from_list(conf.TRAINING_OPTIONS)
+    load_script(answer)
 
+def load_script(name):
     try:
-        answer = "paula.scripts.training." + answer
+        answer = "paula.scripts.training." + name
         module = importlib.import_module(answer)
     except ImportError:
         outputs.print_error(
             "The " + module + " script is missing or does not exist. Either that or some import fails inside the script.")
         return
+
     outputs.clear()
-    module.execute(operand)
+    module.execute("")

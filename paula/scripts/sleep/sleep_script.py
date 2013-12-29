@@ -74,7 +74,7 @@ def execute(operand):
         if conf.ANNOYING:
             try:
                 def saynwait(text, delay):
-                    outputs.say(text)
+                    interaction.say(text)
                     time.sleep(delay)
 
                 while system_volume.get() < 95:

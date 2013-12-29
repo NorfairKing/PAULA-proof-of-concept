@@ -19,8 +19,9 @@
 DEBUG = False
 
 REPLACEMENTS = {
-    "my" : "your",
-    "I" : "you",
+    "my": "your",
+    "I": "you",
     "I'm": "you're",
-    "Im": "you're"
+    "Im": "you're",
+    "then": "now",
 }

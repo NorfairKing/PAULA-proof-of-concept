@@ -15,6 +15,10 @@
 #
 ##
 
+"""
+The Training script
+"""
+
 import importlib
 
 from paula.core import inputs
@@ -22,18 +26,21 @@ from paula.core import outputs
 
 from . import training_script_config as conf
 
+
 def execute(operand):
     answer = inputs.get_item_from_list(conf.TRAINING_OPTIONS)
-    load_script(answer)
-
-def load_script(name):
-    try:
-        answer = "paula.scripts.training." + name
-        module = importlib.import_module(answer)
-    except ImportError:
-        outputs.print_error(
-            "The " + module + " script is missing or does not exist. Either that or some import fails inside the script.")
-        return
+    module = load_script(answer)
 
     outputs.print_PAULA()
-    module.execute("")
+    module.execute(operand)
+
+
+def load_script(name):
+    module_name = "paula.scripts.training." + name + "." + name + "_script"
+    try:
+        module = importlib.import_module(module_name)
+    except ImportError:
+        outputs.print_error(
+            "The " + module_name + " script is missing or does not exist. Either that or some import fails inside the script.")
+        return
+    return module

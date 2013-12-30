@@ -14,7 +14,3 @@
 # Assistant
 #
 ##
-
-"""
-The training script and subscripts
-"""

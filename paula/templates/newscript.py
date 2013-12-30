@@ -26,4 +26,3 @@ def execute(operand):
     @param operand: The operand after the command for this script.
     """
     print(operand)
-    

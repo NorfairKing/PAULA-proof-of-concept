@@ -62,3 +62,4 @@ def prompt_for_input_int_in_range(min, max, prompt=""):
     value = prompt_for_input_int(prompt=prompt)
     while not (value <= max and value >= min):
         value = prompt_for_input_int(prompt=prompt)
+    return value

@@ -69,7 +69,7 @@ def prompt_for_dict(possible_selections, sort_alphabetically=True):
 
     while True:
         print()
-        user_input = string.prompt_for_input_string("Take your pick: ")
+        user_input = string.prompt_for_input_string("Take your pick: ") #TODO make this more general
         if user_input in str_dict:
             return str_dict[user_input]
         else:

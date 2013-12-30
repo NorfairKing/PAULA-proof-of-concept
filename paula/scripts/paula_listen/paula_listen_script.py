@@ -32,7 +32,7 @@ def execute(operand):
     CHANNELS = 2
     RATE = 16000
     RECORD_SECONDS = 4
-    WAVE_OUTPUT_FILENAME = "./output.wav"
+    WAVE_OUTPUT_FILENAME = "/tmp/output.wav"
 
     p = pyaudio.PyAudio()
 
@@ -63,13 +63,14 @@ def execute(operand):
     wf.writeframes(b''.join(frames))
     wf.close()
 
-    with open("./output.wav") as f:
-            system.call_silently("flac -f output.wav")
-            f = open('./output.flac','rb')
+    with open("/tmp/output.wav") as f:
+            system.call_silently("flac -f /tmp/output.wav")
+            f = open('/tmp/output.flac','rb')
             flac_cont = f.read()
-            speech_to_text(flac_cont)
+            result = speech_to_text(flac_cont)
             f.close()
 
+    print("understood: " + result)
 
 def speech_to_text(audio):
     req = urllib.request.Request('https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US', data=audio, headers={'Content-type': 'audio/x-flac; rate=16000'})
@@ -80,5 +81,5 @@ def speech_to_text(audio):
         print("Error Transcribing Voicemail")
         sys.exit(1)
     answer = str(ret.read())
-    arg = answer[answer.find('utterance":"') + 12 : answer.find('","con')]
-    print(arg)
+    result = answer[answer.find('utterance":"') + 12 : answer.find('","con')]
+    return result

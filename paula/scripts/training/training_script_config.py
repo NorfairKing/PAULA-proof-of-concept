@@ -21,5 +21,12 @@ import os
 DEBUG = True
 
 TRAINING_OPTIONS = [
-    "room_training"
+    "room_training",
+]
+
+# TODO this should be a config, currently it isn't.
+DIFFICULTY_LEVELS = [
+    'easy',
+    'medium',
+    'hard'
 ]

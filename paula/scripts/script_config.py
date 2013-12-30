@@ -15,9 +15,15 @@
 #
 ##
 
+import os
+
 # Default = False
-DEBUG = False
+DEBUG = True
+
+SCRIPTS_DIR = os.path.dirname(os.path.realpath(__file__))
 
 # Default = 1
 WAITING_TIME = 1
 
+
+DEFAULT_PARENT = "paula.scripts."

@@ -20,10 +20,13 @@ import importlib
 from paula.core import inputs
 from paula.core import outputs
 from paula.core import exceptions
+from paula.scripts.script import decide_and_run
 
 from . import paula_events_script_config as conf
 
 def execute(operand):
+    decide_and_run(operand,'.paula_events')
+    """
     if not operand:
         debug("Empty operand.")
         subscript = inputs.get_item_from_list(conf.OPTIONS)
@@ -51,7 +54,7 @@ def load_script(name):
 
     outputs.print_PAULA()
     return module
-
+"""
 
 def debug(string):
     if conf.DEBUG:

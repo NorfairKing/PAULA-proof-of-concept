@@ -24,11 +24,12 @@ from paula.core import outputs
 from . import script_config as conf
 
 
-def decide_and_run(string):
+def decide_and_run(string, parent=""):
     outputs.print_PAULA()
-    meaning, operand = decide_meaning(string)
+    debug("Trying to decide " + string + " with parent " + parent)
+    meaning, operand = decide_meaning(string,parent=parent)
     try:
-        execute(meaning, operand)
+        execute(meaning, operand, parent=parent)
     except KeyboardInterrupt:
         outputs.print_PAULA()
         debug("Exiting.")
@@ -36,12 +37,13 @@ def decide_and_run(string):
     time.sleep(conf.WAITING_TIME)
 
 
-def execute(meaning, operand):
+def execute(meaning, operand, parent=""):
     if not meaning:
         return
+    debug("Trying to execute " + meaning + " with \"" + operand + "\" as operand, a child of " + parent)
 
     try:
-        module_name = "paula.scripts." + meaning + "." + meaning + "_script"
+        module_name = "paula.scripts" + parent + "." +meaning + "." + meaning + "_script"
         debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
     except ImportError:
@@ -51,12 +53,12 @@ def execute(meaning, operand):
     module.execute(operand)
 
 
-def decide_meaning(string):
+def decide_meaning(string, parent=""):
     global meanings
-    meanings = get_scripts_dict()
+    meanings = get_scripts_dict(parent=parent)
     meaning_found = None
     for name in meanings:
-        matched, operand = means(string, name)
+        matched, operand = means(string, name, parent=parent)
         if matched:
             meaning_found = name
             break
@@ -72,7 +74,7 @@ def get_meaning_regexes(meaning):
     return [i.strip() for i in open(meanings[meaning]).readlines()]
 
 
-def means(string, meaning):
+def means(string, meaning, parent=""):
     if not meaning in meanings:
         return False, None
 
@@ -84,7 +86,7 @@ def means(string, meaning):
         reg = re.compile(reg_str, re.IGNORECASE)
         if reg.match(string):
             debug("Matched \"" + string + "\" with \"" + reg_str + "\"")
-                #Got a match, now find the operand, remove the match_whole_string
+            #Got a match, now find the operand, remove the match_whole_string
             for i in reversed(range(len(string) + 1)):
                 string_part = string[:i]
                 debug("string part=\"" + string_part + "\"")
@@ -101,14 +103,15 @@ def means(string, meaning):
     return True, matches[0]
 
 
-def get_scripts_dict():
+def get_scripts_dict(parent=""):
     dict = {}
-    import paula.scripts
-    scripts_dir = os.path.dirname(os.path.abspath(paula.scripts.__file__))
-    for script in os.listdir(scripts_dir):
-        to_be_checked = os.path.join(scripts_dir, script)
+    debug("scripts dir= " + conf.SCRIPTS_DIR)
+    PARENT_DIR = os.path.join(conf.SCRIPTS_DIR, parent.replace(".", "/")[1:])
+    debug("parent dir = " + PARENT_DIR)
+    for script in os.listdir(PARENT_DIR):
+        to_be_checked = os.path.join(PARENT_DIR, script)
         if os.path.isdir(to_be_checked) and not to_be_checked.__contains__("__pycache__"):
-            script_dir = os.path.join(scripts_dir, script)
+            script_dir = os.path.join(PARENT_DIR, script)
             commands = os.path.join(script_dir, "script_commands")
             if os.path.isfile(commands):
                 dict[script] = commands

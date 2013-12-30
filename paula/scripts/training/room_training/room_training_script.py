@@ -22,12 +22,12 @@ from paula.core import inputs
 from paula.core import outputs
 from paula.core import interaction
 
-
 from . import room_training_script_config as conf
 
 """
 The roomtraining script.
 """
+
 
 def execute(operand):
     """
@@ -35,15 +35,15 @@ def execute(operand):
     @param operand:
     """
     exercise = inputs.get_item_from_list(conf.ROOM_TRAINING_OPTIONS)
-    week = inputs.get_integer_in_range(1,conf.WEEKS_PER_EXERCISE,prompt="Week: ")
-    day = inputs.get_integer_in_range(1,conf.DAYS_PER_WEEK,prompt="day: ")
+    week = inputs.get_integer_in_range(1, conf.WEEKS_PER_EXERCISE, prompt="Week: ")
+    day = inputs.get_integer_in_range(1, conf.DAYS_PER_WEEK, prompt="day: ")
     difficulty_level = inputs.get_item_from_list(conf.DIFFICULTY_LEVELS)
-    rest, workout_list = get_training_scheme(exercise,week,day,difficulty_level)
-    debug("scheme= " + str((rest,workout_list)))
-    coach(rest,workout_list)
+    rest, workout_list = get_training_scheme(exercise, week, day, difficulty_level)
+    debug("scheme= " + str((rest, workout_list)))
+    coach(rest, workout_list)
 
 
-def get_training_scheme(exercise,week,day,difficulty_level):
+def get_training_scheme(exercise, week, day, difficulty_level):
     """
     Get's the training scheme for a given exercise, week, day and difficulty level
     @param exercise: A string representing an exercise.
@@ -60,10 +60,11 @@ def get_training_scheme(exercise,week,day,difficulty_level):
     except ImportError:
         outputs.print_error("TRAINING FILE MISSING")
 
-    day = module.schemes[day-1] #-1 because arrays start at zero.
+    day = module.schemes[day - 1] #-1 because arrays start at zero.
     rest, difficulties = day
     scheme = (rest, difficulties[difficulty_level])
     return scheme
+
 
 def coach(rest, workout_list):
     """
@@ -73,7 +74,7 @@ def coach(rest, workout_list):
     @return:
     """
     for w in workout_list:
-        interaction.say(str(w) + " repetitions, Sir.",sync=True)
+        interaction.say(str(w) + " repetitions, Sir.", sync=True)
         interaction.say("Let me know when you are done, Sir")
         if not inputs.get_boolean():
             interaction.say("Done, Sir?")

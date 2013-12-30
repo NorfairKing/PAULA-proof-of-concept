@@ -21,7 +21,8 @@ import wave
 import urllib
 import pyaudio
 
-import wave
+from paula.core import system
+
 import urllib.request
 import urllib.error
 
@@ -63,7 +64,7 @@ def execute(operand):
     wf.close()
 
     with open("./output.wav") as f:
-            os.system("flac -f output.wav")
+            system.call_silently("flac -f output.wav")
             f = open('./output.flac','rb')
             flac_cont = f.read()
             speech_to_text(flac_cont)

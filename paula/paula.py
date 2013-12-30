@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -72,6 +72,8 @@ class Paula(Daemon):
             self.info('Check done \n')
             time.sleep(conf.CHECK_TIMER)
 
+
 def debug(string):
     if conf.DEBUG:
-                outputs.print_debug(string)
+        outputs.print_debug(string)
+        

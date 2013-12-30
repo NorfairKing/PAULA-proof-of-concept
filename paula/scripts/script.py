@@ -28,7 +28,12 @@ from paula.core import outputs
 from . import script_config as conf
 
 
-class ScriptController:
+class ScriptController(object):
+    """
+    A class of script controllers.
+    This class is responsible for explaining where PAULA needs to look for a script to execute.
+    """
+
     def __init__(self, parent=""):
         self.parent = parent
         self.scripts_dict = self._calculate_scripts_dict()
@@ -53,10 +58,9 @@ class ScriptController:
 
     def execute(self, script_name, operand):
         """
-        Execute the given script with given operand under given parent.
+        Execute the given script with given operand
         @param script_name: The name of the script to execute.
         @param operand: The given operand to the script.
-        @param parent: The given parent.
         @return: Nothing.
         """
         if not script_name:
@@ -73,12 +77,10 @@ class ScriptController:
             return
         module.execute(operand)
 
-
     def decide_meaning(self, string):
         """
-        Decides to which script the given string belongs under a given parent.
+        Decides to which script the given string belongs.
         @param string: The given string.
-        @param parent: The given parent.
         @return: Nothing.
         """
         meaning_found = None
@@ -94,16 +96,6 @@ class ScriptController:
                 outputs.print_debug("No meaning found.")
         return meaning_found, operand
 
-
-    def get_meaning_regexes(self, script):
-        """
-        Gets all the regexes that correspond to the given script
-        @param script: The given script.
-        @return: A list of regexes in string format corresponding to the given script.
-        """
-        return [i.strip() for i in open(self.scripts_dict[script]).readlines()]
-
-
     def means(self, string, script):
         """
         Decides whether a given string corresponds to a given script.
@@ -114,10 +106,9 @@ class ScriptController:
         if not script in self.scripts_dict:
             return False, None
 
-        regexes = self.get_meaning_regexes(script)
+        regexes = self._get_meaning_regexes(script)
 
         possible_operands = []
-
         for reg_str in regexes:
             reg = re.compile(reg_str, re.IGNORECASE)
             if reg.match(string):
@@ -139,24 +130,32 @@ class ScriptController:
         possible_operands.sort(key=lambda t: len(t))
         return True, possible_operands[0]
 
-
     def _calculate_scripts_dict(self):
         """
         Gets a dictionary mapping the script to the commands corresponding to them.
         @return: The described dictionary.
         """
-        dict = {}
+        d = {}
         debug("scripts dir= " + conf.DEFAULT_SCRIPTS_DIR)
-        PARENT_DIR = os.path.join(conf.DEFAULT_SCRIPTS_DIR, self.parent.replace(".", "/")[1:])
-        debug("parent dir = " + PARENT_DIR)
-        for script in os.listdir(PARENT_DIR):
-            to_be_checked = os.path.join(PARENT_DIR, script)
+        parent_dir = os.path.join(conf.DEFAULT_SCRIPTS_DIR, self.parent.replace(".", "/")[1:])
+        debug("parent dir = " + parent_dir)
+        for script in os.listdir(parent_dir):
+            to_be_checked = os.path.join(parent_dir, script)
             if os.path.isdir(to_be_checked) and not to_be_checked.__contains__("__pycache__"):
-                script_dir = os.path.join(PARENT_DIR, script)
+                script_dir = os.path.join(parent_dir, script)
                 commands = os.path.join(script_dir, "script_commands")
                 if os.path.isfile(commands):
-                    dict[script] = commands
-        return dict
+                    d[script] = commands
+        return d
+
+    def _get_meaning_regexes(self, script):
+        """
+        Gets all the regexes that correspond to the given script
+        @param script: The given script.
+        @return: A list of regexes in string format corresponding to the given script.
+        """
+        return [i.strip() for i in open(self.scripts_dict[script]).readlines()]
+
 
 def debug(string):
     """

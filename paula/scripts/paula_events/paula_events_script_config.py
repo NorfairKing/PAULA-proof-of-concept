@@ -15,9 +15,16 @@
 #
 ##
 
+import os
+
 from paula import config
 
 # Default = False
 DEBUG = False
 
-SCHEDULING_DIR = config.PAULA_STATE_SCHEDULING_DIR
+NEW_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+RESOURCES_DIR = os.path.join(NEW_SCRIPT_DIR, 'resources')
+
+OPTIONS = [
+    "list"
+]

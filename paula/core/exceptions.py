@@ -22,6 +22,12 @@ class PAULA_Exception(Exception):
 class PAULA_Unimplemented_Feature_Exception(PAULA_Exception):
     pass
 
+class PAULA_Import_Exception(PAULA_Exception):
+    pass
+
+class PAULA_Missing_Script_Exception(PAULA_Import_Exception):
+    pass
+
 class PAULA_Parse_Exception(PAULA_Exception):
     pass
 

@@ -19,14 +19,15 @@ class PAULA_Exception(Exception):
     def __init__(self, message=""):
         Exception.__init__(self, message)
 
+<<<<<<< HEAD
+class PAULA_Broken_Contract_Exception(PAULA_Exception):
+=======
 
 class PAULA_Input_Exception(PAULA_Exception):
     pass
-class PAULA_Broken_Contract_Exception(PAULA_Exception):
-    pass
-
 
 class PAULA_Output_Exception(PAULA_Exception):
+>>>>>>> development
     pass
 
 class PAULA_Unimplemented_Feature_Exception(PAULA_Exception):

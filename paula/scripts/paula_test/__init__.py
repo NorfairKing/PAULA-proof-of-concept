@@ -15,3 +15,7 @@
 #
 ##
 
+"""
+paula_test: The developers test package.
+Here, developers test their newly implemented features, or part of them.
+"""

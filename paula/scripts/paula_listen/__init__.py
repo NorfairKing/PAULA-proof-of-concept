@@ -15,13 +15,3 @@
 #
 ##
 
-import unittest
-
-def boolean_test_method(args):
-    return False
-
-# Here's our "unit tests".
-class testCase(unittest.TestCase):
-
-    def testOne(self):
-        self.failUnless(boolean_test_method(1))

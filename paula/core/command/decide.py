@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -15,18 +15,28 @@
 #
 ##
 
+"""
+The Decide module.
+
+This module contains functionality to decide the meaning of a string.
+"""
+
 import os
 import re
 
-# Returns command class for the command
 from . import command_config as conf
 from paula.core import outputs
 
 
 def decide_meaning(string):
-    meanings = get_meanings_dict()
+    """
+    Decides which meaning the given string has.
+    @param string: A given string
+    @return: A string, representing the meaning of the given string.
+    """
+
     meaning_found = None
-    for meaning in meanings:
+    for meaning in MEANINGS_DICT:
         if means(string, meaning):
             meaning_found = meaning
             break
@@ -39,8 +49,13 @@ def decide_meaning(string):
 
 
 def means(string, meaning):
-    meanings = get_meanings_dict()
-    if not meaning in meanings.keys():
+    """
+    Decides whether the given string has the given meaning.
+    @param string: A given string.
+    @param meaning: A string representing a meaning.
+    @return: A boolean value indicating whether the given string has the given meaning as its meaning.
+    """
+    if not meaning in MEANINGS_DICT.keys():
         return None
 
     regexes = get_meaning_regexes(meaning)
@@ -54,24 +69,41 @@ def means(string, meaning):
             return True
     return False
 
+
 def make_regex_string(reg_str):
+    """
+    Makes a regex string of the given string.
+    @param reg_str: A given string.
+    @return: A regex in string form.
+    """
     if not conf.MATCH_WHOLE_STRING:
         reg_str += ".*"
     else:
         reg_str = "^" + reg_str + "$"
     return reg_str
 
-def get_meanings_dict():
-    global meanings_dict
-    meanings_dict = {}
 
+def get_meanings_dict():
+    """
+    Gets a dictionary mapping meanings to the path of the file containing their regexes.
+    @return: The described dictionary
+    """
     for f in os.listdir(conf.MEANINGS_DIR):
         if os.path.isfile(os.path.join(conf.MEANINGS_DIR, f)):
             path = os.path.join(conf.MEANINGS_DIR, f)
-            meanings_dict[f] = path
+            MEANINGS_DICT[f] = path
 
-    return meanings_dict
+    return MEANINGS_DICT
 
 
 def get_meaning_regexes(meaning):
-    return [i.strip() for i in open(meanings_dict[meaning]).readlines()]
+    """
+    .Returns all regexes for the given meaning
+    @param meaning: A string representing a given meaning.
+    @return: A list of regexes in string format corresponding to the given meaning.
+    """
+    return [i.strip() for i in open(MEANINGS_DICT[meaning]).readlines()]
+
+
+MEANINGS_DICT = {}
+get_meanings_dict()

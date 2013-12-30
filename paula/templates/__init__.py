@@ -16,12 +16,5 @@
 ##
 
 """
-Documentation for this script.
+The Top-level documentation for this new script.
 """
-
-def execute(operand):
-    """
-    Documentation for the execute function
-    @param operand: the operand for this script
-    """
-    print(operand)

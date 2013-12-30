@@ -15,3 +15,5 @@
 #
 ##
 
+def execute(operand):
+    print("placeholder")

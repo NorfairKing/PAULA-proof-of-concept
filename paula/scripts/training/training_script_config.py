@@ -24,4 +24,5 @@ DEBUG = True
 
 TRAINING_OPTIONS = [
     "room_training",
+    "long_run"
 ]

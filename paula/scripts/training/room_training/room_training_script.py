@@ -53,7 +53,7 @@ def get_training_scheme(exercise,week,day,difficulty_level):
     @return: A tuple with the amount of rest between each set, and a list of reps in the sets.
     """
     debug("Loading " + exercise + " script")
-    week_module = "paula.scripts.training.room_training.resources" + exercise + ".week_" + str(week)
+    week_module = "paula.scripts.training.room_training.resources." + exercise + ".week_" + str(week)
     debug("importing " + week_module)
     try:
         module = importlib.import_module(week_module)
@@ -73,14 +73,13 @@ def coach(rest, workout_list):
     @return:
     """
     for w in workout_list:
-        interaction.say(str(w) + " repetitions, Sir.")
-        answer =  inputs.get_string()
-        if interaction.means(answer,"okay"):
-            pass
-        else:
+        interaction.say(str(w) + " repetitions, Sir.",sync=True)
+        interaction.say("Let me know when you are done, Sir")
+        if not inputs.get_boolean():
             interaction.say("Done, Sir?")
-            # TODO something in here, this isn't finished yet.
-            return
+            if inputs.get_boolean():
+                debug("Exiting.")
+                return
         if not conf.DEBUG:
             interaction.say("Take a Break, Sir.")
             time.sleep(rest)

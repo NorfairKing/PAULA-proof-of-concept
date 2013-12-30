@@ -35,5 +35,5 @@ def load_script(name):
             "The " + module + " script is missing or does not exist. Either that or some import fails inside the script.")
         return
 
-    outputs.clear()
+    outputs.print_PAULA()
     module.execute("")

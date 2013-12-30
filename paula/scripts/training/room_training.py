@@ -27,7 +27,7 @@ def execute(operand):
     exercise = inputs.get_item_from_list(['push-ups','sit-ups'])
     week = inputs.get_item_from_list([1,2,3,4,5,6])
     day = inputs.get_item_from_list([1,2,3])
-    difficulty_level = inputs.get_item_from_list(['easy','medium','hard'])
+    difficulty_level = inputs.get_item_from_list(conf.DIFFICULTY_LEVELS)
     debug("scheme= " + str(get_training_scheme(exercise,week,day,difficulty_level)))
 
 

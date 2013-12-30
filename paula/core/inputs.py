@@ -36,6 +36,8 @@ def get_string_timeout(timeout,prompt=conf.DEFAULT_INPUT_PROMPT):
 def get_integer_timeout(timeout,prompt=conf.DEFAULT_INPUT_PROMPT):
     return integer.prompt_with_timeout(timeout,prompt)
 
+def get_integer_in_range(min,max,prompt=conf.DEFAULT_INPUT_PROMPT):
+    return integer.prompt_for_input_int_in_range(min,max,prompt=prompt)
 
 def get_item_from_list(possible_selections):
     return lists.prompt_for_list(possible_selections)

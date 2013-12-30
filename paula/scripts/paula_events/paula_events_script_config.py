@@ -20,7 +20,7 @@ import os
 from paula import config
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 NEW_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(NEW_SCRIPT_DIR, 'resources')

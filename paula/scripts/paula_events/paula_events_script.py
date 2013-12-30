@@ -19,7 +19,7 @@ import importlib
 
 from paula.core import inputs
 from paula.core import outputs
-from paula.core import interaction
+from paula.core import exceptions
 
 from . import paula_events_script_config as conf
 
@@ -29,7 +29,15 @@ def execute(operand):
         subscript = inputs.get_item_from_list(conf.OPTIONS)
     else:
         subscript = operand.split()[0]
-    module = load_script(subscript)
+        if not subscript in conf.OPTIONS:
+            return
+
+    try:
+        module = load_script(subscript)
+    except exceptions.PAULA_Import_Exception as e:
+        debug("Unable to load script: " + subscript)
+        return
+
     debug("executing" + str(module) + " with \""+  operand + "\" as operand.")
     module.execute(operand)
 
@@ -39,9 +47,7 @@ def load_script(name):
     try:
         module = importlib.import_module(script)
     except ImportError:
-        outputs.print_error(
-            "The " + script + " script is missing or does not exist. Either that or some import fails inside the script.")
-        return
+        raise exceptions.PAULA_Missing_Script_Exception
 
     outputs.print_PAULA()
     return module

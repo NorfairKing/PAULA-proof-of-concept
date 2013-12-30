@@ -21,7 +21,7 @@ import logging.config
 
 from .daemon import Daemon
 from paula import config as conf
-from paula.scripts import script
+from paula.scripts.script import ScriptController
 from paula.core import outputs
 from paula.core import schedule
 from paula.core import system
@@ -52,7 +52,8 @@ class Paula(Daemon):
 
     def respond_to(self, string):
         self.debug("Deciding " + string)
-        script.decide_and_run(string)
+        sc = ScriptController()
+        sc.decide_and_run(string)
         self.debug("Done with " + string)
 
     def check(self):

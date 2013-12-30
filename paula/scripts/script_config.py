@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -15,15 +15,18 @@
 #
 ##
 
+"""
+The configurations for the scripts package.
+"""
+
 import os
 
-# Default = False
 DEBUG = True
 
-SCRIPTS_DIR = os.path.dirname(os.path.realpath(__file__))
-
-# Default = 1
+# How long PAULA waits after a script is done.
 WAITING_TIME = 1
 
-
+# The default package where the scripts are housed (this package)
 DEFAULT_PARENT = "paula.scripts."
+# The directory where the scripts are housed (this directory)
+DEFAULT_SCRIPTS_DIR = os.path.dirname(os.path.realpath(__file__))

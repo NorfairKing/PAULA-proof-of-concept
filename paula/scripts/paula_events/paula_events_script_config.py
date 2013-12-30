@@ -15,9 +15,4 @@
 #
 ##
 
-import os
-
-from paula import config
-
-# Default = False
 DEBUG = False

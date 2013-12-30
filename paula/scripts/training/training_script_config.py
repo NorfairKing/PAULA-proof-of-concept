@@ -20,7 +20,7 @@ The configurations for the training script.
 """
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 TRAINING_OPTIONS = [
     "room_training",

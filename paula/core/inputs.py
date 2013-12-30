@@ -32,7 +32,7 @@ def get_integer(prompt=conf.DEFAULT_INPUT_PROMPT):
 
 
 def get_boolean(prompt=conf.DEFAULT_INPUT_PROMPT):
-    return boolean.prompt_for_input_string(prompt)
+    return boolean.prompt_for_input_boolean(prompt)
 
 
 def get_string_timeout(timeout, prompt=conf.DEFAULT_INPUT_PROMPT):

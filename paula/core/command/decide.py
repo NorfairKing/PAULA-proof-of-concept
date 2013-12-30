@@ -83,7 +83,7 @@ def make_regex_string(reg_str):
     return reg_str
 
 
-def get_meanings_dict():
+def calculate_meanings_dict():
     """
     Gets a dictionary mapping meanings to the path of the file containing their regexes.
     @return: The described dictionary
@@ -106,4 +106,4 @@ def get_meaning_regexes(meaning):
 
 
 MEANINGS_DICT = {}
-get_meanings_dict()
+calculate_meanings_dict()

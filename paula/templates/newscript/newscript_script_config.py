@@ -21,7 +21,6 @@ Documentation for the config file.
 
 import os
 
-# Default = False
 DEBUG = True
 
 NEW_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))

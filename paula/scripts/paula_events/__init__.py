@@ -15,9 +15,3 @@
 #
 ##
 
-from paula import config
-
-# Default = False
-DEBUG = False
-
-SCHEDULING_DIR = config.PAULA_STATE_SCHEDULING_DIR

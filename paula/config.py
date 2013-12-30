@@ -24,6 +24,9 @@ PAULA_DIR = os.path.dirname(os.path.realpath(__file__))
 PAULA_EXECUTABLE_DIR = os.path.dirname(PAULA_DIR)
 PAULA_EXECUTABLE = os.path.join(PAULA_EXECUTABLE_DIR,PAULA_SCRIPT)
 
+PAULA_STATE_DIR = os.path.expanduser("~/.PAULA")
+PAULA_STATE_SCHEDULING_DIR = os.path.join(PAULA_STATE_DIR,"events")
+
 # Pid file
 PAULA_PID_FILE = '/tmp/paula.pid'
 

@@ -19,7 +19,13 @@ import signal
 from paula.core import outputs
 
 
+
 def prompt_for_input_int(prompt=""):
+    """
+    Prompt for an integer, keep asking for new input untill a valid integer is provided.
+    @param prompt: What should appear as the question. eg: prompt="why: " results in the following. why: <input text here>
+    @return:
+    """
     value = None
     while not value:
         answer = input(prompt)

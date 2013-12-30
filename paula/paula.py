@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -21,7 +21,7 @@ import logging.config
 
 from .daemon import Daemon
 from paula import config as conf
-from paula.scripts import script
+from paula.scripts.script import ScriptController
 from paula.core import outputs
 from paula.core import schedule
 from paula.core import system
@@ -52,7 +52,8 @@ class Paula(Daemon):
 
     def respond_to(self, string):
         self.debug("Deciding " + string)
-        script.decide_and_run(string)
+        sc = ScriptController()
+        sc.decide_and_run(string)
         self.debug("Done with " + string)
 
     def check(self):
@@ -71,6 +72,8 @@ class Paula(Daemon):
             self.info('Check done \n')
             time.sleep(conf.CHECK_TIMER)
 
+
 def debug(string):
     if conf.DEBUG:
-                outputs.print_debug(string)
+        outputs.print_debug(string)
+        

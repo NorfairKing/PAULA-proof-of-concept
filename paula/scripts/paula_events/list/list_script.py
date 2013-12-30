@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -15,9 +15,17 @@
 #
 ##
 
+"""
+The list subscript of paula_events
+"""
+
 from paula.core import schedule
 
 def execute(operand):
+    """
+    Executes the list subscript of paula_events
+    @param operand:
+    """
     events = schedule.get_all_events()
     print()
     print()

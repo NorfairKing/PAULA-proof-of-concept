@@ -16,8 +16,5 @@
 ##
 
 """
-The scripts package.
-
-Here all PAULA's script are housed.
-This is also where you should put custom scripts.
+The paula_events list script
 """

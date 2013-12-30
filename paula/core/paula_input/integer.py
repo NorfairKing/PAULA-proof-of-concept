@@ -17,6 +17,7 @@
 
 import signal
 from paula.core import outputs
+from paula.core import exceptions
 
 
 
@@ -59,3 +60,12 @@ def prompt_with_timeout(timeout, prompt=""):
     except Timeout:
         line = None
     return line
+
+
+def prompt_for_input_int_in_range(min, max, prompt=""):
+    if max < min:
+        raise exceptions.PAULA_Broken_Contract_Exception("<max> should be greater than <min>.")
+    value = prompt_for_input_int(prompt=prompt)
+    while not (value <= max and value >= min):
+        value = prompt_for_input_int(prompt=prompt)
+    return value

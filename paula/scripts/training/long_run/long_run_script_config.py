@@ -15,9 +15,10 @@
 #
 ##
 
-"""
-The scripts package.
+import os
 
-Here all PAULA's script are housed.
-This is also where you should put custom scripts.
-"""
+# Default = False
+DEBUG = True
+
+LONG_RUN_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+RESOURCES_DIR = os.path.join(LONG_RUN_SCRIPT_DIR, 'resources')

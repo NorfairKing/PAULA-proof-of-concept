@@ -15,13 +15,14 @@
 #
 ##
 
-# Default = False
-DEBUG = False
+"""
+The configurations for the training script.
+"""
 
-REPLACEMENTS = {
-    "my": "your",
-    "I": "you",
-    "I'm": "you're",
-    "Im": "you're",
-    "then": "now",
-}
+# Default = False
+DEBUG = True
+
+TRAINING_OPTIONS = [
+    "room_training",
+    "long_run"
+]

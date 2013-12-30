@@ -15,13 +15,24 @@
 #
 ##
 
-# Default = False
-DEBUG = False
+"""
+The configurations for the training script.
+"""
 
-REPLACEMENTS = {
-    "my": "your",
-    "I": "you",
-    "I'm": "you're",
-    "Im": "you're",
-    "then": "now",
-}
+# Default = False
+DEBUG = True
+
+ROOM_TRAINING_OPTIONS = [
+    'push-ups',
+    'sit-ups'
+]
+
+# TODO this should be a config, currently it isn't.
+DIFFICULTY_LEVELS = [
+    'easy',
+    'medium',
+    'hard'
+]
+
+WEEKS_PER_EXERCISE = 6
+DAYS_PER_WEEK = 3

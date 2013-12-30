@@ -14,10 +14,3 @@
 # Assistant
 #
 ##
-
-"""
-The scripts package.
-
-Here all PAULA's script are housed.
-This is also where you should put custom scripts.
-"""

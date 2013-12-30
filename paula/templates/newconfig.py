@@ -19,5 +19,4 @@
 Config documentation
 """
 
-# Default = False
 DEBUG = False

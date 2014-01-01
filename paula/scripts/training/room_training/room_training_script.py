@@ -74,8 +74,8 @@ def coach(exercise, rest, workout_list):
     @param workout_list: The list of reps in the sets.
     @return:
     """
-    for w in workout_list:
-        interaction.say(str(w) + " " + exercise + ", Sir.", sync=True)
+    for w in workout_list[:-1]:
+        interaction.say(str(w) + " " + exercise + ", Sir.")
         if not inputs.get_boolean():
             interaction.say("Done, Sir?")
             if inputs.get_boolean():
@@ -84,6 +84,10 @@ def coach(exercise, rest, workout_list):
         if not conf.DEBUG:
             interaction.say_from_file(conf.BREAK_FILE)
             time.sleep(rest)
+    interaction.say("For the last set, do at least " + str(workout_list[-1]) + " " + exercise + ", Sir.")
+    if not inputs.get_boolean():
+        interaction.say("Too bad, Sir.")
+        return
     interaction.say_from_file(conf.DONE_FILE)
 
 

@@ -60,7 +60,7 @@ def get_training_scheme(exercise, week, day, difficulty_level):
     except ImportError:
         outputs.print_error("TRAINING FILE MISSING")
 
-    day = module.schemes[day - 1] #-1 because arrays start at zero.
+    day = module.SCHEMES[day - 1] #-1 because arrays start at zero.
     rest, difficulties = day
     scheme = (rest, difficulties[difficulty_level])
     return scheme

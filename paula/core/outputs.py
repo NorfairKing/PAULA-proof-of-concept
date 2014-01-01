@@ -19,9 +19,8 @@ import subprocess
 from .paula_output import string
 
 
-def print_error(error_string, error_type="ERROR"):
-    string.print_error(error_string, error_type=error_type)
-
+def print_error(error_string, error=None):
+    string.print_error(error_string, error=error)
 
 def print_debug(debug_string):
     string.print_debug(debug_string)

@@ -63,8 +63,12 @@ def print_color(text, foreground, background="default", bold=False, newline=True
     sys.stdout.write(result)
 
 
-def print_error(error_string, error_type="ERROR"):
-    print_color(error_type + ": " + error_string, conf.ERROR_COLOR)
+def print_error(string, error=None):
+    error_string = "ERROR"
+    if error:
+        error_string = str(error.__class__.__name__)
+    txt = error_string + ": " + string
+    print_color(txt, conf.ERROR_COLOR)
 
 
 def print_debug(debug_string):

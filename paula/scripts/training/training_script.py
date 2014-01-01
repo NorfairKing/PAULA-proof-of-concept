@@ -24,23 +24,38 @@ import importlib
 from paula.core import inputs
 from paula.core import outputs
 
+from paula.scripts.script import ScriptController
 from . import training_script_config as conf
 
 
 def execute(operand):
-    answer = inputs.get_item_from_list(conf.TRAINING_OPTIONS)
-    module = load_script(answer)
+    sc = ScriptController(parent=".training")
+    script, new_operand = sc.decide_meaning(operand)
+    if script:
+        sc.execute(script, new_operand)
+    else:
+        script = inputs.get_item_from_list(sc.scripts_dict.keys())
+        script_module = load(script)
+        if script_module:
+            script_module.execute(new_operand)
 
-    outputs.print_PAULA()
-    module.execute(operand)
 
-
-def load_script(name):
-    module_name = "paula.scripts.training." + name + "." + name + "_script"
+def load(script_name):
     try:
+        module_name = "paula.scripts.training." + script_name + "." + script_name + "_script"
+        debug("Importing module: " + module_name)
         module = importlib.import_module(module_name)
     except ImportError:
         outputs.print_error(
-            "The " + module_name + " script is missing or does not exist. Either that or some import fails inside the script.")
+            "The " + script_name + " script is missing or does not exist. Either that or some import fails inside the script.")
         return
     return module
+
+
+def debug(string):
+    """
+    Shows the given string as debug info if debug is toggled on.
+    @param string: The given string.
+    """
+    if conf.DEBUG:
+        outputs.print_debug(string)

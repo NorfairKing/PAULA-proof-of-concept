@@ -36,13 +36,12 @@ class ScriptController(object):
 
     def __init__(self, parent=""):
         self.parent = parent
-        self.scripts_dict = self._calculate_scripts_dict()
+        self.scripts_dict = self.calculate_scripts_dict()
 
     def decide_and_run(self, string):
         """
         Decides which script the given string represents and executes that script.
         @param string: A given string.
-        @param parent: The parent package under which to look for the scripts.
         @return: Nothing whatsoever
         """
         outputs.print_PAULA()
@@ -106,7 +105,7 @@ class ScriptController(object):
         if not script in self.scripts_dict:
             return False, None
 
-        regexes = self._get_meaning_regexes(script)
+        regexes = self.get_meaning_regexes(script)
 
         possible_operands = []
         for reg_str in regexes:
@@ -130,7 +129,7 @@ class ScriptController(object):
         possible_operands.sort(key=lambda t: len(t))
         return True, possible_operands[0]
 
-    def _calculate_scripts_dict(self):
+    def calculate_scripts_dict(self):
         """
         Gets a dictionary mapping the script to the commands corresponding to them.
         @return: The described dictionary.
@@ -148,7 +147,7 @@ class ScriptController(object):
                     d[script] = commands
         return d
 
-    def _get_meaning_regexes(self, script):
+    def get_meaning_regexes(self, script):
         """
         Gets all the regexes that correspond to the given script
         @param script: The given script.

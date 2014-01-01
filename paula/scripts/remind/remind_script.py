@@ -16,6 +16,7 @@
 ##
 
 from paula.core import outputs
+from paula.core import interaction
 from paula.core import schedule
 from paula.core import parse
 from paula.core import exceptions
@@ -46,14 +47,15 @@ def execute(operand):
         return
     treated_content = treat_content(content)
     schedule.schedule_event_with_delta(delta, "paula_remind", treated_content)
+    interaction.say_from_file(conf.CONFIRMATION_FILE)
 
 
 def treat_content(content):
     content = ' ' + content + ' '
-    treated = content
+    treated = content.lower()
 
     for replace_str in conf.REPLACEMENTS:
-        treated = treated.replace(" " + replace_str + " ", " " + conf.REPLACEMENTS[replace_str] + " ")
+        treated = treated.replace(" " + replace_str.lower() + " ", " " + conf.REPLACEMENTS[replace_str] + " ")
 
     treated = treated.replace("\"", "\\\"")
     treated = treated.replace("\'", "\\\'")

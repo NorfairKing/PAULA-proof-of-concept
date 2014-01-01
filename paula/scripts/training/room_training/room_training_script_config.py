@@ -20,7 +20,7 @@ The configurations for the training script.
 """
 
 # Default = False
-DEBUG = True
+DEBUG = False
 
 ROOM_TRAINING_OPTIONS = [
     'push-ups',

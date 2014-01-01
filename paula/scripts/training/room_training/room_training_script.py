@@ -40,7 +40,7 @@ def execute(operand):
     difficulty_level = inputs.get_item_from_list(conf.DIFFICULTY_LEVELS)
     rest, workout_list = get_training_scheme(exercise, week, day, difficulty_level)
     debug("scheme= " + str((rest, workout_list)))
-    coach(rest, workout_list)
+    coach(exercise, rest, workout_list)
 
 
 def get_training_scheme(exercise, week, day, difficulty_level):
@@ -66,25 +66,25 @@ def get_training_scheme(exercise, week, day, difficulty_level):
     return scheme
 
 
-def coach(rest, workout_list):
+def coach(exercise, rest, workout_list):
     """
-    Coaches the given scheme.
+    Coaches the given scheme of the given exercise.
+    @param exercise: The given exercise.
     @param rest: The amount of rest between each set.
     @param workout_list: The list of reps in the sets.
     @return:
     """
     for w in workout_list:
-        interaction.say(str(w) + " repetitions, Sir.", sync=True)
-        interaction.say("Let me know when you are done, Sir")
+        interaction.say(str(w) + " " + exercise + ", Sir.", sync=True)
         if not inputs.get_boolean():
             interaction.say("Done, Sir?")
             if inputs.get_boolean():
                 debug("Exiting.")
                 return
         if not conf.DEBUG:
-            interaction.say("Take a Break, Sir.")
+            interaction.say_from_file(conf.BREAK_FILE)
             time.sleep(rest)
-    interaction.say("Well done, Sir.")
+    interaction.say_from_file(conf.DONE_FILE)
 
 
 def debug(string):

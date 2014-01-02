@@ -56,13 +56,13 @@ def execute(operand):
         hour_min += "in the morning."
     interaction.say(now.strftime(hour_min), sync=True)
 
-    month_day = "We are the %d"
+    month_day = "We are the %-d"
     day = now.day
     if day in conf.DAY_SUFFIXES.keys():
         month_day += conf.DAY_SUFFIXES[day]
     else:
         month_day += "th"
-    month_day += ' %b %Y'
+    month_day += ' %B %Y'
     interaction.say(now.strftime(month_day), sync=True)
 
     subp = s.play()

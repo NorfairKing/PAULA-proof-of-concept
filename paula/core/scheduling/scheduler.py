@@ -22,7 +22,9 @@ from . import scheduling_config as conf
 
 def get_all_events():
     for path, dirs, files in os.walk(conf.SCHEDULING_DIR):
-        return [event.get_event_from_file(os.path.join(conf.SCHEDULING_DIR, f)) for f in files]
+        events = [event.get_event_from_file(os.path.join(conf.SCHEDULING_DIR, f)) for f in files]
+    events.sort()
+    return events
 
 
 def get_overdue_events():

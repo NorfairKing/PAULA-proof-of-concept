@@ -60,6 +60,9 @@ class Event:
     def __str__(self):
         return "EVENT: " + str(self.date) + "  COMMAND = " + self.command + "  OPERAND = " + self.operand
 
+    def __lt__(self, other):
+        return self.date < other.date
+
 
 def get_event_from_file(path):
     date = datetime.datetime.strptime(os.path.basename(path), '%Y-%m-%d %H:%M:%S')

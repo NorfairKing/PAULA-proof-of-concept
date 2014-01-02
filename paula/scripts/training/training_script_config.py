@@ -19,10 +19,4 @@
 The configurations for the training script.
 """
 
-# Default = False
 DEBUG = False
-
-TRAINING_OPTIONS = [
-    "room_training",
-    "long_run"
-]

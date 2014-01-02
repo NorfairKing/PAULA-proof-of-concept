@@ -21,7 +21,7 @@ The configurations for the training script.
 
 import os
 
-DEBUG = True
+DEBUG = False
 
 ROOM_TRAINING_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(ROOM_TRAINING_SCRIPT_DIR, 'resources')

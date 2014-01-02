@@ -15,6 +15,7 @@
 #
 ##
 
+import sys
 import time
 import importlib
 
@@ -27,6 +28,8 @@ from . import room_training_script_config as conf
 """
 The roomtraining script.
 """
+
+SECONDS_IN_A_MINUTE = 60
 
 
 def execute(operand):
@@ -66,11 +69,11 @@ def get_training_scheme(exercise, week, day, difficulty_level):
     return scheme
 
 
-def coach(exercise, rest, workout_list):
+def coach(exercise, rest_duration, workout_list):
     """
     Coaches the given scheme of the given exercise.
     @param exercise: The given exercise.
-    @param rest: The amount of rest between each set.
+    @param rest_duration: The amount of rest between each set.
     @param workout_list: The list of reps in the sets.
     @return:
     """
@@ -83,12 +86,41 @@ def coach(exercise, rest, workout_list):
                 return
         if not conf.DEBUG:
             interaction.say_from_file(conf.BREAK_FILE)
-            time.sleep(rest)
+            rest(rest_duration)
+
     interaction.say("For the last set, do at least " + str(workout_list[-1]) + " " + exercise + ", Sir.")
     if not inputs.get_boolean():
         interaction.say("Too bad, Sir.")
         return
     interaction.say_from_file(conf.DONE_FILE)
+
+
+def rest(duration):
+    minutes = duration / SECONDS_IN_A_MINUTE
+    seconds = duration % SECONDS_IN_A_MINUTE
+
+    def erase():
+        sys.stdout.write('\x1b[1A' + '\x1b[2K') # Go to previous line and erase it.
+
+    def print_time(minute, second):
+        erase()
+        minute_str = str(int(minute))
+        second_str = str(int(second))
+        if minute < 10:
+            minute_str = "0" + minute_str
+        if second < 10:
+            second_str = "0" + second_str
+        print(conf.CLOCK_PADDING * " " + minute_str + ":" + second_str)
+
+    print_time(minutes,seconds)
+    while minutes >= 0:
+        while seconds >= 0:
+            time.sleep(1)
+            print_time(minutes, seconds)
+            seconds -= 1
+        seconds = SECONDS_IN_A_MINUTE -1
+        minutes -= 1
+    erase()
 
 
 def debug(string):

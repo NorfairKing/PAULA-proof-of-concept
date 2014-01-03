@@ -34,7 +34,9 @@ def execute(operand):
         debug("no \"in\", Exiting.")
         return
 
-    content, moment = operand.split(" in ")
+    operand_parts = operand.split(" in ")
+    content = " in ".join(operand_parts[:-1])
+    moment = operand_parts[-1]
 
     if not " " in moment:
         debug("No space in moment, Exiting.")

@@ -24,4 +24,4 @@ from paula.core import config
 
 from . import paula_test_script_config as conf
 
-config.make_default_config_file_if_nonexistent('paula_test_script', conf.DEFAULT_CONFIG_FILE)
+config.make_default_config_file_if_nonexistent(__package__, conf.DEFAULT_CONFIG_FILE)

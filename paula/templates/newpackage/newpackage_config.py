@@ -26,3 +26,4 @@ DEBUG = True
 
 NEW_PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(NEW_PACKAGE_DIR, 'resources')
+

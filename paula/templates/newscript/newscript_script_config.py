@@ -25,4 +25,6 @@ DEBUG = True
 
 NEW_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(NEW_SCRIPT_DIR, 'resources')
+DEFAULT_CONFIG_FILE = os.path.join(RESOURCES_DIR,'default_config_file')
+)
 PAULA_TEXT_FILE = os.path.join(RESOURCES_DIR,'paula_text.paula_says')

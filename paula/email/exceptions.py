@@ -16,5 +16,13 @@
 ##
 
 """
-The package for all things PAULA completely delegates to other programs.
+All PAULA's email exceptions
 """
+
+from paula.core import exceptions
+
+class PAULAEmailException(exceptions.PAULA_Exception):
+    pass
+
+class PAULAInvalidEmailException(PAULAEmailException):
+    pass

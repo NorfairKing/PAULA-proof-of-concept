@@ -23,11 +23,19 @@ import os
 
 from paula.core import config
 
-DEBUG = True
+DEBUG = False
 
-NEW_PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
-RESOURCES_DIR = os.path.join(NEW_PACKAGE_DIR, 'resources')
-DEFAULT_CONFIG_FILE = os.path.join(RESOURCES_DIR,'default_config_file')
+EMAIL_DIR = os.path.dirname(os.path.realpath(__file__))
+RESOURCES_DIR = os.path.join(EMAIL_DIR, 'resources')
+DEFAULT_CONFIG_FILE = os.path.join(RESOURCES_DIR, 'default_config_file')
+
 config.make_default_config_file_if_nonexistent(__package__, DEFAULT_CONFIG_FILE)
 
-PAULA_TEXT_FILE = os.path.join(RESOURCES_DIR,'paula_text.paula_says')
+FROM = config.get_config(__package__, 'from')
+
+LOGIN = config.get_config(__package__, 'login')
+PASSWORD = config.get_config(__package__, 'password')
+
+SMTP_SERVER = 'smtp.gmail.com:587'
+
+EMAIL_REGEX_FILE = os.path.join(RESOURCES_DIR, 'email_regex')

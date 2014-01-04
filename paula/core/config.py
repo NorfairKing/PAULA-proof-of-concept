@@ -28,4 +28,4 @@ def get_config(package, config_option):
 
 
 def make_default_config_file_if_nonexistent(package, default):
-    return config_utils.init_default_config_file_if_nonexistent()
+    return config_utils.init_default_config_file_if_nonexistent(package, default)

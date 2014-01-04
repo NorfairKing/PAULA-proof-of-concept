@@ -20,6 +20,7 @@ The module responsible for interaction with user configuration options.
 """
 
 from .paula_config import user_configs
+from .paula_config import config_utils
 
 
 def get_config(package, config_option):
@@ -27,4 +28,4 @@ def get_config(package, config_option):
 
 
 def make_default_config_file_if_nonexistent(package, default):
-    return user_configs.make_default_config_file_if_nonexistent(package, default)
+    return config_utils.init_default_config_file_if_nonexistent()

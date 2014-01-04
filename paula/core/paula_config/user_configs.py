@@ -20,8 +20,6 @@ The config handling module
 """
 
 import os
-import sys
-import shutil
 import configparser
 
 from . import paula_config_config as conf
@@ -45,21 +43,10 @@ def get_config(package, config_option):
     return config_parser.get('Configurations', config_option)
 
 
-def get_string_config():
-    return "test"
-
-
-def make_default_config_file_if_nonexistent(package, default_config):
-    config_file = os.path.join(conf.PAULA_USER_CONFIG_DIR, package + conf.CONFIG_EXTENSION)
-    if not os.path.exists(config_file):
-        shutil.copyfile(default_config, config_file)
-
-
-def this_module():
-    modname = globals()['__name__']
-    return sys.modules[modname]
-
-
 def debug(string):
+    """
+    Prints a given debug string if debug is toggled on.
+    @param string: The given debug string.
+    """
     if conf.DEBUG:
         outputs.print_debug(string)

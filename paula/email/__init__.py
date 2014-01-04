@@ -16,5 +16,5 @@
 ##
 
 """
-The package for all things PAULA completely delegates to other programs.
+PAULA's email package
 """

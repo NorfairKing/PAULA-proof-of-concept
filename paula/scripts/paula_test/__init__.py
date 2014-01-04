@@ -19,9 +19,3 @@
 paula_test: The developers test package.
 Here, developers test their newly implemented features, or part of them.
 """
-
-from paula.core import config
-
-from . import paula_test_script_config as conf
-
-config.make_default_config_file_if_nonexistent(__package__, conf.DEFAULT_CONFIG_FILE)

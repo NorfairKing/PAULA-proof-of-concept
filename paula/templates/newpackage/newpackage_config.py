@@ -21,9 +21,14 @@ The config file for this new package
 
 import os
 
+from paula.core import config
+
 # Default = False
 DEBUG = True
 
 NEW_PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(NEW_PACKAGE_DIR, 'resources')
+DEFAULT_CONFIG_FILE = os.path.join(RESOURCES_DIR,'default_config_file')
+config.make_default_config_file_if_nonexistent(__package__, DEFAULT_CONFIG_FILE)
 
+PAULA_TEXT_FILE = os.path.join(RESOURCES_DIR,'paula_text.paula_says')

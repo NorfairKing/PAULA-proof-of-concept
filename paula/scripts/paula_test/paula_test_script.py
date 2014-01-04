@@ -28,5 +28,7 @@ def execute(operand):
 
 
     # <Test here>
-        
+    from paula.core import config
+    print(config.get_config(__package__,'test_config_option'))
+
     # </Test here>

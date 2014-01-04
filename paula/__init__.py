@@ -15,3 +15,8 @@
 #
 ##
 
+
+from paula.core import util
+from . import config as conf
+
+util.make_dir_if_nonexistent(conf.PAULA_STATE_DIR)

@@ -15,13 +15,12 @@
 #
 ##
 
-import os
+"""
+The user configurations module for PAULA
+"""
 
-from . import core_config as conf
-from paula.core import outputs
+from paula.core import util
 
-def make_dir_if_nonexistent(path):
-    if not os.path.exists(path):
-        os.mkdir(path)
-        if conf.DEBUG:
-            outputs.print_debug("Created " + path + " directory.")
+from . import paula_config_config as conf
+
+util.make_dir_if_nonexistent(conf.PAULA_USER_CONFIG_DIR)

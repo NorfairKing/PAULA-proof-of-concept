@@ -17,7 +17,6 @@
 
 import os
 import platform
-from os.path import expanduser
 from paula.core import outputs
 from paula.core import system
 
@@ -67,10 +66,6 @@ if __name__ == "__main__":
     else:
         print("ERROR: Your platform is not supported")
         exit(1)
-
-    DOT_PAULA_DIR = expanduser("~/.PAULA")
-    if not os.path.isdir(DOT_PAULA_DIR):
-        os.mkdir(DOT_PAULA_DIR)
 
     outputs.print_color("INSTALLING PAULA DONE", "red")
 

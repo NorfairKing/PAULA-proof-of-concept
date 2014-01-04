@@ -36,11 +36,6 @@ class Event:
             outputs.print_debug("Constructed event " + str(self))
 
     def schedule(self):
-        if not os.path.exists(conf.SCHEDULING_DIR):
-            os.mkdir(conf.SCHEDULING_DIR)
-            if conf.DEBUG:
-                outputs.print_debug("Created event directory.")
-
         event_file = open(self.file, 'w')
         event_file.write(self.command + "\n")
         event_file.write(self.operand)

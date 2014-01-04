@@ -15,3 +15,7 @@
 #
 ##
 
+from paula.core import util
+from . import scheduling_config as conf
+
+util.make_dir_if_nonexistent(conf.SCHEDULING_DIR)

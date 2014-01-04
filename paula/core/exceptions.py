@@ -55,8 +55,10 @@ class PAULA_Not_An_Integer_Exception(PAULA_Parse_Exception):
 class PAULA_Unknown_Quantifier_Exception(PAULA_Parse_Exception):
     pass
 
+
 class PAULA_Configuration_Exception(PAULA_Exception):
     pass
+
 
 class PAULA_Missing_Config_Exception(PAULA_Configuration_Exception):
     pass

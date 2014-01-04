@@ -22,8 +22,7 @@ The configurations file for the configurations package... IKR!
 import os
 from paula import config as conf
 
-# Default = False
-DEBUG = True
+DEBUG = False
 
 PAULA_CONFIG_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(PAULA_CONFIG_DIR, 'resources')

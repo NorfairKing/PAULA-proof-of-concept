@@ -23,7 +23,6 @@ import os
 
 from paula.core import config
 
-# Default = False
 DEBUG = True
 
 NEW_PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))

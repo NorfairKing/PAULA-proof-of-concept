@@ -28,8 +28,5 @@ def execute(operand):
 
 
     # <Test here>
-    from paula.email import email
-    e = email.Email('test_4','test_message','tom.kerckhove@telenet.be')
-    e.send()
 
     # </Test here>

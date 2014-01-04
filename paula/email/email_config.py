@@ -23,8 +23,7 @@ import os
 
 from paula.core import config
 
-# Default = False
-DEBUG = True
+DEBUG = False
 
 EMAIL_DIR = os.path.dirname(os.path.realpath(__file__))
 RESOURCES_DIR = os.path.join(EMAIL_DIR, 'resources')
@@ -39,3 +38,4 @@ PASSWORD = config.get_config(__package__, 'password')
 
 SMTP_SERVER = 'smtp.gmail.com:587'
 
+EMAIL_REGEX_FILE = os.path.join(RESOURCES_DIR, 'email_regex')

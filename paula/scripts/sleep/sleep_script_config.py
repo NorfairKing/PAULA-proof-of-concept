@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -17,7 +17,6 @@
 
 import os
 
-# Default = False
 DEBUG = False
 
 SLEEP_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -48,13 +47,13 @@ WAKE_UP_TIME = 5 * 60
 ANNOYING = True
 
 DAY_SUFFIXES = {
-    1:"st",
-    2:"nd",
-    3:"rd",
-    21:"st",
-    22:"nd",
-    23:"rd",
-    31:"st",
-    32:"nd",
-    33:"rd",
+    1: "st",
+    2: "nd",
+    3: "rd",
+    21: "st",
+    22: "nd",
+    23: "rd",
+    31: "st",
+    32: "nd",
+    33: "rd",
 }

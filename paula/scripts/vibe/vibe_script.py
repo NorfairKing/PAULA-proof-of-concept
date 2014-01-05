@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -25,7 +25,7 @@ from . import vibe_script_config as conf
 def execute(operand):
     possible_selections = get_vibe_songs_dict()
     debug("Possible selections = " + str(possible_selections))
-    try :
+    try:
         selected_title = random.choice(list(possible_selections.keys()))
     except IndexError:
         return #TODO do something fitting when there are no vibe songs
@@ -43,6 +43,7 @@ def get_vibe_songs_dict():
                 entire_path = os.path.join(dirname, filename)
                 possible_selections[file_clean] = song.Song(entire_path)
     return possible_selections
+
 
 def debug(string):
     if conf.DEBUG:

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -20,7 +20,8 @@ from paula.core import interaction
 
 from . import paula_say_script_config as conf
 
+
 def execute(operand):
     if conf.DEBUG:
         outputs.print_debug("Saying " + operand)
-    interaction.say(operand,sync=True)
+    interaction.say(operand, sync=True)

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -16,15 +16,15 @@
 ##
 
 import sys
-import os
 import wave
 import urllib
+import urllib.request
+import urllib.error
+
 import pyaudio
 
 from paula.core import system
 
-import urllib.request
-import urllib.error
 
 def execute(operand):
     CHUNK = 1024
@@ -64,16 +64,18 @@ def execute(operand):
     wf.close()
 
     with open("/tmp/output.wav") as f:
-            system.call_silently("flac -f /tmp/output.wav")
-            f = open('/tmp/output.flac','rb')
-            flac_cont = f.read()
-            result = speech_to_text(flac_cont)
-            f.close()
+        system.call_silently("flac -f /tmp/output.wav")
+        f = open('/tmp/output.flac', 'rb')
+        flac_cont = f.read()
+        result = speech_to_text(flac_cont)
+        f.close()
 
     print("understood: " + result)
 
+
 def speech_to_text(audio):
-    req = urllib.request.Request('https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US', data=audio, headers={'Content-type': 'audio/x-flac; rate=16000'})
+    req = urllib.request.Request('https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US',
+                                 data=audio, headers={'Content-type': 'audio/x-flac; rate=16000'})
 
     try:
         ret = urllib.request.urlopen(req)
@@ -81,5 +83,5 @@ def speech_to_text(audio):
         print("Error Transcribing Voicemail")
         sys.exit(1)
     answer = str(ret.read())
-    result = answer[answer.find('utterance":"') + 12 : answer.find('","con')]
+    result = answer[answer.find('utterance":"') + 12: answer.find('","con')]
     return result

@@ -21,7 +21,6 @@ import os
 The configurations for the remind script.
 """
 
-# Default = False
 DEBUG = False
 
 REPLACEMENTS = {

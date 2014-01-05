@@ -17,7 +17,7 @@
 
 
 """
-PAULA' plain say-script.
+PAULA's plain say-script.
 """
 
 from paula.scripts.script import Script

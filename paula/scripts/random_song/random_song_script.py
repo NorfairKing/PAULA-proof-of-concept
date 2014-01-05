@@ -15,8 +15,14 @@
 #
 ##
 
+"""
+PAULA's random song script
+"""
+
+from paula.scripts.script import Script
+
 from paula.music import song
 
-
-def execute(operand):
-    song.play_random()
+class RandomSongScript(Script):
+    def execute(self, operand):
+        song.play_random()

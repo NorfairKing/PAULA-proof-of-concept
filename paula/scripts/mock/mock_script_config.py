@@ -15,11 +15,4 @@
 #
 ##
 
-import os
-
-
 DEBUG = False
-
-MOCK_SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-RESOURCES_DIR = os.path.join(MOCK_SCRIPT_DIR, 'resources')
-HAHA_FILE = os.path.join(RESOURCES_DIR, "haha.mp3")

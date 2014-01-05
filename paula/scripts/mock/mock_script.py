@@ -15,11 +15,15 @@
 #
 ##
 
+"""
+Mocks the user.
+"""
+
+from paula.scripts.script import Script
 from paula.core import system
 
-from . import mock_script_config as conf
 
-
-def execute(operand):
-    cmd = ['vlc', '-Idummy', '--play-and-exit', '-vvv', conf.HAHA_FILE]
-    process = system.call_list_silently(cmd, sync=False)
+class MockScript(Script):
+    def execute(self, operand):
+        cmd = ['vlc', '-Idummy', '--play-and-exit', '-vvv', self.get_resource_path('haha.mp3')]
+        process = system.call_list_silently(cmd, sync=False)

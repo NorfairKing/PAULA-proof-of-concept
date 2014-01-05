@@ -46,6 +46,7 @@ class Script(object):
         self.directory = os.path.join(conf.DEFAULT_SCRIPTS_DIR, self.relative_package.replace(".", "/")) #TODO this is pretty hard coded.
         configfile = self.__module__ + conf.CONFIG_SUFFIX
         self.config_module = importlib.import_module(configfile)
+        self.resources_dir = os.path.join(self.directory, conf.DEFAULT_RESOURCE_DIR_NAME)
 
         self.check_config()
 
@@ -85,11 +86,19 @@ class Script(object):
         """
         return config.get_config(self.name, config_option)
 
+    def get_resource_path(self, resource):
+        """
+        Get's a given resource from the resources folder of this script.
+        @param resource: The name of the given resource
+        @return: An absolute path to the given resource in string format.
+        """
+        return os.path.join(self.resources_dir, resource)
+
+
     def check_config(self):
         """
         Check if a config file exists, if not, check if one has to be made, if so, do so.
         """
-        resource_dir = os.path.join(self.directory, conf.DEFAULT_RESOURCE_DIR_NAME)
-        default_config_file = os.path.join(resource_dir, conf.DEFAULT_CONFIG_FILE_NAME)
+        default_config_file = os.path.join(self.resources_dir, conf.DEFAULT_CONFIG_FILE_NAME)
         if os.path.exists(default_config_file):
             config.make_default_config_file_if_nonexistent(self.name, default_config_file)

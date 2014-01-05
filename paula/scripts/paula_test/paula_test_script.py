@@ -26,5 +26,5 @@ class PaulaTestScript(Script):
 
         # <Test here>
         print(self.get_user_config('test_config_option'))
-        print(self.get_config('HERE'))
+        print(self.get_config('DEBUG'))
         # </Test here>

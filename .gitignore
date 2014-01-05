@@ -4,6 +4,9 @@
 *~
 *.swp
 
+*.wav
+*.flac
+
 # C extensions
 *.so
 

@@ -15,8 +15,6 @@
 #
 ##
 import os
-import signal
-import subprocess
 import random
 import os.path
 from paula.core import outputs
@@ -39,7 +37,7 @@ class Song:
         self.path = path
 
     def play(self):
-        cmd = ['vlc', '-Idummy' , '--play-and-exit','-vvv', self.path]
+        cmd = ['vlc', '-Idummy', '--play-and-exit', '-vvv', self.path]
 
         process = system.call_list_silently(cmd, sync=False)
 
@@ -56,12 +54,22 @@ class Song:
         return process
 
     def __str__(self):
-        return "Artist: " + self.artist + ", Song: "+self.title
+        return "Artist: " + self.artist + ", Song: " + self.title
+
+
+def is_song_playing():
+    if os.path.exists(conf.SONG_PID):
+        songfile = open(conf.SONG_PID, 'r');
+        pid = songfile.read()
+        if (os.path.exists("/proc/" + pid)): #TODO this is too hard coded?
+            return True
+    return False
 
 
 def choose_and_play():
     song = choose()
     song.play()
+
 
 def get_current_artist():
     if not os.path.exists(conf.SONG_INFO):
@@ -74,6 +82,7 @@ def get_current_artist():
     except IOError:
         outputs.print_error('Could not open paula_song.info')
 
+
 def get_current_song():
     if not os.path.exists(conf.SONG_INFO):
         return None
@@ -84,6 +93,7 @@ def get_current_song():
             return lines[0]
     except IOError:
         outputs.print_error('Could not open paula_song.info')
+
 
 def get_current_album():
     if not os.path.exists(conf.SONG_INFO):
@@ -96,12 +106,13 @@ def get_current_album():
     except IOError:
         outputs.print_error('Could not open paula_song.info')
 
+
 def find_song(search_string):
     #get all files
     files = [os.path.join(path, filename)
-        for musicFolder in get_music_dirs()
-        for path, dirs, files in os.walk(musicFolder, followlinks=True)
-        for filename in files]
+             for musicFolder in get_music_dirs()
+             for path, dirs, files in os.walk(musicFolder, followlinks=True)
+             for filename in files]
 
     matches = []
 
@@ -119,26 +130,33 @@ def find_song(search_string):
 
     return random.choice(matches)
 
+
 def get_music_dirs():
-    musicdirs = [musicFolder for musicFolder in conf.STANDARD_MUSIC_DIRS if os.path.isdir(musicFolder)] + [musicFolder for musicFolder in conf.EXTRA_MUSIC_DIRS if os.path.isdir(musicFolder)]
+    musicdirs = conf.STANDARD_MUSIC_DIRS + conf.EXTRA_MUSIC_DIRS
+    musicdirs = [dir for dir in musicdirs if os.path.isdir(dir)]
     return musicdirs
+
+
 def stop_song():
     system.kill_vlc()
 
+
 def select_random():
     files = [os.path.join(path, filename)
-        for musicFolder in (conf.STANDARD_MUSIC_DIRS + conf.EXTRA_MUSIC_DIRS) if os.path.isdir(musicFolder)
-        for path, dirs, files in os.walk(musicFolder)
-        for filename in files
-        if not filename.endswith(".jpg") and not filename.endswith(".png")]
+             for musicFolder in get_music_dirs() if os.path.isdir(musicFolder)
+             for path, dirs, files in os.walk(musicFolder)
+             for filename in files
+             if not filename.endswith(".jpg") and not filename.endswith(".png")]
 
     song = Song(random.choice(files))
     return song
+
 
 def play_random():
     song = select_random()
     process = song.play()
     return process
+
 
 def choose():
     artists = get_artists_dict()
@@ -152,6 +170,7 @@ def choose():
     song = Song(song_path)
     return song
 
+
 def get_artists_dict():
     possible_selections = {}
     for path in get_music_dirs():
@@ -159,6 +178,7 @@ def get_artists_dict():
             for dirname in os.listdir(path):
                 possible_selections[dirname] = os.path.join(path, dirname)
     return possible_selections
+
 
 def get_songs_dict(dir):
     possible_selections = {}

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -37,8 +37,8 @@ def execute(operand):
         return
 
     #We didn't find it locally; check youtube!
-    vid_id = youtube.search(search_string)
-    youtube.play_song(vid_id)
+    vid_id, name = youtube.search_first_hit(search_string)
+    youtube.play_song(vid_id, name)
 
     if conf.ASK_DOWNLOAD:
         interaction.say("Do you want to download this song?")

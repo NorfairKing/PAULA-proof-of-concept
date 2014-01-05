@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -16,11 +16,10 @@
 ##
 
 from paula.music import song
-from paula.music import music_conf
-import os
+
 
 def execute(operand):
-    if os.path.exists(music_conf.SONG_PID):
+    if song.is_song_playing():
         print("Song: " + song.get_current_song())
         print("Artist: " + song.get_current_artist())
         print("Album: " + song.get_current_album())

@@ -7,7 +7,6 @@
 * Planned soon
   
 * Eventually
-** TODO Own errors
 ** TODO Learn command
 ** TODO training
 *** TODO running
@@ -26,10 +25,6 @@
 ** TODO Death note
 ** TODO Mail check
 ** TODO LISTEN
-** TODO Misc
-*** TODO Roll me
-*** TODO HAHA
 ** TODO Motivation
 ** TODO brush teeth
 ** TODO contact people
-** TODO remember

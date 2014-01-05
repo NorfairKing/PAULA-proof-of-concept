@@ -1,3 +1,4 @@
 * Readme
 * Install script
 * Commands
+* Check documentation

@@ -21,11 +21,12 @@ import os
 from paula.core import system
 from paula.core import inputs
 from paula.music import music_conf
+from paula.music import song
 from mutagenx.easyid3 import EasyID3
 from . import external_config as conf
 
 
-def search(arg_string):
+def search_first_hit(arg_string):
     url = "https://gdata.youtube.com/feeds/api/videos?q="
     for a in arg_string.split():
         url += (str(a) + "+")
@@ -33,12 +34,13 @@ def search(arg_string):
     response = str(urllib.request.urlopen(url).read())
     vidid = response[response.find("<entry><id>http://gdata.youtube.com/feeds/api/videos/") + len(
         "<entry><id>http://gdata.youtube.com/feeds/api/videos/"): response.find("</id><published>")]
-
-    return vidid
+    name = response[response.find("<media:title type=\\\'plain\\\'>") + len(
+        "<media:title type=\\\'plain\\\'>"): response.find("</media:title>")]
+    return vidid, name
 
 
 def download_song(vidid):
-    process = system.call_silently(
+    download = system.call_silently(
         "youtube-dl --extract-audio --audio-format mp3 --id http://youtube.com/watch?v=" + vidid, sync=False)
 
     print("Please fill in some info: ")
@@ -47,8 +49,8 @@ def download_song(vidid):
     title = inputs.get_string(prompt="Title: ")
 
     #heel lelijk, moet veranderd worden
-    musicdir = music_conf.MUSIC_DIRS[0]
-    if len(music_conf.MUSIC_DIRS) > 1:
+    musicdir = song.get_music_dirs()[0]
+    if len(song.get_music_dirs()) > 1:
         musicdir = inputs.get_item_from_list(music_conf.MUSIC_DIRS)
 
     if not os.path.isdir(musicdir + "/" + artist):
@@ -56,12 +58,11 @@ def download_song(vidid):
     if not os.path.isdir(musicdir + "/" + artist + "/" + album):
         os.mkdir(musicdir + "/" + artist + "/" + album)
 
-    process.wait()
-    os.rename(vidid + ".mp3", musicdir + "/" + artist + "/" + album + "/" + title + ".mp3")
-    #system.call("mv " + vidid + ".mp3 \"" + musicdir + "/" + artist + "/" + album + "/" + title + ".mp3\"", sync=True)
-    file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
+    download.wait()
 
-    print(file_path)
+    file_path = musicdir + "/" + artist + "/" + album + "/" + title + ".mp3"
+    os.rename(vidid + ".mp3", file_path)
+
     audio = EasyID3(file_path)
     audio["title"] = title
     audio["artist"] = artist
@@ -85,7 +86,7 @@ def play_video(vidid):
         return process
 
 
-def play_song(vidid):
+def play_song(vidid, name):
     system.kill_vlc()
 
     process = system.call_list_silently(
@@ -93,5 +94,11 @@ def play_song(vidid):
 
     songfile = open(music_conf.SONG_PID, 'w+')
     songfile.write(str(process.pid))
+
+    songfile = open(music_conf.SONG_INFO, 'w+')
+    songfile.write(name + "\n")
+    songfile.write("Unkown\n")
+    songfile.write("YouTube")
+
 
     return process

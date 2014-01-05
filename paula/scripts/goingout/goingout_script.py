@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -18,27 +18,22 @@
 from paula.sleep import sleep
 from paula.core import inputs
 from paula.core import outputs
+from paula.core import parse
 from paula.core import interaction
 from . import goingout_script_config as conf
-
-SECONDS_IN_A_MINUTE = 60
-MINUTES_IN_AN_HOUR = 60
 
 def execute(operand):
     interaction.say("How long do you think you will be gone, Sir?")
 
-    answer = inputs.get_integer()
-    seconds = answer * SECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR
+    answer = inputs.get_string()
+    delta = parse.time_delta(answer)
+    interaction.say_from_file(conf.GREETINGS_FILE)
 
-    if conf.DEBUG:
-        outputs.print_debug("answer = " + str(answer))
-        outputs.print_debug("seconds = " + str(seconds))
+    sleep.go_to_sleep_mode(delta.seconds)
 
-    sleep.go_to_sleep_mode(seconds)
+    answer = inputs.get_string_timeout(conf.WAITING_TIME)
 
-    answer = inputs.get_string_timeout(seconds)
-
-    if answer != "":
-        interaction.say("Welcome back, Sir")
+    if not answer:
+        sleep.go_to_sleep_mode(0)
     else:
-        sleep.go_to_sleep_mode()
+        interaction.say("Welcome back, Sir")

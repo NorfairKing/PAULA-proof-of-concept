@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -17,9 +17,15 @@
 
 import os
 
-debug = False
+DEBUG = False
 
+PAULA_SCRIPT = "PAULA.sh"
 PAULA_DIR = os.path.dirname(os.path.realpath(__file__))
+PAULA_EXECUTABLE_DIR = os.path.dirname(PAULA_DIR)
+PAULA_EXECUTABLE = os.path.join(PAULA_EXECUTABLE_DIR,PAULA_SCRIPT)
+
+PAULA_STATE_DIR = os.path.expanduser("~/.PAULA")
+PAULA_STATE_SCHEDULING_DIR = os.path.join(PAULA_STATE_DIR,"events")
 
 # Pid file
 PAULA_PID_FILE = '/tmp/paula.pid'
@@ -36,4 +42,4 @@ LOG_MAXBYTES = 10000
 LOG_BACKUPCOUNT = 5
 
 # Seconds between check
-CHECK_TIMER = 60
+CHECK_TIMER = 5

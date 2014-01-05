@@ -39,6 +39,7 @@ def prompt_for_list(possible_selections):
         print(key_str)
 
     while True:
+        print()
         user_input = integer.prompt_for_input_int("Take your pick: ")
         if user_input in dict:
             return dict[user_input]
@@ -67,7 +68,8 @@ def prompt_for_dict(possible_selections, sort_alphabetically=True):
         print(key_str)
 
     while True:
-        user_input = string.prompt_for_input_string("Take your pick: ")
+        print()
+        user_input = string.prompt_for_input_string("Take your pick: ") #TODO make this more general
         if user_input in str_dict:
             return str_dict[user_input]
         else:

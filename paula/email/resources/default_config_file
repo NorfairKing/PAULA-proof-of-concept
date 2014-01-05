@@ -1,0 +1,4 @@
+[Configurations]
+from: config@example.com
+login: username
+password: password

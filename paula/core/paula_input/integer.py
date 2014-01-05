@@ -17,18 +17,25 @@
 
 import signal
 from paula.core import outputs
+from paula.core import exceptions
+
 
 
 def prompt_for_input_int(prompt=""):
+    """
+    Prompt for an integer, keep asking for new input untill a valid integer is provided.
+    @param prompt: What should appear as the question. eg: prompt="why: " results in the following. why: <input text here>
+    @return:
+    """
     value = None
     while not value:
         answer = input(prompt)
         try:
             value = int(answer)
+            return value
         except ValueError:
             outputs.print_error("Not an Integer")
             value = None
-    return value
 
 
 def prompt_with_timeout(timeout, prompt=""):
@@ -53,3 +60,12 @@ def prompt_with_timeout(timeout, prompt=""):
     except Timeout:
         line = None
     return line
+
+
+def prompt_for_input_int_in_range(min, max, prompt=""):
+    if max < min:
+        raise exceptions.PAULA_Broken_Contract_Exception("<max> should be greater than <min>.")
+    value = prompt_for_input_int(prompt=prompt)
+    while not (value <= max and value >= min):
+        value = prompt_for_input_int(prompt=prompt)
+    return value

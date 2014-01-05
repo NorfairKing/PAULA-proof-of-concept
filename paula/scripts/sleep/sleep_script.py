@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -17,6 +17,7 @@
 
 import os
 import time
+import datetime
 import subprocess
 from paula.sleep import sleep
 from paula.core import inputs
@@ -39,6 +40,8 @@ def execute(operand):
     interaction.say("Please select which song you want to wake you up.")
     s = song.choose()
 
+    interaction.say_from_file(conf.NIGHT_FILE, sync=True)
+
     # Set volume to something pleasant
     system_volume.set(conf.PLEASANT_WAKE_UP_VOLUME)
 
@@ -46,18 +49,32 @@ def execute(operand):
     sleep.go_to_sleep_mode(int(option))
 
     # Alarm go off
-    interaction.say("Good Morning, Sir")
+    interaction.say_from_file(conf.MORNING_FILE, sync=True)
+    now = datetime.datetime.now()
+    hour_min = 'It is %H:%M'
+    if now.hour < 9:
+        hour_min += "in the morning."
+    interaction.say(now.strftime(hour_min), sync=True)
+
+    month_day = "We are the %-d"
+    day = now.day
+    if day in conf.DAY_SUFFIXES.keys():
+        month_day += conf.DAY_SUFFIXES[day]
+    else:
+        month_day += "th"
+    month_day += ' %B %Y'
+    interaction.say(now.strftime(month_day), sync=True)
 
     subp = s.play()
     answer = inputs.get_string_timeout(conf.WAKE_UP_TIME)
 
-    if answer == None:
+    if not answer:
     # Wait until the song has finished
         subp.wait()
         if conf.ANNOYING:
             try:
                 def saynwait(text, delay):
-                    outputs.say(text)
+                    interaction.say(text)
                     time.sleep(delay)
 
                 while system_volume.get() < 95:
@@ -81,7 +98,7 @@ def execute(operand):
     except ProcessLookupError:
         pass
 
-    interaction.say("Have a nice day, Sir")
+    interaction.say_from_file(conf.UP_FILE)
 
     # Show quote
     print((str(quote.get_random())))
@@ -96,12 +113,8 @@ def playalarm(path):
 
     process = subprocess.Popen(cmd, shell=False, stdout=null, stderr=null)
     return process
-    pass
 
 
-def printOptions(dic):
-    SECONDS_IN_A_MINUTE = 60
-    for key in list(dic.keys()):
-        spaces = (20 - len(key)) * " "
-        print(("         " + key + spaces + " - " + str(dic[key] // SECONDS_IN_A_MINUTE) + " min"))
-    print()
+def debug(string):
+    if conf.DEBUG:
+        outputs.print_debug(string)

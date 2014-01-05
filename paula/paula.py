@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 ##
-#      ____   _   _   _ _        _    
-#     |  _ \ / \ | | | | |      / \   
-#     | |_) / _ \| | | | |     / _ \  
-#     |  __/ ___ \ |_| | |___ / ___ \ 
+#      ____   _   _   _ _        _
+#     |  _ \ / \ | | | | |      / \
+#     | |_) / _ \| | | | |     / _ \
+#     |  __/ ___ \ |_| | |___ / ___ \
 #     |_| /_/   \_\___/|_____/_/   \_\
 #
 #
@@ -16,14 +16,15 @@
 ##
 
 import time
-import subprocess
 import logging
 import logging.config
 
 from .daemon import Daemon
 from paula import config as conf
-from paula.scripts import script
+from paula.scripts.script import ScriptController
 from paula.core import outputs
+from paula.core import schedule
+from paula.core import system
 
 
 class Paula(Daemon):
@@ -51,14 +52,18 @@ class Paula(Daemon):
 
     def respond_to(self, string):
         self.debug("Deciding " + string)
-        script.decide_and_run(string)
+        sc = ScriptController()
+        sc.decide_and_run(string)
         self.debug("Done with " + string)
 
     def check(self):
-        cmd = "urxvt -title PAULA -e bash -c '" + conf.PAULA_DIR + "/../PAULA.sh paula_working'"
-        print("Executing " + cmd)
-        process = subprocess.Popen(cmd, shell=True)
-        process.wait()
+        for e in schedule.get_overdue_events():
+            debug("Found event to be overdue " + str(e))
+            cmd = "urxvt -title PAULA -e bash -c \"" + conf.PAULA_EXECUTABLE + " " + e.command + " " + e.operand + "\""
+            debug("executing " + cmd)
+            system.call(cmd, sync=True)
+
+            e.delete()
 
     def run(self):
         while True:
@@ -66,3 +71,9 @@ class Paula(Daemon):
             self.check()
             self.info('Check done \n')
             time.sleep(conf.CHECK_TIMER)
+
+
+def debug(string):
+    if conf.DEBUG:
+        outputs.print_debug(string)
+        

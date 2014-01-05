@@ -15,8 +15,20 @@
 #
 ##
 
+"""
+Documentation for this script.
+"""
+
+from paula.scripts.script import Script
+
 from paula.core import interaction
 
 
-def execute(operand):
-    interaction.say("I'm working, Sir.", sync=True)
+class PaulaWorkingScript(Script):
+    def execute(self, operand):
+        """
+        Documentation for the execute function
+        @param operand: the operand for this script
+        """
+        interaction.say("I'm working, Sir.", sync=True)
+        print(operand)

@@ -15,12 +15,15 @@
 #
 ##
 
+"""
+Googles something for the user.
+"""
+
+from paula.scripts.script import Script
 from paula.external import browser
-from paula.core import outputs
-from . import google_script_config as conf
 
 
-def execute(operand):
-    if conf.DEBUG:
-        outputs.print_debug("Search terms: " + operand)
-    browser.open("http://www.google.com/search?q=" + operand)
+class GoogleScript(Script):
+    def execute(self, operand):
+        self.debug("Search terms: " + operand)
+        browser.open("http://www.google.com/search?q=" + operand)

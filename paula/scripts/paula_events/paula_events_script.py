@@ -15,9 +15,14 @@
 #
 ##
 
-from paula.scripts.script import ScriptController
+"""
+Everything that PAULA can do with its events internally
+"""
 
+from paula.scripts.script_controller import ScriptController
+from paula.scripts.script import Script
 
-def execute(operand):
-    sc = ScriptController(parent=".paula_events")
-    sc.decide_and_run(operand)
+class PaulaEventsScript(Script):
+    def execute(self, operand):
+        sc = ScriptController(parent=".paula_events")
+        sc.decide_and_run(operand)

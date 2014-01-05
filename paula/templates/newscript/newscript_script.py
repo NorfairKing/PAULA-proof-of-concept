@@ -21,7 +21,7 @@ Documentation for this script.
 
 from paula.scripts.script import Script
 
-class PaulaTestScript(Script):
+class NewScript(Script):
     def execute(self, operand):
         """
         Documentation for the execute function

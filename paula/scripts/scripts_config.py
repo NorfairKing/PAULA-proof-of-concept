@@ -22,7 +22,7 @@ The configurations for the scripts package.
 import os
 
 DEBUG = True
-GLOBAL_SCRIPT_DEBUG = False
+GLOBAL_SCRIPT_DEBUG = True
 
 # How long PAULA waits after a script is done.
 WAITING_TIME = 1

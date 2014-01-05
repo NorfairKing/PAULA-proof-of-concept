@@ -19,21 +19,20 @@
 The list subscript of paula_events
 """
 
+from paula.scripts.script import Script
 from paula.core import schedule
 
-def execute(operand):
-    """
-    Executes the list subscript of paula_events
-    @param operand:
-    """
-    events = schedule.get_all_events()
-    print()
-    print()
-    print("<==============================|Scheduled Events|==============================>")
-    print()
-    for e in events:
-        print(str(e.date) + ": " + e.command + " | " + e.operand)
-    print()
-    print("<==============================|Scheduled Events|==============================>")
-    print()
-    print()
+
+class ListScript(Script):
+    def execute(self, operand):
+        events = schedule.get_all_events()
+        print()
+        print()
+        print("<==============================|Scheduled Events|==============================>")
+        print()
+        for e in events:
+            print(str(e.date) + ": " + e.command + " | " + e.operand)
+        print()
+        print("<==============================|Scheduled Events|==============================>")
+        print()
+        print()

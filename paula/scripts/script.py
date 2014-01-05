@@ -59,10 +59,10 @@ class Script(object):
 
     def debug(self, string):
         """
-        Print a given string if DEBUG is toggled on.
+        Print a given string if DEBUG is toggled on, either in this script, or globally.
         @param string: The given string.
         """
-        if self.config_module.DEBUG:
+        if conf.GLOBAL_SCRIPT_DEBUG or self.config_module.DEBUG:
             outputs.print_debug(string)
 
     def get_config(self, config_option):

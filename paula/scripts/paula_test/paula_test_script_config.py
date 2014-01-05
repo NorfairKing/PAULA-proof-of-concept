@@ -19,7 +19,7 @@ import os
 
 from paula.core import config
 
-DEBUG = False
+DEBUG = True
 
 HERE = os.path.dirname(os.path.realpath(__file__))
 

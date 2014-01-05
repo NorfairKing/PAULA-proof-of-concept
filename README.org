@@ -21,14 +21,18 @@
     - Agenda
     - Going out
     - Google
+    - Mock
     - Play Song
     - Random Song
-    - Which Song
+    - Remind
+    - Rick Roll
     - Shut Up
     - Sleep
+    - Training
     - Sexy Vibe
+    - Which Song
+    - Wikipedia
     - Youtube
-    - Remind
 
 ** Developers:
 *** Tests

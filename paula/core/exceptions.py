@@ -20,45 +20,49 @@ class PAULA_Exception(Exception):
         Exception.__init__(self, message)
 
 
-class PAULA_Input_Exception(PAULA_Exception):
+class PAULAInputException(PAULA_Exception):
     pass
 
 
-class PAULA_Output_Exception(PAULA_Exception):
+class PAULAOutputException(PAULA_Exception):
     pass
 
 
-class PAULA_Broken_Contract_Exception(PAULA_Exception):
+class PAULABrokenContractException(PAULA_Exception):
     pass
 
 
-class PAULA_Unimplemented_Feature_Exception(PAULA_Exception):
+class PAULAUnimplementedFeatureException(PAULA_Exception):
     pass
 
 
-class PAULA_Import_Exception(PAULA_Exception):
+class PAULAImportException(PAULA_Exception):
     pass
 
 
-class PAULA_Missing_Script_Exception(PAULA_Import_Exception):
+class PAULAMissingScriptException(PAULAImportException):
     pass
 
 
-class PAULA_Parse_Exception(PAULA_Exception):
+class PAULAParseException(PAULA_Exception):
     pass
 
 
-class PAULA_Not_An_Integer_Exception(PAULA_Parse_Exception):
+class PAULANotAnIntegerException(PAULAParseException):
     pass
 
 
-class PAULA_Unknown_Quantifier_Exception(PAULA_Parse_Exception):
+class PAULAUnknownQuantifierException(PAULAParseException):
     pass
 
 
-class PAULA_Configuration_Exception(PAULA_Exception):
+class PAULAConfigurationException(PAULA_Exception):
     pass
 
 
-class PAULA_Missing_Config_Exception(PAULA_Configuration_Exception):
+class PAULAMissingConfigException(PAULAConfigurationException):
+    pass
+
+
+class PAULAUnknownConfigException(PAULAConfigurationException):
     pass

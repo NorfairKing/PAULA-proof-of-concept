@@ -24,7 +24,7 @@ from . import parsing_config as conf
 
 
 def parse_datetime(string):
-    raise exceptions.PAULA_Unimplemented_Feature_Exception
+    raise exceptions.PAULAUnimplementedFeatureException
 
 
 def parse_delta(string):
@@ -47,7 +47,7 @@ def only_numeral(string):
 
 def numeral_and_quantifier(string):
     if len(string.split()) != 2: #TODO is this too hard coded?
-        raise exceptions.PAULA_Parse_Exception("Too many spaces to parse:  \"" + string + "\"")
+        raise exceptions.PAULAParseException("Too many spaces to parse:  \"" + string + "\"")
     numeral, quantifier = string.split()
     num = get_numeral_int(numeral)
     delta_seconds = 0
@@ -67,7 +67,7 @@ def numeral_and_quantifier(string):
     elif interaction.means(quantifier, "weeks"):
         delta_weeks = num
     else:
-        raise exceptions.PAULA_Unknown_Quantifier_Exception
+        raise exceptions.PAULAUnknownQuantifierException
 
     delta = timedelta(days=delta_days, seconds=delta_seconds, minutes=delta_minutes, hours=delta_hours,
                       weeks=delta_weeks)
@@ -82,7 +82,7 @@ def get_numeral_int(string):
     try:
         numeral_int = int(string)
     except ValueError:
-        raise exceptions.PAULA_Not_An_Integer_Exception
+        raise exceptions.PAULANotAnIntegerException
     return numeral_int
 
 

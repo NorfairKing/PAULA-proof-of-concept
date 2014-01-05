@@ -40,7 +40,7 @@ def execute(operand):
         reschedule_str = inputs.get_string("Schedule again in: ")
         try:
             delta = parse.time_delta(reschedule_str)
-        except exceptions.PAULA_Parse_Exception as e:
+        except exceptions.PAULAParseException as e:
             outputs.print_error(str(e.__class__))
 
         # fix bash issues again

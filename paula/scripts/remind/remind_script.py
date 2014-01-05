@@ -44,7 +44,7 @@ def execute(operand):
 
     try:
         delta = parse.time_delta(moment)
-    except exceptions.PAULA_Parse_Exception as e:
+    except exceptions.PAULAParseException as e:
         outputs.print_error("An error occured while parsing the time delta.", error=e)
         return
     treated_content = treat_content(content)

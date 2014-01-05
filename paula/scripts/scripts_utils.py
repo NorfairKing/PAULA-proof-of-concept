@@ -19,6 +19,7 @@
 Any utilisation methods for the scripts package.
 """
 
+import re
 from paula.core import outputs
 from . import scripts_config as conf
 
@@ -26,7 +27,15 @@ def package_to_class_name(package):
     package_parts = package.split("_")
     package_parts = [ p.capitalize() for p in package_parts]
     result = ''.join(package_parts) + "Script"
-    debug("Class name for package \"" + package + "\" is \"" + result + "\"")
+    debug("Class name for package name \"" + package + "\" is \"" + result + "\"")
+    return result
+
+def class_name_to_package(class_name):
+    regex = '[A-Z][^A-Z]*'
+    class_name_parts = re.findall(regex , class_name)
+    lowered = [c.lower() for c in class_name_parts]
+    result = "_".join(lowered)
+    debug("package name for package name \"" + class_name + "\" is \"" + result + "\"")
     return result
 
 def debug(string):

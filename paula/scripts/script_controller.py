@@ -66,7 +66,7 @@ class ScriptController(object):
         """
         if not script_name:
             return
-        debug("Trying to execute " + script_name + " with \"" + operand + "\" as operand, a child of " + self.parent)
+        debug("Trying to execute " + script_name + " with \"" + operand + "\" as operand, a child of \"" + self.parent + "\"")
 
         try:
             module_name = "paula.scripts" + self.parent + "." + script_name + "." + script_name + "_script"
@@ -120,11 +120,9 @@ class ScriptController(object):
                 #Got a match, now find the operand, remove the match_whole_string
                 for i in reversed(range(len(string) + 1)):
                     string_part = string[:i]
-                    debug("string part=\"" + string_part + "\"")
                     reg2 = re.compile("^" + reg_str + "$", re.IGNORECASE)
                     if reg2.match(string_part):
                         debug("Matched \"" + string_part + "\" with \"" + reg_str + "\"")
-                        debug("string[i:]=\"" + string[i:] + "\"")
                         possible_operands.append(string[i:].strip())
 
         if not possible_operands:

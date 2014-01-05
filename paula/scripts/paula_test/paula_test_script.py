@@ -31,5 +31,5 @@ class PaulaTestScript(Script):
 
 
         # <Test here>
-            
+        print(self.get_user_config('test_config_option'))
         # </Test here>

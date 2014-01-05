@@ -19,6 +19,9 @@
 The script class. Every one of PAULA's scripts will be a subclass of this class?
 """
 
+import importlib
+
+from paula.core import outputs
 from abc import ABCMeta, abstractmethod
 
 
@@ -32,6 +35,12 @@ class Script(object):
     def execute(self, operand):
         pass
 
-    @abstractmethod
-    def debug(self):
+    def debug(self,string):
+        if self.get_config_module().DEBUG:
+            outputs.print_debug(string)
         pass
+
+    def get_config_module(self):
+        configfile = self.__module__ + "_config"
+        print(configfile)
+        return importlib.import_module(configfile)

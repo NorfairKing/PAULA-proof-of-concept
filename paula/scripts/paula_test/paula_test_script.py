@@ -26,10 +26,10 @@ from . import paula_test_script_config as conf
 class PaulaTestScript(Script):
     def execute(self,operand):
         if conf.DEBUG:
-            outputs.print_debug("The arguments to execute this script were the following.")
-            outputs.print_debug(operand)
+            self.debug("The arguments to execute this script were the following.")
+            self.debug(operand)
 
 
         # <Test here>
-
+            
         # </Test here>

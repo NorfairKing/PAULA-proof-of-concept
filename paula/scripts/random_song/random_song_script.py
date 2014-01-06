@@ -26,3 +26,7 @@ from paula.music import song
 class RandomSongScript(Script):
     def execute(self, operand):
         song.play_random()
+
+        print("Song: " + song.get_current_song())
+        print("Artist: " + song.get_current_artist())
+        print("Album: " + song.get_current_album())

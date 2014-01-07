@@ -15,8 +15,14 @@
 #
 ##
 
-import os
+"""
+The shut up script.
+"""
+
+from paula.scripts.script import Script
 from paula.core import system
 
-def execute(operand):
-    system.kill_vlc()
+
+class ShutUpScript(Script):
+    def execute(self, operand):
+        system.kill_vlc()

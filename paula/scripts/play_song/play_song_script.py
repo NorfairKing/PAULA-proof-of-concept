@@ -17,7 +17,7 @@
 
 
 """
-Documentation for this script.
+The play song script
 """
 
 from paula.scripts.script import Script

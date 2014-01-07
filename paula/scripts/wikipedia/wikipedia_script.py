@@ -20,8 +20,8 @@ The wikipedia script.
 """
 
 from paula.scripts.script import Script
-
 from paula.external import wikipedia
+
 
 class WikipediaScript(Script):
     def execute(self, operand):

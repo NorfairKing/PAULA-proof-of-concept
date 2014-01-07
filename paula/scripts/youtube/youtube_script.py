@@ -15,9 +15,15 @@
 #
 ##
 
+"""
+The youtube script.
+"""
+
+from paula.scripts.script import Script
 from paula.external import youtube
 
 
-def execute(operand):
-    vid_id, name = youtube.search_first_hit(operand)
-    youtube.play_video(vid_id)
+class YoutubeScript(Script):
+    def execute(self, operand):
+        vid_id, name = youtube.search_first_hit(operand)
+        youtube.play_video(vid_id)

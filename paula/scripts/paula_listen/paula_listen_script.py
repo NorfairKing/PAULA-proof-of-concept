@@ -15,22 +15,19 @@
 #
 ##
 
+"""
+Documentation for this script.
+"""
+
 import sys
 import wave
 import urllib
 import urllib.request
 import urllib.error
-
 import pyaudio
 
-from paula.core import system
-
-
-"""
-Documentation for this script.
-"""
-
 from paula.scripts.script import Script
+from paula.core import system
 
 
 class PaulaListenScript(Script):

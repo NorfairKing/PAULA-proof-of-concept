@@ -26,4 +26,4 @@ from paula.core import system
 class MockScript(Script):
     def execute(self, operand):
         cmd = ['vlc', '-Idummy', '--play-and-exit', '-vvv', self.get_resource_path('haha.mp3')]
-        process = system.call_list_silently(cmd, sync=False)
+        system.call_list_silently(cmd, sync=False)

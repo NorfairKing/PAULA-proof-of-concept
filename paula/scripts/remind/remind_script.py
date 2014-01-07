@@ -15,9 +15,6 @@
 #
 ##
 
-
-from . import remind_script_config as conf
-
 """
 Documentation for this script.
 """
@@ -61,8 +58,9 @@ class RemindScript(Script):
         content = ' ' + content + ' '
         treated = content.lower()
 
-        for replace_str in conf.REPLACEMENTS:
-            treated = treated.replace(" " + replace_str.lower() + " ", " " + conf.REPLACEMENTS[replace_str] + " ")
+        for replace_str in self.get_config('REPLACEMENTS'):
+            treated = treated.replace(" " + replace_str.lower() + " ",
+                                      " " + self.get_config('REPLACEMENTS')[replace_str] + " ")
 
         treated = treated.replace("\"", "\\\"")
         treated = treated.replace("\'", "\\\'")

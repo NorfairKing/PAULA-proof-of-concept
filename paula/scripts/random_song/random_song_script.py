@@ -20,7 +20,6 @@ PAULA's random song script
 """
 
 from paula.scripts.script import Script
-
 from paula.music import song
 
 class RandomSongScript(Script):

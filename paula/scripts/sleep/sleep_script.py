@@ -15,7 +15,13 @@
 #
 ##
 
+"""
+Goes through a sleep routine for the user..
+"""
+
 import datetime
+
+from paula.scripts.script import Script
 from paula.sleep import sleep
 from paula.core import inputs
 from paula.core import interaction
@@ -23,13 +29,6 @@ from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
 from paula.agenda import agenda
-
-
-"""
-Goes through a sleep routine for the user..
-"""
-
-from paula.scripts.script import Script
 
 
 class SleepScript(Script):

@@ -15,7 +15,6 @@
 #
 ##
 
-
 """
 The play song script
 """
@@ -25,6 +24,7 @@ from paula.core import inputs
 from paula.core import interaction
 from paula.music import song
 from paula.external import youtube
+
 
 class PlaySongScript(Script):
     def execute(self, operand):

@@ -14,6 +14,7 @@
 # Assistant
 #
 ##
+
 """
 Documentation for this script.
 """
@@ -53,6 +54,6 @@ class PaulaRemindScript(Script):
         else:
             self.reschedule(operand)
 
-    def reschedule(self,reminder):
+    def reschedule(self, reminder):
         delta = parse.time_delta(self.get_config('AUTO_RESCHEDULE'))
         schedule.schedule_event_with_delta(delta, "paula_remind", reminder)

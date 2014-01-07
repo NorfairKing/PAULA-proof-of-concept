@@ -15,7 +15,6 @@
 #
 ##
 
-
 """
 PAULA's plain say-script.
 """

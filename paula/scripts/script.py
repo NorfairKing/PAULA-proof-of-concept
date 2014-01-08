@@ -63,7 +63,7 @@ class Script(object):
         Print a given string if DEBUG is toggled on, either in this script, or globally.
         @param string: The given string.
         """
-        if conf.GLOBAL_SCRIPT_DEBUG or self.config_module.DEBUG:
+        if self.get_debug:
             outputs.print_debug(string)
 
     def get_config(self, config_option):
@@ -78,6 +78,13 @@ class Script(object):
         except AttributeError:
             raise PAULAUnknownConfigException
         return value
+
+    def get_debug(self):
+        """
+        Returns whether debug is toggled on or off.
+        @return: True if debug is toggled on.
+        """
+        return conf.GLOBAL_SCRIPT_DEBUG or self.config_module.DEBUG
 
     def get_user_config(self, config_option):
         """

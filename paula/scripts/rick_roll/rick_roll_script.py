@@ -15,13 +15,14 @@
 #
 ##
 
-from paula.core import system
+"""
+The Rickroll script
+"""
 
+from paula.scripts.script import Script
 from paula.music import song
 
-from . import rick_roll_script_config as conf
-
-
-def execute(operand):
-    rr = song.Song(conf.RICK_ROLL_FILE)
-    rr.play()
+class RickRollScript(Script):
+    def execute(self, operand):
+        rr = song.Song(self.get_resource_path('RICK_ROLL_FILE'))
+        rr.play()

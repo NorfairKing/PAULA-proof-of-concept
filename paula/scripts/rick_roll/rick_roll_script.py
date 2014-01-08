@@ -24,5 +24,6 @@ from paula.music import song
 
 class RickRollScript(Script):
     def execute(self, operand):
-        rr = song.Song(self.get_resource_path('RICK_ROLL_FILE'))
+        rr = song.Song(self.get_resource_path('rick_roll.mp3'))
         rr.play()
+

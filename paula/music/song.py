@@ -54,7 +54,7 @@ class Song:
         return process
 
     def __str__(self):
-        return "Artist: " + self.artist + ", Song: " + self.title
+        return self.title + " by " + self.artist
 
 
 def is_song_playing():

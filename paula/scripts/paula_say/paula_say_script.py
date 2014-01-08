@@ -15,13 +15,15 @@
 #
 ##
 
-from paula.core import outputs
+"""
+PAULA's plain say-script.
+"""
+
+from paula.scripts.script import Script
 from paula.core import interaction
 
-from . import paula_say_script_config as conf
 
-
-def execute(operand):
-    if conf.DEBUG:
-        outputs.print_debug("Saying " + operand)
-    interaction.say(operand, sync=True)
+class PaulaSayScript(Script):
+    def execute(self, operand):
+        self.debug("Saying " + operand)
+        interaction.say(operand, sync=True)

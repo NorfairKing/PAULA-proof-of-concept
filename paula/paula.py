@@ -21,7 +21,7 @@ import logging.config
 
 from .daemon import Daemon
 from paula import config as conf
-from paula.scripts.script import ScriptController
+from paula.scripts.script_controller import ScriptController
 from paula.core import outputs
 from paula.core import schedule
 from paula.core import system

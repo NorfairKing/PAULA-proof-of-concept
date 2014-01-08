@@ -15,18 +15,16 @@
 #
 ##
 
-from paula.core import outputs
-from paula.core import interaction
-
-from . import paula_test_script_config as conf
+from paula.scripts.script import Script
 
 
-def execute(operand):
-    if conf.DEBUG:
-        outputs.print_debug("The arguments to execute this script were the following.")
-        outputs.print_debug(operand)
+class PaulaTestScript(Script):
+    def execute(self, operand):
+        self.debug("The arguments to execute this script were the following.")
+        self.debug(operand)
 
 
-    # <Test here>
-
-    # </Test here>
+        # <Test here>
+        print(self.get_user_config('test_config_option'))
+        print(self.get_config('DEBUG'))
+        # </Test here>

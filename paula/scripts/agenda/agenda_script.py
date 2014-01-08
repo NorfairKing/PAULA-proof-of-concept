@@ -15,7 +15,14 @@
 #
 ##
 
+"""
+Show the users agenda in default format.
+"""
+
+from paula.scripts.script import Script
 from paula.agenda import agenda
 
-def execute(operand):
-    agenda.print_default()
+
+class PaulaTestScript(Script):
+    def execute(self, operand):
+        agenda.print_default()

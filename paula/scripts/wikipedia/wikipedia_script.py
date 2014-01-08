@@ -15,11 +15,14 @@
 #
 ##
 
-import sys
+"""
+The wikipedia script.
+"""
+
+from paula.scripts.script import Script
 from paula.external import wikipedia
-from paula.core import outputs
 
-from . import wikipedia_script_config as conf
 
-def execute(operand):
-    print(wikipedia.get_description(operand))
+class WikipediaScript(Script):
+    def execute(self, operand):
+        print(wikipedia.get_description(operand))

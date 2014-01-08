@@ -42,7 +42,7 @@ class Parse_Time_Tests(unittest.TestCase):
 
         fails = ["xdmlk", "a", "zeros", "1a"]
         for f in fails:
-            self.assertRaises(exceptions.PAULA_Not_An_Integer_Exception, parse_time.parse_delta, f)
+            self.assertRaises(exceptions.PAULANotAnIntegerException, parse_time.parse_delta, f)
 
     def test_numeral_and_quantifier(self):
         one_second_strings = ["1 second", "1 seconds", "one second", "One Second", "1 sec ", "one s", "ONE S"]
@@ -55,7 +55,7 @@ class Parse_Time_Tests(unittest.TestCase):
 
         fails = ["xdm lk", "a b", "zeros 5"]
         for f in fails:
-            self.assertRaises(exceptions.PAULA_Not_An_Integer_Exception, parse_time.parse_delta, f)
+            self.assertRaises(exceptions.PAULANotAnIntegerException, parse_time.parse_delta, f)
 
     def one_second_test(self):
         one_second_strings = ["1", "  1 ", "one", " one ", "One", "ONE", "1 second", "1 seconds", "one second",
@@ -99,4 +99,4 @@ class Parse_Time_Tests(unittest.TestCase):
         fails = ["xdmlk", "a", "zeros", "1a", "xdm lk", "a b", "zeros 5", "a b c d e ", "five something"]
         for f in fails:
             print(f)
-            self.assertRaises(exceptions.PAULA_Parse_Exception, parse_time.parse_delta, f)
+            self.assertRaises(exceptions.PAULAParseException, parse_time.parse_delta, f)

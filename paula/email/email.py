@@ -45,7 +45,7 @@ class Email(object):
             raise exceptions.PAULAInvalidEmailException
         self.cc_addr_list.append(cc)
 
-    def send(self):
+    def send(self): #TODO don't have the user wait for this to happen.
         header = 'From: %s\n' % conf.FROM
         header += 'To: %s\n' % ','.join(self.to_addr_list)
         header += 'Cc: %s\n' % ','.join(self.cc_addr_list)

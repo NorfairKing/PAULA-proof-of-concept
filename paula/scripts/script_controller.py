@@ -25,6 +25,7 @@ import time
 import importlib
 
 from paula.core import outputs
+from paula.core import exceptions
 
 from . import scripts_utils as util
 from . import scripts_config as conf
@@ -66,8 +67,15 @@ class ScriptController(object):
         """
         if not script_name:
             return
-        debug("Trying to execute " + script_name + " with \"" + operand + "\" as operand, a child of \"" + self.parent + "\"")
+        debug("Trying to execute " + str(script_name) + " with \"" + str(operand) + "\" as operand, a child of \"" + str(self.parent) + "\"")
 
+        module = self.load_module(script_name) #TODO catch something here
+        class_name = util.package_to_class_name(script_name)
+        ScriptClass = getattr(module, class_name)
+        script_instance = ScriptClass()
+        script_instance.execute(operand)
+
+    def load_module(self, script_name):
         try:
             module_name = "paula.scripts" + self.parent + "." + script_name + "." + script_name + "_script"
             debug("Importing module: " + module_name)
@@ -76,10 +84,7 @@ class ScriptController(object):
             outputs.print_error(
                 "The " + script_name + " script is missing or does not exist. Either that or some import fails inside the script.")
             return
-        class_name = util.package_to_class_name(script_name)
-        ScriptClass = getattr(module, class_name)
-        script_instance = ScriptClass()
-        script_instance.execute(operand)
+        return module
 
     def decide_meaning(self, string):
         """

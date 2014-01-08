@@ -39,7 +39,7 @@ class RoomTrainingScript(Script):
         """
         exercise = inputs.get_item_from_list(self.get_config('ROOM_TRAINING_OPTIONS'))
         week = inputs.get_integer_in_range(1, self.get_config('WEEKS_PER_EXERCISE'), prompt="Week: ")
-        day = inputs.get_integer_in_range(1, self.get_config('DAYS_PER_WEEK', prompt="day: "))
+        day = inputs.get_integer_in_range(1, self.get_config('DAYS_PER_WEEK'), prompt="day: ")
         difficulty_level = inputs.get_item_from_list(self.get_config('DIFFICULTY_LEVELS'))
         rest, workout_list = self.get_training_scheme(exercise, week, day, difficulty_level)
         self.debug("scheme= " + str((rest, workout_list)))
@@ -82,15 +82,15 @@ class RoomTrainingScript(Script):
                 if inputs.get_boolean():
                     self.debug("Exiting.")
                     return
-            if not self.get_debug:
-                interaction.say_from_file(self.get_resource_path('BREAK_FILE'))
+            if not self.get_debug():
+                interaction.say_from_file(self.get_resource_path('break.paula_says'))
                 self.rest(rest_duration)
 
         interaction.say("For the last set, do at least " + str(workout_list[-1]) + " " + exercise + ", Sir.")
         if not inputs.get_boolean():
             interaction.say("Too bad, Sir.")
             return
-        interaction.say_from_file(self.get_resource_path('DONE_FILE'))
+        interaction.say_from_file(self.get_resource_path('done.paula_says'))
 
     def rest(self, duration):
         minutes = duration / SECONDS_IN_A_MINUTE

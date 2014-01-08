@@ -42,7 +42,7 @@ class Script(object):
         self.module_name = self.__module__
         rest, self.name = self.module_name.rsplit('.', 1)
         rest, self.package_name = rest.rsplit('.', 1)
-        self.relative_package = self.module_name[len(conf.DEFAULT_PARENT):].rsplit('.')[0]
+        self.relative_package = '.'.join(self.module_name[len(conf.DEFAULT_PARENT):].rsplit('.')[:-1])
         self.directory = os.path.join(conf.DEFAULT_SCRIPTS_DIR,
                                       self.relative_package.replace(".", "/")) #TODO this is pretty hard coded.
         configfile = self.__module__ + conf.CONFIG_SUFFIX
@@ -63,7 +63,7 @@ class Script(object):
         Print a given string if DEBUG is toggled on, either in this script, or globally.
         @param string: The given string.
         """
-        if self.get_debug:
+        if self.get_debug():
             outputs.print_debug(string)
 
     def get_config(self, config_option):

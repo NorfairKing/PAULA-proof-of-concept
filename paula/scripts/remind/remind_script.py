@@ -21,7 +21,7 @@ Documentation for this script.
 
 from paula.scripts.script import Script
 from paula.core import outputs
-from paula.core import interaction
+from paula.core import speech
 from paula.core import schedule
 from paula.core import parse
 from paula.core import exceptions
@@ -52,7 +52,7 @@ class RemindScript(Script):
             return
         treated_content = self.treat_content(content)
         schedule.schedule_event_with_delta(delta, "paula_remind", treated_content)
-        interaction.say_from_file(self.get_resource_path('confirmation.paula_says'))
+        speech.say_from_file(self.get_resource_path('confirmation.paula_says'))
 
     def treat_content(self, content):
         content = ' ' + content + ' '

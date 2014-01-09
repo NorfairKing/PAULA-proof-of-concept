@@ -19,7 +19,7 @@ from datetime import timedelta
 
 from paula.core import outputs
 from paula.core import exceptions
-from paula.core import interaction
+from paula.core import meaning
 from . import parsing_config as conf
 
 
@@ -56,15 +56,15 @@ def numeral_and_quantifier(string):
     delta_days = 0
     delta_weeks = 0
 
-    if interaction.means(quantifier, "seconds"):
+    if meaning.means(quantifier, "seconds"):
         delta_seconds = num
-    elif interaction.means(quantifier, "minutes"):
+    elif meaning.means(quantifier, "minutes"):
         delta_minutes = num
-    elif interaction.means(quantifier, "hours"):
+    elif meaning.means(quantifier, "hours"):
         delta_hours = num
-    elif interaction.means(quantifier, "days"):
+    elif meaning.means(quantifier, "days"):
         delta_days = num
-    elif interaction.means(quantifier, "weeks"):
+    elif meaning.means(quantifier, "weeks"):
         delta_weeks = num
     else:
         raise exceptions.PAULAUnknownQuantifierException

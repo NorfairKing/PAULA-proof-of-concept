@@ -21,7 +21,7 @@ The play song script
 
 from paula.scripts.script import Script
 from paula.core import inputs
-from paula.core import interaction
+from paula.core import meaning
 from paula.music import song
 from paula.external import youtube
 
@@ -42,7 +42,7 @@ class PlaySongScript(Script):
         youtube.play_song(vid_id, name)
 
         if self.get_config('ASK_DOWNLOAD'):
-            interaction.say("Do you want to download this song?")
+            print("Do you want to download this song?")
             answer = inputs.get_string()
-            if interaction.means(answer, "yes"):
+            if meaning.means(answer, "yes"):
                 youtube.download_song(vid_id)

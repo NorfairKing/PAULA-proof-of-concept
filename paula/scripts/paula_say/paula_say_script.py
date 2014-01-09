@@ -20,10 +20,10 @@ PAULA's plain say-script.
 """
 
 from paula.scripts.script import Script
-from paula.core import interaction
+from paula.core import speech
 
 
 class PaulaSayScript(Script):
     def execute(self, operand):
         self.debug("Saying " + operand)
-        interaction.say(operand, sync=True)
+        speech.say(operand, sync=True)

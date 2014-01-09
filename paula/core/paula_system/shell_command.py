@@ -17,16 +17,24 @@
 
 import os
 import subprocess
-from . import paula_system_config as conf
-from paula.core import outputs
+
+from paula.core.inputs import get_password
+from paula.core.outputs import print_debug
 from paula.core import config
 
+from . import paula_system_config as conf
 
-def call(command_string, sync=True, sudo=False):
+
+def call(command_string, sync, sudo):
     debug("Executing: " + command_string)
 
-    if sudo and not config.get_global('Sudo', 'ask') == 'True':
-        command_string = ('echo %s | sudo -S %s' % (config.get_global('Sudo', 'password'), command_string))
+    ask = config.get_global('Sudo', 'ask') == 'True'
+    if sudo:
+        if ask:
+            password = get_password()
+        else:
+            password = config.get_global('Sudo', 'password')
+        command_string = ('echo %s | sudo -S %s' % (password, command_string))
 
     process = subprocess.Popen(command_string, shell=True)
     if sync:
@@ -76,4 +84,4 @@ def get_output_of(command_string):
 
 def debug(string):
     if conf.DEBUG:
-        outputs.print_debug(string)
+        print_debug(string)

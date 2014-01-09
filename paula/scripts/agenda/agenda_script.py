@@ -23,6 +23,6 @@ from paula.scripts.script import Script
 from paula.agenda import agenda
 
 
-class PaulaTestScript(Script):
+class AgendaScript(Script):
     def execute(self, operand):
         agenda.print_default()

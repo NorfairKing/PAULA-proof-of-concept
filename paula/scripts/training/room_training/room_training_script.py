@@ -28,7 +28,7 @@ import importlib
 from paula.scripts.script import Script
 from paula.core import inputs
 from paula.core import outputs
-from paula.core import interaction
+from paula.core import speech
 
 
 class RoomTrainingScript(Script):
@@ -76,21 +76,21 @@ class RoomTrainingScript(Script):
         @return:
         """
         for w in workout_list[:-1]:
-            interaction.say(str(w) + " " + exercise + ", Sir.")
+            speech.say(str(w) + " " + exercise + ", Sir.")
             if not inputs.get_boolean():
-                interaction.say("Done, Sir?")
+                speech.say("Done, Sir?")
                 if inputs.get_boolean():
                     self.debug("Exiting.")
                     return
             if not self.get_debug():
-                interaction.say_from_file(self.get_resource_path('break.paula_says'))
+                speech.say_from_file(self.get_resource_path('break.paula_says'))
                 self.rest(rest_duration)
 
-        interaction.say("For the last set, do at least " + str(workout_list[-1]) + " " + exercise + ", Sir.")
+        speech.say("For the last set, do at least " + str(workout_list[-1]) + " " + exercise + ", Sir.")
         if not inputs.get_boolean():
-            interaction.say("Too bad, Sir.")
+            speech.say("Too bad, Sir.")
             return
-        interaction.say_from_file(self.get_resource_path('done.paula_says'))
+        speech.say_from_file(self.get_resource_path('done.paula_says'))
 
     def rest(self, duration):
         minutes = duration / SECONDS_IN_A_MINUTE

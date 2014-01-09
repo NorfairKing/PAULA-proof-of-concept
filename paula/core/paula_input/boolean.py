@@ -21,7 +21,7 @@ The Boolean input module.
 
 from . import string
 
-from paula.core import interaction
+from paula.core import meaning
 from paula.core import outputs
 
 
@@ -33,9 +33,9 @@ def prompt_for_input_boolean(prompt=""):
     """
     while True:
         answer = string.prompt_for_input_string(prompt=prompt)
-        if interaction.means(answer, "yes"):
+        if meaning.means(answer, "yes"):
             return True
-        elif interaction.means(answer, "no"):
+        elif meaning.means(answer, "no"):
             return False
         else:
             outputs.print_error("Not a Boolean value.")

@@ -25,7 +25,6 @@ import time
 import importlib
 
 from paula.core import outputs
-from paula.core import exceptions
 
 from . import scripts_utils as util
 from . import scripts_config as conf
@@ -67,7 +66,9 @@ class ScriptController(object):
         """
         if not script_name:
             return
-        debug("Trying to execute " + str(script_name) + " with \"" + str(operand) + "\" as operand, a child of \"" + str(self.parent) + "\"")
+        debug(
+            "Trying to execute " + str(script_name) + " with \"" + str(operand) + "\" as operand, a child of \"" + str(
+                self.parent) + "\"")
 
         module = self.load_module(script_name) #TODO catch something here
         class_name = util.package_to_class_name(script_name)

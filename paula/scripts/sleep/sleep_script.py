@@ -24,7 +24,7 @@ import datetime
 from paula.scripts.script import Script
 from paula.sleep import sleep
 from paula.core import inputs
-from paula.core import interaction
+from paula.core import speech
 from paula.music import song
 from paula.music import system_volume
 from paula.motivation import quote
@@ -33,15 +33,15 @@ from paula.agenda import agenda
 
 class SleepScript(Script):
     def execute(self, operand):
-        interaction.say("How long would you like to sleep, Sir?")
+        speech.say("How long would you like to sleep, Sir?")
 
         option = inputs.get_item_from_dict(self.get_config('DURATION_OPTIONS'))
 
         # select song
-        interaction.say("Please select which song you want to wake you up.")
+        speech.say("Please select which song you want to wake you up.")
         s = song.choose()
 
-        interaction.say_from_file(self.get_resource_path('night.paula_says'), sync=True)
+        speech.say_from_file(self.get_resource_path('night.paula_says'), sync=True)
 
         # Set volume to something pleasant
         system_volume.set(self.get_config('PLEASANT_WAKE_UP_VOLUME'))
@@ -50,12 +50,12 @@ class SleepScript(Script):
         sleep.go_to_sleep_mode(int(option))
 
         # Alarm go off
-        interaction.say_from_file(self.get_resource_path('morning.paula_says'), sync=True)
+        speech.say_from_file(self.get_resource_path('morning.paula_says'), sync=True)
         now = datetime.datetime.now()
         hour_min = 'It is %H:%M'
         if now.hour < 9:
             hour_min += "in the morning."
-        interaction.say(now.strftime(hour_min), sync=True)
+        speech.say(now.strftime(hour_min), sync=True)
 
         month_day = "We are the %-d"
         day = now.day
@@ -64,7 +64,7 @@ class SleepScript(Script):
         else:
             month_day += "th"
         month_day += ' %B %Y'
-        interaction.say(now.strftime(month_day), sync=True)
+        speech.say(now.strftime(month_day), sync=True)
 
         subp = s.play()
         answer = inputs.get_string_timeout(self.get_config('WAKE_UP_TIME'))
@@ -78,7 +78,7 @@ class SleepScript(Script):
         except ProcessLookupError:
             pass
 
-        interaction.say_from_file(self.get_resource_path('up.paula_says'))
+        speech.say_from_file(self.get_resource_path('up.paula_says'))
 
         # Show quote
         print((str(quote.get_random())))

@@ -21,7 +21,8 @@ Documentation for this script.
 
 from paula.scripts.script import Script
 from paula.core import outputs
-from paula.core import interaction
+from paula.core import speech
+from paula.core import meaning
 from paula.core import inputs
 from paula.core import schedule
 from paula.core import parse
@@ -32,14 +33,14 @@ class PaulaRemindScript(Script):
     def execute(self, operand):
         self.debug("Reminding " + operand)
 
-        interaction.say("Sir, " + operand, sync=False)
+        speech.say("Sir, " + operand, sync=False)
         response = inputs.get_string_timeout(self.get_config('TIME_OUT'))
         if not response:
             self.reschedule(operand)
 
-        if interaction.means(response, "okay"):
+        if meaning.means(response, "okay"):
             return
-        elif interaction.means(response, "not_okay"):
+        elif meaning.means(response, "not_okay"):
             self.debug("Reminding again in one day.")
             reschedule_str = inputs.get_string("Schedule again in: ")
             try:

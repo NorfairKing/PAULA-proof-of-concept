@@ -18,11 +18,14 @@
 import urllib.request
 import urllib.error
 import os
+
+from mutagenx.easyid3 import EasyID3
+
 from paula.core import system
 from paula.core import inputs
 from paula.music import music_conf
 from paula.music import song
-from mutagenx.easyid3 import EasyID3
+
 from . import external_config as conf
 
 
@@ -99,6 +102,5 @@ def play_song(vidid, name):
     songfile.write(name + "\n")
     songfile.write("Unkown\n")
     songfile.write("YouTube")
-
 
     return process

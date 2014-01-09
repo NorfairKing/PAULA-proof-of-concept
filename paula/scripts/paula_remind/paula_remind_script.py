@@ -20,6 +20,7 @@ Documentation for this script.
 """
 
 from paula.scripts.script import Script
+from paula.core import system
 from paula.core import outputs
 from paula.core import speech
 from paula.core import meaning
@@ -32,6 +33,9 @@ from paula.core import exceptions
 class PaulaRemindScript(Script):
     def execute(self, operand):
         self.debug("Reminding " + operand)
+
+        cmd = "play " + self.get_resource_path('ding.mp3')
+        system.call_silently(cmd, sync=True)
 
         speech.say("Sir, " + operand, sync=False)
         response = inputs.get_string_timeout(self.get_config('TIME_OUT'))

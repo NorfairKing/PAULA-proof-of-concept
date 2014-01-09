@@ -25,6 +25,9 @@ class PaulaTestScript(Script):
 
 
         # <Test here>
-        print(self.get_user_config('test_config_option'))
+        print('"' + self.get_user_config('test_config_option') + '"')
         print(self.get_config('DEBUG'))
+        print('"' + self.get_global_config('Debug','debug') + '"')
+        print('"' + self.get_global_config('Sudo','password') + '"')
+        print('"' + self.get_global_config('Sudo','ask') + '"')
         # </Test here>

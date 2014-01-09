@@ -63,6 +63,9 @@ class PAULAConfigurationException(PAULA_Exception):
 class PAULAMissingConfigException(PAULAConfigurationException):
     pass
 
+class PAULAMissingConfigFileException(PAULAConfigurationException):
+    pass
+
 
 class PAULAUnknownConfigException(PAULAConfigurationException):
     pass

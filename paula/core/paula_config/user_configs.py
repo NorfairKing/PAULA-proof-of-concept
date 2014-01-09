@@ -20,11 +20,13 @@ The config handling module
 """
 
 import os
+import shutil
 import configparser
 
 from . import paula_config_config as conf
 
 from paula.core import outputs
+from paula.core import exceptions
 
 
 def get_config(package, config_option):
@@ -35,12 +37,34 @@ def get_config(package, config_option):
     """
     config_file = os.path.join(conf.PAULA_USER_CONFIG_DIR, package + conf.CONFIG_EXTENSION)
 
+    if not os.path.exists(config_file):
+        raise exceptions.PAULAMissingConfigFileException
+
     debug("Getting \"" + config_option + "\" in package \"" + config_file + "\".")
 
     config_parser = configparser.ConfigParser()
     config_parser.read(config_file)
 
     return config_parser.get('Configurations', config_option)
+
+
+def get_global(section, config_option):
+    """
+    Get's the value of a given global config option.
+    @param section: The section of the config file to look in
+    @param config_option: The name of the config option.
+    """
+
+    if not os.path.exists(conf.PAULA_GLOBAL_CONFIG_FILE):
+        debug('making: \"' + conf.PAULA_GLOBAL_CONFIG_FILE + '\"')
+        shutil.copyfile(conf.PAULA_GLOBAL_CONFIG_FILE_TEMPLATE, conf.PAULA_GLOBAL_CONFIG_FILE)
+
+    debug("Getting global option \"" + config_option + "\" in section \"" + section + "\".")
+
+    config_parser = configparser.ConfigParser()
+    config_parser.read(conf.PAULA_GLOBAL_CONFIG_FILE)
+
+    return config_parser.get(section, config_option)
 
 
 def debug(string):

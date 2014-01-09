@@ -21,7 +21,7 @@ import signal
 from .paula_system import shell_command
 from paula.music import music_conf
 
-def call(command_string, sync=True):
+def call(command_string, sync=True, sudo=False):
     return shell_command.call(command_string, sync)
 
 def call_list(command_list, sync=True):

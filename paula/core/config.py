@@ -27,5 +27,9 @@ def get_config(package, config_option):
     return user_configs.get_config(package, config_option)
 
 
+def get_global(section, config_option):
+    return user_configs.get_global(section, config_option)
+
+
 def make_default_config_file_if_nonexistent(package, default):
     return config_utils.init_default_config_file_if_nonexistent(package, default)

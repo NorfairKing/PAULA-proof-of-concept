@@ -94,6 +94,15 @@ class Script(object):
         """
         return config.get_config(self.name, config_option)
 
+    def get_global_config(self, section, config_option):
+        """
+        Get a user configuration that is global for PAULA.
+        @param section: The section of the config file to look in.
+        @param config_option: The name of the config option
+        @return: The value of the given configuration option. This is always a string.
+        """
+        return config.get_global(section, config_option)
+
     def get_resource_path(self, resource):
         """
         Get's a given resource from the resources folder of this script.

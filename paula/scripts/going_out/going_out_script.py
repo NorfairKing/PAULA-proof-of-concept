@@ -23,15 +23,15 @@ from paula.scripts.script import Script
 from paula.sleep import sleep
 from paula.core import inputs
 from paula.core import parse
-from paula.core import interaction
+from paula.core import speech
 
 class GoingOutScript(Script):
     def execute(self, operand):
-        interaction.say("How long do you think you will be gone, Sir?")
+        speech.say("How long do you think you will be gone, Sir?")
 
         answer = inputs.get_string()
         delta = parse.time_delta(answer)
-        interaction.say_from_file(self.get_resource_path('greetings.paula_says'))
+        speech.say_from_file(self.get_resource_path('greetings.paula_says'))
 
         sleep.go_to_sleep_mode(delta.seconds)
 
@@ -40,4 +40,4 @@ class GoingOutScript(Script):
         if not answer:
             sleep.go_to_sleep_mode(0)
         else:
-            interaction.say("Welcome back, Sir")
+            speech.say("Welcome back, Sir")

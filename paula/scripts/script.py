@@ -84,7 +84,7 @@ class Script(object):
         Returns whether debug is toggled on or off.
         @return: True if debug is toggled on.
         """
-        return conf.GLOBAL_SCRIPT_DEBUG or self.config_module.DEBUG
+        return self.get_global_config() or self.config_module.DEBUG
 
     def get_user_config(self, config_option):
         """

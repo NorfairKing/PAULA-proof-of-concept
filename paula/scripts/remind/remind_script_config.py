@@ -28,6 +28,7 @@ REPLACEMENTS = {
     "I'm": "you're",
     "Im": "you're",
     "my": "your",
+    "me": "you",
     "myself": "yourself",
     "you": "me",
     "you're": "I'm",

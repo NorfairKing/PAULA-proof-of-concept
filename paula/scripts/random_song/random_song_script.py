@@ -24,7 +24,7 @@ from paula.music import song
 
 class RandomSongScript(Script):
     def execute(self, operand):
-        self.debug("Playing a random song")
+        self.debug("stuff")
         song.play_random()
 
         print("Song: " + song.get_current_song())

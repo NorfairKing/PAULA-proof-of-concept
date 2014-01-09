@@ -15,8 +15,7 @@
 #
 ##
 
-# Default = False
-DEBUG = False
+DEBUG = True
 
 DEFAULT_INPUT_PROMPT = "YOU:      "
 DEFAULT_PASSWORD_PROMPT = 'PASSWORD: '

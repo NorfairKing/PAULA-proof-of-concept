@@ -25,16 +25,16 @@ def call(command_string, sync=True, sudo=False):
     return shell_command.call(command_string, sync, sudo)
 
 
-def call_list(command_list, sync=True):
-    return shell_command.call_list(command_list, sync)
+def call_list(command_list, sync=True, sudo=False):
+    return shell_command.call_list(command_list, sync, sudo)
 
 
-def call_silently(command_string, sync=True):
-    return shell_command.call_silently(command_string, sync)
+def call_silently(command_string, sync=True, sudo=False):
+    return shell_command.call_silently(command_string, sync, sudo)
 
 
-def call_list_silently(command_list, sync=True):
-    return shell_command.call_list_silently(command_list, sync)
+def call_list_silently(command_list, sync=True, sudo=False):
+    return shell_command.call_list_silently(command_list, sync, sudo)
 
 
 def get_output_of(command_string):

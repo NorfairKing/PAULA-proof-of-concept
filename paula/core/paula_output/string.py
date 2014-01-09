@@ -67,13 +67,13 @@ def print_error(string, error=None):
     error_string = "ERROR"
     if error:
         error_string = str(error.__class__.__name__)
-    txt = error_string + ": " + string
+    txt = error_string + ":  " + string
     print_color(txt, conf.ERROR_COLOR)
 
 
 def print_debug(debug_string):
-    print_color("DEBUG: " + debug_string, conf.DEBUG_COLOR)
+    print_color("DEBUG:  " + debug_string, conf.DEBUG_COLOR)
 
 
 def print_paula(text):
-    print_color("PAULA: " + text, conf.PAULA_COLOR)
+    print_color("PAULA:  " + text, conf.PAULA_COLOR)

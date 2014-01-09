@@ -34,4 +34,7 @@ class PaulaTestScript(Script):
         from paula.core import system
         command = 'rtcwake --mode mem --dry-run --seconds 5'
         system.call(command, sync=True, sudo=True)
+
+        from paula.core import inputs
+        print(inputs.get_password())
         # </Test here>

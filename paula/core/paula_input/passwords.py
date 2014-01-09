@@ -21,5 +21,5 @@ import getpass
 The passwords module of the paula_input package
 """
 
-def get_password():
-    return getpass.getpass(prompt='Password: ')
+def get_password(prompt):
+    return getpass.getpass(prompt=prompt)

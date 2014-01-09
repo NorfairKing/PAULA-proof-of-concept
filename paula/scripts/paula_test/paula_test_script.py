@@ -30,4 +30,8 @@ class PaulaTestScript(Script):
         print('"' + self.get_global_config('Debug','debug') + '"')
         print('"' + self.get_global_config('Sudo','password') + '"')
         print('"' + self.get_global_config('Sudo','ask') + '"')
+
+        from paula.core import system
+        command = 'rtcwake --mode mem --dry-run --seconds 5'
+        system.call(command, sync=True, sudo=True)
         # </Test here>

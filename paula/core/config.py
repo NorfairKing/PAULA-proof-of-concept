@@ -31,5 +31,9 @@ def get_global(section, config_option):
     return user_configs.get_global(section, config_option)
 
 
+def get_global_debug():
+    return user_configs.get_global_debug()
+
+
 def make_default_config_file_if_nonexistent(package, default):
     return config_utils.init_default_config_file_if_nonexistent(package, default)

@@ -23,10 +23,11 @@ import os
 import shutil
 import configparser
 
-from . import paula_config_config as conf
-
 from paula.core import outputs
 from paula.core import exceptions
+from paula.core import interaction
+
+from . import paula_config_config as conf
 
 
 def get_config(package, config_option):
@@ -65,6 +66,20 @@ def get_global(section, config_option):
     config_parser.read(conf.PAULA_GLOBAL_CONFIG_FILE)
 
     return config_parser.get(section, config_option)
+
+
+def get_global_debug():
+    """
+    Gets whether the global debug is toggled on.
+    @return: True if it is toggled on, False if it is toggled off, None if it does not have any useful value.
+    """
+    debug_str = get_global(conf.DEBUG_SECTION, conf.DEBUG_OPTION)
+    if interaction.means(debug_str, 'yes'):
+        return True
+    elif interaction.means(debug_str, 'no'):
+        return False
+    else:
+        return None
 
 
 def debug(string):

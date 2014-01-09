@@ -22,7 +22,7 @@ from .paula_system import shell_command
 from paula.music import music_conf
 
 def call(command_string, sync=True, sudo=False):
-    return shell_command.call(command_string, sync)
+    return shell_command.call(command_string, sync, sudo=sudo)
 
 def call_list(command_list, sync=True):
     return shell_command.call_list(command_list, sync)

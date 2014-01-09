@@ -25,7 +25,6 @@ import configparser
 
 from paula.core import outputs
 from paula.core import exceptions
-from paula.core import interaction
 
 from . import paula_config_config as conf
 
@@ -74,9 +73,9 @@ def get_global_debug():
     @return: True if it is toggled on, False if it is toggled off, None if it does not have any useful value.
     """
     debug_str = get_global(conf.DEBUG_SECTION, conf.DEBUG_OPTION)
-    if interaction.means(debug_str, 'yes'):
+    if debug_str.lower() == 'true':
         return True
-    elif interaction.means(debug_str, 'no'):
+    elif debug_str.lower() == 'false':
         return False
     else:
         return None

@@ -24,8 +24,8 @@ from . import sleep_conf as conf
 def go_to_sleep_mode(seconds):
     if seconds == 0:
         if not conf.DEBUG:
-            cmd = "sudo pm-suspend"
-            system.call_silently(cmd)
+            cmd = "pm-suspend"
+            system.call_silently(cmd, sudo=True)
         else:
             outputs.print_debug("going to sleep indefinitely")
     else:
@@ -35,6 +35,6 @@ def go_to_sleep_mode(seconds):
         cmd += "--seconds " + str(seconds)
 
         if not conf.DEBUG:
-            system.call_silently(cmd)
+            system.call_silently(cmd, sudo=True)
         else:
-            system.call(cmd)
+            system.call(cmd, sudo=True)

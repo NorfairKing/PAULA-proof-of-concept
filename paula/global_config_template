@@ -1,6 +1,6 @@
 [Sudo]
 # If the password that is here is not correct with certainty, set false to True
-password: 
+password:
 ask: True
 
 [Debug]

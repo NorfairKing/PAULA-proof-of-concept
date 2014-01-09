@@ -29,7 +29,7 @@ def call(command_string, sync, sudo):
     debug("Executing: " + command_string)
 
     if sudo:
-        command_string = sudoify_command(command_string)
+        command_string = sudoify_command_str(command_string)
 
     process = subprocess.Popen(command_string, shell=True)
     if sync:
@@ -39,14 +39,23 @@ def call(command_string, sync, sudo):
 
 
 def call_list(command_list, sync, sudo):
-    return call(" ".join(command_list), sync, sudo)
+    debug("Executing: " + str(command_list))
+
+    if sudo:
+        command_list = sudoify_command_list(command_list)
+
+    process = subprocess.Popen(command_list, shell=False)
+    if sync:
+        process.wait()
+    else:
+        return process
 
 
 def call_silently(command_string, sync, sudo):
     debug("Executing silently: " + command_string)
 
     if sudo:
-        command_string = sudoify_command(command_string)
+        command_string = sudoify_command_str(command_string)
 
     null = open(os.devnull, 'w')
     process = subprocess.Popen(command_string, shell=True, stdout=null, stderr=null)
@@ -57,8 +66,17 @@ def call_silently(command_string, sync, sudo):
 
 
 def call_list_silently(command_list, sync, sudo):
-    debug("calling list silently= "+ str(command_list))
-    return call_silently(" ".join(command_list), sync, sudo)
+    debug("Executing: " + str(command_list))
+
+    if sudo:
+        command_list = sudoify_command_list(command_list)
+
+    null = open(os.devnull, 'w')
+    process = subprocess.Popen(command_list, shell=False, stdout=null, stderr=null)
+    if sync:
+        process.wait()
+    else:
+        return process
 
 
 def get_output_of(command_string):
@@ -68,7 +86,7 @@ def get_output_of(command_string):
     return out
 
 
-def sudoify_command(command_string):
+def sudoify_command_str(command_string):
     ask = config.get_global('Sudo', 'ask') == 'True'
     if ask:
         password = get_password()
@@ -76,6 +94,15 @@ def sudoify_command(command_string):
         password = config.get_global('Sudo', 'password')
     command_string = ('echo %s | sudo -S %s' % (password, command_string))
     return command_string
+
+def sudoify_command_list(command_list):
+    ask = config.get_global('Sudo', 'ask') == 'True'
+    if ask:
+        password = get_password()
+    else:
+        password = config.get_global('Sudo', 'password')
+    command_list = ['echo',password,'|','sudo','-S'] +command_list
+    return command_list
 
 
 def debug(string):

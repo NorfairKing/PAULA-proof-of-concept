@@ -32,6 +32,7 @@ class Song:
         self.artist = foldernames[-3]
         self.album = foldernames[-2]
         if conf.DEBUG:
+            outputs.print_debug("Constructed song:")
             outputs.print_debug("Title: " + self.title)
             outputs.print_debug("Artist " + self.artist)
             outputs.print_debug("Album: " + self.album)

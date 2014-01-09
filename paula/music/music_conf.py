@@ -17,8 +17,7 @@
 
 from os.path import expanduser
 
-# Default = False
-DEBUG = False
+DEBUG = True
 
 # Song pid file
 SONG_PID = '/tmp/paula_song.pid';

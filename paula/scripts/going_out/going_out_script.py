@@ -25,13 +25,14 @@ from paula.core import inputs
 from paula.core import parse
 from paula.core import speech
 
+
 class GoingOutScript(Script):
     def execute(self, operand):
         speech.say("How long do you think you will be gone, Sir?")
 
         answer = inputs.get_string()
         delta = parse.time_delta(answer)
-        speech.say_from_file(self.get_resource_path('greetings.paula_says'))
+        speech.say_from_file(self.get_resource_path('greetings.paula_says'), sync=True)
 
         sleep.go_to_sleep_mode(delta.seconds)
 

@@ -16,12 +16,16 @@
 ##
 
 """
-The user configurations module for PAULA
+The config file for this new package
 """
 
 import os
 
-from . import paula_config_config as conf
+from paula.core import config
 
-if not os.path.exists(conf.PAULA_USER_CONFIG_DIR):
-    os.mkdir(conf.PAULA_USER_CONFIG_DIR)
+DEBUG = False
+
+PACKAGE_DELIMITER = '.'
+
+DEFAULT_RESOURCE_DIR_NAME = 'resources'
+DEFAULT_CONFIG_FILE_SUFFIX = '_config'

@@ -16,12 +16,5 @@
 ##
 
 """
-The user configurations module for PAULA
+PAULA's Utilities package.
 """
-
-import os
-
-from . import paula_config_config as conf
-
-if not os.path.exists(conf.PAULA_USER_CONFIG_DIR):
-    os.mkdir(conf.PAULA_USER_CONFIG_DIR)

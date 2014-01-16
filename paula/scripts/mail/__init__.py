@@ -16,15 +16,5 @@
 ##
 
 """
-Documentation for this script.
+PAULA's email script package
 """
-
-from paula.scripts.script import Script
-
-class NewScript(Script):
-    def execute(self, operand):
-        """
-        Documentation for the execute function
-        @param operand: The operand for this script.
-        """
-        print(operand)

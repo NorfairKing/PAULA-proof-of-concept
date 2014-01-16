@@ -16,6 +16,7 @@
 ##
 
 import os
+import inspect
 
 from . import core_config as conf
 from paula.core import outputs
@@ -25,3 +26,11 @@ def make_dir_if_nonexistent(path):
         os.mkdir(path)
         if conf.DEBUG:
             outputs.print_debug("Created " + path + " directory.")
+
+def get_caller_module_name():
+    # Get calling module
+    frm = inspect.stack()[1]
+    module = inspect.getmodule(frm[0])
+    print(module.__name__)
+    file = inspect.getfile(frm[0])
+    print(file)

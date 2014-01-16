@@ -26,7 +26,14 @@ class PaulaTestScript(Script):
 
         # <Test here>
         from paula.core import util
-        util.get_caller_module_name()
+
+        print(util.get_this_module())
+        print(util.get_config_module())
+        print(util.get_debug())
+        print(util.get_this_file())
+        print(util.get_this_directory())
+        print(util.get_resource_directory())
+        print(util.get_resource_path('some_resource.txt'))
         # </Test here>
 
 

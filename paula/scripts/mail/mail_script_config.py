@@ -19,4 +19,4 @@
 PAULA's email script configurations
 """
 
-DEBUG = True
+DEBUG = False

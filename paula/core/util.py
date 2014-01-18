@@ -21,6 +21,7 @@ This might be the ugliest code ever, but it works, be weary when cleaning!
 
 from .paula_util import directory_util
 from .paula_util import module_util
+from .paula_util import resource_util
 
 # directory utils
 def make_dir_if_nonexistent(path):
@@ -52,10 +53,11 @@ def get_this_directory():
     return module_util.get_this_directory()
 
 
+# resource utils
 def get_resource_directory():
-    return module_util.get_resource_directory()
+    return resource_util.get_resource_directory()
 
 
 def get_resource_path(file_name):
-    return module_util.get_resource_path(file_name)
+    return resource_util.get_resource_path(file_name)
 

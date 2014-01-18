@@ -82,13 +82,3 @@ def get_this_file():
 
 def get_this_directory():
     return _get_directory()
-
-
-def get_resource_directory():
-    return os.path.join(_get_directory(), conf.DEFAULT_RESOURCE_DIR_NAME)
-
-
-def get_resource_path(file_name):
-    resource_dir = os.path.join(_get_directory(), conf.DEFAULT_RESOURCE_DIR_NAME)
-    return os.path.join(resource_dir, file_name)
-

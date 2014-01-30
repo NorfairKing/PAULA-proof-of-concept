@@ -26,7 +26,17 @@ def say(text, sync=False):
     return voice.say(text, sync=sync)
 
 
-def say_from_file(path, sync=False):
+def say_all_from_file(path, ordered=True, sync=False):
+    with open(path, 'r') as speech_file:
+        lines = speech_file.readlines()
+    if not ordered:
+        random.shuffle(lines)
+    for line in lines[:-1]:
+        say(line, sync=True)
+    say(lines[-1], sync=sync)
+
+
+def say_random_from_file(path, sync=False):
     with open(path, 'r') as speech_file:
         lines = speech_file.readlines()
         line = random.choice(lines)

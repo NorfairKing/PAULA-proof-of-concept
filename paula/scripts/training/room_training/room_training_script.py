@@ -83,14 +83,14 @@ class RoomTrainingScript(Script):
                     self.debug("Exiting.")
                     return
             if not self.get_debug():
-                speech.say_from_file(self.get_resource_path('break.paula_says'))
+                speech.say_random_from_file(self.get_resource_path('break.paula_says'))
                 self.rest(rest_duration)
 
         speech.say("For the last set, do at least " + str(workout_list[-1]) + " " + exercise + ", Sir.")
         if not inputs.get_boolean():
             speech.say("Too bad, Sir.")
             return
-        speech.say_from_file(self.get_resource_path('done.paula_says'))
+        speech.say_random_from_file(self.get_resource_path('done.paula_says'))
 
     def rest(self, duration):
         minutes = duration / SECONDS_IN_A_MINUTE

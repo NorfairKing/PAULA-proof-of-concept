@@ -24,3 +24,5 @@ from paula import config
 DEBUG = True
 CHECKLIST_EXTENSION = ".txt"
 CHECKLISTS_DIR = config.PAULA_STATE_CHECKLISTS_DIR
+
+DEFAULT_OPTIONS = {"continuous": False, "inverted": False}

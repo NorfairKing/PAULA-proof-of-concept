@@ -19,17 +19,29 @@
 PAULA checklist
 """
 
+import os
+from . import checklist_config as conf
+
+from paula.core import speech
 
 class Checklist(object):
-    def __init__(self, path):
+    def __init__(self, name):
         """
-        Initialize this checklist with all its elements from a given path.
+        Initialize this checklist with all its elements from a name
         @param path: The given path.
         """
-        self.source_path = path
-        with open(path) as f:
+        self.name = name
+        self.source_path = os.path.join(conf.CHECKLISTS_DIR, name + conf.CHECKLIST_EXTENSION)
+        #TODO some error if the path doesn't exist, is a directory, or doesn't exist.
+        with open(self.source_path) as f:
             self.items = f.readlines()
 
+        #FIXME delete endlines
+        self.items = (line.rstrip('\n') for line in self.items)
+
     def check(self):
+        """
+        Check every item on this checklist, according to the appropriate settings.
+        """
         for item in self.items:
-            print(item)
+            speech.say(item, sync=True)

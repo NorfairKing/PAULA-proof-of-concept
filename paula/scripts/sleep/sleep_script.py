@@ -41,7 +41,7 @@ class SleepScript(Script):
         speech.say("Please select which song you want to wake you up.")
         s = song.choose()
 
-        speech.say_from_file(self.get_resource_path('night.paula_says'), sync=True)
+        speech.say_random_from_file(self.get_resource_path('night.paula_says'), sync=True)
 
         # Set volume to something pleasant
         system_volume.set(self.get_config('PLEASANT_WAKE_UP_VOLUME'))
@@ -50,7 +50,7 @@ class SleepScript(Script):
         sleep.go_to_sleep_mode(int(option))
 
         # Alarm go off
-        speech.say_from_file(self.get_resource_path('morning.paula_says'), sync=True)
+        speech.say_random_from_file(self.get_resource_path('morning.paula_says'), sync=True)
         now = datetime.datetime.now()
         hour_min = 'It is %H:%M'
         if now.hour < 9:
@@ -78,7 +78,7 @@ class SleepScript(Script):
         except ProcessLookupError:
             pass
 
-        speech.say_from_file(self.get_resource_path('up.paula_says'))
+        speech.say_random_from_file(self.get_resource_path('up.paula_says'))
 
         # Show quote
         print((str(quote.get_random())))

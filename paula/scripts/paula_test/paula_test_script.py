@@ -25,18 +25,15 @@ class PaulaTestScript(Script):
 
 
         # <Test here>
-        print('"' + self.get_user_config('test_config_option') + '"')
-        print(self.get_config('DEBUG'))
-        print('"' + self.get_global_config('Debug', 'debug') + '"')
-        print('"' + self.get_global_config('Sudo', 'password') + '"')
-        print('"' + self.get_global_config('Sudo', 'ask') + '"')
+        from paula.core import util
 
-        from paula.core import system
-
-        command = 'rtcwake --mode mem --dry-run --seconds 5'
-        system.call(command, sync=True, sudo=True)
-
-        from paula.core import inputs
-
-        print(inputs.get_password())
+        print(util.get_this_module())
+        print(util.get_config_module())
+        print(util.get_debug())
+        print(util.get_this_file())
+        print(util.get_this_directory())
+        print(util.get_resource_directory())
+        print(util.get_resource_path('some_resource.txt'))
         # </Test here>
+
+

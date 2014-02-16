@@ -12,7 +12,7 @@
 # Unintelligent
 # Life
 # Assistant
-#
+#5
 ##
 
 """
@@ -32,7 +32,7 @@ class GoingOutScript(Script):
 
         answer = inputs.get_string()
         delta = parse.time_delta(answer)
-        speech.say_from_file(self.get_resource_path('greetings.paula_says'), sync=True)
+        speech.say_all_from_file(self.get_resource_path('greetings.paula_says'), sync=True)
 
         sleep.go_to_sleep_mode(delta.seconds)
 

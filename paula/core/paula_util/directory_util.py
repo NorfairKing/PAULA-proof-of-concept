@@ -16,12 +16,18 @@
 ##
 
 """
-The user configurations module for PAULA
+The util functions for directories
 """
 
 import os
 
-from . import paula_config_config as conf
+from paula.core import outputs
 
-if not os.path.exists(conf.PAULA_USER_CONFIG_DIR):
-    os.mkdir(conf.PAULA_USER_CONFIG_DIR)
+from . import paula_util_config as conf
+
+
+def make_if_nonexistent(path):
+    if not os.path.exists(path):
+        os.mkdir(path)
+        if conf.DEBUG:
+            outputs.print_debug("Created " + path + " directory.")

@@ -52,7 +52,7 @@ class RemindScript(Script):
             return
         treated_content = self.treat_content(content)
         schedule.schedule_event_with_delta(delta, "paula_remind", treated_content)
-        speech.say_from_file(self.get_resource_path('confirmation.paula_says'))
+        speech.say_random_from_file(self.get_resource_path('confirmation.paula_says'))
 
     def treat_content(self, content):
         content = ' ' + content + ' '

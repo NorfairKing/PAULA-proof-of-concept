@@ -23,6 +23,7 @@ import os
 from . import checklist_config as conf
 
 from paula.core import speech
+from paula.core import inputs
 
 class Checklist(object):
     def __init__(self, name):
@@ -62,5 +63,16 @@ class Checklist(object):
         """
         Check every item on this checklist, according to the appropriate settings.
         """
+        if self.options["reversed"]:
+            self.items.reverse()
+
+        not_yet = []
         for item in self.items:
             speech.say(item, sync=True)
+            if not self.options["continuous"]:
+                got_it = inputs.get_boolean()
+                if not got_it:
+                    not_yet.append(item)
+
+        if not_yet and not self.options["continuous"]:
+            print("Left to get: " + " ".join(not_yet))

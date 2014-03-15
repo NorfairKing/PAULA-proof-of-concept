@@ -19,6 +19,7 @@
   - restart - restarts PAULA
 *** Features
     - Agenda
+    - Checklist
     - Going out
     - Google
     - Mock

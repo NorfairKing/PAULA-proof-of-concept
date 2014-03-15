@@ -24,7 +24,7 @@ import os
 DEBUG = False
 
 # How long PAULA waits after a script is done.
-WAITING_TIME = 1
+WAITING_TIME = 0.1
 
 # The default package where the scripts are housed (this package)
 DEFAULT_PARENT = "paula.scripts."

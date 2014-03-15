@@ -21,8 +21,8 @@ The config file for the checklist package
 
 from paula import config
 
-DEBUG = True
-CHECKLIST_EXTENSION = ".txt"
+DEBUG = False
+CHECKLIST_EXTENSION = ".paula_checklist"
 CHECKLISTS_DIR = config.PAULA_STATE_CHECKLISTS_DIR
 
 DEFAULT_OPTIONS = {"continuous": False, "reversed": False}

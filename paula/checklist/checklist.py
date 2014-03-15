@@ -25,6 +25,7 @@ from . import checklist_config as conf
 from paula.core import speech
 from paula.core import inputs
 
+
 class Checklist(object):
     def __init__(self, name):
         """
@@ -47,15 +48,16 @@ class Checklist(object):
         self.items = lines[1:]
         self.options = self.parse_options(self.options_str)
 
-        #FIXME delete endlines
-        self.items = (line.rstrip('\n') for line in self.items)
+        self.items = [line.rstrip('\n') for line in self.items]
 
-    def parse_options(self,options_str):
+    def parse_options(self, options_str):
         selected_options = options_str.split(" ")
+        selected_options = [o.rstrip('\n') for o in selected_options]
+
         current_options = conf.DEFAULT_OPTIONS
         for option in selected_options:
             if option in current_options.keys():
-                current_options[option] = not current_options[option] #FIXME make this more general for defaults that aren't false
+                current_options[option] = True #FIXME make this more general for defaults that aren't false
         return current_options
 
 
@@ -67,6 +69,7 @@ class Checklist(object):
             self.items.reverse()
 
         not_yet = []
+
         for item in self.items:
             speech.say(item, sync=True)
             if not self.options["continuous"]:
